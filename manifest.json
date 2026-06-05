@@ -1,7 +1,7 @@
 {
-  "name": "WargaHub",
+  "name": "WargaHub Multi Tenant",
   "short_name": "WargaHub",
-  "description": "Aplikasi warga santai untuk RT, RW, perumahan, jualan warga, jasa lokal, iuran, laporan, dan keamanan lingkungan.",
+  "description": "Aplikasi warga multi tenant untuk RT, RW, perumahan, jasa lokal, iuran, laporan, dan admin pusat.",
   "start_url": "./index.html",
   "scope": "./",
   "display": "standalone",
