@@ -429,6 +429,266 @@
         background:#f1f5f9;
         font-weight:950;
       }
+
+      .desk-hero-admin{
+        display:grid;
+        grid-template-columns:1.35fr .65fr;
+        gap:16px;
+        margin-bottom:18px;
+      }
+      .desk-hero-card{
+        position:relative;
+        overflow:hidden;
+        border-radius:32px;
+        padding:24px;
+        color:white;
+        background:
+          radial-gradient(circle at 85% 15%, rgba(255,255,255,.22), transparent 160px),
+          linear-gradient(135deg,#172033 0%,#2e1065 58%,#ff4d9d 140%);
+        box-shadow:0 20px 44px rgba(23,32,51,.18);
+      }
+      .desk-hero-card:after{
+        content:"";
+        position:absolute;
+        width:260px;height:260px;
+        border-radius:999px;
+        right:-80px;bottom:-120px;
+        background:rgba(255,255,255,.10);
+      }
+      .desk-hero-card h2{
+        position:relative;
+        z-index:2;
+        margin:10px 0 10px;
+        font-size:2.15rem;
+        letter-spacing:-.075em;
+        line-height:.98;
+        max-width:650px;
+      }
+      .desk-hero-card p{
+        position:relative;
+        z-index:2;
+        color:rgba(255,255,255,.78);
+        line-height:1.7;
+        max-width:760px;
+        margin:0;
+        font-weight:750;
+      }
+      .desk-hero-badges{
+        position:relative;
+        z-index:2;
+        display:flex;
+        flex-wrap:wrap;
+        gap:8px;
+        margin-top:18px;
+      }
+      .desk-hero-badges span{
+        display:inline-flex;
+        border-radius:999px;
+        padding:8px 11px;
+        background:rgba(255,255,255,.14);
+        border:1px solid rgba(255,255,255,.16);
+        color:white;
+        font-weight:950;
+        font-size:.78rem;
+      }
+      .desk-quick-card{
+        background:white;
+        border:1px solid rgba(15,23,42,.06);
+        border-radius:32px;
+        padding:18px;
+        box-shadow:0 12px 28px rgba(15,23,42,.06);
+      }
+      .desk-quick-card h3{
+        margin:0 0 12px;
+        font-size:1.15rem;
+        letter-spacing:-.04em;
+      }
+      .desk-quick-actions{
+        display:grid;
+        gap:9px;
+      }
+      .desk-quick-actions button{
+        border:0;
+        border-radius:18px;
+        padding:13px 14px;
+        background:#f8fafc;
+        color:#334155;
+        font-weight:950;
+        display:flex;
+        align-items:center;
+        justify-content:space-between;
+        gap:10px;
+      }
+      .desk-quick-actions button:hover{
+        background:#fff3df;
+        color:#f97316;
+      }
+      .desk-kpi-card{
+        min-height:136px;
+        display:flex;
+        flex-direction:column;
+        justify-content:space-between;
+      }
+      .desk-kpi-top{
+        display:flex;
+        justify-content:space-between;
+        align-items:flex-start;
+        gap:12px;
+      }
+      .desk-kpi-icon{
+        width:48px;height:48px;
+        border-radius:18px;
+        display:grid;
+        place-items:center;
+        color:white;
+        font-size:1.25rem;
+        background:linear-gradient(135deg,var(--orange),var(--pink));
+        box-shadow:0 10px 22px rgba(255,77,157,.18);
+      }
+      .desk-kpi-card:nth-child(2) .desk-kpi-icon{background:linear-gradient(135deg,#0ea5e9,#7c3aed)}
+      .desk-kpi-card:nth-child(3) .desk-kpi-icon{background:linear-gradient(135deg,#16a34a,#84cc16)}
+      .desk-kpi-card:nth-child(4) .desk-kpi-icon{background:linear-gradient(135deg,#f59e0b,#ff6b00)}
+      .desk-kpi-card small{
+        display:block;
+        color:#64748b;
+        font-weight:850;
+        margin-bottom:8px;
+      }
+      .desk-kpi-card b{
+        display:block;
+        font-size:2.25rem;
+        letter-spacing:-.075em;
+        line-height:1;
+      }
+      .desk-kpi-foot{
+        display:flex;
+        align-items:center;
+        justify-content:space-between;
+        gap:8px;
+        margin-top:12px;
+      }
+      .desk-kpi-foot span{
+        display:inline-flex;
+        border-radius:999px;
+        padding:6px 9px;
+        font-size:.72rem;
+        font-weight:950;
+        background:#dcfce7;
+        color:#15803d;
+      }
+      .desk-kpi-foot em{
+        color:#94a3b8;
+        font-style:normal;
+        font-size:.75rem;
+        font-weight:850;
+      }
+      .desk-overview-grid{
+        display:grid;
+        grid-template-columns:1.2fr .8fr;
+        gap:16px;
+        margin-bottom:18px;
+      }
+      .desk-card-title{
+        display:flex;
+        align-items:center;
+        justify-content:space-between;
+        gap:12px;
+        margin-bottom:14px;
+      }
+      .desk-card-title h2{
+        margin:0;
+        font-size:1.18rem;
+        letter-spacing:-.04em;
+      }
+      .desk-tenant-rank{
+        display:grid;
+        gap:10px;
+      }
+      .desk-rank-item{
+        display:grid;
+        grid-template-columns:42px 1fr auto;
+        gap:10px;
+        align-items:center;
+        padding:12px;
+        border-radius:18px;
+        background:#f8fafc;
+        border:1px solid #edf2f7;
+      }
+      .desk-rank-no{
+        width:42px;height:42px;border-radius:15px;
+        display:grid;place-items:center;
+        color:white;
+        font-weight:950;
+        background:linear-gradient(135deg,#ff6b00,#ff4d9d);
+      }
+      .desk-rank-item b{
+        display:block;
+        font-size:.9rem;
+      }
+      .desk-rank-item small{
+        color:#64748b;
+        font-weight:850;
+      }
+      .desk-health-list{
+        display:grid;
+        gap:10px;
+      }
+      .desk-health{
+        display:flex;
+        justify-content:space-between;
+        align-items:center;
+        gap:12px;
+        padding:12px;
+        border-radius:18px;
+        background:#f8fafc;
+        border:1px solid #edf2f7;
+      }
+      .desk-health b{
+        display:block;
+        font-size:.88rem;
+      }
+      .desk-health small{
+        color:#64748b;
+        font-weight:850;
+      }
+      .desk-progress{
+        width:120px;
+        height:10px;
+        border-radius:999px;
+        background:#e2e8f0;
+        overflow:hidden;
+      }
+      .desk-progress span{
+        display:block;
+        height:100%;
+        border-radius:999px;
+        background:linear-gradient(90deg,#16a34a,#84cc16);
+      }
+      .desk-chart-card{
+        min-height:330px;
+      }
+      .desk-chart-labels{
+        display:grid;
+        grid-template-columns:repeat(auto-fit,minmax(80px,1fr));
+        gap:8px;
+        margin-top:12px;
+      }
+      .desk-chart-labels span{
+        font-size:.72rem;
+        color:#64748b;
+        font-weight:900;
+        white-space:nowrap;
+        overflow:hidden;
+        text-overflow:ellipsis;
+      }
+      .desk-activity-compact{
+        max-height:330px;
+        overflow:auto;
+      }
+      @media(max-width:1180px){
+        .desk-hero-admin,.desk-overview-grid{grid-template-columns:1fr}
+      }
+
       @media(max-width:1180px){
         .desk-grid-4{grid-template-columns:repeat(2,1fr)}
         .desk-grid-3,.desk-split{grid-template-columns:1fr}
@@ -480,41 +740,96 @@
       </div>
 
       <section class="desk-section active" id="desk-overview">
-        <div class="desk-grid-4">
-          <div class="desk-card"><div class="desk-metric"><div><small>Total Tenant</small><b id="dTotalTenant">0</b><span>aktif</span></div><div class="ico">🏘️</div></div></div>
-          <div class="desk-card"><div class="desk-metric"><div><small>Total User/Warga</small><b id="dTotalUsers">0</b><span>terdaftar</span></div><div class="ico">👥</div></div></div>
-          <div class="desk-card"><div class="desk-metric"><div><small>Income Bulanan</small><b id="dIncome">Rp0</b><span>simulasi</span></div><div class="ico">💰</div></div></div>
-          <div class="desk-card"><div class="desk-metric"><div><small>Aktivitas Hari Ini</small><b id="dActivities">0</b><span>monitor</span></div><div class="ico">📡</div></div></div>
-        </div>
-
-        <div class="desk-grid-3">
-          <div class="desk-card soft-dark">
-            <small>Kontrol pusat</small>
-            <h2 style="margin:8px 0 8px;font-size:1.8rem;letter-spacing:-.06em">Semua aktivitas user dalam satu layar</h2>
-            <p style="margin:0;line-height:1.65;color:rgba(255,255,255,.78)">Pengelola bisa memantau tenant, admin RW/RT, warga yang daftar, bukti iuran, laporan darurat, lapak, jasa, banner, serta status billing tanpa masuk satu per satu ke lingkungan.</p>
-            <div class="pay-actions" style="margin-top:16px">
-              <button class="btn" onclick="openDesk('activity')">Lihat Aktivitas</button>
-              <button class="btn light" onclick="openDesk('tenants')">Kelola Tenant</button>
+        <div class="desk-hero-admin">
+          <div class="desk-hero-card">
+            <small style="position:relative;z-index:2;color:rgba(255,255,255,.72);font-weight:950">ADMIN PENGELOLA PUSAT</small>
+            <h2>Kontrol semua RT, RW, perumahan, user, billing, dan aktivitas dari satu dashboard.</h2>
+            <p>Dashboard ini khusus untuk kita sebagai pemilik platform. Tenant pelanggan tetap punya ruang sendiri, sedangkan kita bisa memantau performa, aktivitas, link, income, laporan, dan status sistem secara terpusat.</p>
+            <div class="desk-hero-badges">
+              <span>🏘️ Multi Tenant</span>
+              <span>🔐 Role Control</span>
+              <span>📡 User Activity</span>
+              <span>🔥 Firebase Sync</span>
             </div>
           </div>
-          <div class="desk-card">
-            <small>Tenant tercepat tumbuh</small>
-            <div id="dTopTenants"></div>
-          </div>
-          <div class="desk-card">
-            <small>Status sistem</small>
-            <div id="dSystemStatus"></div>
+
+          <div class="desk-quick-card">
+            <h3>Aksi Cepat</h3>
+            <div class="desk-quick-actions">
+              <button onclick="openDeskModal('createTenant')">Buat Tenant Baru <b>＋</b></button>
+              <button onclick="openDesk('links')">Copy Link Tenant/RT <b>🔗</b></button>
+              <button onclick="openDesk('activity')">Pantau Aktivitas <b>📡</b></button>
+              <button onclick="openDesk('billing')">Cek Billing <b>💳</b></button>
+              <button onclick="openDesk('firebase')">Sync Firebase <b>🔥</b></button>
+            </div>
           </div>
         </div>
 
-        <div class="desk-split">
-          <div class="desk-card">
-            <div class="desk-section-head"><h2>Grafik income tenant</h2><span class="desk-pill green">Bulanan</span></div>
-            <div class="desk-chart" id="dIncomeChart"></div>
+        <div class="desk-grid-4">
+          <div class="desk-card desk-kpi-card">
+            <div class="desk-kpi-top">
+              <div><small>Total Tenant</small><b id="dTotalTenant">0</b></div>
+              <div class="desk-kpi-icon">🏘️</div>
+            </div>
+            <div class="desk-kpi-foot"><span>Aktif</span><em>RT/RW/perumahan</em></div>
           </div>
+          <div class="desk-card desk-kpi-card">
+            <div class="desk-kpi-top">
+              <div><small>Total User/Warga</small><b id="dTotalUsers">0</b></div>
+              <div class="desk-kpi-icon">👥</div>
+            </div>
+            <div class="desk-kpi-foot"><span>Terdaftar</span><em>semua tenant</em></div>
+          </div>
+          <div class="desk-card desk-kpi-card">
+            <div class="desk-kpi-top">
+              <div><small>Income Bulanan</small><b id="dIncome">Rp0</b></div>
+              <div class="desk-kpi-icon">💰</div>
+            </div>
+            <div class="desk-kpi-foot"><span>Simulasi</span><em>paket + market</em></div>
+          </div>
+          <div class="desk-card desk-kpi-card">
+            <div class="desk-kpi-top">
+              <div><small>Aktivitas Hari Ini</small><b id="dActivities">0</b></div>
+              <div class="desk-kpi-icon">📡</div>
+            </div>
+            <div class="desk-kpi-foot"><span>Monitor</span><em>log user</em></div>
+          </div>
+        </div>
+
+        <div class="desk-overview-grid">
+          <div class="desk-card desk-chart-card">
+            <div class="desk-card-title">
+              <h2>Grafik Income Tenant</h2>
+              <span class="desk-pill green">Bulanan</span>
+            </div>
+            <div class="desk-chart" id="dIncomeChart"></div>
+            <div class="desk-chart-labels" id="dIncomeChartLabels"></div>
+          </div>
+
           <div class="desk-card">
-            <div class="desk-section-head"><h2>Aktivitas terbaru</h2><button class="desk-btn light" onclick="openDesk('activity')">Detail</button></div>
-            <div class="desk-log" id="dRecentActivity"></div>
+            <div class="desk-card-title">
+              <h2>Tenant Teratas</h2>
+              <button class="desk-btn light" onclick="openDesk('tenants')">Semua</button>
+            </div>
+            <div class="desk-tenant-rank" id="dTopTenants"></div>
+          </div>
+        </div>
+
+        <div class="desk-overview-grid">
+          <div class="desk-card">
+            <div class="desk-card-title">
+              <h2>Aktivitas Terbaru</h2>
+              <button class="desk-btn light" onclick="openDesk('activity')">Detail</button>
+            </div>
+            <div class="desk-log desk-activity-compact" id="dRecentActivity"></div>
+          </div>
+
+          <div class="desk-card">
+            <div class="desk-card-title">
+              <h2>Kesehatan Sistem</h2>
+              <span class="desk-pill green">Normal</span>
+            </div>
+            <div class="desk-health-list" id="dSystemStatus"></div>
           </div>
         </div>
       </section>
@@ -1449,15 +1764,17 @@ allow write: if request.auth.token.tenantId == tenantId
       setText("dFirebaseStatus", window.WHFirebase ? "Terhubung" : "Menunggu koneksi");
 
       const top = [...tenants].sort((a,b)=>deskIncomeTenant(b)-deskIncomeTenant(a)).slice(0,4);
-      setHTML("dTopTenants", top.map(t=>`<div class="desk-log-item" style="grid-template-columns:42px 1fr auto"><div class="desk-log-ico">🏘️</div><div><b>${t.name}</b><small>${t.plan} · ${t.residents.length} warga</small></div><span class="desk-pill green">${money(deskIncomeTenant(t))}</span></div>`).join(""));
+      setHTML("dTopTenants", top.map((t,idx)=>`<div class="desk-rank-item"><div class="desk-rank-no">${idx+1}</div><div><b>${t.name}</b><small>${t.plan} · ${t.residents.length} warga</small></div><span class="desk-pill green">${money(deskIncomeTenant(t))}</span></div>`).join(""));
       setHTML("dSystemStatus", `
-        <div class="desk-log-item" style="grid-template-columns:42px 1fr"><div class="desk-log-ico">✅</div><div><b>Multi tenant</b><small>TenantId aktif dan terpisah</small></div></div>
-        <div class="desk-log-item" style="grid-template-columns:42px 1fr;margin-top:10px"><div class="desk-log-ico">📱</div><div><b>Responsive</b><small>HP app + laptop admin</small></div></div>
-        <div class="desk-log-item" style="grid-template-columns:42px 1fr;margin-top:10px"><div class="desk-log-ico">🔥</div><div><b>Firebase</b><small>${window.WHFirebase ? "Terhubung" : "Belum siap"}</small></div></div>
+        <div class="desk-health"><div><b>Multi tenant</b><small>TenantId aktif dan data terpisah</small></div><div class="desk-progress"><span style="width:100%"></span></div></div>
+        <div class="desk-health"><div><b>Responsive UI</b><small>HP app + laptop admin</small></div><div class="desk-progress"><span style="width:100%"></span></div></div>
+        <div class="desk-health"><div><b>Firebase</b><small>${window.WHFirebase ? "Terhubung ke softpro-11da5" : "Menunggu koneksi"}</small></div><div class="desk-progress"><span style="width:${window.WHFirebase ? 100 : 45}%"></span></div></div>
+        <div class="desk-health"><div><b>Role Control</b><small>Super admin, RW, RT, warga</small></div><div class="desk-progress"><span style="width:92%"></span></div></div>
       `);
 
       const maxIncome = Math.max(...tenants.map(deskIncomeTenant), 1);
-      setHTML("dIncomeChart", tenants.map(t=>`<div class="desk-bar" style="height:${Math.max(18, deskIncomeTenant(t)/maxIncome*200)}px"><span>${money(deskIncomeTenant(t)).replace("Rp","")}</span></div>`).join(""));
+      setHTML("dIncomeChart", tenants.map(t=>`<div class="desk-bar" style="height:${Math.max(22, deskIncomeTenant(t)/maxIncome*220)}px"><span>${money(deskIncomeTenant(t)).replace("Rp","")}</span></div>`).join(""));
+      setHTML("dIncomeChartLabels", tenants.map(t=>`<span title="${t.name}">${t.name}</span>`).join(""));
 
       const filteredTenants = tenants.filter(t => (`${t.name} ${t.plan} ${t.admin} ${t.id}`).toLowerCase().includes(q));
       setHTML("dTenantRows", filteredTenants.map(t=>`
@@ -1733,15 +2050,17 @@ allow write: if request.auth.token.tenantId == tenantId
       setText("dFirebaseStatus", window.WHFirebase ? "Terhubung" : "Menunggu koneksi");
 
       const top = [...tenants].sort((a,b)=>deskIncomeTenant(b)-deskIncomeTenant(a)).slice(0,4);
-      setHTML("dTopTenants", top.map(t=>`<div class="desk-log-item" style="grid-template-columns:42px 1fr auto"><div class="desk-log-ico">🏘️</div><div><b>${t.name}</b><small>${t.plan} · ${t.residents.length} warga</small></div><span class="desk-pill green">${money(deskIncomeTenant(t))}</span></div>`).join(""));
+      setHTML("dTopTenants", top.map((t,idx)=>`<div class="desk-rank-item"><div class="desk-rank-no">${idx+1}</div><div><b>${t.name}</b><small>${t.plan} · ${t.residents.length} warga</small></div><span class="desk-pill green">${money(deskIncomeTenant(t))}</span></div>`).join(""));
       setHTML("dSystemStatus", `
-        <div class="desk-log-item" style="grid-template-columns:42px 1fr"><div class="desk-log-ico">✅</div><div><b>Multi tenant</b><small>TenantId aktif dan terpisah</small></div></div>
-        <div class="desk-log-item" style="grid-template-columns:42px 1fr;margin-top:10px"><div class="desk-log-ico">📱</div><div><b>Responsive</b><small>HP app + laptop admin</small></div></div>
-        <div class="desk-log-item" style="grid-template-columns:42px 1fr;margin-top:10px"><div class="desk-log-ico">🔥</div><div><b>Firebase</b><small>${window.WHFirebase ? "Terhubung" : "Belum siap"}</small></div></div>
+        <div class="desk-health"><div><b>Multi tenant</b><small>TenantId aktif dan data terpisah</small></div><div class="desk-progress"><span style="width:100%"></span></div></div>
+        <div class="desk-health"><div><b>Responsive UI</b><small>HP app + laptop admin</small></div><div class="desk-progress"><span style="width:100%"></span></div></div>
+        <div class="desk-health"><div><b>Firebase</b><small>${window.WHFirebase ? "Terhubung ke softpro-11da5" : "Menunggu koneksi"}</small></div><div class="desk-progress"><span style="width:${window.WHFirebase ? 100 : 45}%"></span></div></div>
+        <div class="desk-health"><div><b>Role Control</b><small>Super admin, RW, RT, warga</small></div><div class="desk-progress"><span style="width:92%"></span></div></div>
       `);
 
       const maxIncome = Math.max(...tenants.map(deskIncomeTenant), 1);
-      setHTML("dIncomeChart", tenants.map(t=>`<div class="desk-bar" style="height:${Math.max(18, deskIncomeTenant(t)/maxIncome*200)}px"><span>${money(deskIncomeTenant(t)).replace("Rp","")}</span></div>`).join(""));
+      setHTML("dIncomeChart", tenants.map(t=>`<div class="desk-bar" style="height:${Math.max(22, deskIncomeTenant(t)/maxIncome*220)}px"><span>${money(deskIncomeTenant(t)).replace("Rp","")}</span></div>`).join(""));
+      setHTML("dIncomeChartLabels", tenants.map(t=>`<span title="${t.name}">${t.name}</span>`).join(""));
 
       const filteredTenants = tenants.filter(t => (`${t.name} ${t.plan} ${t.admin} ${t.id}`).toLowerCase().includes(q));
       setHTML("dTenantRows", filteredTenants.map(t=>`
@@ -1999,15 +2318,17 @@ allow write: if request.auth.token.tenantId == tenantId
       setText("dFirebaseStatus", window.WHFirebase ? "Terhubung" : "Menunggu koneksi");
 
       const top = [...tenants].sort((a,b)=>deskIncomeTenant(b)-deskIncomeTenant(a)).slice(0,4);
-      setHTML("dTopTenants", top.map(t=>`<div class="desk-log-item" style="grid-template-columns:42px 1fr auto"><div class="desk-log-ico">🏘️</div><div><b>${t.name}</b><small>${t.plan} · ${t.residents.length} warga</small></div><span class="desk-pill green">${money(deskIncomeTenant(t))}</span></div>`).join(""));
+      setHTML("dTopTenants", top.map((t,idx)=>`<div class="desk-rank-item"><div class="desk-rank-no">${idx+1}</div><div><b>${t.name}</b><small>${t.plan} · ${t.residents.length} warga</small></div><span class="desk-pill green">${money(deskIncomeTenant(t))}</span></div>`).join(""));
       setHTML("dSystemStatus", `
-        <div class="desk-log-item" style="grid-template-columns:42px 1fr"><div class="desk-log-ico">✅</div><div><b>Multi tenant</b><small>TenantId aktif dan terpisah</small></div></div>
-        <div class="desk-log-item" style="grid-template-columns:42px 1fr;margin-top:10px"><div class="desk-log-ico">📱</div><div><b>Responsive</b><small>HP app + laptop admin</small></div></div>
-        <div class="desk-log-item" style="grid-template-columns:42px 1fr;margin-top:10px"><div class="desk-log-ico">🔥</div><div><b>Firebase</b><small>${window.WHFirebase ? "Terhubung" : "Belum siap"}</small></div></div>
+        <div class="desk-health"><div><b>Multi tenant</b><small>TenantId aktif dan data terpisah</small></div><div class="desk-progress"><span style="width:100%"></span></div></div>
+        <div class="desk-health"><div><b>Responsive UI</b><small>HP app + laptop admin</small></div><div class="desk-progress"><span style="width:100%"></span></div></div>
+        <div class="desk-health"><div><b>Firebase</b><small>${window.WHFirebase ? "Terhubung ke softpro-11da5" : "Menunggu koneksi"}</small></div><div class="desk-progress"><span style="width:${window.WHFirebase ? 100 : 45}%"></span></div></div>
+        <div class="desk-health"><div><b>Role Control</b><small>Super admin, RW, RT, warga</small></div><div class="desk-progress"><span style="width:92%"></span></div></div>
       `);
 
       const maxIncome = Math.max(...tenants.map(deskIncomeTenant), 1);
-      setHTML("dIncomeChart", tenants.map(t=>`<div class="desk-bar" style="height:${Math.max(18, deskIncomeTenant(t)/maxIncome*200)}px"><span>${money(deskIncomeTenant(t)).replace("Rp","")}</span></div>`).join(""));
+      setHTML("dIncomeChart", tenants.map(t=>`<div class="desk-bar" style="height:${Math.max(22, deskIncomeTenant(t)/maxIncome*220)}px"><span>${money(deskIncomeTenant(t)).replace("Rp","")}</span></div>`).join(""));
+      setHTML("dIncomeChartLabels", tenants.map(t=>`<span title="${t.name}">${t.name}</span>`).join(""));
 
       const filteredTenants = tenants.filter(t => (`${t.name} ${t.plan} ${t.admin} ${t.id}`).toLowerCase().includes(q));
       setHTML("dTenantRows", filteredTenants.map(t=>`
