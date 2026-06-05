@@ -45,6 +45,10 @@
     .subgrid{display:grid;grid-template-columns:1fr 1fr;gap:10px}.subbtn{border:0;border-radius:22px;background:white;box-shadow:var(--soft);padding:14px;text-align:left;min-height:90px;font-weight:950;color:#334155}.subbtn i{font-style:normal;display:block;font-size:1.75rem;margin-bottom:7px}.empty{padding:18px;border-radius:22px;background:#f8fafc;border:1px dashed #cbd5e1;color:#64748b;font-size:.82rem;font-weight:800;text-align:center}
     .super-bg{background:linear-gradient(135deg,#172033,#2e1065)!important;color:white}.super-bg small,.super-bg p{color:rgba(255,255,255,.78)!important}.tenant-lock{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;background:#0f172a;color:#dbeafe;border-radius:16px;padding:11px;font-size:.72rem;line-height:1.5;overflow:auto;margin-top:10px}
 
+
+    .firebase-dot{width:10px;height:10px;border-radius:999px;background:#94a3b8;display:inline-block;margin-right:6px}
+    .firebase-dot.on{background:#16a34a}.firebase-dot.err{background:#ef4444}
+
     .linkbox{background:#0f172a;color:#dbeafe;border-radius:18px;padding:12px;font-size:.75rem;font-weight:850;line-height:1.45;word-break:break-all;margin:10px 0}
     .copyrow{display:grid;grid-template-columns:1fr auto;gap:8px;align-items:center}
     .tenant-brand-card{background:linear-gradient(135deg,#fff,#fff7ed);border:1px solid #ffe3c2;border-radius:24px;padding:14px;margin-bottom:10px;box-shadow:var(--soft)}
@@ -178,6 +182,40 @@
       <div class="page" id="globalIncome">
         <div class="sec-head"><div class="sec-title"><button class="back" onclick="openPage('superAdmin')">‹</button><h2>Income Global</h2></div><small>Pusat</small></div>
         <div id="globalIncomeList"></div>
+      </div>
+
+
+      <div class="page" id="firebaseSync">
+        <div class="sec-head"><div class="sec-title"><button class="back" onclick="openPage('superAdmin')">‹</button><h2>Firebase Sync</h2></div><small>softpro-11da5</small></div>
+        <div class="pay-box">
+          <small><span class="firebase-dot" id="fbDot"></span><span id="fbStatus">Menghubungkan Firebase...</span></small>
+          <h3>Firestore Aktif</h3>
+          <p>Data demo tetap tersimpan di HP/laptop lewat localStorage, tapi sekarang bisa disimpan dan diambil dari Firestore project <b>softpro-11da5</b>.</p>
+          <div class="pay-actions">
+            <button class="btn" onclick="saveAllToFirebase()">Simpan Semua</button>
+            <button class="btn light" onclick="loadAllFromFirebase()">Load Semua</button>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="feed-head"><div class="avatar">🏘️</div><div><b>Tenant aktif</b><small id="fbTenantName">-</small></div></div>
+          <p>Gunakan tombol di bawah untuk menyimpan hanya tenant aktif ke Firestore. Ini cocok untuk mengetes apakah data tiap lingkungan sudah masuk sendiri-sendiri.</p>
+          <div class="pay-actions">
+            <button class="btn blue" onclick="saveCurrentTenantToFirebase()">Simpan Tenant</button>
+            <button class="btn light" onclick="loadCurrentTenantFromFirebase()">Load Tenant</button>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="feed-head"><div class="avatar">🔥</div><div><b>Jalur Firestore</b><small>Multi tenant</small></div></div>
+          <div class="tenant-lock">wargahub_system/state
+tenants/{tenantId}
+tenants/{tenantId}/app/data
+tenants/{tenantId}/residents/{residentId}
+tenants/{tenantId}/reports/{reportId}
+tenants/{tenantId}/services/{serviceId}
+tenants/{tenantId}/products/{productId}</div>
+        </div>
       </div>
 
       <div class="page" id="firestore">
@@ -359,7 +397,7 @@ allow write: if request.auth.token.tenantId == tenantId
       super_admin:"Super Admin", tenant_admin:"Admin Lingkungan", rt_admin:"Admin RT", bendahara:"Bendahara", security:"Satpam", resident:"Warga"
     };
     const pageTitles = {
-      home:"Beranda tenant aktif", tenantSwitch:"Pilih lingkungan", roles:"Role & akses", superAdmin:"Dashboard pusat WargaHub", createTenant:"Buat tenant baru", tenantBilling:"Billing pelanggan", globalIncome:"Income semua tenant", firestore:"Struktur Firebase", securityRules:"Security rules", roleMatrix:"Matriks role", shareLinks:"Link khusus tenant", invite:"Undangan warga", rtRooms:"Ruang RT", selfRegister:"Daftar mandiri warga", rtLinks:"Link khusus RT", rwCommunity:"Komunitas RW", info:"Pengumuman lingkungan", iuran:"Pembayaran warga", uploadBukti:"Upload bukti bayar", riwayatIuran:"Riwayat iuran", lapor:"Laporan cepat", jasa:"Tukang & service sekitar", daftarJasa:"Daftar tukang/service", lapak:"Marketplace warga", tambahLapak:"Tambah jualan warga", ronda:"Keamanan lingkungan", aturRonda:"Atur jadwal ronda", tamu:"Buku tamu digital", event:"Agenda warga", tambahEvent:"Tambah kegiatan", darurat:"Kontak darurat", admin:"Panel admin tenant", adminInfo:"Input pengumuman", adminWarga:"Database warga", adminBanner:"Iklan berjalan", adminLaporan:"Kelola laporan", harga:"Paket harga", notifikasi:"Notifikasi warga", profil:"Profil warga"
+      home:"Beranda tenant aktif", tenantSwitch:"Pilih lingkungan", roles:"Role & akses", superAdmin:"Dashboard pusat WargaHub", createTenant:"Buat tenant baru", tenantBilling:"Billing pelanggan", globalIncome:"Income semua tenant", firebaseSync:"Firebase sync", firestore:"Struktur Firebase", securityRules:"Security rules", roleMatrix:"Matriks role", shareLinks:"Link khusus tenant", invite:"Undangan warga", rtRooms:"Ruang RT", selfRegister:"Daftar mandiri warga", rtLinks:"Link khusus RT", rwCommunity:"Komunitas RW", info:"Pengumuman lingkungan", iuran:"Pembayaran warga", uploadBukti:"Upload bukti bayar", riwayatIuran:"Riwayat iuran", lapor:"Laporan cepat", jasa:"Tukang & service sekitar", daftarJasa:"Daftar tukang/service", lapak:"Marketplace warga", tambahLapak:"Tambah jualan warga", ronda:"Keamanan lingkungan", aturRonda:"Atur jadwal ronda", tamu:"Buku tamu digital", event:"Agenda warga", tambahEvent:"Tambah kegiatan", darurat:"Kontak darurat", admin:"Panel admin tenant", adminInfo:"Input pengumuman", adminWarga:"Database warga", adminBanner:"Iklan berjalan", adminLaporan:"Kelola laporan", harga:"Paket harga", notifikasi:"Notifikasi warga", profil:"Profil warga"
     };
     const roleMatrix = [
       ["Super Admin","Semua tenant, billing, paket, aktivasi, statistik global, struktur Firebase"],
@@ -544,7 +582,7 @@ allow write: if request.auth.token.tenantId == tenantId
     function showToast(msg){const el=document.getElementById('toast');el.textContent=msg;el.classList.add('show');setTimeout(()=>el.classList.remove('show'),2400)}
 
     function renderAll(){
-      renderTenantStrip();renderHome();renderTenants();renderRoles();renderSuper();renderInfo();renderIuran();renderRiwayat();renderReports();renderServices();renderProducts();renderRonda();renderGuests();renderEvents();renderResidents();renderBanners();renderPricing();renderAdmin();renderNotifs();renderFirestore();renderShareLinks();renderInvite();renderRtRooms();renderSelfRegister();renderRwCommunity();
+      renderTenantStrip();renderHome();renderTenants();renderRoles();renderSuper();renderInfo();renderIuran();renderRiwayat();renderReports();renderServices();renderProducts();renderRonda();renderGuests();renderEvents();renderResidents();renderBanners();renderPricing();renderAdmin();renderNotifs();renderFirebaseSync();renderFirestore();renderShareLinks();renderInvite();renderRtRooms();renderSelfRegister();renderRwCommunity();
     }
     function renderTenantStrip(){
       const tenants = db.currentRole === "super_admin" ? Object.values(db.tenants) : [T()];
@@ -622,6 +660,12 @@ allow write: if request.auth.token.tenantId == tenantId
       document.getElementById("residentLinkBox").textContent=tenantUrl(t.id);
     }
 
+
+    function renderFirebaseSync(){
+      const el=document.getElementById("fbTenantName");
+      if(el) el.textContent = T().name + " · " + T().id;
+    }
+
     function renderFirestore(){document.getElementById("fireTenant").textContent=T().id;document.getElementById("fireTenantDesc").innerHTML=`Semua data sekarang dibaca dari <b>tenants/${T().id}/...</b>. Kalau tenant diganti, data yang tampil ikut berubah dan tidak bercampur.`}
     function renderInfo(){document.getElementById("infoTenant").textContent=T().name;document.getElementById("infoList").innerHTML=T().infos.map(i=>card(i.icon,i.title,i.time,i.desc,[i.tag])).join("")||`<div class="empty">Belum ada pengumuman.</div>`}
     function renderIuran(){document.getElementById("iuranList").innerHTML=T().iuran.map(i=>card("💳",i.title,i.nominal,i.desc,[i.status])).join("")}
@@ -680,6 +724,87 @@ allow write: if request.auth.token.tenantId == tenantId
     function filterServices(cat,el){activeServiceFilter=cat;document.querySelectorAll("#jasa .chip").forEach(c=>c.classList.remove("active"));el.classList.add("active");renderServices()}
     function panic(){T().reports.unshift({title:"PANIC BUTTON",desc:"Warga menekan tombol darurat. Admin keamanan tenant harus mengecek segera.",status:"Darurat",time:"Baru saja"});saveDB();showToast("Alarm darurat dikirim ke admin tenant")}
     function quickAdd(){const active=document.querySelector(".page.active").id;const map={home:"lapor",jasa:"daftarJasa",lapak:"tambahLapak",lapor:"lapor",admin:"adminInfo",info:"adminInfo",ronda:"aturRonda",event:"tambahEvent",tamu:"tamu",superAdmin:"createTenant",tenantSwitch:"createTenant"};openPage(map[active]||"admin")}
+
+    function setFirebaseStatus(status, type=""){
+      const s=document.getElementById("fbStatus"), d=document.getElementById("fbDot");
+      if(s) s.textContent=status;
+      if(d){d.className="firebase-dot"; if(type)d.classList.add(type);}
+    }
+    async function saveAllToFirebase(){
+      if(!window.WHFirebase){showToast("Firebase belum siap");return}
+      try{
+        await window.WHFirebase.saveState(db);
+        showToast("Semua data berhasil disimpan ke Firebase");
+        setFirebaseStatus("Tersimpan ke Firestore", "on");
+      }catch(err){
+        console.error(err);
+        showToast("Gagal simpan Firebase: " + err.message);
+        setFirebaseStatus("Error: " + err.message, "err");
+      }
+    }
+    async function loadAllFromFirebase(){
+      if(!window.WHFirebase){showToast("Firebase belum siap");return}
+      try{
+        const loaded = await window.WHFirebase.loadState();
+        if(!loaded){showToast("Belum ada data di Firebase");return}
+        db = loaded;
+        localStorage.setItem("wargahubTenantDB", JSON.stringify(db));
+    
+    window.addEventListener("wargahub-firebase-ready", () => {
+      setFirebaseStatus("Firebase terhubung: softpro-11da5", "on");
+      showToast("Firebase softpro-11da5 terhubung");
+    });
+
+    renderAll();
+        showToast("Data berhasil dimuat dari Firebase");
+        setFirebaseStatus("Data dimuat dari Firestore", "on");
+      }catch(err){
+        console.error(err);
+        showToast("Gagal load Firebase: " + err.message);
+        setFirebaseStatus("Error: " + err.message, "err");
+      }
+    }
+    async function saveCurrentTenantToFirebase(){
+      if(!window.WHFirebase){showToast("Firebase belum siap");return}
+      try{
+        await window.WHFirebase.saveTenant(db.currentTenant, T());
+        showToast("Tenant " + T().name + " tersimpan ke Firebase");
+        setFirebaseStatus("Tenant tersimpan: " + T().id, "on");
+      }catch(err){
+        console.error(err);
+        showToast("Gagal simpan tenant: " + err.message);
+        setFirebaseStatus("Error: " + err.message, "err");
+      }
+    }
+    async function loadCurrentTenantFromFirebase(){
+      if(!window.WHFirebase){showToast("Firebase belum siap");return}
+      try{
+        const tenant = await window.WHFirebase.loadTenant(db.currentTenant);
+        if(!tenant){showToast("Tenant belum ada di Firebase");return}
+        db.tenants[db.currentTenant] = tenant;
+        localStorage.setItem("wargahubTenantDB", JSON.stringify(db));
+    
+    window.addEventListener("wargahub-firebase-ready", () => {
+      setFirebaseStatus("Firebase terhubung: softpro-11da5", "on");
+      showToast("Firebase softpro-11da5 terhubung");
+    });
+
+    renderAll();
+        showToast("Tenant " + tenant.name + " dimuat dari Firebase");
+        setFirebaseStatus("Tenant dimuat: " + db.currentTenant, "on");
+      }catch(err){
+        console.error(err);
+        showToast("Gagal load tenant: " + err.message);
+        setFirebaseStatus("Error: " + err.message, "err");
+      }
+    }
+
+
+    window.addEventListener("wargahub-firebase-ready", () => {
+      setFirebaseStatus("Firebase terhubung: softpro-11da5", "on");
+      showToast("Firebase softpro-11da5 terhubung");
+    });
+
     renderAll();
   </script>
 </body>
