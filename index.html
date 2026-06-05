@@ -201,6 +201,8 @@
           <button class="subbtn" onclick="openPage('tambahEvent')"><i>🎉</i>Tambah Event</button>
           <button class="subbtn" onclick="openPage('adminBanner')"><i>📣</i>Iklan Banner</button>
           <button class="subbtn" onclick="openPage('adminLaporan')"><i>🛟</i>Kelola Laporan</button>
+          <button class="subbtn" onclick="openPage('harga')"><i>💰</i>Atur Harga</button>
+          <button class="subbtn" onclick="openPage('monetisasi')"><i>📈</i>Income Jasa</button>
         </div>
       </div>
 
@@ -224,6 +226,22 @@
       <div class="page" id="adminLaporan">
         <div class="sec-head"><div class="sec-title"><button class="back" onclick="openPage('admin')">‹</button><h2>Kelola Laporan</h2></div><small>Admin</small></div>
         <div id="adminReportList"></div>
+      </div>
+
+
+      <div class="page" id="harga">
+        <div class="sec-head"><div class="sec-title"><button class="back" onclick="openPage('home')">‹</button><h2>Paket Harga</h2></div><small>Murah</small></div>
+        <div class="pay-box">
+          <small>Strategi harga</small>
+          <h3>Mulai Rp10rb</h3>
+          <p>RT tetap murah sebagai pintu masuk. Pendapatan utama tetap dari lapak, tukang service, jasa verified, dan iklan lingkungan.</p>
+        </div>
+        <div id="pricingList"></div>
+      </div>
+
+      <div class="page" id="monetisasi">
+        <div class="sec-head"><div class="sec-title"><button class="back" onclick="openPage('harga')">‹</button><h2>Income Jualan & Jasa</h2></div><small>Utama</small></div>
+        <div id="monetizeList"></div>
       </div>
 
       <div class="page" id="notifikasi">
@@ -259,7 +277,7 @@
       lapor:"Laporan cepat",jasa:"Tukang & service sekitar",daftarJasa:"Daftar tukang/service",lapak:"Marketplace warga",tambahLapak:"Tambah jualan warga",
       ronda:"Keamanan lingkungan",aturRonda:"Atur jadwal ronda",tamu:"Buku tamu digital",event:"Agenda warga",tambahEvent:"Tambah kegiatan",
       darurat:"Kontak darurat",admin:"Panel pengurus",adminInfo:"Input pengumuman",adminWarga:"Database warga",adminBanner:"Iklan berjalan",
-      adminLaporan:"Kelola laporan",notifikasi:"Notifikasi warga",profil:"Profil warga"
+      adminLaporan:"Kelola laporan",harga:"Paket harga",monetisasi:"Income jualan & jasa",notifikasi:"Notifikasi warga",profil:"Profil warga"
     };
 
     const defaultData = {
@@ -304,7 +322,22 @@
         {text:"Servis AC mulai 75rb",owner:"Bang Udin",price:"Rp50rb/bulan"},
         {text:"Galon antar gratis area perumahan",owner:"Bu Santi",price:"Rp50rb/bulan"}
       ],
-      bukti:[]
+      bukti:[],
+      pricing:[
+        {name:"RT Mini",range:"50 warga",price:"Rp10.000/bulan",desc:"Untuk RT kecil. Fitur utama: info RT, iuran, laporan, lapak, jasa, dan admin sederhana."},
+        {name:"RT Plus",range:"51–150 warga",price:"Rp15.000/bulan",desc:"Untuk RT yang warganya lebih banyak. Sudah cocok untuk data rumah, iuran, laporan, dan marketplace warga."},
+        {name:"RW / Gabungan RT",range:"151–250 warga",price:"Rp30.000/bulan",desc:"Untuk beberapa RT kecil dalam satu RW atau paguyuban warga."},
+        {name:"Perumahan Mini",range:"251–500 warga",price:"Rp50.000/bulan",desc:"Untuk cluster/perumahan menengah dengan multi blok dan pengurus lebih dari satu."},
+        {name:"Perumahan Besar",range:"501–1.000 warga",price:"Rp150.000/bulan",desc:"Untuk kawasan besar dengan dashboard iuran, admin, laporan, lapak, jasa, ronda, dan event."},
+        {name:"Custom Kawasan",range:">1.000 warga",price:"Mulai Rp500.000/bulan",desc:"Untuk estate, apartemen, perumahan besar, atau kawasan yang butuh setup khusus dan Firebase/project sendiri."}
+      ],
+      monetize:[
+        {name:"Lapak Basic",price:"Rp10.000/bulan",desc:"Tampil di daftar jualan warga."},
+        {name:"Lapak Prioritas",price:"Rp25.000/bulan",desc:"Tampil lebih atas dengan label rekomendasi."},
+        {name:"Tukang/Jasa Verified",price:"Rp25.000/bulan",desc:"Profil jasa, nomor WA, rating, dan area layanan."},
+        {name:"Banner Lingkungan",price:"Rp50.000/bulan",desc:"Iklan berjalan di halaman utama warga."},
+        {name:"Sponsor Kegiatan",price:"Custom",desc:"Untuk sponsor kerja bakti, lomba, event warga, atau promosi lokal."}
+      ]
     };
 
     let db = loadDB();
@@ -345,7 +378,7 @@
     }
 
     function renderAll(){
-      renderHome();renderInfo();renderIuran();renderRiwayat();renderReports();renderServices();renderProducts();renderRonda();renderGuests();renderEvents();renderResidents();renderBanners();renderAdmin();renderNotifs();
+      renderHome();renderInfo();renderIuran();renderRiwayat();renderReports();renderServices();renderProducts();renderRonda();renderGuests();renderEvents();renderResidents();renderBanners();renderPricing();renderAdmin();renderNotifs();
     }
     function renderHome(){
       document.getElementById("homeFeed").innerHTML = db.infos.slice(0,2).map(i=>card(i.icon,i.title,`${i.time}`,i.desc,[i.tag])).join("");
@@ -371,6 +404,14 @@
     function renderEvents(){document.getElementById("eventList").innerHTML = db.events.map(e=>card(e.icon || "🎉",e.title,e.time,e.desc,["Aktif"])).join("") || `<div class="empty">Belum ada event.</div>`}
     function renderResidents(){document.getElementById("residentList").innerHTML = db.residents.map(r=>card("🏠",r.name,r.house,`HP: ${r.phone || "-"}. Status: ${r.status}`,["Warga"])).join("")}
     function renderBanners(){document.getElementById("bannerList").innerHTML = db.banners.map(b=>card("📣",b.text,b.owner,`Paket iklan: ${b.price}`,["Aktif"])).join("") || `<div class="empty">Belum ada banner.</div>`}
+
+    function renderPricing(){
+      const pl = document.getElementById("pricingList");
+      if(pl) pl.innerHTML = db.pricing.map(p=>card("💰",p.name,`${p.range} · ${p.price}`,p.desc,["Aktif"])).join("");
+      const ml = document.getElementById("monetizeList");
+      if(ml) ml.innerHTML = db.monetize.map(m=>card("📈",m.name,m.price,m.desc,["Income"])).join("");
+    }
+
     function renderAdmin(){
       document.getElementById("admWarga").textContent = db.residents.length;
       document.getElementById("admLapak").textContent = db.products.length;
@@ -390,6 +431,7 @@
       if(q.includes('ac')||q.includes('listrik')||q.includes('galon')||q.includes('laundry')||q.includes('service')||q.includes('servis')){openPage('jasa');showToast('Hasil pencarian jasa ditampilkan')}
       else if(q.includes('nasi')||q.includes('kue')||q.includes('jualan')||q.includes('lapak')){openPage('lapak');showToast('Hasil pencarian lapak ditampilkan')}
       else if(q.includes('iuran')||q.includes('bayar')){openPage('iuran');showToast('Menu iuran dibuka')}
+      else if(q.includes('harga')||q.includes('paket')||q.includes('biaya')){openPage('harga');showToast('Paket harga ditampilkan')}
       else {openPage('info');showToast('Info lingkungan ditampilkan')}
     }
     function chatWA(nama, nomor="081296629033"){
