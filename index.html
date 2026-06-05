@@ -4,6 +4,14 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>WargaHub - Mobile App Style</title>
+  <link rel="manifest" href="./manifest.json" />
+  <link rel="icon" type="image/png" sizes="32x32" href="./icon-128x128.png" />
+  <link rel="apple-touch-icon" sizes="180x180" href="./icon-180x180.png" />
+  <meta name="theme-color" content="#ff6b00" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-title" content="WargaHub" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+
   <style>
     :root{
       --orange:#ff6b00;
@@ -88,6 +96,15 @@
       font-size:1.35rem;
       box-shadow:0 10px 18px rgba(0,0,0,.10);
     }
+
+    .logo img{
+      width:100%;
+      height:100%;
+      object-fit:cover;
+      border-radius:17px;
+      display:block;
+    }
+
     .brand-title b{
       display:block;
       font-size:1.08rem;
@@ -690,7 +707,7 @@
     <header class="app-header">
       <div class="top-row">
         <div class="brand">
-          <div class="logo">🏘️</div>
+          <div class="logo"><img src="./icon-192x192.png" alt="WargaHub"></div>
           <div class="brand-title">
             <b>WargaHub</b>
             <small id="pageSub">RT 03 · Gardenia Residence</small>
@@ -956,6 +973,12 @@
   </main>
 
   <script>
+
+    if ("serviceWorker" in navigator) {
+      window.addEventListener("load", () => {
+        navigator.serviceWorker.register("./sw.js").catch(() => {});
+      });
+    }
     const pageTitles = {
       home: "RT 03 · Gardenia Residence",
       info: "Pengumuman lingkungan",
