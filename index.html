@@ -1930,6 +1930,23 @@ allow write: if request.auth.token.tenantId == tenantId
       showToast("Firebase softpro-11da5 terhubung");
     });
 
+
+    window.addEventListener("wargahub-firebase-error", (event) => {
+      const msg = event.detail || "Firebase gagal terhubung";
+      setFirebaseStatus("Firebase error: " + msg, "err");
+      setText("dFirebaseStatus", "Error koneksi");
+      renderDesktopAdmin();
+      showToast("Firebase error: " + msg);
+    });
+
+    setTimeout(() => {
+      if (!window.WHFirebase) {
+        setFirebaseStatus("Firebase belum terhubung. Cek internet, buka lewat GitHub Pages, dan pastikan Firestore sudah aktif.", "err");
+        setText("dFirebaseStatus", "Belum terhubung");
+        renderDesktopAdmin();
+      }
+    }, 5000);
+
     renderAll();
         showToast("Data berhasil dimuat dari Firebase");
         setFirebaseStatus("Data dimuat dari Firestore", "on");
@@ -2486,5 +2503,140 @@ allow write: if request.auth.token.tenantId == tenantId
 
     renderAll();
   </script>
+
+  <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+    import { getAnalytics, isSupported as analyticsSupported } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-analytics.js";
+    import {
+      getFirestore,
+      doc,
+      setDoc,
+      getDoc,
+      collection,
+      writeBatch,
+      serverTimestamp
+    } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+
+    const firebaseConfig = {
+      apiKey: "AIzaSyBfV8P9R-E08rt-s17Uhslc2L9BojOL-90",
+      authDomain: "softpro-11da5.firebaseapp.com",
+      projectId: "softpro-11da5",
+      storageBucket: "softpro-11da5.firebasestorage.app",
+      messagingSenderId: "485909858785",
+      appId: "1:485909858785:web:b5da859628a2ea0b062aa0",
+      measurementId: "G-2Q5V1NRWN7"
+    };
+
+    try {
+      const app = initializeApp(firebaseConfig);
+      const firestore = getFirestore(app);
+
+      analyticsSupported().then((ok) => {
+        if (ok) getAnalytics(app);
+      }).catch(() => {});
+
+      function cleanForFirestore(value) {
+        return JSON.parse(JSON.stringify(value || {}));
+      }
+
+      async function saveState(data) {
+        await setDoc(doc(firestore, "wargahub_system", "state"), {
+          data: cleanForFirestore(data),
+          updatedAt: serverTimestamp()
+        }, { merge: true });
+      }
+
+      async function loadState() {
+        const snap = await getDoc(doc(firestore, "wargahub_system", "state"));
+        return snap.exists() ? snap.data().data : null;
+      }
+
+      async function saveTenant(tenantId, tenant) {
+        const cleanTenant = cleanForFirestore(tenant);
+        await setDoc(doc(firestore, "tenants", tenantId), {
+          id: tenantId,
+          name: cleanTenant.name || tenantId,
+          type: cleanTenant.type || "",
+          plan: cleanTenant.plan || "",
+          limit: cleanTenant.limit || 0,
+          status: cleanTenant.status || "Aktif",
+          admin: cleanTenant.admin || "",
+          monthly: cleanTenant.monthly || 0,
+          inviteCode: cleanTenant.inviteCode || "",
+          theme: cleanTenant.theme || "#ff6b00",
+          updatedAt: serverTimestamp()
+        }, { merge: true });
+
+        await setDoc(doc(firestore, "tenants", tenantId, "app", "data"), {
+          data: cleanTenant,
+          updatedAt: serverTimestamp()
+        }, { merge: true });
+
+        const batch = writeBatch(firestore);
+
+        (cleanTenant.residents || []).slice(0, 100).forEach((item, index) => {
+          batch.set(doc(collection(firestore, "tenants", tenantId, "residents")), {
+            ...item,
+            tenantId,
+            createdFromDemo: true,
+            sortIndex: index,
+            updatedAt: serverTimestamp()
+          });
+        });
+
+        (cleanTenant.reports || []).slice(0, 100).forEach((item, index) => {
+          batch.set(doc(collection(firestore, "tenants", tenantId, "reports")), {
+            ...item,
+            tenantId,
+            createdFromDemo: true,
+            sortIndex: index,
+            updatedAt: serverTimestamp()
+          });
+        });
+
+        (cleanTenant.services || []).slice(0, 100).forEach((item, index) => {
+          batch.set(doc(collection(firestore, "tenants", tenantId, "services")), {
+            ...item,
+            tenantId,
+            createdFromDemo: true,
+            sortIndex: index,
+            updatedAt: serverTimestamp()
+          });
+        });
+
+        (cleanTenant.products || []).slice(0, 100).forEach((item, index) => {
+          batch.set(doc(collection(firestore, "tenants", tenantId, "products")), {
+            ...item,
+            tenantId,
+            createdFromDemo: true,
+            sortIndex: index,
+            updatedAt: serverTimestamp()
+          });
+        });
+
+        await batch.commit();
+      }
+
+      async function loadTenant(tenantId) {
+        const snap = await getDoc(doc(firestore, "tenants", tenantId, "app", "data"));
+        return snap.exists() ? snap.data().data : null;
+      }
+
+      window.WHFirebase = {
+        app,
+        firestore,
+        saveState,
+        loadState,
+        saveTenant,
+        loadTenant
+      };
+
+      window.dispatchEvent(new CustomEvent("wargahub-firebase-ready"));
+    } catch (error) {
+      console.error("Firebase init error", error);
+      window.dispatchEvent(new CustomEvent("wargahub-firebase-error", { detail: error.message }));
+    }
+  </script>
+
 </body>
 </html>

@@ -1,0 +1,22 @@
+PENYEBAB STATUS "MENUNGGU KONEKSI FIREBASE"
+
+Di versi dashboard laptop sebelumnya, script module Firebase tidak ikut terbawa saat penggabungan file. Akibatnya window.WHFirebase tidak pernah dibuat dan status tetap "Menunggu koneksi".
+
+Perbaikan di versi ini:
+1. Script Firebase modular dimasukkan ulang.
+2. Pakai Firebase JS SDK CDN versi 10.12.2.
+3. Ada status error jika Firebase gagal konek.
+4. Ada timeout 5 detik untuk memberi pesan jika CDN/internet/Firestore bermasalah.
+
+Cara tes:
+1. Upload semua file ke GitHub Pages.
+2. Buka dari https://... bukan hanya klik file lokal.
+3. Buka dashboard laptop > Firebase Sync.
+4. Status harus berubah menjadi "Terhubung".
+5. Klik Simpan Semua atau Simpan Tenant.
+
+Kalau masih error:
+- Pastikan Firestore Database sudah dibuat di Firebase Console.
+- Pastikan Rules untuk testing sudah mengizinkan write.
+- Pastikan internet tidak memblokir gstatic.com.
+- Buka DevTools Console untuk melihat pesan error detail.
