@@ -57,13 +57,621 @@
 
     .bottom-nav{position:absolute;left:0;bottom:0;width:100%;z-index:50;background:rgba(255,255,255,.96);backdrop-filter:blur(16px);border-top:1px solid rgba(23,32,51,.08);display:grid;grid-template-columns:repeat(5,1fr);padding:8px 6px 10px;box-shadow:0 -12px 28px rgba(23,32,51,.10)}.bottom-nav button{display:grid;place-items:center;gap:2px;color:#64748b;font-size:.65rem;font-weight:900;padding:6px 2px;border-radius:16px;border:0;background:transparent}.bottom-nav button.active{color:var(--orange);background:#fff3df}.bottom-nav i{font-style:normal;font-size:1.2rem}.floating-add{position:absolute;right:16px;bottom:82px;width:56px;height:56px;border:0;border-radius:22px;color:white;background:linear-gradient(135deg,var(--orange),var(--pink));box-shadow:0 16px 32px rgba(255,77,157,.34);display:grid;place-items:center;font-size:1.5rem;z-index:45}
     .toast{position:absolute;left:14px;right:14px;bottom:92px;background:#172033;color:white;padding:13px 15px;border-radius:18px;box-shadow:var(--shadow);font-weight:850;font-size:.82rem;z-index:100;transform:translateY(20px);opacity:0;pointer-events:none;transition:.25s ease}.toast.show{transform:translateY(0);opacity:1}
+
+    /* Desktop Admin Pengelola */
+    .desktop-admin-shell{display:none}
+    .mobile-only-app{display:block}
+    @media(min-width:900px){
+      body{
+        padding:0;
+        background:#f1f5f9;
+      }
+      .desktop-note{display:none!important}
+      .mobile-only-app{
+        display:none!important;
+      }
+      .desktop-admin-shell{
+        display:grid;
+        grid-template-columns:280px 1fr;
+        min-height:100vh;
+        width:100%;
+        background:#f1f5f9;
+      }
+      .desk-sidebar{
+        background:linear-gradient(180deg,#151b31,#221342);
+        color:white;
+        padding:22px;
+        position:sticky;
+        top:0;
+        height:100vh;
+        overflow-y:auto;
+      }
+      .desk-brand{
+        display:flex;
+        align-items:center;
+        gap:12px;
+        margin-bottom:24px;
+      }
+      .desk-brand img{
+        width:48px;height:48px;border-radius:18px;box-shadow:0 12px 24px rgba(0,0,0,.25);
+      }
+      .desk-brand b{
+        display:block;
+        font-size:1.18rem;
+        letter-spacing:-.04em;
+      }
+      .desk-brand small{
+        color:rgba(255,255,255,.68);
+        font-weight:800;
+      }
+      .desk-menu{
+        display:grid;
+        gap:8px;
+      }
+      .desk-menu button{
+        border:0;
+        background:transparent;
+        color:rgba(255,255,255,.72);
+        border-radius:16px;
+        padding:12px 13px;
+        display:flex;
+        align-items:center;
+        gap:11px;
+        font-weight:900;
+        text-align:left;
+      }
+      .desk-menu button:hover,.desk-menu button.active{
+        background:rgba(255,255,255,.12);
+        color:white;
+      }
+      .desk-menu i{
+        font-style:normal;
+        font-size:1.1rem;
+        width:22px;
+        text-align:center;
+      }
+      .desk-main{
+        min-width:0;
+        padding:24px;
+      }
+      .desk-topbar{
+        display:flex;
+        justify-content:space-between;
+        align-items:center;
+        gap:18px;
+        margin-bottom:20px;
+      }
+      .desk-title h1{
+        margin:0;
+        font-size:2rem;
+        letter-spacing:-.07em;
+        line-height:1;
+      }
+      .desk-title p{
+        margin:6px 0 0;
+        color:#64748b;
+        font-weight:800;
+      }
+      .desk-actions{
+        display:flex;
+        gap:10px;
+        align-items:center;
+      }
+      .desk-search{
+        min-width:300px;
+        background:white;
+        border:1px solid #e5e7eb;
+        border-radius:18px;
+        padding:12px 14px;
+        outline:0;
+        font-weight:800;
+        box-shadow:0 8px 18px rgba(15,23,42,.05);
+      }
+      .desk-btn{
+        border:0;
+        border-radius:16px;
+        padding:12px 15px;
+        font-weight:950;
+        color:white;
+        background:linear-gradient(135deg,var(--orange),var(--pink));
+        box-shadow:0 12px 24px rgba(255,77,157,.18);
+      }
+      .desk-btn.light{
+        background:white;
+        color:#334155;
+        border:1px solid #e5e7eb;
+        box-shadow:0 8px 18px rgba(15,23,42,.05);
+      }
+      .desk-grid-4{
+        display:grid;
+        grid-template-columns:repeat(4,minmax(0,1fr));
+        gap:16px;
+        margin-bottom:18px;
+      }
+      .desk-grid-3{
+        display:grid;
+        grid-template-columns:1.2fr .8fr .8fr;
+        gap:16px;
+        margin-bottom:18px;
+      }
+      .desk-card{
+        background:white;
+        border:1px solid rgba(15,23,42,.06);
+        border-radius:26px;
+        padding:18px;
+        box-shadow:0 12px 28px rgba(15,23,42,.06);
+        min-width:0;
+      }
+      .desk-card.soft-dark{
+        color:white;
+        background:linear-gradient(135deg,#172033,#3b176c);
+      }
+      .desk-card small{
+        color:#64748b;
+        font-weight:850;
+      }
+      .desk-card.soft-dark small{
+        color:rgba(255,255,255,.7);
+      }
+      .desk-metric{
+        display:flex;
+        align-items:flex-start;
+        justify-content:space-between;
+        gap:10px;
+      }
+      .desk-metric .ico{
+        width:46px;height:46px;border-radius:18px;
+        display:grid;place-items:center;
+        color:white;
+        font-size:1.25rem;
+        background:linear-gradient(135deg,var(--orange),var(--pink));
+      }
+      .desk-metric b{
+        display:block;
+        font-size:2rem;
+        letter-spacing:-.06em;
+        margin-top:6px;
+      }
+      .desk-metric span{
+        display:inline-flex;
+        margin-top:8px;
+        padding:6px 9px;
+        border-radius:999px;
+        background:#dcfce7;
+        color:#15803d;
+        font-size:.72rem;
+        font-weight:950;
+      }
+      .desk-section{display:none}
+      .desk-section.active{display:block}
+      .desk-section-head{
+        display:flex;
+        justify-content:space-between;
+        align-items:center;
+        margin:4px 0 14px;
+        gap:14px;
+      }
+      .desk-section-head h2{
+        margin:0;
+        font-size:1.35rem;
+        letter-spacing:-.04em;
+      }
+      .desk-table-wrap{
+        background:white;
+        border:1px solid rgba(15,23,42,.06);
+        border-radius:26px;
+        box-shadow:0 12px 28px rgba(15,23,42,.06);
+        overflow:hidden;
+      }
+      table.desk-table{
+        width:100%;
+        border-collapse:collapse;
+        font-size:.9rem;
+      }
+      .desk-table th{
+        text-align:left;
+        padding:14px 16px;
+        color:#64748b;
+        background:#f8fafc;
+        font-size:.78rem;
+        text-transform:uppercase;
+        letter-spacing:.04em;
+      }
+      .desk-table td{
+        padding:14px 16px;
+        border-top:1px solid #edf2f7;
+        vertical-align:middle;
+        color:#334155;
+        font-weight:750;
+      }
+      .desk-table b{
+        color:#0f172a;
+      }
+      .desk-pill{
+        display:inline-flex;
+        align-items:center;
+        gap:6px;
+        padding:7px 10px;
+        border-radius:999px;
+        font-size:.75rem;
+        font-weight:950;
+        background:#eff6ff;
+        color:#2563eb;
+        white-space:nowrap;
+      }
+      .desk-pill.green{background:#dcfce7;color:#15803d}
+      .desk-pill.orange{background:#fff7ed;color:#ea580c}
+      .desk-pill.red{background:#fee2e2;color:#b91c1c}
+      .desk-pill.purple{background:#ede9fe;color:#6d28d9}
+      .desk-mini-actions{
+        display:flex;
+        flex-wrap:wrap;
+        gap:7px;
+      }
+      .desk-mini-actions button{
+        border:0;
+        border-radius:999px;
+        padding:7px 10px;
+        font-size:.74rem;
+        font-weight:950;
+        background:#f1f5f9;
+        color:#334155;
+      }
+      .desk-mini-actions button.primary{
+        background:#fff3df;
+        color:#f97316;
+      }
+      .desk-mini-actions button.danger{
+        background:#fee2e2;
+        color:#b91c1c;
+      }
+      .desk-form-grid{
+        display:grid;
+        grid-template-columns:repeat(3,1fr);
+        gap:10px;
+      }
+      .desk-form-grid input,.desk-form-grid select,.desk-form-grid textarea{
+        border:1px solid #e5e7eb;
+        border-radius:16px;
+        padding:12px;
+        outline:0;
+        font-weight:800;
+        background:#fff;
+      }
+      .desk-form-grid textarea{grid-column:1/-1;min-height:82px}
+      .desk-form-grid .wide{grid-column:span 2}
+      .desk-log{
+        display:grid;
+        gap:10px;
+        max-height:470px;
+        overflow:auto;
+        padding-right:4px;
+      }
+      .desk-log-item{
+        display:grid;
+        grid-template-columns:42px 1fr auto;
+        gap:10px;
+        align-items:center;
+        padding:12px;
+        border-radius:18px;
+        background:#f8fafc;
+        border:1px solid #edf2f7;
+      }
+      .desk-log-ico{
+        width:42px;height:42px;border-radius:15px;
+        display:grid;place-items:center;
+        color:white;
+        background:linear-gradient(135deg,#0ea5e9,#7c3aed);
+      }
+      .desk-log-item b{display:block;font-size:.86rem}
+      .desk-log-item small{color:#64748b;font-weight:800}
+      .desk-split{
+        display:grid;
+        grid-template-columns:1fr 380px;
+        gap:16px;
+      }
+      .desk-chart{
+        height:220px;
+        display:flex;
+        align-items:end;
+        gap:12px;
+        padding-top:20px;
+      }
+      .desk-bar{
+        flex:1;
+        min-width:20px;
+        border-radius:16px 16px 8px 8px;
+        background:linear-gradient(180deg,#ff6b00,#ff4d9d);
+        position:relative;
+      }
+      .desk-bar span{
+        position:absolute;
+        left:50%;
+        bottom:100%;
+        transform:translateX(-50%);
+        margin-bottom:7px;
+        font-size:.72rem;
+        font-weight:950;
+        color:#64748b;
+      }
+      .desk-modal{
+        position:fixed;
+        inset:0;
+        background:rgba(15,23,42,.46);
+        z-index:1000;
+        display:none;
+        place-items:center;
+        padding:24px;
+      }
+      .desk-modal.show{display:grid}
+      .desk-modal-box{
+        width:min(720px,100%);
+        background:white;
+        border-radius:30px;
+        box-shadow:0 30px 70px rgba(15,23,42,.28);
+        padding:22px;
+      }
+      .desk-modal-head{
+        display:flex;
+        align-items:center;
+        justify-content:space-between;
+        gap:12px;
+        margin-bottom:14px;
+      }
+      .desk-modal-head h3{
+        margin:0;
+        font-size:1.35rem;
+        letter-spacing:-.04em;
+      }
+      .desk-modal-head button{
+        border:0;
+        width:40px;height:40px;border-radius:15px;
+        background:#f1f5f9;
+        font-weight:950;
+      }
+      @media(max-width:1180px){
+        .desk-grid-4{grid-template-columns:repeat(2,1fr)}
+        .desk-grid-3,.desk-split{grid-template-columns:1fr}
+      }
+    }
+
     @media(min-width:760px){body{background:radial-gradient(circle at 20% 0%,rgba(255,107,0,.16),transparent 280px),radial-gradient(circle at 80% 0%,rgba(124,58,237,.14),transparent 260px),#f1f5f9;padding:20px 0}.desktop-note{display:block}.app{border-radius:36px;min-height:calc(100vh - 40px)}.screen{height:calc(100vh - 198px)}}@media(max-width:370px){.app-header{padding-left:10px;padding-right:10px}.screen{padding-left:10px;padding-right:10px}.icon-grid{gap:9px 3px}.icon-badge{width:39px;height:39px;border-radius:14px}.promo{grid-template-columns:1fr}}
   </style>
 </head>
 <body>
   <div class="desktop-note">Preview mobile. Buka di HP supaya terasa seperti aplikasi.</div>
 
-  <main class="app">
+  
+  <section class="desktop-admin-shell">
+    <aside class="desk-sidebar">
+      <div class="desk-brand">
+        <img src="./icon-192x192.png" alt="WargaHub">
+        <div>
+          <b>WargaHub</b>
+          <small>Admin Pengelola Pusat</small>
+        </div>
+      </div>
+
+      <div class="desk-menu">
+        <button class="desk-nav active" data-desk="overview" onclick="openDesk('overview')"><i>📊</i>Dashboard</button>
+        <button class="desk-nav" data-desk="tenants" onclick="openDesk('tenants')"><i>🏘️</i>Tenant / Pelanggan</button>
+        <button class="desk-nav" data-desk="users" onclick="openDesk('users')"><i>👥</i>User & Role</button>
+        <button class="desk-nav" data-desk="activity" onclick="openDesk('activity')"><i>📡</i>Aktivitas User</button>
+        <button class="desk-nav" data-desk="billing" onclick="openDesk('billing')"><i>💳</i>Billing & Paket</button>
+        <button class="desk-nav" data-desk="marketplace" onclick="openDesk('marketplace')"><i>🛒</i>Lapak & Jasa</button>
+        <button class="desk-nav" data-desk="moderation" onclick="openDesk('moderation')"><i>🛡️</i>Moderasi Laporan</button>
+        <button class="desk-nav" data-desk="links" onclick="openDesk('links')"><i>🔗</i>Link Tenant/RT</button>
+        <button class="desk-nav" data-desk="settings" onclick="openDesk('settings')"><i>⚙️</i>Pengaturan Sistem</button>
+        <button class="desk-nav" data-desk="firebase" onclick="openDesk('firebase')"><i>🔥</i>Firebase Sync</button>
+      </div>
+    </aside>
+
+    <main class="desk-main">
+      <div class="desk-topbar">
+        <div class="desk-title">
+          <h1 id="deskTitle">Dashboard Pengelola</h1>
+          <p id="deskSubtitle">Kontrol seluruh tenant, user, aktivitas, billing, dan marketplace WargaHub.</p>
+        </div>
+        <div class="desk-actions">
+          <input class="desk-search" id="deskSearch" placeholder="Cari tenant, user, laporan, lapak..." oninput="renderDesktopAdmin()">
+          <button class="desk-btn light" onclick="downloadDeskReport()">Export</button>
+          <button class="desk-btn" onclick="openDeskModal('createTenant')">+ Tenant Baru</button>
+        </div>
+      </div>
+
+      <section class="desk-section active" id="desk-overview">
+        <div class="desk-grid-4">
+          <div class="desk-card"><div class="desk-metric"><div><small>Total Tenant</small><b id="dTotalTenant">0</b><span>aktif</span></div><div class="ico">🏘️</div></div></div>
+          <div class="desk-card"><div class="desk-metric"><div><small>Total User/Warga</small><b id="dTotalUsers">0</b><span>terdaftar</span></div><div class="ico">👥</div></div></div>
+          <div class="desk-card"><div class="desk-metric"><div><small>Income Bulanan</small><b id="dIncome">Rp0</b><span>simulasi</span></div><div class="ico">💰</div></div></div>
+          <div class="desk-card"><div class="desk-metric"><div><small>Aktivitas Hari Ini</small><b id="dActivities">0</b><span>monitor</span></div><div class="ico">📡</div></div></div>
+        </div>
+
+        <div class="desk-grid-3">
+          <div class="desk-card soft-dark">
+            <small>Kontrol pusat</small>
+            <h2 style="margin:8px 0 8px;font-size:1.8rem;letter-spacing:-.06em">Semua aktivitas user dalam satu layar</h2>
+            <p style="margin:0;line-height:1.65;color:rgba(255,255,255,.78)">Pengelola bisa memantau tenant, admin RW/RT, warga yang daftar, bukti iuran, laporan darurat, lapak, jasa, banner, serta status billing tanpa masuk satu per satu ke lingkungan.</p>
+            <div class="pay-actions" style="margin-top:16px">
+              <button class="btn" onclick="openDesk('activity')">Lihat Aktivitas</button>
+              <button class="btn light" onclick="openDesk('tenants')">Kelola Tenant</button>
+            </div>
+          </div>
+          <div class="desk-card">
+            <small>Tenant tercepat tumbuh</small>
+            <div id="dTopTenants"></div>
+          </div>
+          <div class="desk-card">
+            <small>Status sistem</small>
+            <div id="dSystemStatus"></div>
+          </div>
+        </div>
+
+        <div class="desk-split">
+          <div class="desk-card">
+            <div class="desk-section-head"><h2>Grafik income tenant</h2><span class="desk-pill green">Bulanan</span></div>
+            <div class="desk-chart" id="dIncomeChart"></div>
+          </div>
+          <div class="desk-card">
+            <div class="desk-section-head"><h2>Aktivitas terbaru</h2><button class="desk-btn light" onclick="openDesk('activity')">Detail</button></div>
+            <div class="desk-log" id="dRecentActivity"></div>
+          </div>
+        </div>
+      </section>
+
+      <section class="desk-section" id="desk-tenants">
+        <div class="desk-section-head">
+          <h2>Tenant / Pelanggan</h2>
+          <button class="desk-btn" onclick="openDeskModal('createTenant')">+ Buat Tenant</button>
+        </div>
+        <div class="desk-table-wrap"><table class="desk-table"><thead><tr><th>Tenant</th><th>Paket</th><th>Limit</th><th>Admin</th><th>Status</th><th>Income</th><th>Aksi</th></tr></thead><tbody id="dTenantRows"></tbody></table></div>
+      </section>
+
+      <section class="desk-section" id="desk-users">
+        <div class="desk-section-head">
+          <h2>User, Warga & Role</h2>
+          <button class="desk-btn" onclick="openDeskModal('createUser')">+ Tambah User</button>
+        </div>
+        <div class="desk-table-wrap"><table class="desk-table"><thead><tr><th>Nama</th><th>Tenant</th><th>RT/Ruang</th><th>No HP</th><th>Status</th><th>Role</th><th>Aksi</th></tr></thead><tbody id="dUserRows"></tbody></table></div>
+      </section>
+
+      <section class="desk-section" id="desk-activity">
+        <div class="desk-section-head">
+          <h2>Aktivitas User</h2>
+          <button class="desk-btn light" onclick="clearDeskLogs()">Bersihkan Log Demo</button>
+        </div>
+        <div class="desk-split">
+          <div class="desk-card">
+            <div class="desk-log" id="dActivityLog"></div>
+          </div>
+          <div class="desk-card">
+            <h2 style="margin:0 0 12px">Filter Aktivitas</h2>
+            <div class="subgrid">
+              <button class="subbtn" onclick="deskFilterActivity('all')"><i>📡</i>Semua</button>
+              <button class="subbtn" onclick="deskFilterActivity('login')"><i>🔐</i>Login</button>
+              <button class="subbtn" onclick="deskFilterActivity('report')"><i>🛟</i>Laporan</button>
+              <button class="subbtn" onclick="deskFilterActivity('payment')"><i>💳</i>Iuran</button>
+              <button class="subbtn" onclick="deskFilterActivity('market')"><i>🛒</i>Lapak/Jasa</button>
+              <button class="subbtn" onclick="deskFilterActivity('admin')"><i>⚙️</i>Admin</button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="desk-section" id="desk-billing">
+        <div class="desk-section-head">
+          <h2>Billing & Paket</h2>
+          <button class="desk-btn" onclick="openDeskModal('pricing')">Atur Paket</button>
+        </div>
+        <div class="desk-table-wrap"><table class="desk-table"><thead><tr><th>Tenant</th><th>Paket</th><th>Tagihan</th><th>Status Bayar</th><th>Jatuh Tempo</th><th>Aksi</th></tr></thead><tbody id="dBillingRows"></tbody></table></div>
+      </section>
+
+      <section class="desk-section" id="desk-marketplace">
+        <div class="desk-section-head">
+          <h2>Lapak, Jasa & Banner</h2>
+          <button class="desk-btn" onclick="openDeskModal('createService')">+ Tambah Jasa</button>
+        </div>
+        <div class="desk-grid-4">
+          <div class="desk-card"><div class="desk-metric"><div><small>Total Lapak</small><b id="dTotalProducts">0</b><span>jualan</span></div><div class="ico">🛒</div></div></div>
+          <div class="desk-card"><div class="desk-metric"><div><small>Total Jasa</small><b id="dTotalServices">0</b><span>verified</span></div><div class="ico">🔧</div></div></div>
+          <div class="desk-card"><div class="desk-metric"><div><small>Total Banner</small><b id="dTotalBanners">0</b><span>iklan</span></div><div class="ico">📣</div></div></div>
+          <div class="desk-card"><div class="desk-metric"><div><small>Income Lokal</small><b id="dMarketIncome">0</b><span>potensi</span></div><div class="ico">📈</div></div></div>
+        </div>
+        <div class="desk-table-wrap"><table class="desk-table"><thead><tr><th>Item</th><th>Tenant</th><th>Kategori</th><th>Harga/Paket</th><th>Status</th><th>Aksi</th></tr></thead><tbody id="dMarketRows"></tbody></table></div>
+      </section>
+
+      <section class="desk-section" id="desk-moderation">
+        <div class="desk-section-head">
+          <h2>Moderasi Laporan & Keamanan</h2>
+          <button class="desk-btn light" onclick="openDesk('activity')">Log Aktivitas</button>
+        </div>
+        <div class="desk-table-wrap"><table class="desk-table"><thead><tr><th>Laporan</th><th>Tenant</th><th>Waktu</th><th>Status</th><th>Deskripsi</th><th>Aksi</th></tr></thead><tbody id="dReportRows"></tbody></table></div>
+      </section>
+
+      <section class="desk-section" id="desk-links">
+        <div class="desk-section-head">
+          <h2>Link Tenant & RT</h2>
+          <button class="desk-btn light" onclick="openPage('shareLinks')">Buka di HP View</button>
+        </div>
+        <div class="desk-table-wrap"><table class="desk-table"><thead><tr><th>Lingkungan</th><th>Jenis</th><th>Link</th><th>Kode</th><th>Aksi</th></tr></thead><tbody id="dLinkRows"></tbody></table></div>
+      </section>
+
+      <section class="desk-section" id="desk-settings">
+        <div class="desk-section-head">
+          <h2>Pengaturan Sistem</h2>
+          <button class="desk-btn" onclick="saveDeskSettings()">Simpan Setting</button>
+        </div>
+        <div class="desk-card">
+          <div class="desk-form-grid">
+            <input id="deskAppName" value="WargaHub" placeholder="Nama aplikasi">
+            <input id="deskWa" value="081296629033" placeholder="Nomor WhatsApp Support">
+            <select id="deskDefaultRole"><option>resident</option><option>tenant_admin</option><option>rt_admin</option></select>
+            <textarea id="deskWelcome">Selamat datang di aplikasi warga lingkungan kita. Silakan daftar sesuai RT masing-masing.</textarea>
+            <button class="desk-btn" onclick="saveDeskSettings()">Simpan Pengaturan</button>
+          </div>
+        </div>
+        <div class="desk-grid-4" style="margin-top:16px">
+          <div class="desk-card"><small>Mode Platform</small><b style="display:block;margin-top:8px">Multi Tenant</b><span class="desk-pill green" style="margin-top:10px">Aktif</span></div>
+          <div class="desk-card"><small>Mode Data</small><b style="display:block;margin-top:8px">Local + Firebase</b><span class="desk-pill orange" style="margin-top:10px">Demo Sync</span></div>
+          <div class="desk-card"><small>Kontrol Role</small><b style="display:block;margin-top:8px">Super Admin</b><span class="desk-pill purple" style="margin-top:10px">Aktif</span></div>
+          <div class="desk-card"><small>Responsive</small><b style="display:block;margin-top:8px">HP + Laptop</b><span class="desk-pill green" style="margin-top:10px">Aktif</span></div>
+        </div>
+      </section>
+
+      <section class="desk-section" id="desk-firebase">
+        <div class="desk-section-head">
+          <h2>Firebase Sync</h2>
+          <button class="desk-btn" onclick="saveAllToFirebase()">Simpan Semua</button>
+        </div>
+        <div class="desk-grid-3">
+          <div class="desk-card soft-dark">
+            <small>Project aktif</small>
+            <h2 style="margin:8px 0 8px;font-size:1.8rem;letter-spacing:-.06em">softpro-11da5</h2>
+            <p style="margin:0;line-height:1.65;color:rgba(255,255,255,.78)">Gunakan menu ini untuk sinkronisasi data demo ke Firestore. Produksi nanti memakai Firebase Auth dan rules per tenantId/role.</p>
+            <div class="pay-actions" style="margin-top:16px">
+              <button class="btn" onclick="saveAllToFirebase()">Simpan Semua</button>
+              <button class="btn light" onclick="loadAllFromFirebase()">Load Semua</button>
+            </div>
+          </div>
+          <div class="desk-card">
+            <small>Status Firebase</small>
+            <h2 id="dFirebaseStatus" style="margin:8px 0">Menunggu koneksi</h2>
+            <span class="desk-pill orange">Firestore</span>
+          </div>
+          <div class="desk-card">
+            <small>Tenant aktif</small>
+            <h2 id="dFirebaseTenant" style="margin:8px 0">-</h2>
+            <div class="pay-actions">
+              <button class="btn blue" onclick="saveCurrentTenantToFirebase()">Simpan Tenant</button>
+              <button class="btn light" onclick="loadCurrentTenantFromFirebase()">Load</button>
+            </div>
+          </div>
+        </div>
+        <div class="desk-card">
+          <div class="tenant-lock">wargahub_system/state
+tenants/{tenantId}
+tenants/{tenantId}/app/data
+tenants/{tenantId}/residents
+tenants/{tenantId}/reports
+tenants/{tenantId}/services
+tenants/{tenantId}/products</div>
+        </div>
+      </section>
+    </main>
+
+    <div class="desk-modal" id="deskModal">
+      <div class="desk-modal-box">
+        <div class="desk-modal-head">
+          <h3 id="deskModalTitle">Form</h3>
+          <button onclick="closeDeskModal()">×</button>
+        </div>
+        <div id="deskModalBody"></div>
+      </div>
+    </div>
+  </section>
+
+
+  <main class="app mobile-only-app">
     <header class="app-header">
       <div class="top-row">
         <div class="brand">
@@ -582,7 +1190,7 @@ allow write: if request.auth.token.tenantId == tenantId
     function showToast(msg){const el=document.getElementById('toast');el.textContent=msg;el.classList.add('show');setTimeout(()=>el.classList.remove('show'),2400)}
 
     function renderAll(){
-      renderTenantStrip();renderHome();renderTenants();renderRoles();renderSuper();renderInfo();renderIuran();renderRiwayat();renderReports();renderServices();renderProducts();renderRonda();renderGuests();renderEvents();renderResidents();renderBanners();renderPricing();renderAdmin();renderNotifs();renderFirebaseSync();renderFirestore();renderShareLinks();renderInvite();renderRtRooms();renderSelfRegister();renderRwCommunity();
+      renderTenantStrip();renderHome();renderTenants();renderRoles();renderSuper();renderInfo();renderIuran();renderRiwayat();renderReports();renderServices();renderProducts();renderRonda();renderGuests();renderEvents();renderResidents();renderBanners();renderPricing();renderAdmin();renderNotifs();renderFirebaseSync();renderFirestore();renderShareLinks();renderDesktopAdmin();renderInvite();renderRtRooms();renderSelfRegister();renderRwCommunity();
     }
     function renderTenantStrip(){
       const tenants = db.currentRole === "super_admin" ? Object.values(db.tenants) : [T()];
@@ -750,8 +1358,258 @@ allow write: if request.auth.token.tenantId == tenantId
         db = loaded;
         localStorage.setItem("wargahubTenantDB", JSON.stringify(db));
     
+
+    let deskSection = "overview";
+    let deskActivityFilter = "all";
+
+    function deskTenantArray(){
+      return Object.values(db.tenants || {});
+    }
+    function deskAllResidents(){
+      return deskTenantArray().flatMap(t => (t.residents || []).map((r,i)=>({...r, tenantId:t.id, tenantName:t.name, _index:i})));
+    }
+    function deskAllReports(){
+      return deskTenantArray().flatMap(t => (t.reports || []).map((r,i)=>({...r, tenantId:t.id, tenantName:t.name, _index:i})));
+    }
+    function deskAllMarket(){
+      const rows=[];
+      deskTenantArray().forEach(t=>{
+        (t.products || []).forEach((p,i)=>rows.push({...p, tenantId:t.id, tenantName:t.name, kind:"Lapak", _index:i}));
+        (t.services || []).forEach((s,i)=>rows.push({...s, tenantId:t.id, tenantName:t.name, kind:"Jasa", _index:i}));
+        (t.banners || []).forEach((b,i)=>rows.push({...b, name:b.text, price:b.price, tenantId:t.id, tenantName:t.name, kind:"Banner", _index:i}));
+      });
+      return rows;
+    }
+    function deskIncomeTenant(t){
+      return (t.monthly || 0) + (t.products||[]).length*10000 + (t.services||[]).length*25000 + (t.banners||[]).length*50000;
+    }
+    function deskLogs(){
+      const built = [];
+      deskTenantArray().forEach(t=>{
+        built.push({type:"admin", icon:"🏘️", title:"Tenant aktif", text:`${t.name} memakai paket ${t.plan}`, time:"Sistem"});
+        (t.residents||[]).slice(0,6).forEach(r=>built.push({type:"login", icon:"👤", title:"Warga terdaftar", text:`${r.name} masuk ke ${t.name} ${r.rtName||r.rtId||""}`, time:"Data user"}));
+        (t.reports||[]).slice(0,6).forEach(r=>built.push({type:"report", icon:"🛟", title:r.title, text:`${t.name} · ${r.status} · ${r.desc}`, time:r.time||"Laporan"}));
+        (t.bukti||[]).slice(0,6).forEach(b=>built.push({type:"payment", icon:"💳", title:"Bukti iuran masuk", text:`${t.name} · ${b.nama} · ${b.jenis}`, time:"Bendahara"}));
+        (t.services||[]).slice(0,4).forEach(s=>built.push({type:"market", icon:"🔧", title:"Jasa aktif", text:`${s.name} tampil di ${t.name}`, time:s.cat||"Jasa"}));
+        (t.products||[]).slice(0,4).forEach(p=>built.push({type:"market", icon:"🛒", title:"Lapak aktif", text:`${p.name} tampil di ${t.name}`, time:p.seller||"Lapak"}));
+      });
+      const manual = JSON.parse(localStorage.getItem("wargahubDeskLogs") || "[]");
+      return [...manual, ...built];
+    }
+    function addDeskLog(type, icon, title, text){
+      const logs = JSON.parse(localStorage.getItem("wargahubDeskLogs") || "[]");
+      logs.unshift({type, icon, title, text, time:new Date().toLocaleString("id-ID")});
+      localStorage.setItem("wargahubDeskLogs", JSON.stringify(logs.slice(0,80)));
+    }
+    function clearDeskLogs(){
+      localStorage.removeItem("wargahubDeskLogs");
+      showToast("Log demo dibersihkan");
+      renderDesktopAdmin();
+    }
+    function openDesk(id){
+      deskSection = id;
+      document.querySelectorAll(".desk-section").forEach(s=>s.classList.remove("active"));
+      const el=document.getElementById("desk-"+id);
+      if(el) el.classList.add("active");
+      document.querySelectorAll(".desk-nav").forEach(b=>b.classList.toggle("active", b.dataset.desk===id));
+      const titles = {
+        overview:["Dashboard Pengelola","Kontrol seluruh tenant, user, aktivitas, billing, dan marketplace WargaHub."],
+        tenants:["Tenant / Pelanggan","Buat, aktifkan, nonaktifkan, dan pantau seluruh RT/RW/perumahan."],
+        users:["User & Role","Pantau warga, admin RW, admin RT, bendahara, satpam, dan pedagang."],
+        activity:["Aktivitas User","Pantau login, pendaftaran warga, laporan, iuran, lapak, dan aksi admin."],
+        billing:["Billing & Paket","Kelola tagihan aplikasi tiap tenant dan status pembayaran."],
+        marketplace:["Lapak & Jasa","Kontrol pedagang, tukang service, banner, dan potensi income lokal."],
+        moderation:["Moderasi Laporan","Pantau laporan warga, status penanganan, dan keamanan lingkungan."],
+        links:["Link Tenant/RT","Salin link khusus tenant dan RT untuk dikirim ke pelanggan/warga."],
+        settings:["Pengaturan Sistem","Atur nama aplikasi, support, role default, dan pesan sambutan."],
+        firebase:["Firebase Sync","Sinkronisasi data demo ke project Firebase softpro-11da5."]
+      };
+      document.getElementById("deskTitle").textContent = (titles[id]||titles.overview)[0];
+      document.getElementById("deskSubtitle").textContent = (titles[id]||titles.overview)[1];
+      renderDesktopAdmin();
+    }
+    function renderDesktopAdmin(){
+      if(!document.querySelector(".desktop-admin-shell")) return;
+      const q = (document.getElementById("deskSearch")?.value || "").toLowerCase();
+      const tenants = deskTenantArray();
+      const residents = deskAllResidents();
+      const reports = deskAllReports();
+      const market = deskAllMarket();
+      const income = tenants.reduce((a,t)=>a+deskIncomeTenant(t),0);
+
+      setText("dTotalTenant", tenants.length);
+      setText("dTotalUsers", residents.length);
+      setText("dIncome", money(income));
+      setText("dActivities", deskLogs().length);
+      setText("dTotalProducts", market.filter(m=>m.kind==="Lapak").length);
+      setText("dTotalServices", market.filter(m=>m.kind==="Jasa").length);
+      setText("dTotalBanners", market.filter(m=>m.kind==="Banner").length);
+      setText("dMarketIncome", money(market.filter(m=>m.kind==="Lapak").length*10000 + market.filter(m=>m.kind==="Jasa").length*25000 + market.filter(m=>m.kind==="Banner").length*50000));
+      setText("dFirebaseTenant", T().name);
+      setText("dFirebaseStatus", window.WHFirebase ? "Terhubung" : "Menunggu koneksi");
+
+      const top = [...tenants].sort((a,b)=>deskIncomeTenant(b)-deskIncomeTenant(a)).slice(0,4);
+      setHTML("dTopTenants", top.map(t=>`<div class="desk-log-item" style="grid-template-columns:42px 1fr auto"><div class="desk-log-ico">🏘️</div><div><b>${t.name}</b><small>${t.plan} · ${t.residents.length} warga</small></div><span class="desk-pill green">${money(deskIncomeTenant(t))}</span></div>`).join(""));
+      setHTML("dSystemStatus", `
+        <div class="desk-log-item" style="grid-template-columns:42px 1fr"><div class="desk-log-ico">✅</div><div><b>Multi tenant</b><small>TenantId aktif dan terpisah</small></div></div>
+        <div class="desk-log-item" style="grid-template-columns:42px 1fr;margin-top:10px"><div class="desk-log-ico">📱</div><div><b>Responsive</b><small>HP app + laptop admin</small></div></div>
+        <div class="desk-log-item" style="grid-template-columns:42px 1fr;margin-top:10px"><div class="desk-log-ico">🔥</div><div><b>Firebase</b><small>${window.WHFirebase ? "Terhubung" : "Belum siap"}</small></div></div>
+      `);
+
+      const maxIncome = Math.max(...tenants.map(deskIncomeTenant), 1);
+      setHTML("dIncomeChart", tenants.map(t=>`<div class="desk-bar" style="height:${Math.max(18, deskIncomeTenant(t)/maxIncome*200)}px"><span>${money(deskIncomeTenant(t)).replace("Rp","")}</span></div>`).join(""));
+
+      const filteredTenants = tenants.filter(t => (`${t.name} ${t.plan} ${t.admin} ${t.id}`).toLowerCase().includes(q));
+      setHTML("dTenantRows", filteredTenants.map(t=>`
+        <tr><td><b>${t.name}</b><br><small>${t.id}</small></td><td>${t.plan}</td><td>${t.residents.length}/${t.limit}</td><td>${t.admin}</td><td><span class="desk-pill green">${t.status}</span></td><td><b>${money(deskIncomeTenant(t))}</b></td>
+        <td><div class="desk-mini-actions"><button class="primary" onclick="deskUseTenant('${t.id}')">Pakai</button><button onclick="copyTenantLink('${t.id}')">Copy Link</button><button onclick="deskToggleTenant('${t.id}')">${t.status==="Aktif"?"Nonaktif":"Aktifkan"}</button></div></td></tr>
+      `).join(""));
+
+      const filteredUsers = residents.filter(r => (`${r.name} ${r.tenantName} ${r.house} ${r.phone} ${r.rtName||r.rtId||""}`).toLowerCase().includes(q));
+      setHTML("dUserRows", filteredUsers.map(r=>`
+        <tr><td><b>${r.name}</b><br><small>${r.source==="self_register"?"Daftar mandiri":"Input admin"}</small></td><td>${r.tenantName}</td><td>${r.rtName||r.rtId||"RW"}</td><td>${r.phone||"-"}</td><td><span class="desk-pill green">${r.status||"Warga"}</span></td><td><span class="desk-pill purple">resident</span></td>
+        <td><div class="desk-mini-actions"><button onclick="deskImpersonateTenant('${r.tenantId}','${r.rtId||""}')">Lihat Ruang</button><button class="danger" onclick="deskDeleteResident('${r.tenantId}',${r._index})">Hapus</button></div></td></tr>
+      `).join(""));
+
+      const logs = deskLogs().filter(l => deskActivityFilter==="all" || l.type===deskActivityFilter).filter(l => (`${l.title} ${l.text} ${l.time}`).toLowerCase().includes(q));
+      const logHTML = logs.map(l=>`<div class="desk-log-item"><div class="desk-log-ico">${l.icon}</div><div><b>${l.title}</b><small>${l.text}</small></div><span class="desk-pill">${l.time}</span></div>`).join("");
+      setHTML("dRecentActivity", logHTML || `<div class="empty">Belum ada aktivitas.</div>`);
+      setHTML("dActivityLog", logHTML || `<div class="empty">Belum ada aktivitas.</div>`);
+
+      setHTML("dBillingRows", tenants.map(t=>`
+        <tr><td><b>${t.name}</b><br><small>${t.id}</small></td><td>${t.plan}</td><td><b>${money(t.monthly||0)}/bulan</b></td><td><span class="desk-pill green">Lunas Demo</span></td><td>Setiap tanggal 10</td>
+        <td><div class="desk-mini-actions"><button class="primary" onclick="deskMarkPaid('${t.id}')">Tandai Lunas</button><button onclick="openDeskModal('changePlan','${t.id}')">Ubah Paket</button></div></td></tr>
+      `).join(""));
+
+      const filteredMarket = market.filter(m => (`${m.name||m.text} ${m.tenantName} ${m.kind} ${m.cat||""}`).toLowerCase().includes(q));
+      setHTML("dMarketRows", filteredMarket.map(m=>`
+        <tr><td><b>${m.name||m.text}</b><br><small>${m.desc||m.owner||m.seller||""}</small></td><td>${m.tenantName}</td><td>${m.kind}${m.cat?" · "+m.cat:""}</td><td>${m.price||m.priceText||"-"}</td><td><span class="desk-pill green">Aktif</span></td>
+        <td><div class="desk-mini-actions"><button class="primary">Verifikasi</button><button class="danger" onclick="deskDeleteMarket('${m.tenantId}','${m.kind}',${m._index})">Hapus</button></div></td></tr>
+      `).join(""));
+
+      const filteredReports = reports.filter(r => (`${r.title} ${r.tenantName} ${r.status} ${r.desc}`).toLowerCase().includes(q));
+      setHTML("dReportRows", filteredReports.map(r=>`
+        <tr><td><b>${r.title}</b></td><td>${r.tenantName}</td><td>${r.time||"-"}</td><td><span class="desk-pill ${tagClass(r.status)}">${r.status}</span></td><td>${r.desc}</td>
+        <td><div class="desk-mini-actions"><button class="primary" onclick="deskSetReport('${r.tenantId}',${r._index},'Diproses')">Proses</button><button onclick="deskSetReport('${r.tenantId}',${r._index},'Selesai')">Selesai</button></div></td></tr>
+      `).join(""));
+
+      const linkRows=[];
+      tenants.forEach(t=>{
+        linkRows.push({name:t.name,type:"Tenant",link:tenantUrl(t.id),code:t.inviteCode||"-",tenantId:t.id});
+        Object.values(t.rts||{}).forEach(rt=>linkRows.push({name:`${t.name} · ${rt.name}`,type:"RT",link:rtUrl(t.id,rt.id),code:rt.inviteCode,tenantId:t.id,rtId:rt.id}));
+      });
+      setHTML("dLinkRows", linkRows.map(l=>`
+        <tr><td><b>${l.name}</b></td><td><span class="desk-pill purple">${l.type}</span></td><td><div class="linkbox" style="margin:0">${l.link}</div></td><td>${l.code}</td>
+        <td><div class="desk-mini-actions"><button class="primary" onclick="copyText('${l.link}')">Copy</button><button onclick="${l.type==='RT'?`shareRtWA('${l.tenantId}','${l.rtId}')`:`shareTenantWA('${l.tenantId}')`}">WA</button></div></td></tr>
+      `).join(""));
+    }
+    function setText(id, value){const el=document.getElementById(id); if(el) el.textContent=value;}
+    function setHTML(id, value){const el=document.getElementById(id); if(el) el.innerHTML=value;}
+    function deskFilterActivity(type){deskActivityFilter=type;renderDesktopAdmin();}
+    function deskUseTenant(id){db.currentTenant=id;saveDB();addDeskLog("admin","🏘️","Super Admin memilih tenant",db.tenants[id].name);showToast("Tenant aktif: "+db.tenants[id].name);renderDesktopAdmin();}
+    function deskImpersonateTenant(id, rtId){db.currentTenant=id;if(rtId)db.currentRt=rtId;saveDB();showToast("Membuka ruang "+db.tenants[id].name);renderDesktopAdmin();}
+    function deskToggleTenant(id){const t=db.tenants[id];t.status=t.status==="Aktif"?"Nonaktif":"Aktif";saveDB();addDeskLog("admin","⚙️","Status tenant diubah",`${t.name}: ${t.status}`);renderDesktopAdmin();}
+    function deskDeleteResident(tenantId, idx){if(!confirm("Hapus warga ini dari demo?"))return;db.tenants[tenantId].residents.splice(idx,1);saveDB();addDeskLog("admin","🗑️","Warga dihapus",tenantId);renderDesktopAdmin();}
+    function deskDeleteMarket(tenantId, kind, idx){if(!confirm("Hapus item ini dari demo?"))return;const key=kind==="Lapak"?"products":kind==="Jasa"?"services":"banners";db.tenants[tenantId][key].splice(idx,1);saveDB();addDeskLog("admin","🗑️","Item marketplace dihapus",`${kind} · ${tenantId}`);renderDesktopAdmin();}
+    function deskSetReport(tenantId, idx, status){db.tenants[tenantId].reports[idx].status=status;saveDB();addDeskLog("report","🛟","Status laporan diubah",`${db.tenants[tenantId].name}: ${status}`);renderDesktopAdmin();}
+    function deskMarkPaid(id){addDeskLog("payment","💳","Billing ditandai lunas",db.tenants[id].name);showToast("Billing tenant ditandai lunas");renderDesktopAdmin();}
+    function openDeskModal(type, id=""){
+      const modal=document.getElementById("deskModal"), title=document.getElementById("deskModalTitle"), body=document.getElementById("deskModalBody");
+      if(!modal||!body)return;
+      if(type==="createTenant"){
+        title.textContent="Buat Tenant Baru";
+        body.innerHTML=`<form class="desk-form-grid" onsubmit="deskSubmitTenant(event)">
+          <input id="dTnName" placeholder="Nama lingkungan" required>
+          <input id="dTnSlug" placeholder="tenantId, contoh cluster-mutiara" required>
+          <select id="dTnType"><option>RT</option><option>RW</option><option>Perumahan</option><option>Cluster</option><option>Kampung</option><option>Apartemen</option></select>
+          <select id="dTnPlan"><option>RT Mini</option><option>RT Plus</option><option>RW / Gabungan RT</option><option>Perumahan Mini</option><option>Perumahan Besar</option><option>Custom Kawasan</option></select>
+          <input id="dTnLimit" type="number" placeholder="Limit warga" required>
+          <input id="dTnAdmin" placeholder="Admin utama" required>
+          <input id="dTnCode" placeholder="Kode undangan" required>
+          <button class="desk-btn" type="submit">Buat Tenant</button>
+        </form>`;
+      } else if(type==="createUser"){
+        title.textContent="Tambah User/Warga";
+        const opts=deskTenantArray().map(t=>`<option value="${t.id}">${t.name}</option>`).join("");
+        body.innerHTML=`<form class="desk-form-grid" onsubmit="deskSubmitUser(event)">
+          <select id="dUserTenant">${opts}</select>
+          <input id="dUserName" placeholder="Nama user/warga" required>
+          <input id="dUserHouse" placeholder="Rumah / alamat" required>
+          <input id="dUserPhone" placeholder="Nomor HP">
+          <select id="dUserRole"><option>resident</option><option>tenant_admin</option><option>rt_admin</option><option>bendahara</option><option>security</option></select>
+          <button class="desk-btn" type="submit">Simpan User</button>
+        </form>`;
+      } else if(type==="createService"){
+        title.textContent="Tambah Jasa dari Pengelola";
+        const opts=deskTenantArray().map(t=>`<option value="${t.id}">${t.name}</option>`).join("");
+        body.innerHTML=`<form class="desk-form-grid" onsubmit="deskSubmitService(event)">
+          <select id="dSvcTenant">${opts}</select>
+          <input id="dSvcName" placeholder="Nama jasa" required>
+          <select id="dSvcCat"><option>Servis AC</option><option>Listrik</option><option>Galon</option><option>Laundry</option><option>Tukang</option></select>
+          <input id="dSvcPrice" placeholder="Harga mulai">
+          <input id="dSvcWA" placeholder="Nomor WA" value="081296629033">
+          <textarea id="dSvcDesc" placeholder="Deskripsi jasa"></textarea>
+          <button class="desk-btn" type="submit">Simpan Jasa</button>
+        </form>`;
+      } else if(type==="pricing"){
+        title.textContent="Atur Paket Harga";
+        body.innerHTML=`<div class="desk-table-wrap"><table class="desk-table"><thead><tr><th>Paket</th><th>Range</th><th>Harga</th></tr></thead><tbody>${db.pricing.map(p=>`<tr><td><b>${p.name}</b></td><td>${p.range}</td><td>${p.price}</td></tr>`).join("")}</tbody></table></div>`;
+      } else if(type==="changePlan"){
+        title.textContent="Ubah Paket Tenant";
+        const t=db.tenants[id];
+        body.innerHTML=`<form class="desk-form-grid" onsubmit="deskChangePlan(event,'${id}')">
+          <select id="dPlanNew"><option>RT Mini</option><option>RT Plus</option><option>RW / Gabungan RT</option><option>Perumahan Mini</option><option>Perumahan Besar</option><option>Custom Kawasan</option></select>
+          <input id="dPlanMonthly" type="number" value="${t.monthly||0}">
+          <button class="desk-btn" type="submit">Simpan Paket</button>
+        </form>`;
+      }
+      modal.classList.add("show");
+    }
+    function closeDeskModal(){document.getElementById("deskModal")?.classList.remove("show");}
+    function deskSubmitTenant(e){
+      e.preventDefault();
+      const id=dTnSlug.value.trim().toLowerCase().replace(/[^a-z0-9-]/g,"-");
+      if(db.tenants[id]){showToast("tenantId sudah ada");return}
+      db.tenants[id]={id,name:dTnName.value,type:dTnType.value,plan:dTnPlan.value,limit:Number(dTnLimit.value),status:"Aktif",admin:dTnAdmin.value,monthly:planPrice(dTnPlan.value),inviteCode:dTnCode.value.trim().toUpperCase(),logo:"🏘️",theme:"#ff6b00",rts:{rt01:{id:"rt01",name:"RT 01",admin:"-",inviteCode:id.toUpperCase()+"-RT01"}},infos:[],iuran:[],reports:[],services:[],products:[],ronda:[],guests:[],events:[],residents:[],banners:[],bukti:[]};
+      db.currentTenant=id;saveDB();addDeskLog("admin","🏘️","Tenant baru dibuat",dTnName.value);closeDeskModal();renderDesktopAdmin();showToast("Tenant baru dibuat");
+    }
+    function deskSubmitUser(e){
+      e.preventDefault();
+      const t=db.tenants[dUserTenant.value];
+      t.residents.unshift({name:dUserName.value,house:dUserHouse.value,phone:dUserPhone.value,status:"Aktif",role:dUserRole.value,source:"pengelola"});
+      saveDB();addDeskLog("admin","👤","User ditambahkan",`${dUserName.value} · ${t.name}`);closeDeskModal();renderDesktopAdmin();showToast("User/warga ditambahkan");
+    }
+    function deskSubmitService(e){
+      e.preventDefault();
+      const t=db.tenants[dSvcTenant.value];
+      t.services.unshift({name:dSvcName.value,cat:dSvcCat.value,price:dSvcPrice.value||"Hubungi admin",wa:dSvcWA.value,desc:dSvcDesc.value||"Layanan warga sekitar.",icon:"🔧",rating:"Baru"});
+      saveDB();addDeskLog("market","🔧","Jasa ditambahkan pengelola",`${dSvcName.value} · ${t.name}`);closeDeskModal();renderDesktopAdmin();showToast("Jasa ditambahkan");
+    }
+    function deskChangePlan(e,id){
+      e.preventDefault();
+      db.tenants[id].plan=dPlanNew.value;
+      db.tenants[id].monthly=Number(dPlanMonthly.value||0);
+      saveDB();addDeskLog("payment","💳","Paket tenant diubah",`${db.tenants[id].name}: ${dPlanNew.value}`);closeDeskModal();renderDesktopAdmin();showToast("Paket diubah");
+    }
+    function saveDeskSettings(){showToast("Pengaturan sistem disimpan di perangkat ini");addDeskLog("admin","⚙️","Setting sistem disimpan","Admin pengelola memperbarui pengaturan");renderDesktopAdmin();}
+    function downloadDeskReport(){
+      const report={
+        generatedAt:new Date().toISOString(),
+        tenants:deskTenantArray().map(t=>({id:t.id,name:t.name,plan:t.plan,status:t.status,residents:t.residents.length,income:deskIncomeTenant(t)})),
+        totalResidents:deskAllResidents().length,
+        totalReports:deskAllReports().length,
+        totalMarket:deskAllMarket().length
+      };
+      const blob=new Blob([JSON.stringify(report,null,2)],{type:"application/json"});
+      const url=URL.createObjectURL(blob);
+      const a=document.createElement("a");a.href=url;a.download="wargahub-admin-report.json";a.click();URL.revokeObjectURL(url);
+      showToast("Report JSON didownload");
+    }
+
     window.addEventListener("wargahub-firebase-ready", () => {
       setFirebaseStatus("Firebase terhubung: softpro-11da5", "on");
+      setText("dFirebaseStatus","Terhubung");
+      renderDesktopAdmin();
       showToast("Firebase softpro-11da5 terhubung");
     });
 
@@ -784,8 +1642,258 @@ allow write: if request.auth.token.tenantId == tenantId
         db.tenants[db.currentTenant] = tenant;
         localStorage.setItem("wargahubTenantDB", JSON.stringify(db));
     
+
+    let deskSection = "overview";
+    let deskActivityFilter = "all";
+
+    function deskTenantArray(){
+      return Object.values(db.tenants || {});
+    }
+    function deskAllResidents(){
+      return deskTenantArray().flatMap(t => (t.residents || []).map((r,i)=>({...r, tenantId:t.id, tenantName:t.name, _index:i})));
+    }
+    function deskAllReports(){
+      return deskTenantArray().flatMap(t => (t.reports || []).map((r,i)=>({...r, tenantId:t.id, tenantName:t.name, _index:i})));
+    }
+    function deskAllMarket(){
+      const rows=[];
+      deskTenantArray().forEach(t=>{
+        (t.products || []).forEach((p,i)=>rows.push({...p, tenantId:t.id, tenantName:t.name, kind:"Lapak", _index:i}));
+        (t.services || []).forEach((s,i)=>rows.push({...s, tenantId:t.id, tenantName:t.name, kind:"Jasa", _index:i}));
+        (t.banners || []).forEach((b,i)=>rows.push({...b, name:b.text, price:b.price, tenantId:t.id, tenantName:t.name, kind:"Banner", _index:i}));
+      });
+      return rows;
+    }
+    function deskIncomeTenant(t){
+      return (t.monthly || 0) + (t.products||[]).length*10000 + (t.services||[]).length*25000 + (t.banners||[]).length*50000;
+    }
+    function deskLogs(){
+      const built = [];
+      deskTenantArray().forEach(t=>{
+        built.push({type:"admin", icon:"🏘️", title:"Tenant aktif", text:`${t.name} memakai paket ${t.plan}`, time:"Sistem"});
+        (t.residents||[]).slice(0,6).forEach(r=>built.push({type:"login", icon:"👤", title:"Warga terdaftar", text:`${r.name} masuk ke ${t.name} ${r.rtName||r.rtId||""}`, time:"Data user"}));
+        (t.reports||[]).slice(0,6).forEach(r=>built.push({type:"report", icon:"🛟", title:r.title, text:`${t.name} · ${r.status} · ${r.desc}`, time:r.time||"Laporan"}));
+        (t.bukti||[]).slice(0,6).forEach(b=>built.push({type:"payment", icon:"💳", title:"Bukti iuran masuk", text:`${t.name} · ${b.nama} · ${b.jenis}`, time:"Bendahara"}));
+        (t.services||[]).slice(0,4).forEach(s=>built.push({type:"market", icon:"🔧", title:"Jasa aktif", text:`${s.name} tampil di ${t.name}`, time:s.cat||"Jasa"}));
+        (t.products||[]).slice(0,4).forEach(p=>built.push({type:"market", icon:"🛒", title:"Lapak aktif", text:`${p.name} tampil di ${t.name}`, time:p.seller||"Lapak"}));
+      });
+      const manual = JSON.parse(localStorage.getItem("wargahubDeskLogs") || "[]");
+      return [...manual, ...built];
+    }
+    function addDeskLog(type, icon, title, text){
+      const logs = JSON.parse(localStorage.getItem("wargahubDeskLogs") || "[]");
+      logs.unshift({type, icon, title, text, time:new Date().toLocaleString("id-ID")});
+      localStorage.setItem("wargahubDeskLogs", JSON.stringify(logs.slice(0,80)));
+    }
+    function clearDeskLogs(){
+      localStorage.removeItem("wargahubDeskLogs");
+      showToast("Log demo dibersihkan");
+      renderDesktopAdmin();
+    }
+    function openDesk(id){
+      deskSection = id;
+      document.querySelectorAll(".desk-section").forEach(s=>s.classList.remove("active"));
+      const el=document.getElementById("desk-"+id);
+      if(el) el.classList.add("active");
+      document.querySelectorAll(".desk-nav").forEach(b=>b.classList.toggle("active", b.dataset.desk===id));
+      const titles = {
+        overview:["Dashboard Pengelola","Kontrol seluruh tenant, user, aktivitas, billing, dan marketplace WargaHub."],
+        tenants:["Tenant / Pelanggan","Buat, aktifkan, nonaktifkan, dan pantau seluruh RT/RW/perumahan."],
+        users:["User & Role","Pantau warga, admin RW, admin RT, bendahara, satpam, dan pedagang."],
+        activity:["Aktivitas User","Pantau login, pendaftaran warga, laporan, iuran, lapak, dan aksi admin."],
+        billing:["Billing & Paket","Kelola tagihan aplikasi tiap tenant dan status pembayaran."],
+        marketplace:["Lapak & Jasa","Kontrol pedagang, tukang service, banner, dan potensi income lokal."],
+        moderation:["Moderasi Laporan","Pantau laporan warga, status penanganan, dan keamanan lingkungan."],
+        links:["Link Tenant/RT","Salin link khusus tenant dan RT untuk dikirim ke pelanggan/warga."],
+        settings:["Pengaturan Sistem","Atur nama aplikasi, support, role default, dan pesan sambutan."],
+        firebase:["Firebase Sync","Sinkronisasi data demo ke project Firebase softpro-11da5."]
+      };
+      document.getElementById("deskTitle").textContent = (titles[id]||titles.overview)[0];
+      document.getElementById("deskSubtitle").textContent = (titles[id]||titles.overview)[1];
+      renderDesktopAdmin();
+    }
+    function renderDesktopAdmin(){
+      if(!document.querySelector(".desktop-admin-shell")) return;
+      const q = (document.getElementById("deskSearch")?.value || "").toLowerCase();
+      const tenants = deskTenantArray();
+      const residents = deskAllResidents();
+      const reports = deskAllReports();
+      const market = deskAllMarket();
+      const income = tenants.reduce((a,t)=>a+deskIncomeTenant(t),0);
+
+      setText("dTotalTenant", tenants.length);
+      setText("dTotalUsers", residents.length);
+      setText("dIncome", money(income));
+      setText("dActivities", deskLogs().length);
+      setText("dTotalProducts", market.filter(m=>m.kind==="Lapak").length);
+      setText("dTotalServices", market.filter(m=>m.kind==="Jasa").length);
+      setText("dTotalBanners", market.filter(m=>m.kind==="Banner").length);
+      setText("dMarketIncome", money(market.filter(m=>m.kind==="Lapak").length*10000 + market.filter(m=>m.kind==="Jasa").length*25000 + market.filter(m=>m.kind==="Banner").length*50000));
+      setText("dFirebaseTenant", T().name);
+      setText("dFirebaseStatus", window.WHFirebase ? "Terhubung" : "Menunggu koneksi");
+
+      const top = [...tenants].sort((a,b)=>deskIncomeTenant(b)-deskIncomeTenant(a)).slice(0,4);
+      setHTML("dTopTenants", top.map(t=>`<div class="desk-log-item" style="grid-template-columns:42px 1fr auto"><div class="desk-log-ico">🏘️</div><div><b>${t.name}</b><small>${t.plan} · ${t.residents.length} warga</small></div><span class="desk-pill green">${money(deskIncomeTenant(t))}</span></div>`).join(""));
+      setHTML("dSystemStatus", `
+        <div class="desk-log-item" style="grid-template-columns:42px 1fr"><div class="desk-log-ico">✅</div><div><b>Multi tenant</b><small>TenantId aktif dan terpisah</small></div></div>
+        <div class="desk-log-item" style="grid-template-columns:42px 1fr;margin-top:10px"><div class="desk-log-ico">📱</div><div><b>Responsive</b><small>HP app + laptop admin</small></div></div>
+        <div class="desk-log-item" style="grid-template-columns:42px 1fr;margin-top:10px"><div class="desk-log-ico">🔥</div><div><b>Firebase</b><small>${window.WHFirebase ? "Terhubung" : "Belum siap"}</small></div></div>
+      `);
+
+      const maxIncome = Math.max(...tenants.map(deskIncomeTenant), 1);
+      setHTML("dIncomeChart", tenants.map(t=>`<div class="desk-bar" style="height:${Math.max(18, deskIncomeTenant(t)/maxIncome*200)}px"><span>${money(deskIncomeTenant(t)).replace("Rp","")}</span></div>`).join(""));
+
+      const filteredTenants = tenants.filter(t => (`${t.name} ${t.plan} ${t.admin} ${t.id}`).toLowerCase().includes(q));
+      setHTML("dTenantRows", filteredTenants.map(t=>`
+        <tr><td><b>${t.name}</b><br><small>${t.id}</small></td><td>${t.plan}</td><td>${t.residents.length}/${t.limit}</td><td>${t.admin}</td><td><span class="desk-pill green">${t.status}</span></td><td><b>${money(deskIncomeTenant(t))}</b></td>
+        <td><div class="desk-mini-actions"><button class="primary" onclick="deskUseTenant('${t.id}')">Pakai</button><button onclick="copyTenantLink('${t.id}')">Copy Link</button><button onclick="deskToggleTenant('${t.id}')">${t.status==="Aktif"?"Nonaktif":"Aktifkan"}</button></div></td></tr>
+      `).join(""));
+
+      const filteredUsers = residents.filter(r => (`${r.name} ${r.tenantName} ${r.house} ${r.phone} ${r.rtName||r.rtId||""}`).toLowerCase().includes(q));
+      setHTML("dUserRows", filteredUsers.map(r=>`
+        <tr><td><b>${r.name}</b><br><small>${r.source==="self_register"?"Daftar mandiri":"Input admin"}</small></td><td>${r.tenantName}</td><td>${r.rtName||r.rtId||"RW"}</td><td>${r.phone||"-"}</td><td><span class="desk-pill green">${r.status||"Warga"}</span></td><td><span class="desk-pill purple">resident</span></td>
+        <td><div class="desk-mini-actions"><button onclick="deskImpersonateTenant('${r.tenantId}','${r.rtId||""}')">Lihat Ruang</button><button class="danger" onclick="deskDeleteResident('${r.tenantId}',${r._index})">Hapus</button></div></td></tr>
+      `).join(""));
+
+      const logs = deskLogs().filter(l => deskActivityFilter==="all" || l.type===deskActivityFilter).filter(l => (`${l.title} ${l.text} ${l.time}`).toLowerCase().includes(q));
+      const logHTML = logs.map(l=>`<div class="desk-log-item"><div class="desk-log-ico">${l.icon}</div><div><b>${l.title}</b><small>${l.text}</small></div><span class="desk-pill">${l.time}</span></div>`).join("");
+      setHTML("dRecentActivity", logHTML || `<div class="empty">Belum ada aktivitas.</div>`);
+      setHTML("dActivityLog", logHTML || `<div class="empty">Belum ada aktivitas.</div>`);
+
+      setHTML("dBillingRows", tenants.map(t=>`
+        <tr><td><b>${t.name}</b><br><small>${t.id}</small></td><td>${t.plan}</td><td><b>${money(t.monthly||0)}/bulan</b></td><td><span class="desk-pill green">Lunas Demo</span></td><td>Setiap tanggal 10</td>
+        <td><div class="desk-mini-actions"><button class="primary" onclick="deskMarkPaid('${t.id}')">Tandai Lunas</button><button onclick="openDeskModal('changePlan','${t.id}')">Ubah Paket</button></div></td></tr>
+      `).join(""));
+
+      const filteredMarket = market.filter(m => (`${m.name||m.text} ${m.tenantName} ${m.kind} ${m.cat||""}`).toLowerCase().includes(q));
+      setHTML("dMarketRows", filteredMarket.map(m=>`
+        <tr><td><b>${m.name||m.text}</b><br><small>${m.desc||m.owner||m.seller||""}</small></td><td>${m.tenantName}</td><td>${m.kind}${m.cat?" · "+m.cat:""}</td><td>${m.price||m.priceText||"-"}</td><td><span class="desk-pill green">Aktif</span></td>
+        <td><div class="desk-mini-actions"><button class="primary">Verifikasi</button><button class="danger" onclick="deskDeleteMarket('${m.tenantId}','${m.kind}',${m._index})">Hapus</button></div></td></tr>
+      `).join(""));
+
+      const filteredReports = reports.filter(r => (`${r.title} ${r.tenantName} ${r.status} ${r.desc}`).toLowerCase().includes(q));
+      setHTML("dReportRows", filteredReports.map(r=>`
+        <tr><td><b>${r.title}</b></td><td>${r.tenantName}</td><td>${r.time||"-"}</td><td><span class="desk-pill ${tagClass(r.status)}">${r.status}</span></td><td>${r.desc}</td>
+        <td><div class="desk-mini-actions"><button class="primary" onclick="deskSetReport('${r.tenantId}',${r._index},'Diproses')">Proses</button><button onclick="deskSetReport('${r.tenantId}',${r._index},'Selesai')">Selesai</button></div></td></tr>
+      `).join(""));
+
+      const linkRows=[];
+      tenants.forEach(t=>{
+        linkRows.push({name:t.name,type:"Tenant",link:tenantUrl(t.id),code:t.inviteCode||"-",tenantId:t.id});
+        Object.values(t.rts||{}).forEach(rt=>linkRows.push({name:`${t.name} · ${rt.name}`,type:"RT",link:rtUrl(t.id,rt.id),code:rt.inviteCode,tenantId:t.id,rtId:rt.id}));
+      });
+      setHTML("dLinkRows", linkRows.map(l=>`
+        <tr><td><b>${l.name}</b></td><td><span class="desk-pill purple">${l.type}</span></td><td><div class="linkbox" style="margin:0">${l.link}</div></td><td>${l.code}</td>
+        <td><div class="desk-mini-actions"><button class="primary" onclick="copyText('${l.link}')">Copy</button><button onclick="${l.type==='RT'?`shareRtWA('${l.tenantId}','${l.rtId}')`:`shareTenantWA('${l.tenantId}')`}">WA</button></div></td></tr>
+      `).join(""));
+    }
+    function setText(id, value){const el=document.getElementById(id); if(el) el.textContent=value;}
+    function setHTML(id, value){const el=document.getElementById(id); if(el) el.innerHTML=value;}
+    function deskFilterActivity(type){deskActivityFilter=type;renderDesktopAdmin();}
+    function deskUseTenant(id){db.currentTenant=id;saveDB();addDeskLog("admin","🏘️","Super Admin memilih tenant",db.tenants[id].name);showToast("Tenant aktif: "+db.tenants[id].name);renderDesktopAdmin();}
+    function deskImpersonateTenant(id, rtId){db.currentTenant=id;if(rtId)db.currentRt=rtId;saveDB();showToast("Membuka ruang "+db.tenants[id].name);renderDesktopAdmin();}
+    function deskToggleTenant(id){const t=db.tenants[id];t.status=t.status==="Aktif"?"Nonaktif":"Aktif";saveDB();addDeskLog("admin","⚙️","Status tenant diubah",`${t.name}: ${t.status}`);renderDesktopAdmin();}
+    function deskDeleteResident(tenantId, idx){if(!confirm("Hapus warga ini dari demo?"))return;db.tenants[tenantId].residents.splice(idx,1);saveDB();addDeskLog("admin","🗑️","Warga dihapus",tenantId);renderDesktopAdmin();}
+    function deskDeleteMarket(tenantId, kind, idx){if(!confirm("Hapus item ini dari demo?"))return;const key=kind==="Lapak"?"products":kind==="Jasa"?"services":"banners";db.tenants[tenantId][key].splice(idx,1);saveDB();addDeskLog("admin","🗑️","Item marketplace dihapus",`${kind} · ${tenantId}`);renderDesktopAdmin();}
+    function deskSetReport(tenantId, idx, status){db.tenants[tenantId].reports[idx].status=status;saveDB();addDeskLog("report","🛟","Status laporan diubah",`${db.tenants[tenantId].name}: ${status}`);renderDesktopAdmin();}
+    function deskMarkPaid(id){addDeskLog("payment","💳","Billing ditandai lunas",db.tenants[id].name);showToast("Billing tenant ditandai lunas");renderDesktopAdmin();}
+    function openDeskModal(type, id=""){
+      const modal=document.getElementById("deskModal"), title=document.getElementById("deskModalTitle"), body=document.getElementById("deskModalBody");
+      if(!modal||!body)return;
+      if(type==="createTenant"){
+        title.textContent="Buat Tenant Baru";
+        body.innerHTML=`<form class="desk-form-grid" onsubmit="deskSubmitTenant(event)">
+          <input id="dTnName" placeholder="Nama lingkungan" required>
+          <input id="dTnSlug" placeholder="tenantId, contoh cluster-mutiara" required>
+          <select id="dTnType"><option>RT</option><option>RW</option><option>Perumahan</option><option>Cluster</option><option>Kampung</option><option>Apartemen</option></select>
+          <select id="dTnPlan"><option>RT Mini</option><option>RT Plus</option><option>RW / Gabungan RT</option><option>Perumahan Mini</option><option>Perumahan Besar</option><option>Custom Kawasan</option></select>
+          <input id="dTnLimit" type="number" placeholder="Limit warga" required>
+          <input id="dTnAdmin" placeholder="Admin utama" required>
+          <input id="dTnCode" placeholder="Kode undangan" required>
+          <button class="desk-btn" type="submit">Buat Tenant</button>
+        </form>`;
+      } else if(type==="createUser"){
+        title.textContent="Tambah User/Warga";
+        const opts=deskTenantArray().map(t=>`<option value="${t.id}">${t.name}</option>`).join("");
+        body.innerHTML=`<form class="desk-form-grid" onsubmit="deskSubmitUser(event)">
+          <select id="dUserTenant">${opts}</select>
+          <input id="dUserName" placeholder="Nama user/warga" required>
+          <input id="dUserHouse" placeholder="Rumah / alamat" required>
+          <input id="dUserPhone" placeholder="Nomor HP">
+          <select id="dUserRole"><option>resident</option><option>tenant_admin</option><option>rt_admin</option><option>bendahara</option><option>security</option></select>
+          <button class="desk-btn" type="submit">Simpan User</button>
+        </form>`;
+      } else if(type==="createService"){
+        title.textContent="Tambah Jasa dari Pengelola";
+        const opts=deskTenantArray().map(t=>`<option value="${t.id}">${t.name}</option>`).join("");
+        body.innerHTML=`<form class="desk-form-grid" onsubmit="deskSubmitService(event)">
+          <select id="dSvcTenant">${opts}</select>
+          <input id="dSvcName" placeholder="Nama jasa" required>
+          <select id="dSvcCat"><option>Servis AC</option><option>Listrik</option><option>Galon</option><option>Laundry</option><option>Tukang</option></select>
+          <input id="dSvcPrice" placeholder="Harga mulai">
+          <input id="dSvcWA" placeholder="Nomor WA" value="081296629033">
+          <textarea id="dSvcDesc" placeholder="Deskripsi jasa"></textarea>
+          <button class="desk-btn" type="submit">Simpan Jasa</button>
+        </form>`;
+      } else if(type==="pricing"){
+        title.textContent="Atur Paket Harga";
+        body.innerHTML=`<div class="desk-table-wrap"><table class="desk-table"><thead><tr><th>Paket</th><th>Range</th><th>Harga</th></tr></thead><tbody>${db.pricing.map(p=>`<tr><td><b>${p.name}</b></td><td>${p.range}</td><td>${p.price}</td></tr>`).join("")}</tbody></table></div>`;
+      } else if(type==="changePlan"){
+        title.textContent="Ubah Paket Tenant";
+        const t=db.tenants[id];
+        body.innerHTML=`<form class="desk-form-grid" onsubmit="deskChangePlan(event,'${id}')">
+          <select id="dPlanNew"><option>RT Mini</option><option>RT Plus</option><option>RW / Gabungan RT</option><option>Perumahan Mini</option><option>Perumahan Besar</option><option>Custom Kawasan</option></select>
+          <input id="dPlanMonthly" type="number" value="${t.monthly||0}">
+          <button class="desk-btn" type="submit">Simpan Paket</button>
+        </form>`;
+      }
+      modal.classList.add("show");
+    }
+    function closeDeskModal(){document.getElementById("deskModal")?.classList.remove("show");}
+    function deskSubmitTenant(e){
+      e.preventDefault();
+      const id=dTnSlug.value.trim().toLowerCase().replace(/[^a-z0-9-]/g,"-");
+      if(db.tenants[id]){showToast("tenantId sudah ada");return}
+      db.tenants[id]={id,name:dTnName.value,type:dTnType.value,plan:dTnPlan.value,limit:Number(dTnLimit.value),status:"Aktif",admin:dTnAdmin.value,monthly:planPrice(dTnPlan.value),inviteCode:dTnCode.value.trim().toUpperCase(),logo:"🏘️",theme:"#ff6b00",rts:{rt01:{id:"rt01",name:"RT 01",admin:"-",inviteCode:id.toUpperCase()+"-RT01"}},infos:[],iuran:[],reports:[],services:[],products:[],ronda:[],guests:[],events:[],residents:[],banners:[],bukti:[]};
+      db.currentTenant=id;saveDB();addDeskLog("admin","🏘️","Tenant baru dibuat",dTnName.value);closeDeskModal();renderDesktopAdmin();showToast("Tenant baru dibuat");
+    }
+    function deskSubmitUser(e){
+      e.preventDefault();
+      const t=db.tenants[dUserTenant.value];
+      t.residents.unshift({name:dUserName.value,house:dUserHouse.value,phone:dUserPhone.value,status:"Aktif",role:dUserRole.value,source:"pengelola"});
+      saveDB();addDeskLog("admin","👤","User ditambahkan",`${dUserName.value} · ${t.name}`);closeDeskModal();renderDesktopAdmin();showToast("User/warga ditambahkan");
+    }
+    function deskSubmitService(e){
+      e.preventDefault();
+      const t=db.tenants[dSvcTenant.value];
+      t.services.unshift({name:dSvcName.value,cat:dSvcCat.value,price:dSvcPrice.value||"Hubungi admin",wa:dSvcWA.value,desc:dSvcDesc.value||"Layanan warga sekitar.",icon:"🔧",rating:"Baru"});
+      saveDB();addDeskLog("market","🔧","Jasa ditambahkan pengelola",`${dSvcName.value} · ${t.name}`);closeDeskModal();renderDesktopAdmin();showToast("Jasa ditambahkan");
+    }
+    function deskChangePlan(e,id){
+      e.preventDefault();
+      db.tenants[id].plan=dPlanNew.value;
+      db.tenants[id].monthly=Number(dPlanMonthly.value||0);
+      saveDB();addDeskLog("payment","💳","Paket tenant diubah",`${db.tenants[id].name}: ${dPlanNew.value}`);closeDeskModal();renderDesktopAdmin();showToast("Paket diubah");
+    }
+    function saveDeskSettings(){showToast("Pengaturan sistem disimpan di perangkat ini");addDeskLog("admin","⚙️","Setting sistem disimpan","Admin pengelola memperbarui pengaturan");renderDesktopAdmin();}
+    function downloadDeskReport(){
+      const report={
+        generatedAt:new Date().toISOString(),
+        tenants:deskTenantArray().map(t=>({id:t.id,name:t.name,plan:t.plan,status:t.status,residents:t.residents.length,income:deskIncomeTenant(t)})),
+        totalResidents:deskAllResidents().length,
+        totalReports:deskAllReports().length,
+        totalMarket:deskAllMarket().length
+      };
+      const blob=new Blob([JSON.stringify(report,null,2)],{type:"application/json"});
+      const url=URL.createObjectURL(blob);
+      const a=document.createElement("a");a.href=url;a.download="wargahub-admin-report.json";a.click();URL.revokeObjectURL(url);
+      showToast("Report JSON didownload");
+    }
+
     window.addEventListener("wargahub-firebase-ready", () => {
       setFirebaseStatus("Firebase terhubung: softpro-11da5", "on");
+      setText("dFirebaseStatus","Terhubung");
+      renderDesktopAdmin();
       showToast("Firebase softpro-11da5 terhubung");
     });
 
@@ -800,8 +1908,258 @@ allow write: if request.auth.token.tenantId == tenantId
     }
 
 
+
+    let deskSection = "overview";
+    let deskActivityFilter = "all";
+
+    function deskTenantArray(){
+      return Object.values(db.tenants || {});
+    }
+    function deskAllResidents(){
+      return deskTenantArray().flatMap(t => (t.residents || []).map((r,i)=>({...r, tenantId:t.id, tenantName:t.name, _index:i})));
+    }
+    function deskAllReports(){
+      return deskTenantArray().flatMap(t => (t.reports || []).map((r,i)=>({...r, tenantId:t.id, tenantName:t.name, _index:i})));
+    }
+    function deskAllMarket(){
+      const rows=[];
+      deskTenantArray().forEach(t=>{
+        (t.products || []).forEach((p,i)=>rows.push({...p, tenantId:t.id, tenantName:t.name, kind:"Lapak", _index:i}));
+        (t.services || []).forEach((s,i)=>rows.push({...s, tenantId:t.id, tenantName:t.name, kind:"Jasa", _index:i}));
+        (t.banners || []).forEach((b,i)=>rows.push({...b, name:b.text, price:b.price, tenantId:t.id, tenantName:t.name, kind:"Banner", _index:i}));
+      });
+      return rows;
+    }
+    function deskIncomeTenant(t){
+      return (t.monthly || 0) + (t.products||[]).length*10000 + (t.services||[]).length*25000 + (t.banners||[]).length*50000;
+    }
+    function deskLogs(){
+      const built = [];
+      deskTenantArray().forEach(t=>{
+        built.push({type:"admin", icon:"🏘️", title:"Tenant aktif", text:`${t.name} memakai paket ${t.plan}`, time:"Sistem"});
+        (t.residents||[]).slice(0,6).forEach(r=>built.push({type:"login", icon:"👤", title:"Warga terdaftar", text:`${r.name} masuk ke ${t.name} ${r.rtName||r.rtId||""}`, time:"Data user"}));
+        (t.reports||[]).slice(0,6).forEach(r=>built.push({type:"report", icon:"🛟", title:r.title, text:`${t.name} · ${r.status} · ${r.desc}`, time:r.time||"Laporan"}));
+        (t.bukti||[]).slice(0,6).forEach(b=>built.push({type:"payment", icon:"💳", title:"Bukti iuran masuk", text:`${t.name} · ${b.nama} · ${b.jenis}`, time:"Bendahara"}));
+        (t.services||[]).slice(0,4).forEach(s=>built.push({type:"market", icon:"🔧", title:"Jasa aktif", text:`${s.name} tampil di ${t.name}`, time:s.cat||"Jasa"}));
+        (t.products||[]).slice(0,4).forEach(p=>built.push({type:"market", icon:"🛒", title:"Lapak aktif", text:`${p.name} tampil di ${t.name}`, time:p.seller||"Lapak"}));
+      });
+      const manual = JSON.parse(localStorage.getItem("wargahubDeskLogs") || "[]");
+      return [...manual, ...built];
+    }
+    function addDeskLog(type, icon, title, text){
+      const logs = JSON.parse(localStorage.getItem("wargahubDeskLogs") || "[]");
+      logs.unshift({type, icon, title, text, time:new Date().toLocaleString("id-ID")});
+      localStorage.setItem("wargahubDeskLogs", JSON.stringify(logs.slice(0,80)));
+    }
+    function clearDeskLogs(){
+      localStorage.removeItem("wargahubDeskLogs");
+      showToast("Log demo dibersihkan");
+      renderDesktopAdmin();
+    }
+    function openDesk(id){
+      deskSection = id;
+      document.querySelectorAll(".desk-section").forEach(s=>s.classList.remove("active"));
+      const el=document.getElementById("desk-"+id);
+      if(el) el.classList.add("active");
+      document.querySelectorAll(".desk-nav").forEach(b=>b.classList.toggle("active", b.dataset.desk===id));
+      const titles = {
+        overview:["Dashboard Pengelola","Kontrol seluruh tenant, user, aktivitas, billing, dan marketplace WargaHub."],
+        tenants:["Tenant / Pelanggan","Buat, aktifkan, nonaktifkan, dan pantau seluruh RT/RW/perumahan."],
+        users:["User & Role","Pantau warga, admin RW, admin RT, bendahara, satpam, dan pedagang."],
+        activity:["Aktivitas User","Pantau login, pendaftaran warga, laporan, iuran, lapak, dan aksi admin."],
+        billing:["Billing & Paket","Kelola tagihan aplikasi tiap tenant dan status pembayaran."],
+        marketplace:["Lapak & Jasa","Kontrol pedagang, tukang service, banner, dan potensi income lokal."],
+        moderation:["Moderasi Laporan","Pantau laporan warga, status penanganan, dan keamanan lingkungan."],
+        links:["Link Tenant/RT","Salin link khusus tenant dan RT untuk dikirim ke pelanggan/warga."],
+        settings:["Pengaturan Sistem","Atur nama aplikasi, support, role default, dan pesan sambutan."],
+        firebase:["Firebase Sync","Sinkronisasi data demo ke project Firebase softpro-11da5."]
+      };
+      document.getElementById("deskTitle").textContent = (titles[id]||titles.overview)[0];
+      document.getElementById("deskSubtitle").textContent = (titles[id]||titles.overview)[1];
+      renderDesktopAdmin();
+    }
+    function renderDesktopAdmin(){
+      if(!document.querySelector(".desktop-admin-shell")) return;
+      const q = (document.getElementById("deskSearch")?.value || "").toLowerCase();
+      const tenants = deskTenantArray();
+      const residents = deskAllResidents();
+      const reports = deskAllReports();
+      const market = deskAllMarket();
+      const income = tenants.reduce((a,t)=>a+deskIncomeTenant(t),0);
+
+      setText("dTotalTenant", tenants.length);
+      setText("dTotalUsers", residents.length);
+      setText("dIncome", money(income));
+      setText("dActivities", deskLogs().length);
+      setText("dTotalProducts", market.filter(m=>m.kind==="Lapak").length);
+      setText("dTotalServices", market.filter(m=>m.kind==="Jasa").length);
+      setText("dTotalBanners", market.filter(m=>m.kind==="Banner").length);
+      setText("dMarketIncome", money(market.filter(m=>m.kind==="Lapak").length*10000 + market.filter(m=>m.kind==="Jasa").length*25000 + market.filter(m=>m.kind==="Banner").length*50000));
+      setText("dFirebaseTenant", T().name);
+      setText("dFirebaseStatus", window.WHFirebase ? "Terhubung" : "Menunggu koneksi");
+
+      const top = [...tenants].sort((a,b)=>deskIncomeTenant(b)-deskIncomeTenant(a)).slice(0,4);
+      setHTML("dTopTenants", top.map(t=>`<div class="desk-log-item" style="grid-template-columns:42px 1fr auto"><div class="desk-log-ico">🏘️</div><div><b>${t.name}</b><small>${t.plan} · ${t.residents.length} warga</small></div><span class="desk-pill green">${money(deskIncomeTenant(t))}</span></div>`).join(""));
+      setHTML("dSystemStatus", `
+        <div class="desk-log-item" style="grid-template-columns:42px 1fr"><div class="desk-log-ico">✅</div><div><b>Multi tenant</b><small>TenantId aktif dan terpisah</small></div></div>
+        <div class="desk-log-item" style="grid-template-columns:42px 1fr;margin-top:10px"><div class="desk-log-ico">📱</div><div><b>Responsive</b><small>HP app + laptop admin</small></div></div>
+        <div class="desk-log-item" style="grid-template-columns:42px 1fr;margin-top:10px"><div class="desk-log-ico">🔥</div><div><b>Firebase</b><small>${window.WHFirebase ? "Terhubung" : "Belum siap"}</small></div></div>
+      `);
+
+      const maxIncome = Math.max(...tenants.map(deskIncomeTenant), 1);
+      setHTML("dIncomeChart", tenants.map(t=>`<div class="desk-bar" style="height:${Math.max(18, deskIncomeTenant(t)/maxIncome*200)}px"><span>${money(deskIncomeTenant(t)).replace("Rp","")}</span></div>`).join(""));
+
+      const filteredTenants = tenants.filter(t => (`${t.name} ${t.plan} ${t.admin} ${t.id}`).toLowerCase().includes(q));
+      setHTML("dTenantRows", filteredTenants.map(t=>`
+        <tr><td><b>${t.name}</b><br><small>${t.id}</small></td><td>${t.plan}</td><td>${t.residents.length}/${t.limit}</td><td>${t.admin}</td><td><span class="desk-pill green">${t.status}</span></td><td><b>${money(deskIncomeTenant(t))}</b></td>
+        <td><div class="desk-mini-actions"><button class="primary" onclick="deskUseTenant('${t.id}')">Pakai</button><button onclick="copyTenantLink('${t.id}')">Copy Link</button><button onclick="deskToggleTenant('${t.id}')">${t.status==="Aktif"?"Nonaktif":"Aktifkan"}</button></div></td></tr>
+      `).join(""));
+
+      const filteredUsers = residents.filter(r => (`${r.name} ${r.tenantName} ${r.house} ${r.phone} ${r.rtName||r.rtId||""}`).toLowerCase().includes(q));
+      setHTML("dUserRows", filteredUsers.map(r=>`
+        <tr><td><b>${r.name}</b><br><small>${r.source==="self_register"?"Daftar mandiri":"Input admin"}</small></td><td>${r.tenantName}</td><td>${r.rtName||r.rtId||"RW"}</td><td>${r.phone||"-"}</td><td><span class="desk-pill green">${r.status||"Warga"}</span></td><td><span class="desk-pill purple">resident</span></td>
+        <td><div class="desk-mini-actions"><button onclick="deskImpersonateTenant('${r.tenantId}','${r.rtId||""}')">Lihat Ruang</button><button class="danger" onclick="deskDeleteResident('${r.tenantId}',${r._index})">Hapus</button></div></td></tr>
+      `).join(""));
+
+      const logs = deskLogs().filter(l => deskActivityFilter==="all" || l.type===deskActivityFilter).filter(l => (`${l.title} ${l.text} ${l.time}`).toLowerCase().includes(q));
+      const logHTML = logs.map(l=>`<div class="desk-log-item"><div class="desk-log-ico">${l.icon}</div><div><b>${l.title}</b><small>${l.text}</small></div><span class="desk-pill">${l.time}</span></div>`).join("");
+      setHTML("dRecentActivity", logHTML || `<div class="empty">Belum ada aktivitas.</div>`);
+      setHTML("dActivityLog", logHTML || `<div class="empty">Belum ada aktivitas.</div>`);
+
+      setHTML("dBillingRows", tenants.map(t=>`
+        <tr><td><b>${t.name}</b><br><small>${t.id}</small></td><td>${t.plan}</td><td><b>${money(t.monthly||0)}/bulan</b></td><td><span class="desk-pill green">Lunas Demo</span></td><td>Setiap tanggal 10</td>
+        <td><div class="desk-mini-actions"><button class="primary" onclick="deskMarkPaid('${t.id}')">Tandai Lunas</button><button onclick="openDeskModal('changePlan','${t.id}')">Ubah Paket</button></div></td></tr>
+      `).join(""));
+
+      const filteredMarket = market.filter(m => (`${m.name||m.text} ${m.tenantName} ${m.kind} ${m.cat||""}`).toLowerCase().includes(q));
+      setHTML("dMarketRows", filteredMarket.map(m=>`
+        <tr><td><b>${m.name||m.text}</b><br><small>${m.desc||m.owner||m.seller||""}</small></td><td>${m.tenantName}</td><td>${m.kind}${m.cat?" · "+m.cat:""}</td><td>${m.price||m.priceText||"-"}</td><td><span class="desk-pill green">Aktif</span></td>
+        <td><div class="desk-mini-actions"><button class="primary">Verifikasi</button><button class="danger" onclick="deskDeleteMarket('${m.tenantId}','${m.kind}',${m._index})">Hapus</button></div></td></tr>
+      `).join(""));
+
+      const filteredReports = reports.filter(r => (`${r.title} ${r.tenantName} ${r.status} ${r.desc}`).toLowerCase().includes(q));
+      setHTML("dReportRows", filteredReports.map(r=>`
+        <tr><td><b>${r.title}</b></td><td>${r.tenantName}</td><td>${r.time||"-"}</td><td><span class="desk-pill ${tagClass(r.status)}">${r.status}</span></td><td>${r.desc}</td>
+        <td><div class="desk-mini-actions"><button class="primary" onclick="deskSetReport('${r.tenantId}',${r._index},'Diproses')">Proses</button><button onclick="deskSetReport('${r.tenantId}',${r._index},'Selesai')">Selesai</button></div></td></tr>
+      `).join(""));
+
+      const linkRows=[];
+      tenants.forEach(t=>{
+        linkRows.push({name:t.name,type:"Tenant",link:tenantUrl(t.id),code:t.inviteCode||"-",tenantId:t.id});
+        Object.values(t.rts||{}).forEach(rt=>linkRows.push({name:`${t.name} · ${rt.name}`,type:"RT",link:rtUrl(t.id,rt.id),code:rt.inviteCode,tenantId:t.id,rtId:rt.id}));
+      });
+      setHTML("dLinkRows", linkRows.map(l=>`
+        <tr><td><b>${l.name}</b></td><td><span class="desk-pill purple">${l.type}</span></td><td><div class="linkbox" style="margin:0">${l.link}</div></td><td>${l.code}</td>
+        <td><div class="desk-mini-actions"><button class="primary" onclick="copyText('${l.link}')">Copy</button><button onclick="${l.type==='RT'?`shareRtWA('${l.tenantId}','${l.rtId}')`:`shareTenantWA('${l.tenantId}')`}">WA</button></div></td></tr>
+      `).join(""));
+    }
+    function setText(id, value){const el=document.getElementById(id); if(el) el.textContent=value;}
+    function setHTML(id, value){const el=document.getElementById(id); if(el) el.innerHTML=value;}
+    function deskFilterActivity(type){deskActivityFilter=type;renderDesktopAdmin();}
+    function deskUseTenant(id){db.currentTenant=id;saveDB();addDeskLog("admin","🏘️","Super Admin memilih tenant",db.tenants[id].name);showToast("Tenant aktif: "+db.tenants[id].name);renderDesktopAdmin();}
+    function deskImpersonateTenant(id, rtId){db.currentTenant=id;if(rtId)db.currentRt=rtId;saveDB();showToast("Membuka ruang "+db.tenants[id].name);renderDesktopAdmin();}
+    function deskToggleTenant(id){const t=db.tenants[id];t.status=t.status==="Aktif"?"Nonaktif":"Aktif";saveDB();addDeskLog("admin","⚙️","Status tenant diubah",`${t.name}: ${t.status}`);renderDesktopAdmin();}
+    function deskDeleteResident(tenantId, idx){if(!confirm("Hapus warga ini dari demo?"))return;db.tenants[tenantId].residents.splice(idx,1);saveDB();addDeskLog("admin","🗑️","Warga dihapus",tenantId);renderDesktopAdmin();}
+    function deskDeleteMarket(tenantId, kind, idx){if(!confirm("Hapus item ini dari demo?"))return;const key=kind==="Lapak"?"products":kind==="Jasa"?"services":"banners";db.tenants[tenantId][key].splice(idx,1);saveDB();addDeskLog("admin","🗑️","Item marketplace dihapus",`${kind} · ${tenantId}`);renderDesktopAdmin();}
+    function deskSetReport(tenantId, idx, status){db.tenants[tenantId].reports[idx].status=status;saveDB();addDeskLog("report","🛟","Status laporan diubah",`${db.tenants[tenantId].name}: ${status}`);renderDesktopAdmin();}
+    function deskMarkPaid(id){addDeskLog("payment","💳","Billing ditandai lunas",db.tenants[id].name);showToast("Billing tenant ditandai lunas");renderDesktopAdmin();}
+    function openDeskModal(type, id=""){
+      const modal=document.getElementById("deskModal"), title=document.getElementById("deskModalTitle"), body=document.getElementById("deskModalBody");
+      if(!modal||!body)return;
+      if(type==="createTenant"){
+        title.textContent="Buat Tenant Baru";
+        body.innerHTML=`<form class="desk-form-grid" onsubmit="deskSubmitTenant(event)">
+          <input id="dTnName" placeholder="Nama lingkungan" required>
+          <input id="dTnSlug" placeholder="tenantId, contoh cluster-mutiara" required>
+          <select id="dTnType"><option>RT</option><option>RW</option><option>Perumahan</option><option>Cluster</option><option>Kampung</option><option>Apartemen</option></select>
+          <select id="dTnPlan"><option>RT Mini</option><option>RT Plus</option><option>RW / Gabungan RT</option><option>Perumahan Mini</option><option>Perumahan Besar</option><option>Custom Kawasan</option></select>
+          <input id="dTnLimit" type="number" placeholder="Limit warga" required>
+          <input id="dTnAdmin" placeholder="Admin utama" required>
+          <input id="dTnCode" placeholder="Kode undangan" required>
+          <button class="desk-btn" type="submit">Buat Tenant</button>
+        </form>`;
+      } else if(type==="createUser"){
+        title.textContent="Tambah User/Warga";
+        const opts=deskTenantArray().map(t=>`<option value="${t.id}">${t.name}</option>`).join("");
+        body.innerHTML=`<form class="desk-form-grid" onsubmit="deskSubmitUser(event)">
+          <select id="dUserTenant">${opts}</select>
+          <input id="dUserName" placeholder="Nama user/warga" required>
+          <input id="dUserHouse" placeholder="Rumah / alamat" required>
+          <input id="dUserPhone" placeholder="Nomor HP">
+          <select id="dUserRole"><option>resident</option><option>tenant_admin</option><option>rt_admin</option><option>bendahara</option><option>security</option></select>
+          <button class="desk-btn" type="submit">Simpan User</button>
+        </form>`;
+      } else if(type==="createService"){
+        title.textContent="Tambah Jasa dari Pengelola";
+        const opts=deskTenantArray().map(t=>`<option value="${t.id}">${t.name}</option>`).join("");
+        body.innerHTML=`<form class="desk-form-grid" onsubmit="deskSubmitService(event)">
+          <select id="dSvcTenant">${opts}</select>
+          <input id="dSvcName" placeholder="Nama jasa" required>
+          <select id="dSvcCat"><option>Servis AC</option><option>Listrik</option><option>Galon</option><option>Laundry</option><option>Tukang</option></select>
+          <input id="dSvcPrice" placeholder="Harga mulai">
+          <input id="dSvcWA" placeholder="Nomor WA" value="081296629033">
+          <textarea id="dSvcDesc" placeholder="Deskripsi jasa"></textarea>
+          <button class="desk-btn" type="submit">Simpan Jasa</button>
+        </form>`;
+      } else if(type==="pricing"){
+        title.textContent="Atur Paket Harga";
+        body.innerHTML=`<div class="desk-table-wrap"><table class="desk-table"><thead><tr><th>Paket</th><th>Range</th><th>Harga</th></tr></thead><tbody>${db.pricing.map(p=>`<tr><td><b>${p.name}</b></td><td>${p.range}</td><td>${p.price}</td></tr>`).join("")}</tbody></table></div>`;
+      } else if(type==="changePlan"){
+        title.textContent="Ubah Paket Tenant";
+        const t=db.tenants[id];
+        body.innerHTML=`<form class="desk-form-grid" onsubmit="deskChangePlan(event,'${id}')">
+          <select id="dPlanNew"><option>RT Mini</option><option>RT Plus</option><option>RW / Gabungan RT</option><option>Perumahan Mini</option><option>Perumahan Besar</option><option>Custom Kawasan</option></select>
+          <input id="dPlanMonthly" type="number" value="${t.monthly||0}">
+          <button class="desk-btn" type="submit">Simpan Paket</button>
+        </form>`;
+      }
+      modal.classList.add("show");
+    }
+    function closeDeskModal(){document.getElementById("deskModal")?.classList.remove("show");}
+    function deskSubmitTenant(e){
+      e.preventDefault();
+      const id=dTnSlug.value.trim().toLowerCase().replace(/[^a-z0-9-]/g,"-");
+      if(db.tenants[id]){showToast("tenantId sudah ada");return}
+      db.tenants[id]={id,name:dTnName.value,type:dTnType.value,plan:dTnPlan.value,limit:Number(dTnLimit.value),status:"Aktif",admin:dTnAdmin.value,monthly:planPrice(dTnPlan.value),inviteCode:dTnCode.value.trim().toUpperCase(),logo:"🏘️",theme:"#ff6b00",rts:{rt01:{id:"rt01",name:"RT 01",admin:"-",inviteCode:id.toUpperCase()+"-RT01"}},infos:[],iuran:[],reports:[],services:[],products:[],ronda:[],guests:[],events:[],residents:[],banners:[],bukti:[]};
+      db.currentTenant=id;saveDB();addDeskLog("admin","🏘️","Tenant baru dibuat",dTnName.value);closeDeskModal();renderDesktopAdmin();showToast("Tenant baru dibuat");
+    }
+    function deskSubmitUser(e){
+      e.preventDefault();
+      const t=db.tenants[dUserTenant.value];
+      t.residents.unshift({name:dUserName.value,house:dUserHouse.value,phone:dUserPhone.value,status:"Aktif",role:dUserRole.value,source:"pengelola"});
+      saveDB();addDeskLog("admin","👤","User ditambahkan",`${dUserName.value} · ${t.name}`);closeDeskModal();renderDesktopAdmin();showToast("User/warga ditambahkan");
+    }
+    function deskSubmitService(e){
+      e.preventDefault();
+      const t=db.tenants[dSvcTenant.value];
+      t.services.unshift({name:dSvcName.value,cat:dSvcCat.value,price:dSvcPrice.value||"Hubungi admin",wa:dSvcWA.value,desc:dSvcDesc.value||"Layanan warga sekitar.",icon:"🔧",rating:"Baru"});
+      saveDB();addDeskLog("market","🔧","Jasa ditambahkan pengelola",`${dSvcName.value} · ${t.name}`);closeDeskModal();renderDesktopAdmin();showToast("Jasa ditambahkan");
+    }
+    function deskChangePlan(e,id){
+      e.preventDefault();
+      db.tenants[id].plan=dPlanNew.value;
+      db.tenants[id].monthly=Number(dPlanMonthly.value||0);
+      saveDB();addDeskLog("payment","💳","Paket tenant diubah",`${db.tenants[id].name}: ${dPlanNew.value}`);closeDeskModal();renderDesktopAdmin();showToast("Paket diubah");
+    }
+    function saveDeskSettings(){showToast("Pengaturan sistem disimpan di perangkat ini");addDeskLog("admin","⚙️","Setting sistem disimpan","Admin pengelola memperbarui pengaturan");renderDesktopAdmin();}
+    function downloadDeskReport(){
+      const report={
+        generatedAt:new Date().toISOString(),
+        tenants:deskTenantArray().map(t=>({id:t.id,name:t.name,plan:t.plan,status:t.status,residents:t.residents.length,income:deskIncomeTenant(t)})),
+        totalResidents:deskAllResidents().length,
+        totalReports:deskAllReports().length,
+        totalMarket:deskAllMarket().length
+      };
+      const blob=new Blob([JSON.stringify(report,null,2)],{type:"application/json"});
+      const url=URL.createObjectURL(blob);
+      const a=document.createElement("a");a.href=url;a.download="wargahub-admin-report.json";a.click();URL.revokeObjectURL(url);
+      showToast("Report JSON didownload");
+    }
+
     window.addEventListener("wargahub-firebase-ready", () => {
       setFirebaseStatus("Firebase terhubung: softpro-11da5", "on");
+      setText("dFirebaseStatus","Terhubung");
+      renderDesktopAdmin();
       showToast("Firebase softpro-11da5 terhubung");
     });
 
