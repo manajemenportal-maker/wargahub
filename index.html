@@ -44,6 +44,13 @@
     .admin-grid{grid-template-columns:1fr 1fr;margin-bottom:12px}.admin-card{border-radius:22px;padding:13px;position:relative;overflow:hidden}.admin-card:after{content:"";position:absolute;width:64px;height:64px;border-radius:999px;right:-24px;top:-22px;background:rgba(255,107,0,.10)}.admin-card b{font-size:1.25rem;margin-top:3px}.admin-card span{display:inline-flex;margin-top:8px;padding:5px 8px;border-radius:999px;background:#dcfce7;color:#15803d;font-weight:950;font-size:.65rem}
     .subgrid{display:grid;grid-template-columns:1fr 1fr;gap:10px}.subbtn{border:0;border-radius:22px;background:white;box-shadow:var(--soft);padding:14px;text-align:left;min-height:90px;font-weight:950;color:#334155}.subbtn i{font-style:normal;display:block;font-size:1.75rem;margin-bottom:7px}.empty{padding:18px;border-radius:22px;background:#f8fafc;border:1px dashed #cbd5e1;color:#64748b;font-size:.82rem;font-weight:800;text-align:center}
     .super-bg{background:linear-gradient(135deg,#172033,#2e1065)!important;color:white}.super-bg small,.super-bg p{color:rgba(255,255,255,.78)!important}.tenant-lock{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;background:#0f172a;color:#dbeafe;border-radius:16px;padding:11px;font-size:.72rem;line-height:1.5;overflow:auto;margin-top:10px}
+
+    .linkbox{background:#0f172a;color:#dbeafe;border-radius:18px;padding:12px;font-size:.75rem;font-weight:850;line-height:1.45;word-break:break-all;margin:10px 0}
+    .copyrow{display:grid;grid-template-columns:1fr auto;gap:8px;align-items:center}
+    .tenant-brand-card{background:linear-gradient(135deg,#fff,#fff7ed);border:1px solid #ffe3c2;border-radius:24px;padding:14px;margin-bottom:10px;box-shadow:var(--soft)}
+    .tenant-brand-card b{display:block;font-size:1.1rem;letter-spacing:-.04em}
+    .tenant-brand-card small{color:#64748b;font-weight:850}
+
     .bottom-nav{position:absolute;left:0;bottom:0;width:100%;z-index:50;background:rgba(255,255,255,.96);backdrop-filter:blur(16px);border-top:1px solid rgba(23,32,51,.08);display:grid;grid-template-columns:repeat(5,1fr);padding:8px 6px 10px;box-shadow:0 -12px 28px rgba(23,32,51,.10)}.bottom-nav button{display:grid;place-items:center;gap:2px;color:#64748b;font-size:.65rem;font-weight:900;padding:6px 2px;border-radius:16px;border:0;background:transparent}.bottom-nav button.active{color:var(--orange);background:#fff3df}.bottom-nav i{font-style:normal;font-size:1.2rem}.floating-add{position:absolute;right:16px;bottom:82px;width:56px;height:56px;border:0;border-radius:22px;color:white;background:linear-gradient(135deg,var(--orange),var(--pink));box-shadow:0 16px 32px rgba(255,77,157,.34);display:grid;place-items:center;font-size:1.5rem;z-index:45}
     .toast{position:absolute;left:14px;right:14px;bottom:92px;background:#172033;color:white;padding:13px 15px;border-radius:18px;box-shadow:var(--shadow);font-weight:850;font-size:.82rem;z-index:100;transform:translateY(20px);opacity:0;pointer-events:none;transition:.25s ease}.toast.show{transform:translateY(0);opacity:1}
     @media(min-width:760px){body{background:radial-gradient(circle at 20% 0%,rgba(255,107,0,.16),transparent 280px),radial-gradient(circle at 80% 0%,rgba(124,58,237,.14),transparent 260px),#f1f5f9;padding:20px 0}.desktop-note{display:block}.app{border-radius:36px;min-height:calc(100vh - 40px)}.screen{height:calc(100vh - 198px)}}@media(max-width:370px){.app-header{padding-left:10px;padding-right:10px}.screen{padding-left:10px;padding-right:10px}.icon-grid{gap:9px 3px}.icon-badge{width:39px;height:39px;border-radius:14px}.promo{grid-template-columns:1fr}}
@@ -95,11 +102,15 @@
             <button class="icon-item" onclick="openPage('event')"><div class="icon-badge">🎉</div>Event</button>
             <button class="icon-item" onclick="openPage('darurat')"><div class="icon-badge">🚨</div>Darurat</button>
             <button class="icon-item" onclick="openPage('admin')"><div class="icon-badge">⚙️</div>Admin</button>
-            <button class="icon-item" onclick="openPage('superAdmin')"><div class="icon-badge">👑</div>Pusat</button>
-            <button class="icon-item" onclick="openPage('tenantSwitch')"><div class="icon-badge">🏘️</div>Tenant</button>
+            <button class="icon-item" onclick="guardOpen('superAdmin',['super_admin'])"><div class="icon-badge">👑</div>Pusat</button>
+            <button class="icon-item" onclick="db.currentRole==='super_admin'?openPage('tenantSwitch'):openPage('invite')"><div class="icon-badge">🏘️</div>Tenant</button>
             <button class="icon-item" onclick="openPage('roles')"><div class="icon-badge">🔐</div>Role</button>
             <button class="icon-item" onclick="openPage('harga')"><div class="icon-badge">💰</div>Harga</button>
             <button class="icon-item" onclick="openPage('firestore')"><div class="icon-badge">🔥</div>Firebase</button>
+            <button class="icon-item" onclick="openPage('invite')"><div class="icon-badge">🔗</div>Link</button>
+            <button class="icon-item" onclick="openPage('rtRooms')"><div class="icon-badge">🏠</div>Ruang RT</button>
+            <button class="icon-item" onclick="openPage('selfRegister')"><div class="icon-badge">📝</div>Daftar</button>
+            <button class="icon-item" onclick="openPage('rwCommunity')"><div class="icon-badge">🤝</div>RW</button>
           </div>
           <div class="ticker"><b>HOT</b><div class="ticker-track"><span id="tickerText">Promo warga berjalan sesuai tenant aktif</span></div></div>
         </div>
@@ -152,6 +163,8 @@
             <select id="tnPlan"><option>RT Mini</option><option>RT Plus</option><option>RW / Gabungan RT</option><option>Perumahan Mini</option><option>Perumahan Besar</option><option>Custom Kawasan</option></select>
             <input id="tnLimit" type="number" placeholder="Limit warga, contoh 150" required>
             <input id="tnAdmin" placeholder="Nama admin utama" required>
+            <input id="tnCode" placeholder="Kode undangan, contoh GARDENIA03" required>
+            <select id="tnTheme"><option value="#ff6b00">Orange Ceria</option><option value="#16a34a">Hijau Segar</option><option value="#0ea5e9">Biru Santai</option><option value="#7c3aed">Ungu Modern</option><option value="#ff4d9d">Pink Ceria</option></select>
             <button class="btn" type="submit">Buat Tenant</button>
           </form>
         </div>
@@ -202,6 +215,84 @@ allow write: if request.auth.token.tenantId == tenantId
       <div class="page" id="roleMatrix">
         <div class="sec-head"><div class="sec-title"><button class="back" onclick="openPage('superAdmin')">‹</button><h2>Matriks Role</h2></div><small>Akses</small></div>
         <div id="matrixList"></div>
+      </div>
+
+
+      <div class="page" id="shareLinks">
+        <div class="sec-head"><div class="sec-title"><button class="back" onclick="openPage('superAdmin')">‹</button><h2>Link Tenant</h2></div><small>Kirim ke pelanggan</small></div>
+        <div class="pay-box">
+          <small>Siap dibagikan</small>
+          <h3>Link Khusus</h3>
+          <p>Setiap tenant punya link sendiri. Warga yang buka link ini langsung masuk ke lingkungan itu, tidak melihat lingkungan lain.</p>
+        </div>
+        <div id="shareLinkList"></div>
+      </div>
+
+      <div class="page" id="invite">
+        <div class="sec-head"><div class="sec-title"><button class="back" onclick="openPage('home')">‹</button><h2>Undang Warga</h2></div><small>Tenant aktif</small></div>
+        <div class="tenant-brand-card">
+          <b id="inviteTenantName">-</b>
+          <small id="inviteTenantText">Link warga untuk lingkungan ini</small>
+        </div>
+        <div class="card">
+          <div class="feed-head"><div class="avatar">🔗</div><div><b>Link warga</b><small>Bisa dikirim ke WhatsApp grup</small></div></div>
+          <div class="linkbox" id="residentLinkBox">-</div>
+          <div class="pay-actions">
+            <button class="btn" onclick="copyCurrentTenantLink()">Copy Link</button>
+            <button class="btn light" onclick="shareCurrentTenantWA()">Kirim WA</button>
+          </div>
+        </div>
+        <div class="card">
+          <form class="form" onsubmit="submitJoinCode(event)">
+            <input id="joinCodeInput" placeholder="Kode undangan, contoh GARDENIA03">
+            <button class="btn" type="submit">Masuk Dengan Kode</button>
+          </form>
+        </div>
+      </div>
+
+
+      <div class="page" id="rtRooms">
+        <div class="sec-head"><div class="sec-title"><button class="back" onclick="openPage('home')">‹</button><h2>Ruang RT</h2></div><small>Dalam RW</small></div>
+        <div class="pay-box">
+          <small>Konsep otomatis</small>
+          <h3>RT sendiri, RW tetap gabung</h3>
+          <p>Warga daftar mandiri melalui link/kode RT. Setelah daftar, mereka masuk ke ruang RT-nya dan otomatis tergabung di komunitas RW/lingkungan induk.</p>
+        </div>
+        <div id="rtRoomList"></div>
+      </div>
+
+      <div class="page" id="selfRegister">
+        <div class="sec-head"><div class="sec-title"><button class="back" onclick="openPage('home')">‹</button><h2>Daftar Warga</h2></div><small>Mandiri</small></div>
+        <div class="tenant-brand-card">
+          <b id="regTenantName">-</b>
+          <small id="regRtName">Daftar sesuai RT masing-masing</small>
+        </div>
+        <div class="card">
+          <form class="form" onsubmit="submitSelfRegister(event)">
+            <input id="regName" placeholder="Nama lengkap warga" required>
+            <input id="regHouse" placeholder="Blok / nomor rumah / alamat" required>
+            <input id="regPhone" placeholder="Nomor WhatsApp" required>
+            <select id="regRtSelect"></select>
+            <select id="regStatus"><option>Pemilik</option><option>Kontrak</option><option>Keluarga</option></select>
+            <textarea id="regNote" placeholder="Catatan, contoh: jumlah anggota keluarga / kendaraan"></textarea>
+            <button class="btn" type="submit">Daftar Sebagai Warga</button>
+          </form>
+        </div>
+      </div>
+
+      <div class="page" id="rtLinks">
+        <div class="sec-head"><div class="sec-title"><button class="back" onclick="openPage('rtRooms')">‹</button><h2>Link RT</h2></div><small>Kirim ke warga</small></div>
+        <div id="rtLinkList"></div>
+      </div>
+
+      <div class="page" id="rwCommunity">
+        <div class="sec-head"><div class="sec-title"><button class="back" onclick="openPage('home')">‹</button><h2>Komunitas RW</h2></div><small>Gabungan</small></div>
+        <div class="pay-box">
+          <small>Komunitas induk</small>
+          <h3 id="rwCommunityTitle">RW / Lingkungan</h3>
+          <p>Semua warga dari RT yang berbeda tetap tergabung dalam komunitas RW/lingkungan untuk info umum, event bersama, lapak, jasa, dan pengumuman induk.</p>
+        </div>
+        <div id="rwCommunityList"></div>
       </div>
 
       <div class="page" id="info"><div class="sec-head"><div class="sec-title"><button class="back" onclick="openPage('home')">‹</button><h2>Info RT</h2></div><small id="infoTenant">Tenant</small></div><div id="infoList"></div></div>
@@ -268,7 +359,7 @@ allow write: if request.auth.token.tenantId == tenantId
       super_admin:"Super Admin", tenant_admin:"Admin Lingkungan", rt_admin:"Admin RT", bendahara:"Bendahara", security:"Satpam", resident:"Warga"
     };
     const pageTitles = {
-      home:"Beranda tenant aktif", tenantSwitch:"Pilih lingkungan", roles:"Role & akses", superAdmin:"Dashboard pusat WargaHub", createTenant:"Buat tenant baru", tenantBilling:"Billing pelanggan", globalIncome:"Income semua tenant", firestore:"Struktur Firebase", securityRules:"Security rules", roleMatrix:"Matriks role", info:"Pengumuman lingkungan", iuran:"Pembayaran warga", uploadBukti:"Upload bukti bayar", riwayatIuran:"Riwayat iuran", lapor:"Laporan cepat", jasa:"Tukang & service sekitar", daftarJasa:"Daftar tukang/service", lapak:"Marketplace warga", tambahLapak:"Tambah jualan warga", ronda:"Keamanan lingkungan", aturRonda:"Atur jadwal ronda", tamu:"Buku tamu digital", event:"Agenda warga", tambahEvent:"Tambah kegiatan", darurat:"Kontak darurat", admin:"Panel admin tenant", adminInfo:"Input pengumuman", adminWarga:"Database warga", adminBanner:"Iklan berjalan", adminLaporan:"Kelola laporan", harga:"Paket harga", notifikasi:"Notifikasi warga", profil:"Profil warga"
+      home:"Beranda tenant aktif", tenantSwitch:"Pilih lingkungan", roles:"Role & akses", superAdmin:"Dashboard pusat WargaHub", createTenant:"Buat tenant baru", tenantBilling:"Billing pelanggan", globalIncome:"Income semua tenant", firestore:"Struktur Firebase", securityRules:"Security rules", roleMatrix:"Matriks role", shareLinks:"Link khusus tenant", invite:"Undangan warga", rtRooms:"Ruang RT", selfRegister:"Daftar mandiri warga", rtLinks:"Link khusus RT", rwCommunity:"Komunitas RW", info:"Pengumuman lingkungan", iuran:"Pembayaran warga", uploadBukti:"Upload bukti bayar", riwayatIuran:"Riwayat iuran", lapor:"Laporan cepat", jasa:"Tukang & service sekitar", daftarJasa:"Daftar tukang/service", lapak:"Marketplace warga", tambahLapak:"Tambah jualan warga", ronda:"Keamanan lingkungan", aturRonda:"Atur jadwal ronda", tamu:"Buku tamu digital", event:"Agenda warga", tambahEvent:"Tambah kegiatan", darurat:"Kontak darurat", admin:"Panel admin tenant", adminInfo:"Input pengumuman", adminWarga:"Database warga", adminBanner:"Iklan berjalan", adminLaporan:"Kelola laporan", harga:"Paket harga", notifikasi:"Notifikasi warga", profil:"Profil warga"
     };
     const roleMatrix = [
       ["Super Admin","Semua tenant, billing, paket, aktivasi, statistik global, struktur Firebase"],
@@ -281,10 +372,11 @@ allow write: if request.auth.token.tenantId == tenantId
 
     const defaultDB = {
       currentTenant:"gardenia-residence",
+      currentRt:"rt03",
       currentRole:"super_admin",
       tenants:{
         "gardenia-residence":{
-          id:"gardenia-residence",name:"Gardenia Residence",type:"Perumahan",plan:"Perumahan Mini",limit:500,status:"Aktif",admin:"Pak Dedi",monthly:50000,
+          id:"gardenia-residence",name:"Gardenia Residence",type:"Perumahan",plan:"Perumahan Mini",limit:500,status:"Aktif",admin:"Pak Dedi",monthly:50000,inviteCode:"GARDENIA03",logo:"🏘️",theme:"#ff6b00",rts:{rt01:{id:"rt01",name:"RT 01",admin:"Pak Arif",inviteCode:"GARDENIA-RT01"},rt02:{id:"rt02",name:"RT 02",admin:"Bu Lina",inviteCode:"GARDENIA-RT02"},rt03:{id:"rt03",name:"RT 03",admin:"Pak Dedi",inviteCode:"GARDENIA-RT03"}},
           infos:[
             {title:"Kerja bakti Minggu pagi",desc:"Kumpul jam 07.00 di pos satpam. Area fokus: selokan depan dan taman Blok C.",tag:"Kegiatan",icon:"RT",time:"10 menit lalu"},
             {title:"Info air lingkungan",desc:"Pompa utama dicek pukul 15.00. Mohon warga menampung air secukupnya.",tag:"Informasi",icon:"💧",time:"Hari ini"}
@@ -299,7 +391,7 @@ allow write: if request.auth.token.tenantId == tenantId
           banners:[{text:"Servis AC mulai 75rb",owner:"Bang Udin",price:"Rp50rb/bulan"}], bukti:[]
         },
         "kampung-melati-rw05":{
-          id:"kampung-melati-rw05",name:"Kampung Melati RW 05",type:"RW",plan:"RW / Gabungan RT",limit:250,status:"Aktif",admin:"Bu Sari",monthly:30000,
+          id:"kampung-melati-rw05",name:"Kampung Melati RW 05",type:"RW",plan:"RW / Gabungan RT",limit:250,status:"Aktif",admin:"Bu Sari",monthly:30000,inviteCode:"MELATI05",logo:"🌿",theme:"#16a34a",rts:{rt01:{id:"rt01",name:"RT 01",admin:"Pak Rudi",inviteCode:"MELATI-RT01"},rt02:{id:"rt02",name:"RT 02",admin:"Bu Sari",inviteCode:"MELATI-RT02"},rt03:{id:"rt03",name:"RT 03",admin:"Pak Amin",inviteCode:"MELATI-RT03"}},
           infos:[{title:"Rapat RW Jumat malam",desc:"Pembahasan kebersihan, keamanan, dan data warga.",tag:"Penting",icon:"RW",time:"Hari ini"}],
           iuran:[{title:"Kas RW",nominal:"Rp20.000",status:"Belum",desc:"Menunggu pembayaran bulan ini."}],
           reports:[{title:"Selokan RT 04 mampet",desc:"Butuh pengecekan sebelum hujan besar.",status:"Menunggu",time:"Kemarin"}],
@@ -326,8 +418,115 @@ allow write: if request.auth.token.tenantId == tenantId
 
     let db = loadDB();
     let activeServiceFilter = "Semua";
+    applyTenantFromUrl();
     function loadDB(){const saved=localStorage.getItem("wargahubTenantDB"); if(saved) return JSON.parse(saved); localStorage.setItem("wargahubTenantDB",JSON.stringify(defaultDB)); return JSON.parse(JSON.stringify(defaultDB))}
     function saveDB(){localStorage.setItem("wargahubTenantDB",JSON.stringify(db)); renderAll()}
+
+    function appBaseUrl(){
+      return location.origin + location.pathname;
+    }
+    function tenantUrl(id){
+      return appBaseUrl() + "?tenant=" + encodeURIComponent(id);
+    }
+
+    function rtUrl(tenantId, rtId){
+      return appBaseUrl() + "?tenant=" + encodeURIComponent(tenantId) + "&rt=" + encodeURIComponent(rtId);
+    }
+    function currentRt(){
+      const t=T();
+      return (t.rts && t.rts[db.currentRt]) ? t.rts[db.currentRt] : null;
+    }
+    function setRt(rtId){
+      if(T().rts && T().rts[rtId]){
+        db.currentRt = rtId;
+        saveDB();
+        showToast("Ruang aktif: " + T().rts[rtId].name);
+      }
+    }
+    function copyRtLink(tenantId, rtId){copyText(rtUrl(tenantId, rtId));}
+    function shareRtWA(tenantId, rtId){
+      const t=db.tenants[tenantId], rt=t.rts[rtId];
+      const text = encodeURIComponent(`Halo warga ${rt.name} ${t.name}, silakan daftar/masuk WargaHub lewat link khusus RT kita:\n${rtUrl(tenantId, rtId)}\n\nKode RT: ${rt.inviteCode}`);
+      window.open(`https://wa.me/?text=${text}`,"_blank");
+    }
+
+    function applyTenantFromUrl(){
+      const params = new URLSearchParams(location.search);
+      const urlTenant = params.get("tenant");
+      const code = params.get("code");
+      const rt = params.get("rt");
+      if(urlTenant && db.tenants[urlTenant]){
+        db.currentTenant = urlTenant;
+        if(rt && db.tenants[urlTenant].rts && db.tenants[urlTenant].rts[rt]) db.currentRt = rt;
+        if(db.currentRole === "super_admin") db.currentRole = "resident";
+        localStorage.setItem("wargahubTenantDB", JSON.stringify(db));
+      } else if(code){
+        let found = Object.values(db.tenants).find(t => (t.inviteCode || "").toUpperCase() === code.toUpperCase());
+        if(found){
+          db.currentTenant = found.id;
+          if(db.currentRole === "super_admin") db.currentRole = "resident";
+          localStorage.setItem("wargahubTenantDB", JSON.stringify(db));
+        } else {
+          for(const t of Object.values(db.tenants)){
+            const rtFound = Object.values(t.rts || {}).find(r => (r.inviteCode || "").toUpperCase() === code.toUpperCase());
+            if(rtFound){
+              db.currentTenant = t.id;
+              db.currentRt = rtFound.id;
+              db.currentRole = "resident";
+              localStorage.setItem("wargahubTenantDB", JSON.stringify(db));
+              break;
+            }
+          }
+        }
+      }
+    }
+    function copyText(text){
+      if(navigator.clipboard){
+        navigator.clipboard.writeText(text).then(()=>showToast("Link berhasil dicopy")).catch(()=>fallbackCopy(text));
+      } else fallbackCopy(text);
+    }
+    function fallbackCopy(text){
+      const ta=document.createElement("textarea");ta.value=text;document.body.appendChild(ta);ta.select();document.execCommand("copy");ta.remove();showToast("Link berhasil dicopy");
+    }
+    function copyTenantLink(id){copyText(tenantUrl(id));}
+    function copyCurrentTenantLink(){copyText(tenantUrl(db.currentTenant));}
+    function shareCurrentTenantWA(){
+      const t=T();
+      const text = encodeURIComponent(`Halo warga ${t.name}, ini link aplikasi WargaHub khusus lingkungan kita:\n${tenantUrl(t.id)}\n\nKode undangan: ${t.inviteCode || "-"}`);
+      window.open(`https://wa.me/?text=${text}`,"_blank");
+    }
+    function shareTenantWA(id){
+      const t=db.tenants[id];
+      const text = encodeURIComponent(`Halo, ini link aplikasi WargaHub khusus ${t.name}:\n${tenantUrl(t.id)}\n\nKode undangan: ${t.inviteCode || "-"}`);
+      window.open(`https://wa.me/?text=${text}`,"_blank");
+    }
+    function submitJoinCode(e){
+      e.preventDefault();
+      const code = joinCodeInput.value.trim().toUpperCase();
+      let found = Object.values(db.tenants).find(t => (t.inviteCode || "").toUpperCase() === code);
+      if(found){
+        db.currentTenant = found.id;
+        db.currentRole = "resident";
+        saveDB();
+        showToast("Berhasil masuk ke " + found.name);
+        openPage("home");
+        return;
+      }
+      for(const t of Object.values(db.tenants)){
+        const rtFound = Object.values(t.rts || {}).find(r => (r.inviteCode || "").toUpperCase() === code);
+        if(rtFound){
+          db.currentTenant = t.id;
+          db.currentRt = rtFound.id;
+          db.currentRole = "resident";
+          saveDB();
+          showToast("Berhasil masuk ke " + rtFound.name + " - " + t.name);
+          openPage("home");
+          return;
+        }
+      }
+      showToast("Kode undangan tidak ditemukan");
+    }
+
     function T(){return db.tenants[db.currentTenant]}
     function money(n){return "Rp"+Number(n||0).toLocaleString("id-ID")}
     function tagClass(tag){if(["Penting","Keamanan","Darurat"].includes(tag))return"red";if(["Kegiatan","Diproses","Menunggu"].includes(tag))return"orange";if(["Lunas","Selesai","Aktif"].includes(tag))return"green";if(["Tenant","Role","Pusat","Income"].includes(tag))return"purple";return""}
@@ -345,15 +544,84 @@ allow write: if request.auth.token.tenantId == tenantId
     function showToast(msg){const el=document.getElementById('toast');el.textContent=msg;el.classList.add('show');setTimeout(()=>el.classList.remove('show'),2400)}
 
     function renderAll(){
-      renderTenantStrip();renderHome();renderTenants();renderRoles();renderSuper();renderInfo();renderIuran();renderRiwayat();renderReports();renderServices();renderProducts();renderRonda();renderGuests();renderEvents();renderResidents();renderBanners();renderPricing();renderAdmin();renderNotifs();renderFirestore();
+      renderTenantStrip();renderHome();renderTenants();renderRoles();renderSuper();renderInfo();renderIuran();renderRiwayat();renderReports();renderServices();renderProducts();renderRonda();renderGuests();renderEvents();renderResidents();renderBanners();renderPricing();renderAdmin();renderNotifs();renderFirestore();renderShareLinks();renderInvite();renderRtRooms();renderSelfRegister();renderRwCommunity();
     }
-    function renderTenantStrip(){document.getElementById("tenantStrip").innerHTML=Object.values(db.tenants).map(t=>`<button class="tenant-chip ${t.id===db.currentTenant?'active':''}" onclick="switchTenant('${t.id}')">${t.name}</button>`).join("")}
+    function renderTenantStrip(){
+      const tenants = db.currentRole === "super_admin" ? Object.values(db.tenants) : [T()];
+      document.getElementById("tenantStrip").innerHTML = tenants.map(t=>`<button class="tenant-chip ${t.id===db.currentTenant?'active':''}" onclick="${db.currentRole === "super_admin" ? `switchTenant('${t.id}')` : `openPage('invite')`}">${t.name}</button>`).join("");
+    }
     function switchTenant(id){db.currentTenant=id;saveDB();showToast("Tenant aktif: "+T().name);openPage('home')}
     function setRole(role){db.currentRole=role;saveDB();showToast("Role aktif: "+roleNames[role])}
-    function renderHome(){const t=T();document.getElementById("tenantStat").textContent=t.name.split(" ")[0];document.getElementById("roleStat").textContent=roleNames[db.currentRole].split(" ")[0];document.getElementById("laporStat").textContent=t.reports.filter(r=>r.status!=="Selesai").length+" proses";document.getElementById("homeFeed").innerHTML=t.infos.slice(0,2).map(i=>card(i.icon,i.title,i.time,i.desc,[i.tag])).join("");document.getElementById("tickerText").textContent=t.banners.map(b=>b.text).join(" · ")||"Belum ada iklan berjalan"}
+    function renderHome(){const t=T();document.getElementById("tenantStat").textContent=(currentRt()?currentRt().name:t.name.split(" ")[0]);document.getElementById("roleStat").textContent=roleNames[db.currentRole].split(" ")[0];document.getElementById("laporStat").textContent=t.reports.filter(r=>r.status!=="Selesai").length+" proses";document.getElementById("homeFeed").innerHTML=t.infos.slice(0,2).map(i=>card(i.icon,i.title,i.time,i.desc,[i.tag])).join("");document.getElementById("tickerText").textContent=t.banners.map(b=>b.text).join(" · ")||"Belum ada iklan berjalan"}
     function renderTenants(){document.getElementById("tenantCards").innerHTML=Object.values(db.tenants).map(t=>`<div class="card"><div class="feed-head"><div class="avatar">🏘️</div><div><b>${t.name}</b><small>${t.type} · ${t.plan}</small></div></div><p>tenantId: <b>${t.id}</b>. Limit ${t.limit} warga. Admin utama: ${t.admin}. Status: ${t.status}.</p><div class="pay-actions"><button class="btn" onclick="switchTenant('${t.id}')">Pakai Tenant</button><button class="btn light" onclick="openPage('firestore')">Lihat Jalur</button></div></div>`).join("")}
     function renderRoles(){document.getElementById("activeRoleBig").textContent=roleNames[db.currentRole];document.getElementById("roleList").innerHTML=Object.entries(roleNames).map(([k,v])=>`<div class="card"><div class="feed-head"><div class="avatar">🔐</div><div><b>${v}</b><small>${k}</small></div></div><p>${roleMatrix.find(r=>r[0]===v)?.[1]||"Akses khusus"}</p><div class="pay-actions"><button class="btn ${db.currentRole===k?'green':''}" onclick="setRole('${k}')">${db.currentRole===k?'Aktif':'Aktifkan'}</button><button class="btn light" onclick="openPage('roleMatrix')">Detail</button></div></div>`).join("")}
     function renderSuper(){const tenants=Object.values(db.tenants);const residents=tenants.reduce((a,t)=>a+t.residents.length,0);const monthly=tenants.reduce((a,t)=>a+(t.monthly||0),0);const localIncome=tenants.reduce((a,t)=>a+t.banners.length*50000+t.services.length*25000+t.products.length*10000,0);document.getElementById("saTenants").textContent=tenants.length;document.getElementById("saResidents").textContent=residents;document.getElementById("saIncome").textContent=money(monthly+localIncome);document.getElementById("superTenantList").innerHTML=`<div class="sec-head" style="margin-top:12px"><h2>Tenant aktif</h2><small>${tenants.length} lingkungan</small></div>`+tenants.map(t=>card("🏘️",t.name,`${t.plan} · ${money(t.monthly)}/bulan`,`tenantId: ${t.id}. Admin: ${t.admin}. Limit ${t.limit} warga.`,["Tenant"])).join("");document.getElementById("billingList").innerHTML=tenants.map(t=>card("💳",t.name,t.plan,`Tagihan aplikasi: ${money(t.monthly)}/bulan. Status: ${t.status}.`,["Aktif"])).join("");document.getElementById("globalIncomeList").innerHTML=tenants.map(t=>card("📈",t.name,"Simulasi income",`Aplikasi ${money(t.monthly)} + banner ${money(t.banners.length*50000)} + jasa ${money(t.services.length*25000)} + lapak ${money(t.products.length*10000)}.`,["Income"])).join("");document.getElementById("matrixList").innerHTML=roleMatrix.map(r=>card("👥",r[0],"Hak akses",r[1],["Role"])).join("")}
+
+
+    function renderRtRooms(){
+      const list=document.getElementById("rtRoomList");
+      const links=document.getElementById("rtLinkList");
+      if(!list) return;
+      const t=T();
+      const rts=Object.values(t.rts || {});
+      list.innerHTML = rts.map(rt=>{
+        const total = t.residents.filter(r=>r.rtId===rt.id).length;
+        return `<div class="card">
+          <div class="feed-head"><div class="avatar">🏠</div><div><b>${rt.name}</b><small>Admin: ${rt.admin || "-"}</small></div></div>
+          <p>Warga terdaftar: <b>${total}</b>. Kode RT: <b>${rt.inviteCode}</b>. Ruang ini terpisah dari RT lain, tetapi tetap tergabung ke ${t.name}.</p>
+          <div class="pay-actions"><button class="btn" onclick="setRt('${rt.id}');openPage('selfRegister')">Pakai RT</button><button class="btn light" onclick="copyRtLink('${t.id}','${rt.id}')">Copy Link</button></div>
+        </div>`;
+      }).join("") || `<div class="empty">Belum ada RT. Admin RW bisa membuat RT dari panel berikutnya.</div>`;
+      if(links) links.innerHTML = rts.map(rt=>`<div class="card">
+        <div class="feed-head"><div class="avatar">🔗</div><div><b>${rt.name} - ${t.name}</b><small>${rt.inviteCode}</small></div></div>
+        <p>Link ini khusus warga ${rt.name}. Setelah daftar, warga otomatis masuk ${rt.name} dan komunitas ${t.name}.</p>
+        <div class="linkbox">${rtUrl(t.id, rt.id)}</div>
+        <div class="pay-actions"><button class="btn" onclick="copyRtLink('${t.id}','${rt.id}')">Copy Link</button><button class="btn light" onclick="shareRtWA('${t.id}','${rt.id}')">Kirim WA</button></div>
+      </div>`).join("");
+    }
+    function renderSelfRegister(){
+      const t=T(), rt=currentRt();
+      const a=document.getElementById("regTenantName");
+      if(!a) return;
+      a.textContent=t.name;
+      document.getElementById("regRtName").textContent=rt ? `Ruang aktif: ${rt.name} · Kode: ${rt.inviteCode}` : "Pilih RT lebih dulu";
+      const select=document.getElementById("regRtSelect");
+      select.innerHTML=Object.values(t.rts || {}).map(r=>`<option value="${r.id}" ${db.currentRt===r.id?"selected":""}>${r.name} - ${r.inviteCode}</option>`).join("");
+    }
+    function renderRwCommunity(){
+      const t=T();
+      const el=document.getElementById("rwCommunityList");
+      if(!el) return;
+      document.getElementById("rwCommunityTitle").textContent=t.name;
+      const rtCounts = Object.values(t.rts || {}).map(rt=>{
+        const total=t.residents.filter(r=>r.rtId===rt.id).length;
+        return card("🏠", rt.name, `${total} warga`, `Ruang RT ini berdiri sendiri, namun otomatis tergabung di komunitas ${t.name}.`, ["RT"]);
+      }).join("");
+      const latest = t.residents.slice(0,5).map(r=>card("👤", r.name, `${r.rtId || "rw"} · ${r.house}`, `HP: ${r.phone || "-"}. Status: ${r.status}.`, ["Warga"])).join("");
+      el.innerHTML = card("🤝","Komunitas induk",t.name,`Total warga terdaftar: ${t.residents.length}. Semua RT tergabung untuk info umum RW, event bersama, jasa, lapak, dan pengumuman induk.`,["RW"]) + rtCounts + `<div class="sec-head" style="margin-top:12px"><h2>Warga terbaru</h2><small>${t.residents.length} total</small></div>` + (latest || `<div class="empty">Belum ada warga daftar mandiri.</div>`);
+    }
+
+    function renderShareLinks(){
+      const el=document.getElementById("shareLinkList");
+      if(!el) return;
+      el.innerHTML = Object.values(db.tenants).map(t=>`
+        <div class="card">
+          <div class="feed-head"><div class="avatar">${t.logo || "🏘️"}</div><div><b>${t.name}</b><small>${t.type} · ${t.plan}</small></div></div>
+          <p>Link ini langsung membuka slot milik <b>${t.name}</b>. Warga tidak melihat tenant lain.</p>
+          <div class="linkbox">${tenantUrl(t.id)}</div>
+          <div class="status-row"><span class="status purple">tenantId: ${t.id}</span><span class="status green">Kode: ${t.inviteCode || "-"}</span></div>
+          <div class="pay-actions"><button class="btn" onclick="copyTenantLink('${t.id}')">Copy Link</button><button class="btn light" onclick="shareTenantWA('${t.id}')">Kirim WA</button></div>
+        </div>`).join("");
+    }
+    function renderInvite(){
+      const a=document.getElementById("inviteTenantName");
+      if(!a) return;
+      const t=T();
+      a.textContent=t.name;
+      document.getElementById("inviteTenantText").textContent=`tenantId: ${t.id} · kode: ${t.inviteCode || "-"}`;
+      document.getElementById("residentLinkBox").textContent=tenantUrl(t.id);
+    }
+
     function renderFirestore(){document.getElementById("fireTenant").textContent=T().id;document.getElementById("fireTenantDesc").innerHTML=`Semua data sekarang dibaca dari <b>tenants/${T().id}/...</b>. Kalau tenant diganti, data yang tampil ikut berubah dan tidak bercampur.`}
     function renderInfo(){document.getElementById("infoTenant").textContent=T().name;document.getElementById("infoList").innerHTML=T().infos.map(i=>card(i.icon,i.title,i.time,i.desc,[i.tag])).join("")||`<div class="empty">Belum ada pengumuman.</div>`}
     function renderIuran(){document.getElementById("iuranList").innerHTML=T().iuran.map(i=>card("💳",i.title,i.nominal,i.desc,[i.status])).join("")}
@@ -364,15 +632,37 @@ allow write: if request.auth.token.tenantId == tenantId
     function renderRonda(){document.getElementById("rondaList").innerHTML=T().ronda.map(r=>card("🛡️",r.blok,r.jam,`Koordinator: ${r.koor}. ${r.note||""}`,["Aktif"])).join("")||`<div class="empty">Belum ada jadwal ronda.</div>`}
     function renderGuests(){document.getElementById("guestList").innerHTML=T().guests.map(g=>card("🚪",g.name,g.type,`Tujuan: ${g.to}. Waktu: ${g.time}`,["Tercatat"])).join("")||`<div class="empty">Belum ada tamu tercatat.</div>`}
     function renderEvents(){document.getElementById("eventList").innerHTML=T().events.map(e=>card(e.icon||"🎉",e.title,e.time,e.desc,["Aktif"])).join("")||`<div class="empty">Belum ada event.</div>`}
-    function renderResidents(){document.getElementById("residentList").innerHTML=T().residents.map(r=>card("🏠",r.name,r.house,`HP: ${r.phone||"-"}. Status: ${r.status}`,["Warga"])).join("")}
+    function renderResidents(){document.getElementById("residentList").innerHTML=T().residents.map(r=>card("🏠",r.name,r.house,`HP: ${r.phone||"-"}. Status: ${r.status}. Ruang: ${r.rtName || r.rtId || "RW"}`,["Warga"])).join("")}
     function renderBanners(){document.getElementById("bannerList").innerHTML=T().banners.map(b=>card("📣",b.text,b.owner,`Paket iklan: ${b.price}`,["Aktif"])).join("")||`<div class="empty">Belum ada banner.</div>`}
     function renderPricing(){document.getElementById("pricingList").innerHTML=db.pricing.map(p=>card("💰",p.name,`${p.range} · ${p.price}`,p.desc,["Aktif"])).join("")}
     function renderAdmin(){document.getElementById("admWarga").textContent=T().residents.length;document.getElementById("admLapak").textContent=T().products.length;document.getElementById("admJasa").textContent=T().services.length}
     function renderNotifs(){document.getElementById("notifList").innerHTML=[card("🏘️","Tenant aktif",T().name,`Data yang tampil sekarang hanya milik tenantId: ${T().id}`,["Tenant"]),card("🔐","Role aktif",roleNames[db.currentRole],"Menu admin mengikuti role yang aktif.",["Role"]),card("🛟","Laporan aktif","Hari ini",`${T().reports.filter(r=>r.status!=="Selesai").length} laporan masih berjalan`,["Diproses"])].join("")}
 
-    function submitTenant(e){e.preventDefault();let id=tnSlug.value.trim().toLowerCase().replace(/[^a-z0-9-]/g,"-");if(db.tenants[id]){showToast("tenantId sudah ada");return}db.tenants[id]={id,name:tnName.value,type:tnType.value,plan:tnPlan.value,limit:Number(tnLimit.value),status:"Aktif",admin:tnAdmin.value,monthly:planPrice(tnPlan.value),infos:[],iuran:[],reports:[],services:[],products:[],ronda:[],guests:[],events:[],residents:[],banners:[],bukti:[]};db.currentTenant=id;saveDB();showToast("Tenant baru berhasil dibuat");e.target.reset();openPage("tenantSwitch")}
+
+    function submitSelfRegister(e){
+      e.preventDefault();
+      const rtId = regRtSelect.value;
+      db.currentRt = rtId;
+      const rt = T().rts[rtId];
+      T().residents.unshift({
+        name:regName.value,
+        house:regHouse.value,
+        phone:regPhone.value,
+        status:regStatus.value,
+        note:regNote.value,
+        rtId:rtId,
+        rtName:rt.name,
+        source:"self_register"
+      });
+      saveDB();
+      showToast("Warga berhasil daftar ke " + rt.name + " dan otomatis tergabung ke " + T().name);
+      e.target.reset();
+      openPage("rwCommunity");
+    }
+
+    function submitTenant(e){e.preventDefault();let id=tnSlug.value.trim().toLowerCase().replace(/[^a-z0-9-]/g,"-");if(db.tenants[id]){showToast("tenantId sudah ada");return}db.tenants[id]={id,name:tnName.value,type:tnType.value,plan:tnPlan.value,limit:Number(tnLimit.value),status:"Aktif",admin:tnAdmin.value,monthly:planPrice(tnPlan.value),inviteCode:tnCode.value.trim().toUpperCase(),logo:"🏘️",theme:tnTheme.value,rts:{rt01:{id:"rt01",name:"RT 01",admin:"-",inviteCode:id.toUpperCase()+"-RT01"}},infos:[],iuran:[],reports:[],services:[],products:[],ronda:[],guests:[],events:[],residents:[],banners:[],bukti:[]};db.currentTenant=id;saveDB();showToast("Tenant baru berhasil dibuat");e.target.reset();openPage("tenantSwitch")}
     function planPrice(plan){return {"RT Mini":10000,"RT Plus":15000,"RW / Gabungan RT":30000,"Perumahan Mini":50000,"Perumahan Besar":150000,"Custom Kawasan":500000}[plan]||10000}
-    function searchGo(){const q=searchInput.value.trim().toLowerCase();if(!q){showToast("Ketik yang mau dicari");return}if(q.includes("tenant")||q.includes("lingkungan"))openPage("tenantSwitch");else if(q.includes("role")||q.includes("akses"))openPage("roles");else if(q.includes("firebase")||q.includes("rules"))openPage("firestore");else if(q.includes("pusat")||q.includes("super"))openPage("superAdmin");else if(q.includes("ac")||q.includes("listrik")||q.includes("galon")||q.includes("servis"))openPage("jasa");else if(q.includes("jual")||q.includes("lapak"))openPage("lapak");else if(q.includes("harga")||q.includes("paket"))openPage("harga");else openPage("info")}
+    function searchGo(){const q=searchInput.value.trim().toLowerCase();if(!q){showToast("Ketik yang mau dicari");return}if(q.includes("tenant")||q.includes("lingkungan")){db.currentRole==="super_admin"?openPage("tenantSwitch"):openPage("invite");}else if(q.includes("role")||q.includes("akses"))openPage("roles");else if(q.includes("firebase")||q.includes("rules"))openPage("firestore");else if(q.includes("pusat")||q.includes("super"))openPage("superAdmin");else if(q.includes("ac")||q.includes("listrik")||q.includes("galon")||q.includes("servis"))openPage("jasa");else if(q.includes("jual")||q.includes("lapak"))openPage("lapak");else if(q.includes("harga")||q.includes("paket"))openPage("harga");else openPage("info")}
     function chatWA(nama,nomor="081296629033"){nomor=nomor.replace(/\D/g,"");if(nomor.startsWith("0"))nomor="62"+nomor.slice(1);window.open(`https://wa.me/${nomor}?text=${encodeURIComponent("Halo, saya lihat "+nama+" di WargaHub. Saya ingin tanya layanan dan harga.")}`,"_blank")}
     function setReport(text){reportTitle.value=text;reportDesc.focus()}
     function submitReport(e){e.preventDefault();T().reports.unshift({title:reportTitle.value,desc:reportDesc.value||"-",status:"Menunggu",time:"Baru saja"});saveDB();showToast("Laporan masuk ke tenant "+T().name);e.target.reset();openPage("lapor")}
@@ -384,7 +674,7 @@ allow write: if request.auth.token.tenantId == tenantId
     function submitGuest(e){e.preventDefault();T().guests.unshift({name:guestName.value,to:guestTo.value,type:guestType.value,time:new Date().toLocaleString("id-ID")});saveDB();showToast("Tamu tercatat di "+T().name);e.target.reset();openPage("tamu")}
     function submitEvent(e){e.preventDefault();T().events.unshift({title:evtTitle.value,time:evtTime.value,desc:evtDesc.value,icon:"🎉"});saveDB();showToast("Event berhasil ditambahkan");e.target.reset();openPage("event")}
     function submitInfo(e){e.preventDefault();T().infos.unshift({title:infoTitle.value,desc:infoDesc.value||"-",tag:infoTag.value,icon:"RT",time:"Baru saja"});saveDB();showToast("Info diterbitkan di "+T().name);e.target.reset();openPage("info")}
-    function submitResident(e){e.preventDefault();T().residents.unshift({name:resName.value,house:resHouse.value,phone:resPhone.value,status:resStatus.value});saveDB();showToast("Warga tersimpan di tenant aktif");e.target.reset();openPage("adminWarga")}
+    function submitResident(e){e.preventDefault();T().residents.unshift({name:resName.value,house:resHouse.value,phone:resPhone.value,status:resStatus.value,rtId:db.currentRt,rtName:(currentRt()?currentRt().name:"RW")});saveDB();showToast("Warga tersimpan di tenant aktif");e.target.reset();openPage("adminWarga")}
     function submitBanner(e){e.preventDefault();T().banners.unshift({text:bannerText.value,owner:bannerOwner.value,price:bannerPrice.value});saveDB();showToast("Iklan berjalan dipasang");e.target.reset();openPage("adminBanner")}
     function submitProfile(e){e.preventDefault();showToast("Profil berhasil disimpan di perangkat ini")}
     function filterServices(cat,el){activeServiceFilter=cat;document.querySelectorAll("#jasa .chip").forEach(c=>c.classList.remove("active"));el.classList.add("active");renderServices()}
