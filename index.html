@@ -3,13 +3,13 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>WargaHub Multi Tenant</title>
+  <title>SeputarWarga Multi Tenant</title>
   <link rel="manifest" href="./manifest.json" />
   <link rel="icon" type="image/png" sizes="32x32" href="./icon-128x128.png" />
   <link rel="apple-touch-icon" sizes="180x180" href="./icon-180x180.png" />
   <meta name="theme-color" content="#ff6b00" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
-  <meta name="apple-mobile-web-app-title" content="WargaHub" />
+  <meta name="apple-mobile-web-app-title" content="SeputarWarga" />
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
   <style>
     :root{
@@ -705,9 +705,9 @@
   <section class="desktop-admin-shell">
     <aside class="desk-sidebar">
       <div class="desk-brand">
-        <img src="./icon-192x192.png" alt="WargaHub">
+        <img src="./icon-192x192.png" alt="SeputarWarga">
         <div>
-          <b>WargaHub</b>
+          <b>SeputarWarga</b>
           <small>Admin Pengelola Pusat</small>
         </div>
       </div>
@@ -730,7 +730,7 @@
       <div class="desk-topbar">
         <div class="desk-title">
           <h1 id="deskTitle">Dashboard Pengelola</h1>
-          <p id="deskSubtitle">Kontrol seluruh tenant, user, aktivitas, billing, dan marketplace WargaHub.</p>
+          <p id="deskSubtitle">Kontrol seluruh tenant, user, aktivitas, billing, dan marketplace SeputarWarga.</p>
         </div>
         <div class="desk-actions">
           <input class="desk-search" id="deskSearch" placeholder="Cari tenant, user, laporan, lapak..." oninput="renderDesktopAdmin()">
@@ -918,7 +918,7 @@
         </div>
         <div class="desk-card">
           <div class="desk-form-grid">
-            <input id="deskAppName" value="WargaHub" placeholder="Nama aplikasi">
+            <input id="deskAppName" value="SeputarWarga" placeholder="Nama aplikasi">
             <input id="deskWa" value="081296629033" placeholder="Nomor WhatsApp Support">
             <select id="deskDefaultRole"><option>resident</option><option>tenant_admin</option><option>rt_admin</option></select>
             <textarea id="deskWelcome">Selamat datang di aplikasi warga lingkungan kita. Silakan daftar sesuai RT masing-masing.</textarea>
@@ -990,9 +990,9 @@ tenants/{tenantId}/products</div>
     <header class="app-header">
       <div class="top-row">
         <div class="brand">
-          <div class="logo"><img src="./icon-192x192.png" alt="WargaHub"></div>
+          <div class="logo"><img src="./icon-192x192.png" alt="SeputarWarga"></div>
           <div class="brand-title">
-            <b>WargaHub</b>
+            <b>SeputarWarga</b>
             <small id="pageSub">RT 03 · Gardenia Residence</small>
           </div>
         </div>
@@ -1061,7 +1061,7 @@ tenants/{tenantId}/products</div>
       </div>
 
       <div class="page" id="superAdmin">
-        <div class="sec-head"><div class="sec-title"><button class="back" onclick="openPage('home')">‹</button><h2>Super Admin</h2></div><small>WargaHub</small></div>
+        <div class="sec-head"><div class="sec-title"><button class="back" onclick="openPage('home')">‹</button><h2>Super Admin</h2></div><small>SeputarWarga</small></div>
         <div class="pay-box super-bg"><small>Pengelola pusat aplikasi</small><h3>Dashboard Pusat</h3><p>Kita bisa membuat tenant baru, mengunci data, mengatur paket, mengaktifkan pelanggan, dan melihat income dari lapak/jasa/banner seluruh lingkungan.</p></div>
         <div class="admin-grid">
           <div class="admin-card"><small>Total tenant</small><b id="saTenants">0</b><span>aktif</span></div>
@@ -1287,7 +1287,7 @@ allow write: if request.auth.token.tenantId == tenantId
       <div class="page" id="event"><div class="sec-head"><div class="sec-title"><button class="back" onclick="openPage('home')">‹</button><h2>Event Warga</h2></div><small>Kegiatan</small></div><div id="eventList"></div></div>
       <div class="page" id="tambahEvent"><div class="sec-head"><div class="sec-title"><button class="back" onclick="openPage('event')">‹</button><h2>Tambah Event</h2></div><small>Admin</small></div><div class="card"><form class="form" onsubmit="submitEvent(event)"><input id="evtTitle" placeholder="Nama kegiatan" required><input id="evtTime" placeholder="Waktu, contoh Sabtu 06.30" required><textarea id="evtDesc" placeholder="Detail kegiatan"></textarea><button class="btn" type="submit">Simpan Event</button></form></div></div>
 
-      <div class="page" id="darurat"><div class="sec-head"><div class="sec-title"><button class="back" onclick="openPage('home')">‹</button><h2>Darurat</h2></div><small>Cepat</small></div><div class="pay-box" style="background:linear-gradient(135deg,#fff,#fff1f2);border-color:#fecdd3"><small>Tombol bantuan cepat</small><h3 style="color:#ef4444">Emergency</h3><p>Gunakan hanya untuk kondisi penting.</p><div class="pay-actions"><button class="btn" onclick="chatWA('Admin Keamanan WargaHub')">Chat Satpam</button><button class="btn light" onclick="panic()">Panic</button></div></div><div class="card"><div class="feed-head"><div class="avatar">☎️</div><div><b>Nomor penting</b><small>Lingkungan</small></div></div><p>Satpam: 081296629033 · Ketua RT: 081296629033 · Ambulans: 119 · Damkar: 113.</p></div></div>
+      <div class="page" id="darurat"><div class="sec-head"><div class="sec-title"><button class="back" onclick="openPage('home')">‹</button><h2>Darurat</h2></div><small>Cepat</small></div><div class="pay-box" style="background:linear-gradient(135deg,#fff,#fff1f2);border-color:#fecdd3"><small>Tombol bantuan cepat</small><h3 style="color:#ef4444">Emergency</h3><p>Gunakan hanya untuk kondisi penting.</p><div class="pay-actions"><button class="btn" onclick="chatWA('Admin Keamanan SeputarWarga')">Chat Satpam</button><button class="btn light" onclick="panic()">Panic</button></div></div><div class="card"><div class="feed-head"><div class="avatar">☎️</div><div><b>Nomor penting</b><small>Lingkungan</small></div></div><p>Satpam: 081296629033 · Ketua RT: 081296629033 · Ambulans: 119 · Damkar: 113.</p></div></div>
 
       <div class="page" id="admin"><div class="sec-head"><div class="sec-title"><button class="back" onclick="openPage('home')">‹</button><h2>Admin Tenant</h2></div><small>Lingkungan</small></div><div class="admin-grid"><div class="admin-card"><small>Warga aktif</small><b id="admWarga">0</b><span>tenant ini</span></div><div class="admin-card"><small>Iuran masuk</small><b id="admIuran">82%</b><span>Aman</span></div><div class="admin-card"><small>Lapak aktif</small><b id="admLapak">0</b><span>income</span></div><div class="admin-card"><small>Jasa verified</small><b id="admJasa">0</b><span>promosi</span></div></div><div class="subgrid"><button class="subbtn" onclick="guardOpen('adminInfo',['tenant_admin','rt_admin','super_admin'])"><i>📢</i>Tambah Info</button><button class="subbtn" onclick="guardOpen('adminWarga',['tenant_admin','rt_admin','super_admin'])"><i>🏠</i>Data Warga</button><button class="subbtn" onclick="guardOpen('daftarJasa',['tenant_admin','rt_admin','super_admin'])"><i>🔧</i>Tambah Jasa</button><button class="subbtn" onclick="guardOpen('tambahLapak',['tenant_admin','rt_admin','resident','super_admin'])"><i>🛒</i>Tambah Lapak</button><button class="subbtn" onclick="guardOpen('aturRonda',['tenant_admin','rt_admin','security','super_admin'])"><i>🛡️</i>Atur Ronda</button><button class="subbtn" onclick="guardOpen('tambahEvent',['tenant_admin','rt_admin','super_admin'])"><i>🎉</i>Tambah Event</button><button class="subbtn" onclick="guardOpen('adminBanner',['tenant_admin','super_admin'])"><i>📣</i>Iklan Banner</button><button class="subbtn" onclick="guardOpen('adminLaporan',['tenant_admin','rt_admin','security','super_admin'])"><i>🛟</i>Kelola Laporan</button></div></div>
 
@@ -1320,7 +1320,7 @@ allow write: if request.auth.token.tenantId == tenantId
       super_admin:"Super Admin", tenant_admin:"Admin Lingkungan", rt_admin:"Admin RT", bendahara:"Bendahara", security:"Satpam", resident:"Warga"
     };
     const pageTitles = {
-      home:"Beranda tenant aktif", tenantSwitch:"Pilih lingkungan", roles:"Role & akses", superAdmin:"Dashboard pusat WargaHub", createTenant:"Buat tenant baru", tenantBilling:"Billing pelanggan", globalIncome:"Income semua tenant", firebaseSync:"Firebase sync", firestore:"Struktur Firebase", securityRules:"Security rules", roleMatrix:"Matriks role", shareLinks:"Link khusus tenant", invite:"Undangan warga", rtRooms:"Ruang RT", selfRegister:"Daftar mandiri warga", rtLinks:"Link khusus RT", rwCommunity:"Komunitas RW", info:"Pengumuman lingkungan", iuran:"Pembayaran warga", uploadBukti:"Upload bukti bayar", riwayatIuran:"Riwayat iuran", lapor:"Laporan cepat", jasa:"Tukang & service sekitar", daftarJasa:"Daftar tukang/service", lapak:"Marketplace warga", tambahLapak:"Tambah jualan warga", ronda:"Keamanan lingkungan", aturRonda:"Atur jadwal ronda", tamu:"Buku tamu digital", event:"Agenda warga", tambahEvent:"Tambah kegiatan", darurat:"Kontak darurat", admin:"Panel admin tenant", adminInfo:"Input pengumuman", adminWarga:"Database warga", adminBanner:"Iklan berjalan", adminLaporan:"Kelola laporan", harga:"Paket harga", notifikasi:"Notifikasi warga", profil:"Profil warga"
+      home:"Beranda tenant aktif", tenantSwitch:"Pilih lingkungan", roles:"Role & akses", superAdmin:"Dashboard pusat SeputarWarga", createTenant:"Buat tenant baru", tenantBilling:"Billing pelanggan", globalIncome:"Income semua tenant", firebaseSync:"Firebase sync", firestore:"Struktur Firebase", securityRules:"Security rules", roleMatrix:"Matriks role", shareLinks:"Link khusus tenant", invite:"Undangan warga", rtRooms:"Ruang RT", selfRegister:"Daftar mandiri warga", rtLinks:"Link khusus RT", rwCommunity:"Komunitas RW", info:"Pengumuman lingkungan", iuran:"Pembayaran warga", uploadBukti:"Upload bukti bayar", riwayatIuran:"Riwayat iuran", lapor:"Laporan cepat", jasa:"Tukang & service sekitar", daftarJasa:"Daftar tukang/service", lapak:"Marketplace warga", tambahLapak:"Tambah jualan warga", ronda:"Keamanan lingkungan", aturRonda:"Atur jadwal ronda", tamu:"Buku tamu digital", event:"Agenda warga", tambahEvent:"Tambah kegiatan", darurat:"Kontak darurat", admin:"Panel admin tenant", adminInfo:"Input pengumuman", adminWarga:"Database warga", adminBanner:"Iklan berjalan", adminLaporan:"Kelola laporan", harga:"Paket harga", notifikasi:"Notifikasi warga", profil:"Profil warga"
     };
     const roleMatrix = [
       ["Super Admin","Semua tenant, billing, paket, aktivasi, statistik global, struktur Firebase"],
@@ -1407,7 +1407,7 @@ allow write: if request.auth.token.tenantId == tenantId
     function copyRtLink(tenantId, rtId){copyText(rtUrl(tenantId, rtId));}
     function shareRtWA(tenantId, rtId){
       const t=db.tenants[tenantId], rt=t.rts[rtId];
-      const text = encodeURIComponent(`Halo warga ${rt.name} ${t.name}, silakan daftar/masuk WargaHub lewat link khusus RT kita:\n${rtUrl(tenantId, rtId)}\n\nKode RT: ${rt.inviteCode}`);
+      const text = encodeURIComponent(`Halo warga ${rt.name} ${t.name}, silakan daftar/masuk SeputarWarga lewat link khusus RT kita:\n${rtUrl(tenantId, rtId)}\n\nKode RT: ${rt.inviteCode}`);
       window.open(`https://wa.me/?text=${text}`,"_blank");
     }
 
@@ -1453,12 +1453,12 @@ allow write: if request.auth.token.tenantId == tenantId
     function copyCurrentTenantLink(){copyText(tenantUrl(db.currentTenant));}
     function shareCurrentTenantWA(){
       const t=T();
-      const text = encodeURIComponent(`Halo warga ${t.name}, ini link aplikasi WargaHub khusus lingkungan kita:\n${tenantUrl(t.id)}\n\nKode undangan: ${t.inviteCode || "-"}`);
+      const text = encodeURIComponent(`Halo warga ${t.name}, ini link aplikasi SeputarWarga khusus lingkungan kita:\n${tenantUrl(t.id)}\n\nKode undangan: ${t.inviteCode || "-"}`);
       window.open(`https://wa.me/?text=${text}`,"_blank");
     }
     function shareTenantWA(id){
       const t=db.tenants[id];
-      const text = encodeURIComponent(`Halo, ini link aplikasi WargaHub khusus ${t.name}:\n${tenantUrl(t.id)}\n\nKode undangan: ${t.inviteCode || "-"}`);
+      const text = encodeURIComponent(`Halo, ini link aplikasi SeputarWarga khusus ${t.name}:\n${tenantUrl(t.id)}\n\nKode undangan: ${t.inviteCode || "-"}`);
       window.open(`https://wa.me/?text=${text}`,"_blank");
     }
     function submitJoinCode(e){
@@ -1630,7 +1630,7 @@ allow write: if request.auth.token.tenantId == tenantId
     function submitTenant(e){e.preventDefault();let id=tnSlug.value.trim().toLowerCase().replace(/[^a-z0-9-]/g,"-");if(db.tenants[id]){showToast("tenantId sudah ada");return}db.tenants[id]={id,name:tnName.value,type:tnType.value,plan:tnPlan.value,limit:Number(tnLimit.value),status:"Aktif",admin:tnAdmin.value,monthly:planPrice(tnPlan.value),inviteCode:tnCode.value.trim().toUpperCase(),logo:"🏘️",theme:tnTheme.value,rts:{rt01:{id:"rt01",name:"RT 01",admin:"-",inviteCode:id.toUpperCase()+"-RT01"}},infos:[],iuran:[],reports:[],services:[],products:[],ronda:[],guests:[],events:[],residents:[],banners:[],bukti:[]};db.currentTenant=id;saveDB();showToast("Tenant baru berhasil dibuat");e.target.reset();openPage("tenantSwitch")}
     function planPrice(plan){return {"RT Mini":10000,"RT Plus":15000,"RW / Gabungan RT":30000,"Perumahan Mini":50000,"Perumahan Besar":150000,"Custom Kawasan":500000}[plan]||10000}
     function searchGo(){const q=searchInput.value.trim().toLowerCase();if(!q){showToast("Ketik yang mau dicari");return}if(q.includes("tenant")||q.includes("lingkungan")){db.currentRole==="super_admin"?openPage("tenantSwitch"):openPage("invite");}else if(q.includes("role")||q.includes("akses"))openPage("roles");else if(q.includes("firebase")||q.includes("rules"))openPage("firestore");else if(q.includes("pusat")||q.includes("super"))openPage("superAdmin");else if(q.includes("ac")||q.includes("listrik")||q.includes("galon")||q.includes("servis"))openPage("jasa");else if(q.includes("jual")||q.includes("lapak"))openPage("lapak");else if(q.includes("harga")||q.includes("paket"))openPage("harga");else openPage("info")}
-    function chatWA(nama,nomor="081296629033"){nomor=nomor.replace(/\D/g,"");if(nomor.startsWith("0"))nomor="62"+nomor.slice(1);window.open(`https://wa.me/${nomor}?text=${encodeURIComponent("Halo, saya lihat "+nama+" di WargaHub. Saya ingin tanya layanan dan harga.")}`,"_blank")}
+    function chatWA(nama,nomor="081296629033"){nomor=nomor.replace(/\D/g,"");if(nomor.startsWith("0"))nomor="62"+nomor.slice(1);window.open(`https://wa.me/${nomor}?text=${encodeURIComponent("Halo, saya lihat "+nama+" di SeputarWarga. Saya ingin tanya layanan dan harga.")}`,"_blank")}
     function setReport(text){reportTitle.value=text;reportDesc.focus()}
     function submitReport(e){e.preventDefault();T().reports.unshift({title:reportTitle.value,desc:reportDesc.value||"-",status:"Menunggu",time:"Baru saja"});saveDB();showToast("Laporan masuk ke tenant "+T().name);e.target.reset();openPage("lapor")}
     function setReportStatus(idx,status){T().reports[idx].status=status;saveDB();showToast("Status laporan diubah")}
@@ -1728,7 +1728,7 @@ allow write: if request.auth.token.tenantId == tenantId
       if(el) el.classList.add("active");
       document.querySelectorAll(".desk-nav").forEach(b=>b.classList.toggle("active", b.dataset.desk===id));
       const titles = {
-        overview:["Dashboard Pengelola","Kontrol seluruh tenant, user, aktivitas, billing, dan marketplace WargaHub."],
+        overview:["Dashboard Pengelola","Kontrol seluruh tenant, user, aktivitas, billing, dan marketplace SeputarWarga."],
         tenants:["Tenant / Pelanggan","Buat, aktifkan, nonaktifkan, dan pantau seluruh RT/RW/perumahan."],
         users:["User & Role","Pantau warga, admin RW, admin RT, bendahara, satpam, dan pedagang."],
         activity:["Aktivitas User","Pantau login, pendaftaran warga, laporan, iuran, lapak, dan aksi admin."],
@@ -1930,23 +1930,6 @@ allow write: if request.auth.token.tenantId == tenantId
       showToast("Firebase softpro-11da5 terhubung");
     });
 
-
-    window.addEventListener("wargahub-firebase-error", (event) => {
-      const msg = event.detail || "Firebase gagal terhubung";
-      setFirebaseStatus("Firebase error: " + msg, "err");
-      setText("dFirebaseStatus", "Error koneksi");
-      renderDesktopAdmin();
-      showToast("Firebase error: " + msg);
-    });
-
-    setTimeout(() => {
-      if (!window.WHFirebase) {
-        setFirebaseStatus("Firebase belum terhubung. Cek internet, buka lewat GitHub Pages, dan pastikan Firestore sudah aktif.", "err");
-        setText("dFirebaseStatus", "Belum terhubung");
-        renderDesktopAdmin();
-      }
-    }, 5000);
-
     renderAll();
         showToast("Data berhasil dimuat dari Firebase");
         setFirebaseStatus("Data dimuat dari Firestore", "on");
@@ -2031,7 +2014,7 @@ allow write: if request.auth.token.tenantId == tenantId
       if(el) el.classList.add("active");
       document.querySelectorAll(".desk-nav").forEach(b=>b.classList.toggle("active", b.dataset.desk===id));
       const titles = {
-        overview:["Dashboard Pengelola","Kontrol seluruh tenant, user, aktivitas, billing, dan marketplace WargaHub."],
+        overview:["Dashboard Pengelola","Kontrol seluruh tenant, user, aktivitas, billing, dan marketplace SeputarWarga."],
         tenants:["Tenant / Pelanggan","Buat, aktifkan, nonaktifkan, dan pantau seluruh RT/RW/perumahan."],
         users:["User & Role","Pantau warga, admin RW, admin RT, bendahara, satpam, dan pedagang."],
         activity:["Aktivitas User","Pantau login, pendaftaran warga, laporan, iuran, lapak, dan aksi admin."],
@@ -2299,7 +2282,7 @@ allow write: if request.auth.token.tenantId == tenantId
       if(el) el.classList.add("active");
       document.querySelectorAll(".desk-nav").forEach(b=>b.classList.toggle("active", b.dataset.desk===id));
       const titles = {
-        overview:["Dashboard Pengelola","Kontrol seluruh tenant, user, aktivitas, billing, dan marketplace WargaHub."],
+        overview:["Dashboard Pengelola","Kontrol seluruh tenant, user, aktivitas, billing, dan marketplace SeputarWarga."],
         tenants:["Tenant / Pelanggan","Buat, aktifkan, nonaktifkan, dan pantau seluruh RT/RW/perumahan."],
         users:["User & Role","Pantau warga, admin RW, admin RT, bendahara, satpam, dan pedagang."],
         activity:["Aktivitas User","Pantau login, pendaftaran warga, laporan, iuran, lapak, dan aksi admin."],
@@ -2503,140 +2486,5 @@ allow write: if request.auth.token.tenantId == tenantId
 
     renderAll();
   </script>
-
-  <script type="module">
-    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
-    import { getAnalytics, isSupported as analyticsSupported } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-analytics.js";
-    import {
-      getFirestore,
-      doc,
-      setDoc,
-      getDoc,
-      collection,
-      writeBatch,
-      serverTimestamp
-    } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
-
-    const firebaseConfig = {
-      apiKey: "AIzaSyBfV8P9R-E08rt-s17Uhslc2L9BojOL-90",
-      authDomain: "softpro-11da5.firebaseapp.com",
-      projectId: "softpro-11da5",
-      storageBucket: "softpro-11da5.firebasestorage.app",
-      messagingSenderId: "485909858785",
-      appId: "1:485909858785:web:b5da859628a2ea0b062aa0",
-      measurementId: "G-2Q5V1NRWN7"
-    };
-
-    try {
-      const app = initializeApp(firebaseConfig);
-      const firestore = getFirestore(app);
-
-      analyticsSupported().then((ok) => {
-        if (ok) getAnalytics(app);
-      }).catch(() => {});
-
-      function cleanForFirestore(value) {
-        return JSON.parse(JSON.stringify(value || {}));
-      }
-
-      async function saveState(data) {
-        await setDoc(doc(firestore, "wargahub_system", "state"), {
-          data: cleanForFirestore(data),
-          updatedAt: serverTimestamp()
-        }, { merge: true });
-      }
-
-      async function loadState() {
-        const snap = await getDoc(doc(firestore, "wargahub_system", "state"));
-        return snap.exists() ? snap.data().data : null;
-      }
-
-      async function saveTenant(tenantId, tenant) {
-        const cleanTenant = cleanForFirestore(tenant);
-        await setDoc(doc(firestore, "tenants", tenantId), {
-          id: tenantId,
-          name: cleanTenant.name || tenantId,
-          type: cleanTenant.type || "",
-          plan: cleanTenant.plan || "",
-          limit: cleanTenant.limit || 0,
-          status: cleanTenant.status || "Aktif",
-          admin: cleanTenant.admin || "",
-          monthly: cleanTenant.monthly || 0,
-          inviteCode: cleanTenant.inviteCode || "",
-          theme: cleanTenant.theme || "#ff6b00",
-          updatedAt: serverTimestamp()
-        }, { merge: true });
-
-        await setDoc(doc(firestore, "tenants", tenantId, "app", "data"), {
-          data: cleanTenant,
-          updatedAt: serverTimestamp()
-        }, { merge: true });
-
-        const batch = writeBatch(firestore);
-
-        (cleanTenant.residents || []).slice(0, 100).forEach((item, index) => {
-          batch.set(doc(collection(firestore, "tenants", tenantId, "residents")), {
-            ...item,
-            tenantId,
-            createdFromDemo: true,
-            sortIndex: index,
-            updatedAt: serverTimestamp()
-          });
-        });
-
-        (cleanTenant.reports || []).slice(0, 100).forEach((item, index) => {
-          batch.set(doc(collection(firestore, "tenants", tenantId, "reports")), {
-            ...item,
-            tenantId,
-            createdFromDemo: true,
-            sortIndex: index,
-            updatedAt: serverTimestamp()
-          });
-        });
-
-        (cleanTenant.services || []).slice(0, 100).forEach((item, index) => {
-          batch.set(doc(collection(firestore, "tenants", tenantId, "services")), {
-            ...item,
-            tenantId,
-            createdFromDemo: true,
-            sortIndex: index,
-            updatedAt: serverTimestamp()
-          });
-        });
-
-        (cleanTenant.products || []).slice(0, 100).forEach((item, index) => {
-          batch.set(doc(collection(firestore, "tenants", tenantId, "products")), {
-            ...item,
-            tenantId,
-            createdFromDemo: true,
-            sortIndex: index,
-            updatedAt: serverTimestamp()
-          });
-        });
-
-        await batch.commit();
-      }
-
-      async function loadTenant(tenantId) {
-        const snap = await getDoc(doc(firestore, "tenants", tenantId, "app", "data"));
-        return snap.exists() ? snap.data().data : null;
-      }
-
-      window.WHFirebase = {
-        app,
-        firestore,
-        saveState,
-        loadState,
-        saveTenant,
-        loadTenant
-      };
-
-      window.dispatchEvent(new CustomEvent("wargahub-firebase-ready"));
-    } catch (error) {
-      console.error("Firebase init error", error);
-      window.dispatchEvent(new CustomEvent("wargahub-firebase-error", { detail: error.message }));
-    }
-  </script>
-
 </body>
 </html>
