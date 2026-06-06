@@ -1,0 +1,15 @@
+PERUBAHAN NAMA TAMPILAN
+
+Yang diubah:
+- Bacaan WargaHub pada tampilan aplikasi/website menjadi SeputarWarga.
+
+Yang tidak diubah:
+- Logo/icon aplikasi.
+- Manifest install.
+- File manifest.json.
+- Struktur layout tampilan HP/laptop.
+- Firebase config.
+- Nama internal lowercase yang dipakai fungsi/storage tidak diubah.
+
+Catatan:
+Nama install di manifest tetap tidak diubah sesuai instruksi.

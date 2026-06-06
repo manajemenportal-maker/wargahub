@@ -46,6 +46,25 @@
     .super-bg{background:linear-gradient(135deg,#172033,#2e1065)!important;color:white}.super-bg small,.super-bg p{color:rgba(255,255,255,.78)!important}.tenant-lock{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;background:#0f172a;color:#dbeafe;border-radius:16px;padding:11px;font-size:.72rem;line-height:1.5;overflow:auto;margin-top:10px}
 
 
+
+    .upgrade-lock{
+      background:linear-gradient(135deg,#fff7ed,#fff1f2);
+      border:1px solid #fed7aa;
+      border-radius:24px;
+      padding:16px;
+      box-shadow:var(--soft);
+      margin-bottom:12px;
+    }
+    .upgrade-lock h3{margin:6px 0 8px;font-size:1.35rem;letter-spacing:-.05em}
+    .upgrade-lock p{margin:0;color:#64748b;line-height:1.55;font-size:.86rem;font-weight:750}
+    .step-line{display:grid;gap:10px;margin-top:12px}
+    .step-item{display:grid;grid-template-columns:34px 1fr;gap:10px;align-items:start}
+    .step-no{width:34px;height:34px;border-radius:13px;background:linear-gradient(135deg,var(--orange),var(--pink));color:white;display:grid;place-items:center;font-weight:950}
+    .step-item b{display:block;font-size:.86rem}
+    .step-item small{display:block;color:#64748b;font-weight:800;line-height:1.35}
+    .pending-box{background:#fffbeb;border:1px solid #fde68a;color:#92400e;border-radius:18px;padding:11px;font-size:.78rem;font-weight:850;line-height:1.45}
+    .approved-box{background:#ecfdf5;border:1px solid #bbf7d0;color:#166534;border-radius:18px;padding:11px;font-size:.78rem;font-weight:850;line-height:1.45}
+
     .firebase-dot{width:10px;height:10px;border-radius:999px;background:#94a3b8;display:inline-block;margin-right:6px}
     .firebase-dot.on{background:#16a34a}.firebase-dot.err{background:#ef4444}
 
@@ -718,6 +737,7 @@
         <button class="desk-nav" data-desk="users" onclick="openDesk('users')"><i>👥</i>User & Role</button>
         <button class="desk-nav" data-desk="activity" onclick="openDesk('activity')"><i>📡</i>Aktivitas User</button>
         <button class="desk-nav" data-desk="billing" onclick="openDesk('billing')"><i>💳</i>Billing & Paket</button>
+        <button class="desk-nav" data-desk="approvals" onclick="openDesk('approvals')"><i>✅</i>Approval Pembayaran</button>
         <button class="desk-nav" data-desk="marketplace" onclick="openDesk('marketplace')"><i>🛒</i>Lapak & Jasa</button>
         <button class="desk-nav" data-desk="moderation" onclick="openDesk('moderation')"><i>🛡️</i>Moderasi Laporan</button>
         <button class="desk-nav" data-desk="links" onclick="openDesk('links')"><i>🔗</i>Link Tenant/RT</button>
@@ -881,6 +901,15 @@
         <div class="desk-table-wrap"><table class="desk-table"><thead><tr><th>Tenant</th><th>Paket</th><th>Tagihan</th><th>Status Bayar</th><th>Jatuh Tempo</th><th>Aksi</th></tr></thead><tbody id="dBillingRows"></tbody></table></div>
       </section>
 
+
+      <section class="desk-section" id="desk-approvals">
+        <div class="desk-section-head">
+          <h2>Approval Pembayaran & Buka Akses</h2>
+          <button class="desk-btn light" onclick="renderDesktopAdmin()">Refresh</button>
+        </div>
+        <div class="desk-table-wrap"><table class="desk-table"><thead><tr><th>Tenant</th><th>Paket</th><th>Nominal</th><th>Admin</th><th>Status</th><th>Aksi</th></tr></thead><tbody id="dApprovalRows"></tbody></table></div>
+      </section>
+
       <section class="desk-section" id="desk-marketplace">
         <div class="desk-section-head">
           <h2>Lapak, Jasa & Banner</h2>
@@ -1034,7 +1063,7 @@ tenants/{tenantId}/products</div>
             <button class="icon-item" onclick="openPage('roles')"><div class="icon-badge">🔐</div>Role</button>
             <button class="icon-item" onclick="openPage('harga')"><div class="icon-badge">💰</div>Harga</button>
             <button class="icon-item" onclick="openPage('firestore')"><div class="icon-badge">🔥</div>Firebase</button>
-            <button class="icon-item" onclick="openPage('invite')"><div class="icon-badge">🔗</div>Link</button>
+            <button class="icon-item" onclick="requireApprovedAccess('invite')"><div class="icon-badge">🔗</div>Link</button>
             <button class="icon-item" onclick="openPage('rtRooms')"><div class="icon-badge">🏠</div>Ruang RT</button>
             <button class="icon-item" onclick="openPage('selfRegister')"><div class="icon-badge">📝</div>Daftar</button>
             <button class="icon-item" onclick="openPage('rwCommunity')"><div class="icon-badge">🤝</div>RW</button>
@@ -1047,6 +1076,78 @@ tenants/{tenantId}/products</div>
           <div class="promo-small"><h3>Mode role aktif</h3><p>Super admin, admin tenant, bendahara, satpam, warga.</p><button onclick="openPage('roles')">Atur Role</button></div>
         </div>
         <div id="homeFeed"></div>
+      </div>
+
+
+      <div class="page" id="freeRegister">
+        <div class="sec-head"><div class="sec-title"><button class="back" onclick="openPage('home')">‹</button><h2>Daftar Pengurus</h2></div><small>Gratis</small></div>
+        <div class="upgrade-lock">
+          <small class="status purple">DAFTAR GRATIS</small>
+          <h3>Pengurus bisa daftar dulu tanpa bayar</h3>
+          <p>Setelah daftar, sistem membuat slot lingkungan dan link admin otomatis. Namun akses undang warga baru dibuka setelah admin memilih paket, mengirim bukti bayar, dan disetujui Admin Pusat.</p>
+        </div>
+        <div class="card">
+          <form class="form" onsubmit="submitFreeAdminRegistration(event)">
+            <input id="freeEnvName" placeholder="Nama lingkungan / RW / RT / perumahan" required>
+            <select id="freeEnvType"><option>RT</option><option>RW</option><option>Perumahan</option><option>Cluster</option><option>Kampung</option><option>Apartemen</option></select>
+            <input id="freeAdminName" placeholder="Nama pengurus/admin" required>
+            <input id="freeAdminPhone" placeholder="Nomor WhatsApp pengurus" required>
+            <input id="freeEnvAddress" placeholder="Alamat singkat / wilayah">
+            <button class="btn" type="submit">Daftar Gratis & Buat Link</button>
+          </form>
+        </div>
+      </div>
+
+      <div class="page" id="upgradeRequired">
+        <div class="sec-head"><div class="sec-title"><button class="back" onclick="openPage('home')">‹</button><h2>Upgrade Paket</h2></div><small>Wajib sebelum undang warga</small></div>
+        <div id="upgradeStatusBox"></div>
+        <div class="upgrade-lock">
+          <small class="status orange">AKSES WARGA TERKUNCI</small>
+          <h3>Admin harus upgrade dulu</h3>
+          <p>Slot lingkungan sudah dibuat gratis. Untuk membuka akses warga, admin/pengurus harus pilih paket, bayar, lalu menunggu approval dari Admin Pusat.</p>
+          <div class="step-line">
+            <div class="step-item"><div class="step-no">1</div><div><b>Pilih paket</b><small>RT/RW/perumahan memilih paket sesuai jumlah warga.</small></div></div>
+            <div class="step-item"><div class="step-no">2</div><div><b>Upload bukti bayar</b><small>Bukti masuk ke dashboard Admin Pusat.</small></div></div>
+            <div class="step-item"><div class="step-no">3</div><div><b>Admin Pusat approve</b><small>Setelah disetujui, link warga dan mandat admin RT terbuka.</small></div></div>
+          </div>
+        </div>
+        <div id="upgradePlanList"></div>
+      </div>
+
+      <div class="page" id="paymentConfirm">
+        <div class="sec-head"><div class="sec-title"><button class="back" onclick="openPage('upgradeRequired')">‹</button><h2>Konfirmasi Bayar</h2></div><small>Menunggu approval</small></div>
+        <div class="card">
+          <form class="form" onsubmit="submitUpgradePayment(event)">
+            <input id="payTenantName" readonly>
+            <input id="payPlanName" readonly>
+            <input id="payAmount" readonly>
+            <input id="paySender" placeholder="Nama pengirim / rekening" required>
+            <input id="payWa" placeholder="Nomor WhatsApp admin" required>
+            <input type="file" accept="image/*">
+            <textarea id="payNote" placeholder="Catatan transfer, contoh: BCA jam 14.30"></textarea>
+            <button class="btn" type="submit">Kirim Bukti ke Admin Pusat</button>
+          </form>
+        </div>
+      </div>
+
+      <div class="page" id="mandateAdmin">
+        <div class="sec-head"><div class="sec-title"><button class="back" onclick="openPage('admin')">‹</button><h2>Mandat Admin RT</h2></div><small>Setelah approved</small></div>
+        <div id="mandateGate"></div>
+        <div class="card">
+          <form class="form" onsubmit="submitMandateAdmin(event)">
+            <select id="mandateRt"></select>
+            <input id="mandateName" placeholder="Nama admin RT / petugas" required>
+            <input id="mandatePhone" placeholder="Nomor WhatsApp admin" required>
+            <select id="mandateRole"><option value="rt_admin">Admin RT</option><option value="bendahara">Bendahara</option><option value="security">Satpam/Keamanan</option></select>
+            <button class="btn" type="submit">Berikan Mandat</button>
+          </form>
+        </div>
+        <div id="mandateList"></div>
+      </div>
+
+      <div class="page" id="centralApproval">
+        <div class="sec-head"><div class="sec-title"><button class="back" onclick="openPage('superAdmin')">‹</button><h2>Approval Pusat</h2></div><small>Pembayaran & akses</small></div>
+        <div id="centralApprovalList"></div>
       </div>
 
       <div class="page" id="tenantSwitch">
@@ -1320,7 +1421,7 @@ allow write: if request.auth.token.tenantId == tenantId
       super_admin:"Super Admin", tenant_admin:"Admin Lingkungan", rt_admin:"Admin RT", bendahara:"Bendahara", security:"Satpam", resident:"Warga"
     };
     const pageTitles = {
-      home:"Beranda tenant aktif", tenantSwitch:"Pilih lingkungan", roles:"Role & akses", superAdmin:"Dashboard pusat SeputarWarga", createTenant:"Buat tenant baru", tenantBilling:"Billing pelanggan", globalIncome:"Income semua tenant", firebaseSync:"Firebase sync", firestore:"Struktur Firebase", securityRules:"Security rules", roleMatrix:"Matriks role", shareLinks:"Link khusus tenant", invite:"Undangan warga", rtRooms:"Ruang RT", selfRegister:"Daftar mandiri warga", rtLinks:"Link khusus RT", rwCommunity:"Komunitas RW", info:"Pengumuman lingkungan", iuran:"Pembayaran warga", uploadBukti:"Upload bukti bayar", riwayatIuran:"Riwayat iuran", lapor:"Laporan cepat", jasa:"Tukang & service sekitar", daftarJasa:"Daftar tukang/service", lapak:"Marketplace warga", tambahLapak:"Tambah jualan warga", ronda:"Keamanan lingkungan", aturRonda:"Atur jadwal ronda", tamu:"Buku tamu digital", event:"Agenda warga", tambahEvent:"Tambah kegiatan", darurat:"Kontak darurat", admin:"Panel admin tenant", adminInfo:"Input pengumuman", adminWarga:"Database warga", adminBanner:"Iklan berjalan", adminLaporan:"Kelola laporan", harga:"Paket harga", notifikasi:"Notifikasi warga", profil:"Profil warga"
+      home:"Beranda tenant aktif", freeRegister:"Daftar pengurus gratis", upgradeRequired:"Upgrade paket", paymentConfirm:"Konfirmasi bayar", mandateAdmin:"Mandat admin RT", centralApproval:"Approval Admin Pusat", tenantSwitch:"Pilih lingkungan", roles:"Role & akses", superAdmin:"Dashboard pusat SeputarWarga", createTenant:"Buat tenant baru", tenantBilling:"Billing pelanggan", globalIncome:"Income semua tenant", firebaseSync:"Firebase sync", firestore:"Struktur Firebase", securityRules:"Security rules", roleMatrix:"Matriks role", shareLinks:"Link khusus tenant", invite:"Undangan warga", rtRooms:"Ruang RT", selfRegister:"Daftar mandiri warga", rtLinks:"Link khusus RT", rwCommunity:"Komunitas RW", info:"Pengumuman lingkungan", iuran:"Pembayaran warga", uploadBukti:"Upload bukti bayar", riwayatIuran:"Riwayat iuran", lapor:"Laporan cepat", jasa:"Tukang & service sekitar", daftarJasa:"Daftar tukang/service", lapak:"Marketplace warga", tambahLapak:"Tambah jualan warga", ronda:"Keamanan lingkungan", aturRonda:"Atur jadwal ronda", tamu:"Buku tamu digital", event:"Agenda warga", tambahEvent:"Tambah kegiatan", darurat:"Kontak darurat", admin:"Panel admin tenant", adminInfo:"Input pengumuman", adminWarga:"Database warga", adminBanner:"Iklan berjalan", adminLaporan:"Kelola laporan", harga:"Paket harga", notifikasi:"Notifikasi warga", profil:"Profil warga"
     };
     const roleMatrix = [
       ["Super Admin","Semua tenant, billing, paket, aktivasi, statistik global, struktur Firebase"],
@@ -1337,7 +1438,7 @@ allow write: if request.auth.token.tenantId == tenantId
       currentRole:"super_admin",
       tenants:{
         "gardenia-residence":{
-          id:"gardenia-residence",name:"Gardenia Residence",type:"Perumahan",plan:"Perumahan Mini",limit:500,status:"Aktif",admin:"Pak Dedi",monthly:50000,inviteCode:"GARDENIA03",logo:"🏘️",theme:"#ff6b00",rts:{rt01:{id:"rt01",name:"RT 01",admin:"Pak Arif",inviteCode:"GARDENIA-RT01"},rt02:{id:"rt02",name:"RT 02",admin:"Bu Lina",inviteCode:"GARDENIA-RT02"},rt03:{id:"rt03",name:"RT 03",admin:"Pak Dedi",inviteCode:"GARDENIA-RT03"}},
+          id:"gardenia-residence",name:"Gardenia Residence",type:"Perumahan",plan:"Perumahan Mini",limit:500,status:"approved",accessOpen:true,admin:"Pak Dedi",monthly:50000,inviteCode:"GARDENIA03",logo:"🏘️",theme:"#ff6b00",rts:{rt01:{id:"rt01",name:"RT 01",admin:"Pak Arif",inviteCode:"GARDENIA-RT01"},rt02:{id:"rt02",name:"RT 02",admin:"Bu Lina",inviteCode:"GARDENIA-RT02"},rt03:{id:"rt03",name:"RT 03",admin:"Pak Dedi",inviteCode:"GARDENIA-RT03"}},
           infos:[
             {title:"Kerja bakti Minggu pagi",desc:"Kumpul jam 07.00 di pos satpam. Area fokus: selokan depan dan taman Blok C.",tag:"Kegiatan",icon:"RT",time:"10 menit lalu"},
             {title:"Info air lingkungan",desc:"Pompa utama dicek pukul 15.00. Mohon warga menampung air secukupnya.",tag:"Informasi",icon:"💧",time:"Hari ini"}
@@ -1352,7 +1453,7 @@ allow write: if request.auth.token.tenantId == tenantId
           banners:[{text:"Servis AC mulai 75rb",owner:"Bang Udin",price:"Rp50rb/bulan"}], bukti:[]
         },
         "kampung-melati-rw05":{
-          id:"kampung-melati-rw05",name:"Kampung Melati RW 05",type:"RW",plan:"RW / Gabungan RT",limit:250,status:"Aktif",admin:"Bu Sari",monthly:30000,inviteCode:"MELATI05",logo:"🌿",theme:"#16a34a",rts:{rt01:{id:"rt01",name:"RT 01",admin:"Pak Rudi",inviteCode:"MELATI-RT01"},rt02:{id:"rt02",name:"RT 02",admin:"Bu Sari",inviteCode:"MELATI-RT02"},rt03:{id:"rt03",name:"RT 03",admin:"Pak Amin",inviteCode:"MELATI-RT03"}},
+          id:"kampung-melati-rw05",name:"Kampung Melati RW 05",type:"RW",plan:"RW / Gabungan RT",limit:250,status:"approved",accessOpen:true,admin:"Bu Sari",monthly:30000,inviteCode:"MELATI05",logo:"🌿",theme:"#16a34a",rts:{rt01:{id:"rt01",name:"RT 01",admin:"Pak Rudi",inviteCode:"MELATI-RT01"},rt02:{id:"rt02",name:"RT 02",admin:"Bu Sari",inviteCode:"MELATI-RT02"},rt03:{id:"rt03",name:"RT 03",admin:"Pak Amin",inviteCode:"MELATI-RT03"}},
           infos:[{title:"Rapat RW Jumat malam",desc:"Pembahasan kebersihan, keamanan, dan data warga.",tag:"Penting",icon:"RW",time:"Hari ini"}],
           iuran:[{title:"Kas RW",nominal:"Rp20.000",status:"Belum",desc:"Menunggu pembayaran bulan ini."}],
           reports:[{title:"Selokan RT 04 mampet",desc:"Butuh pengecekan sebelum hujan besar.",status:"Menunggu",time:"Kemarin"}],
@@ -1369,6 +1470,8 @@ allow write: if request.auth.token.tenantId == tenantId
         {name:"Perumahan Besar",range:"501–1.000 warga",price:"Rp150.000/bulan",desc:"Untuk kawasan besar dengan dashboard lengkap."},
         {name:"Custom Kawasan",range:">1.000 warga",price:"Mulai Rp500.000/bulan",desc:"Untuk estate, apartemen, atau kawasan besar."}
       ],
+      pendingUpgrades:[],
+      platformAdmins:[],
       monetize:[
         {name:"Lapak Basic",price:10000,desc:"Tampil di daftar jualan warga."},
         {name:"Lapak Prioritas",price:25000,desc:"Tampil lebih atas dengan label rekomendasi."},
@@ -1467,6 +1570,12 @@ allow write: if request.auth.token.tenantId == tenantId
       let found = Object.values(db.tenants).find(t => (t.inviteCode || "").toUpperCase() === code);
       if(found){
         db.currentTenant = found.id;
+        if(!currentTenantApproved()){
+          saveDB();
+          showToast("Akses warga belum dibuka. Admin harus upgrade dan menunggu approval pusat.");
+          openPage("upgradeRequired");
+          return;
+        }
         db.currentRole = "resident";
         saveDB();
         showToast("Berhasil masuk ke " + found.name);
@@ -1505,7 +1614,7 @@ allow write: if request.auth.token.tenantId == tenantId
     function showToast(msg){const el=document.getElementById('toast');el.textContent=msg;el.classList.add('show');setTimeout(()=>el.classList.remove('show'),2400)}
 
     function renderAll(){
-      renderTenantStrip();renderHome();renderTenants();renderRoles();renderSuper();renderInfo();renderIuran();renderRiwayat();renderReports();renderServices();renderProducts();renderRonda();renderGuests();renderEvents();renderResidents();renderBanners();renderPricing();renderAdmin();renderNotifs();renderFirebaseSync();renderFirestore();renderShareLinks();renderDesktopAdmin();renderInvite();renderRtRooms();renderSelfRegister();renderRwCommunity();
+      renderTenantStrip();renderHome();renderTenants();renderRoles();renderSuper();renderInfo();renderIuran();renderRiwayat();renderReports();renderServices();renderProducts();renderRonda();renderGuests();renderEvents();renderResidents();renderBanners();renderPricing();renderAdmin();renderNotifs();renderFirebaseSync();renderFirestore();renderShareLinks();renderDesktopAdmin();renderInvite();renderRtRooms();renderSelfRegister();renderRwCommunity();renderUpgradePlans();renderCentralApproval();renderMandateAdmin();
     }
     function renderTenantStrip(){
       const tenants = db.currentRole === "super_admin" ? Object.values(db.tenants) : [T()];
@@ -1608,6 +1717,11 @@ allow write: if request.auth.token.tenantId == tenantId
 
     function submitSelfRegister(e){
       e.preventDefault();
+      if(!currentTenantApproved()){
+        showToast("Pendaftaran warga terkunci. Admin harus upgrade dan menunggu approval pusat.");
+        openPage("upgradeRequired");
+        return;
+      }
       const rtId = regRtSelect.value;
       db.currentRt = rtId;
       const rt = T().rts[rtId];
@@ -1627,7 +1741,174 @@ allow write: if request.auth.token.tenantId == tenantId
       openPage("rwCommunity");
     }
 
-    function submitTenant(e){e.preventDefault();let id=tnSlug.value.trim().toLowerCase().replace(/[^a-z0-9-]/g,"-");if(db.tenants[id]){showToast("tenantId sudah ada");return}db.tenants[id]={id,name:tnName.value,type:tnType.value,plan:tnPlan.value,limit:Number(tnLimit.value),status:"Aktif",admin:tnAdmin.value,monthly:planPrice(tnPlan.value),inviteCode:tnCode.value.trim().toUpperCase(),logo:"🏘️",theme:tnTheme.value,rts:{rt01:{id:"rt01",name:"RT 01",admin:"-",inviteCode:id.toUpperCase()+"-RT01"}},infos:[],iuran:[],reports:[],services:[],products:[],ronda:[],guests:[],events:[],residents:[],banners:[],bukti:[]};db.currentTenant=id;saveDB();showToast("Tenant baru berhasil dibuat");e.target.reset();openPage("tenantSwitch")}
+
+    function slugifyName(name){
+      return name.toLowerCase().trim().replace(/[^a-z0-9]+/g,"-").replace(/^-+|-+$/g,"").slice(0,48) || ("tenant-" + Date.now());
+    }
+    function currentTenantApproved(){
+      const t=T();
+      return t.accessOpen === true && t.status === "approved";
+    }
+    function requireApprovedAccess(nextPage){
+      if(currentTenantApproved()){
+        openPage(nextPage);
+      }else{
+        showToast("Akses warga terkunci. Admin harus upgrade dan menunggu approval pusat.");
+        openPage("upgradeRequired");
+      }
+    }
+    function submitFreeAdminRegistration(e){
+      e.preventDefault();
+      let id=slugifyName(freeEnvName.value);
+      let original=id, n=1;
+      while(db.tenants[id]){id=original+"-"+(++n)}
+      const code=id.toUpperCase().replace(/-/g,"").slice(0,10)+"-ADMIN";
+      db.tenants[id]={
+        id,
+        name:freeEnvName.value,
+        type:freeEnvType.value,
+        plan:"Belum pilih paket",
+        limit:0,
+        status:"free_registered",
+        accessOpen:false,
+        admin:freeAdminName.value,
+        adminPhone:freeAdminPhone.value,
+        address:freeEnvAddress.value,
+        monthly:0,
+        inviteCode:code,
+        logo:"🏘️",
+        theme:"#ff6b00",
+        rts:{rt01:{id:"rt01",name:"RT 01",admin:freeAdminName.value,inviteCode:id.toUpperCase()+"-RT01"}},
+        infos:[],iuran:[],reports:[],services:[],products:[],ronda:[],guests:[],events:[],residents:[],banners:[],bukti:[],mandates:[]
+      };
+      db.currentTenant=id;
+      db.currentRole="tenant_admin";
+      addDeskLog("admin","🆓","Pengurus daftar gratis",`${freeAdminName.value} membuat slot ${freeEnvName.value}`);
+      saveDB();
+      showToast("Slot gratis dibuat. Link admin otomatis tersedia.");
+      e.target.reset();
+      openPage("upgradeRequired");
+    }
+    function planLimit(plan){
+      return {"RT Mini":50,"RT Plus":150,"RW / Gabungan RT":250,"Perumahan Mini":500,"Perumahan Besar":1000,"Custom Kawasan":5000}[plan] || 50;
+    }
+    function renderUpgradePlans(){
+      const el=document.getElementById("upgradePlanList");
+      if(!el) return;
+      const t=T();
+      const status=document.getElementById("upgradeStatusBox");
+      if(status){
+        if(t.status==="pending_payment") status.innerHTML=`<div class="pending-box">Bukti pembayaran sudah dikirim. Menunggu approval Admin Pusat. Setelah approve, link warga dan mandat admin RT akan terbuka.</div>`;
+        else if(currentTenantApproved()) status.innerHTML=`<div class="approved-box">Tenant sudah aktif. Admin bisa mengundang warga dan memberikan mandat ke admin RT.</div>`;
+        else status.innerHTML=`<div class="pending-box">Status sekarang: ${t.status || "free_registered"}. Pilih paket untuk membuka akses warga.</div>`;
+      }
+      el.innerHTML=db.pricing.map(p=>`<div class="card"><div class="feed-head"><div class="avatar">💰</div><div><b>${p.name}</b><small>${p.range} · ${p.price}</small></div></div><p>${p.desc}</p><div class="pay-actions"><button class="btn" onclick="selectUpgradePlan('${p.name}','${p.price.replace(/'/g,"")}')">Pilih Paket</button><button class="btn light" onclick="openPage('harga')">Detail</button></div></div>`).join("");
+    }
+    function selectUpgradePlan(plan, price){
+      const t=T();
+      t.selectedPlan=plan;
+      t.selectedPrice=price;
+      t.plan=plan;
+      t.limit=planLimit(plan);
+      payTenantName.value=t.name;
+      payPlanName.value=plan;
+      payAmount.value=price;
+      payWa.value=t.adminPhone || "081296629033";
+      saveDB();
+      openPage("paymentConfirm");
+    }
+    function submitUpgradePayment(e){
+      e.preventDefault();
+      const t=T();
+      const req={
+        id:"REQ-"+Date.now(),
+        tenantId:t.id,
+        tenantName:t.name,
+        admin:t.admin,
+        adminPhone:payWa.value,
+        plan:t.selectedPlan || t.plan,
+        amount:payAmount.value,
+        sender:paySender.value,
+        note:payNote.value,
+        status:"Menunggu Approval",
+        createdAt:new Date().toLocaleString("id-ID")
+      };
+      t.status="pending_payment";
+      t.accessOpen=false;
+      t.paymentRequest=req;
+      db.pendingUpgrades=db.pendingUpgrades || [];
+      db.pendingUpgrades.unshift(req);
+      addDeskLog("payment","💳","Bukti upgrade masuk",`${t.name} memilih ${req.plan}`);
+      saveDB();
+      showToast("Bukti bayar dikirim. Menunggu approval Admin Pusat.");
+      e.target.reset();
+      openPage("upgradeRequired");
+    }
+    function approveUpgrade(reqId){
+      const req=(db.pendingUpgrades||[]).find(r=>r.id===reqId);
+      if(!req){showToast("Request tidak ditemukan");return}
+      const t=db.tenants[req.tenantId];
+      if(!t){showToast("Tenant tidak ditemukan");return}
+      req.status="Approved";
+      t.status="approved";
+      t.accessOpen=true;
+      t.plan=req.plan;
+      t.monthly=planPrice(req.plan);
+      t.limit=planLimit(req.plan);
+      t.approvedAt=new Date().toLocaleString("id-ID");
+      addDeskLog("payment","✅","Upgrade disetujui Admin Pusat",`${t.name} aktif paket ${t.plan}`);
+      saveDB();
+      showToast("Tenant approved. Akses warga sudah terbuka.");
+    }
+    function rejectUpgrade(reqId){
+      const req=(db.pendingUpgrades||[]).find(r=>r.id===reqId);
+      if(!req)return;
+      req.status="Ditolak";
+      const t=db.tenants[req.tenantId];
+      if(t){t.status="payment_rejected";t.accessOpen=false;}
+      addDeskLog("payment","❌","Upgrade ditolak",req.tenantName);
+      saveDB();
+      showToast("Request ditolak.");
+    }
+    function renderCentralApproval(){
+      const el=document.getElementById("centralApprovalList");
+      if(!el)return;
+      const rows=db.pendingUpgrades || [];
+      el.innerHTML=rows.map(r=>`<div class="card"><div class="feed-head"><div class="avatar">💳</div><div><b>${r.tenantName}</b><small>${r.plan} · ${r.amount}</small></div></div><p>Admin: ${r.admin} · WA: ${r.adminPhone}. Pengirim: ${r.sender}. Catatan: ${r.note || "-"}. Waktu: ${r.createdAt}</p><div class="status-row"><span class="status ${r.status==="Approved"?"green":r.status==="Ditolak"?"red":"orange"}">${r.status}</span></div><div class="pay-actions"><button class="btn green" onclick="approveUpgrade('${r.id}')">Approve & Buka Akses</button><button class="btn light" onclick="rejectUpgrade('${r.id}')">Tolak</button></div></div>`).join("") || `<div class="empty">Belum ada pembayaran menunggu approval.</div>`;
+    }
+    function renderMandateAdmin(){
+      const gate=document.getElementById("mandateGate");
+      const rtSel=document.getElementById("mandateRt");
+      const list=document.getElementById("mandateList");
+      if(!gate||!rtSel||!list)return;
+      const t=T();
+      if(!currentTenantApproved()){
+        gate.innerHTML=`<div class="upgrade-lock"><small class="status orange">TERKUNCI</small><h3>Mandat admin belum bisa dibuat</h3><p>Admin harus upgrade paket dan menunggu approval Admin Pusat sebelum bisa memberi mandat ke Admin RT/Bendahara/Satpam.</p><div class="pay-actions" style="margin-top:12px"><button class="btn" onclick="openPage('upgradeRequired')">Upgrade Sekarang</button></div></div>`;
+      }else{
+        gate.innerHTML=`<div class="approved-box">Akses sudah aktif. Admin boleh memberikan mandat kepada pengurus RT, bendahara, atau keamanan.</div>`;
+      }
+      rtSel.innerHTML=Object.values(t.rts||{}).map(r=>`<option value="${r.id}">${r.name} - ${r.inviteCode}</option>`).join("");
+      list.innerHTML=(t.mandates||[]).map(m=>card("👥",m.name,`${m.role} · ${m.rtId}`,`WA: ${m.phone}. Mandat dibuat: ${m.createdAt}`,["Aktif"])).join("") || `<div class="empty">Belum ada mandat admin RT.</div>`;
+    }
+    function submitMandateAdmin(e){
+      e.preventDefault();
+      const t=T();
+      if(!currentTenantApproved()){
+        showToast("Akses terkunci. Upgrade dan approval pusat diperlukan.");
+        openPage("upgradeRequired");
+        return;
+      }
+      t.mandates=t.mandates||[];
+      t.mandates.unshift({rtId:mandateRt.value,name:mandateName.value,phone:mandatePhone.value,role:mandateRole.value,createdAt:new Date().toLocaleString("id-ID")});
+      if(t.rts && t.rts[mandateRt.value] && mandateRole.value==="rt_admin") t.rts[mandateRt.value].admin=mandateName.value;
+      addDeskLog("admin","👥","Mandat admin dibuat",`${mandateName.value} menjadi ${mandateRole.value} di ${t.name}`);
+      saveDB();
+      showToast("Mandat admin berhasil dibuat.");
+      e.target.reset();
+      openPage("mandateAdmin");
+    }
+
+    function submitTenant(e){e.preventDefault();let id=tnSlug.value.trim().toLowerCase().replace(/[^a-z0-9-]/g,"-");if(db.tenants[id]){showToast("tenantId sudah ada");return}db.tenants[id]={id,name:tnName.value,type:tnType.value,plan:tnPlan.value,limit:Number(tnLimit.value),status:"approved",accessOpen:true,admin:tnAdmin.value,monthly:planPrice(tnPlan.value),inviteCode:tnCode.value.trim().toUpperCase(),logo:"🏘️",theme:tnTheme.value,rts:{rt01:{id:"rt01",name:"RT 01",admin:"-",inviteCode:id.toUpperCase()+"-RT01"}},infos:[],iuran:[],reports:[],services:[],products:[],ronda:[],guests:[],events:[],residents:[],banners:[],bukti:[]};db.currentTenant=id;saveDB();showToast("Tenant baru berhasil dibuat");e.target.reset();openPage("tenantSwitch")}
     function planPrice(plan){return {"RT Mini":10000,"RT Plus":15000,"RW / Gabungan RT":30000,"Perumahan Mini":50000,"Perumahan Besar":150000,"Custom Kawasan":500000}[plan]||10000}
     function searchGo(){const q=searchInput.value.trim().toLowerCase();if(!q){showToast("Ketik yang mau dicari");return}if(q.includes("tenant")||q.includes("lingkungan")){db.currentRole==="super_admin"?openPage("tenantSwitch"):openPage("invite");}else if(q.includes("role")||q.includes("akses"))openPage("roles");else if(q.includes("firebase")||q.includes("rules"))openPage("firestore");else if(q.includes("pusat")||q.includes("super"))openPage("superAdmin");else if(q.includes("ac")||q.includes("listrik")||q.includes("galon")||q.includes("servis"))openPage("jasa");else if(q.includes("jual")||q.includes("lapak"))openPage("lapak");else if(q.includes("harga")||q.includes("paket"))openPage("harga");else openPage("info")}
     function chatWA(nama,nomor="081296629033"){nomor=nomor.replace(/\D/g,"");if(nomor.startsWith("0"))nomor="62"+nomor.slice(1);window.open(`https://wa.me/${nomor}?text=${encodeURIComponent("Halo, saya lihat "+nama+" di SeputarWarga. Saya ingin tanya layanan dan harga.")}`,"_blank")}
@@ -1733,6 +2014,7 @@ allow write: if request.auth.token.tenantId == tenantId
         users:["User & Role","Pantau warga, admin RW, admin RT, bendahara, satpam, dan pedagang."],
         activity:["Aktivitas User","Pantau login, pendaftaran warga, laporan, iuran, lapak, dan aksi admin."],
         billing:["Billing & Paket","Kelola tagihan aplikasi tiap tenant dan status pembayaran."],
+        approvals:["Approval Pembayaran","Setujui pembayaran upgrade, buka akses warga, dan aktifkan mandat admin RT."],
         marketplace:["Lapak & Jasa","Kontrol pedagang, tukang service, banner, dan potensi income lokal."],
         moderation:["Moderasi Laporan","Pantau laporan warga, status penanganan, dan keamanan lingkungan."],
         links:["Link Tenant/RT","Salin link khusus tenant dan RT untuk dikirim ke pelanggan/warga."],
@@ -1778,7 +2060,7 @@ allow write: if request.auth.token.tenantId == tenantId
 
       const filteredTenants = tenants.filter(t => (`${t.name} ${t.plan} ${t.admin} ${t.id}`).toLowerCase().includes(q));
       setHTML("dTenantRows", filteredTenants.map(t=>`
-        <tr><td><b>${t.name}</b><br><small>${t.id}</small></td><td>${t.plan}</td><td>${t.residents.length}/${t.limit}</td><td>${t.admin}</td><td><span class="desk-pill green">${t.status}</span></td><td><b>${money(deskIncomeTenant(t))}</b></td>
+        <tr><td><b>${t.name}</b><br><small>${t.id}</small></td><td>${t.plan}</td><td>${t.residents.length}/${t.limit}</td><td>${t.admin}</td><td><span class="desk-pill ${t.accessOpen?'green':t.status==='pending_payment'?'orange':'red'}">${t.accessOpen?'Aktif':t.status}</span></td><td><b>${money(deskIncomeTenant(t))}</b></td>
         <td><div class="desk-mini-actions"><button class="primary" onclick="deskUseTenant('${t.id}')">Pakai</button><button onclick="copyTenantLink('${t.id}')">Copy Link</button><button onclick="deskToggleTenant('${t.id}')">${t.status==="Aktif"?"Nonaktif":"Aktifkan"}</button></div></td></tr>
       `).join(""));
 
@@ -1794,9 +2076,15 @@ allow write: if request.auth.token.tenantId == tenantId
       setHTML("dActivityLog", logHTML || `<div class="empty">Belum ada aktivitas.</div>`);
 
       setHTML("dBillingRows", tenants.map(t=>`
-        <tr><td><b>${t.name}</b><br><small>${t.id}</small></td><td>${t.plan}</td><td><b>${money(t.monthly||0)}/bulan</b></td><td><span class="desk-pill green">Lunas Demo</span></td><td>Setiap tanggal 10</td>
+        <tr><td><b>${t.name}</b><br><small>${t.id}</small></td><td>${t.plan}</td><td><b>${money(t.monthly||0)}/bulan</b></td><td><span class="desk-pill ${t.accessOpen?'green':t.status==='pending_payment'?'orange':'red'}">${t.accessOpen?'Aktif':t.status==='pending_payment'?'Menunggu Approval':'Belum Upgrade'}</span></td><td>Setiap tanggal 10</td>
         <td><div class="desk-mini-actions"><button class="primary" onclick="deskMarkPaid('${t.id}')">Tandai Lunas</button><button onclick="openDeskModal('changePlan','${t.id}')">Ubah Paket</button></div></td></tr>
       `).join(""));
+
+
+      setHTML("dApprovalRows", (db.pendingUpgrades||[]).map(r=>`
+        <tr><td><b>${r.tenantName}</b><br><small>${r.tenantId}</small></td><td>${r.plan}</td><td><b>${r.amount}</b></td><td>${r.admin}<br><small>${r.adminPhone}</small></td><td><span class="desk-pill ${r.status==="Approved"?"green":r.status==="Ditolak"?"red":"orange"}">${r.status}</span></td>
+        <td><div class="desk-mini-actions"><button class="primary" onclick="approveUpgrade('${r.id}');renderDesktopAdmin()">Approve & Buka</button><button class="danger" onclick="rejectUpgrade('${r.id}');renderDesktopAdmin()">Tolak</button></div></td></tr>
+      `).join("") || `<tr><td colspan="6">Belum ada pembayaran menunggu approval.</td></tr>`);
 
       const filteredMarket = market.filter(m => (`${m.name||m.text} ${m.tenantName} ${m.kind} ${m.cat||""}`).toLowerCase().includes(q));
       setHTML("dMarketRows", filteredMarket.map(m=>`
@@ -1887,7 +2175,7 @@ allow write: if request.auth.token.tenantId == tenantId
       e.preventDefault();
       const id=dTnSlug.value.trim().toLowerCase().replace(/[^a-z0-9-]/g,"-");
       if(db.tenants[id]){showToast("tenantId sudah ada");return}
-      db.tenants[id]={id,name:dTnName.value,type:dTnType.value,plan:dTnPlan.value,limit:Number(dTnLimit.value),status:"Aktif",admin:dTnAdmin.value,monthly:planPrice(dTnPlan.value),inviteCode:dTnCode.value.trim().toUpperCase(),logo:"🏘️",theme:"#ff6b00",rts:{rt01:{id:"rt01",name:"RT 01",admin:"-",inviteCode:id.toUpperCase()+"-RT01"}},infos:[],iuran:[],reports:[],services:[],products:[],ronda:[],guests:[],events:[],residents:[],banners:[],bukti:[]};
+      db.tenants[id]={id,name:dTnName.value,type:dTnType.value,plan:dTnPlan.value,limit:Number(dTnLimit.value),status:"approved",accessOpen:true,admin:dTnAdmin.value,monthly:planPrice(dTnPlan.value),inviteCode:dTnCode.value.trim().toUpperCase(),logo:"🏘️",theme:"#ff6b00",rts:{rt01:{id:"rt01",name:"RT 01",admin:"-",inviteCode:id.toUpperCase()+"-RT01"}},infos:[],iuran:[],reports:[],services:[],products:[],ronda:[],guests:[],events:[],residents:[],banners:[],bukti:[]};
       db.currentTenant=id;saveDB();addDeskLog("admin","🏘️","Tenant baru dibuat",dTnName.value);closeDeskModal();renderDesktopAdmin();showToast("Tenant baru dibuat");
     }
     function deskSubmitUser(e){
@@ -2019,6 +2307,7 @@ allow write: if request.auth.token.tenantId == tenantId
         users:["User & Role","Pantau warga, admin RW, admin RT, bendahara, satpam, dan pedagang."],
         activity:["Aktivitas User","Pantau login, pendaftaran warga, laporan, iuran, lapak, dan aksi admin."],
         billing:["Billing & Paket","Kelola tagihan aplikasi tiap tenant dan status pembayaran."],
+        approvals:["Approval Pembayaran","Setujui pembayaran upgrade, buka akses warga, dan aktifkan mandat admin RT."],
         marketplace:["Lapak & Jasa","Kontrol pedagang, tukang service, banner, dan potensi income lokal."],
         moderation:["Moderasi Laporan","Pantau laporan warga, status penanganan, dan keamanan lingkungan."],
         links:["Link Tenant/RT","Salin link khusus tenant dan RT untuk dikirim ke pelanggan/warga."],
@@ -2064,7 +2353,7 @@ allow write: if request.auth.token.tenantId == tenantId
 
       const filteredTenants = tenants.filter(t => (`${t.name} ${t.plan} ${t.admin} ${t.id}`).toLowerCase().includes(q));
       setHTML("dTenantRows", filteredTenants.map(t=>`
-        <tr><td><b>${t.name}</b><br><small>${t.id}</small></td><td>${t.plan}</td><td>${t.residents.length}/${t.limit}</td><td>${t.admin}</td><td><span class="desk-pill green">${t.status}</span></td><td><b>${money(deskIncomeTenant(t))}</b></td>
+        <tr><td><b>${t.name}</b><br><small>${t.id}</small></td><td>${t.plan}</td><td>${t.residents.length}/${t.limit}</td><td>${t.admin}</td><td><span class="desk-pill ${t.accessOpen?'green':t.status==='pending_payment'?'orange':'red'}">${t.accessOpen?'Aktif':t.status}</span></td><td><b>${money(deskIncomeTenant(t))}</b></td>
         <td><div class="desk-mini-actions"><button class="primary" onclick="deskUseTenant('${t.id}')">Pakai</button><button onclick="copyTenantLink('${t.id}')">Copy Link</button><button onclick="deskToggleTenant('${t.id}')">${t.status==="Aktif"?"Nonaktif":"Aktifkan"}</button></div></td></tr>
       `).join(""));
 
@@ -2080,9 +2369,15 @@ allow write: if request.auth.token.tenantId == tenantId
       setHTML("dActivityLog", logHTML || `<div class="empty">Belum ada aktivitas.</div>`);
 
       setHTML("dBillingRows", tenants.map(t=>`
-        <tr><td><b>${t.name}</b><br><small>${t.id}</small></td><td>${t.plan}</td><td><b>${money(t.monthly||0)}/bulan</b></td><td><span class="desk-pill green">Lunas Demo</span></td><td>Setiap tanggal 10</td>
+        <tr><td><b>${t.name}</b><br><small>${t.id}</small></td><td>${t.plan}</td><td><b>${money(t.monthly||0)}/bulan</b></td><td><span class="desk-pill ${t.accessOpen?'green':t.status==='pending_payment'?'orange':'red'}">${t.accessOpen?'Aktif':t.status==='pending_payment'?'Menunggu Approval':'Belum Upgrade'}</span></td><td>Setiap tanggal 10</td>
         <td><div class="desk-mini-actions"><button class="primary" onclick="deskMarkPaid('${t.id}')">Tandai Lunas</button><button onclick="openDeskModal('changePlan','${t.id}')">Ubah Paket</button></div></td></tr>
       `).join(""));
+
+
+      setHTML("dApprovalRows", (db.pendingUpgrades||[]).map(r=>`
+        <tr><td><b>${r.tenantName}</b><br><small>${r.tenantId}</small></td><td>${r.plan}</td><td><b>${r.amount}</b></td><td>${r.admin}<br><small>${r.adminPhone}</small></td><td><span class="desk-pill ${r.status==="Approved"?"green":r.status==="Ditolak"?"red":"orange"}">${r.status}</span></td>
+        <td><div class="desk-mini-actions"><button class="primary" onclick="approveUpgrade('${r.id}');renderDesktopAdmin()">Approve & Buka</button><button class="danger" onclick="rejectUpgrade('${r.id}');renderDesktopAdmin()">Tolak</button></div></td></tr>
+      `).join("") || `<tr><td colspan="6">Belum ada pembayaran menunggu approval.</td></tr>`);
 
       const filteredMarket = market.filter(m => (`${m.name||m.text} ${m.tenantName} ${m.kind} ${m.cat||""}`).toLowerCase().includes(q));
       setHTML("dMarketRows", filteredMarket.map(m=>`
@@ -2173,7 +2468,7 @@ allow write: if request.auth.token.tenantId == tenantId
       e.preventDefault();
       const id=dTnSlug.value.trim().toLowerCase().replace(/[^a-z0-9-]/g,"-");
       if(db.tenants[id]){showToast("tenantId sudah ada");return}
-      db.tenants[id]={id,name:dTnName.value,type:dTnType.value,plan:dTnPlan.value,limit:Number(dTnLimit.value),status:"Aktif",admin:dTnAdmin.value,monthly:planPrice(dTnPlan.value),inviteCode:dTnCode.value.trim().toUpperCase(),logo:"🏘️",theme:"#ff6b00",rts:{rt01:{id:"rt01",name:"RT 01",admin:"-",inviteCode:id.toUpperCase()+"-RT01"}},infos:[],iuran:[],reports:[],services:[],products:[],ronda:[],guests:[],events:[],residents:[],banners:[],bukti:[]};
+      db.tenants[id]={id,name:dTnName.value,type:dTnType.value,plan:dTnPlan.value,limit:Number(dTnLimit.value),status:"approved",accessOpen:true,admin:dTnAdmin.value,monthly:planPrice(dTnPlan.value),inviteCode:dTnCode.value.trim().toUpperCase(),logo:"🏘️",theme:"#ff6b00",rts:{rt01:{id:"rt01",name:"RT 01",admin:"-",inviteCode:id.toUpperCase()+"-RT01"}},infos:[],iuran:[],reports:[],services:[],products:[],ronda:[],guests:[],events:[],residents:[],banners:[],bukti:[]};
       db.currentTenant=id;saveDB();addDeskLog("admin","🏘️","Tenant baru dibuat",dTnName.value);closeDeskModal();renderDesktopAdmin();showToast("Tenant baru dibuat");
     }
     function deskSubmitUser(e){
@@ -2287,6 +2582,7 @@ allow write: if request.auth.token.tenantId == tenantId
         users:["User & Role","Pantau warga, admin RW, admin RT, bendahara, satpam, dan pedagang."],
         activity:["Aktivitas User","Pantau login, pendaftaran warga, laporan, iuran, lapak, dan aksi admin."],
         billing:["Billing & Paket","Kelola tagihan aplikasi tiap tenant dan status pembayaran."],
+        approvals:["Approval Pembayaran","Setujui pembayaran upgrade, buka akses warga, dan aktifkan mandat admin RT."],
         marketplace:["Lapak & Jasa","Kontrol pedagang, tukang service, banner, dan potensi income lokal."],
         moderation:["Moderasi Laporan","Pantau laporan warga, status penanganan, dan keamanan lingkungan."],
         links:["Link Tenant/RT","Salin link khusus tenant dan RT untuk dikirim ke pelanggan/warga."],
@@ -2332,7 +2628,7 @@ allow write: if request.auth.token.tenantId == tenantId
 
       const filteredTenants = tenants.filter(t => (`${t.name} ${t.plan} ${t.admin} ${t.id}`).toLowerCase().includes(q));
       setHTML("dTenantRows", filteredTenants.map(t=>`
-        <tr><td><b>${t.name}</b><br><small>${t.id}</small></td><td>${t.plan}</td><td>${t.residents.length}/${t.limit}</td><td>${t.admin}</td><td><span class="desk-pill green">${t.status}</span></td><td><b>${money(deskIncomeTenant(t))}</b></td>
+        <tr><td><b>${t.name}</b><br><small>${t.id}</small></td><td>${t.plan}</td><td>${t.residents.length}/${t.limit}</td><td>${t.admin}</td><td><span class="desk-pill ${t.accessOpen?'green':t.status==='pending_payment'?'orange':'red'}">${t.accessOpen?'Aktif':t.status}</span></td><td><b>${money(deskIncomeTenant(t))}</b></td>
         <td><div class="desk-mini-actions"><button class="primary" onclick="deskUseTenant('${t.id}')">Pakai</button><button onclick="copyTenantLink('${t.id}')">Copy Link</button><button onclick="deskToggleTenant('${t.id}')">${t.status==="Aktif"?"Nonaktif":"Aktifkan"}</button></div></td></tr>
       `).join(""));
 
@@ -2348,9 +2644,15 @@ allow write: if request.auth.token.tenantId == tenantId
       setHTML("dActivityLog", logHTML || `<div class="empty">Belum ada aktivitas.</div>`);
 
       setHTML("dBillingRows", tenants.map(t=>`
-        <tr><td><b>${t.name}</b><br><small>${t.id}</small></td><td>${t.plan}</td><td><b>${money(t.monthly||0)}/bulan</b></td><td><span class="desk-pill green">Lunas Demo</span></td><td>Setiap tanggal 10</td>
+        <tr><td><b>${t.name}</b><br><small>${t.id}</small></td><td>${t.plan}</td><td><b>${money(t.monthly||0)}/bulan</b></td><td><span class="desk-pill ${t.accessOpen?'green':t.status==='pending_payment'?'orange':'red'}">${t.accessOpen?'Aktif':t.status==='pending_payment'?'Menunggu Approval':'Belum Upgrade'}</span></td><td>Setiap tanggal 10</td>
         <td><div class="desk-mini-actions"><button class="primary" onclick="deskMarkPaid('${t.id}')">Tandai Lunas</button><button onclick="openDeskModal('changePlan','${t.id}')">Ubah Paket</button></div></td></tr>
       `).join(""));
+
+
+      setHTML("dApprovalRows", (db.pendingUpgrades||[]).map(r=>`
+        <tr><td><b>${r.tenantName}</b><br><small>${r.tenantId}</small></td><td>${r.plan}</td><td><b>${r.amount}</b></td><td>${r.admin}<br><small>${r.adminPhone}</small></td><td><span class="desk-pill ${r.status==="Approved"?"green":r.status==="Ditolak"?"red":"orange"}">${r.status}</span></td>
+        <td><div class="desk-mini-actions"><button class="primary" onclick="approveUpgrade('${r.id}');renderDesktopAdmin()">Approve & Buka</button><button class="danger" onclick="rejectUpgrade('${r.id}');renderDesktopAdmin()">Tolak</button></div></td></tr>
+      `).join("") || `<tr><td colspan="6">Belum ada pembayaran menunggu approval.</td></tr>`);
 
       const filteredMarket = market.filter(m => (`${m.name||m.text} ${m.tenantName} ${m.kind} ${m.cat||""}`).toLowerCase().includes(q));
       setHTML("dMarketRows", filteredMarket.map(m=>`
@@ -2441,7 +2743,7 @@ allow write: if request.auth.token.tenantId == tenantId
       e.preventDefault();
       const id=dTnSlug.value.trim().toLowerCase().replace(/[^a-z0-9-]/g,"-");
       if(db.tenants[id]){showToast("tenantId sudah ada");return}
-      db.tenants[id]={id,name:dTnName.value,type:dTnType.value,plan:dTnPlan.value,limit:Number(dTnLimit.value),status:"Aktif",admin:dTnAdmin.value,monthly:planPrice(dTnPlan.value),inviteCode:dTnCode.value.trim().toUpperCase(),logo:"🏘️",theme:"#ff6b00",rts:{rt01:{id:"rt01",name:"RT 01",admin:"-",inviteCode:id.toUpperCase()+"-RT01"}},infos:[],iuran:[],reports:[],services:[],products:[],ronda:[],guests:[],events:[],residents:[],banners:[],bukti:[]};
+      db.tenants[id]={id,name:dTnName.value,type:dTnType.value,plan:dTnPlan.value,limit:Number(dTnLimit.value),status:"approved",accessOpen:true,admin:dTnAdmin.value,monthly:planPrice(dTnPlan.value),inviteCode:dTnCode.value.trim().toUpperCase(),logo:"🏘️",theme:"#ff6b00",rts:{rt01:{id:"rt01",name:"RT 01",admin:"-",inviteCode:id.toUpperCase()+"-RT01"}},infos:[],iuran:[],reports:[],services:[],products:[],ronda:[],guests:[],events:[],residents:[],banners:[],bukti:[]};
       db.currentTenant=id;saveDB();addDeskLog("admin","🏘️","Tenant baru dibuat",dTnName.value);closeDeskModal();renderDesktopAdmin();showToast("Tenant baru dibuat");
     }
     function deskSubmitUser(e){
