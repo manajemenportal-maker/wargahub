@@ -1,0 +1,34 @@
+CARA MEMBERIKAN LINK KHUSUS KE LINGKUNGAN
+
+Setelah tenant dibuat dari menu Super Admin > Buat Tenant, buka:
+Super Admin > Link Tenant
+
+Setiap tenant akan punya link seperti:
+index.html?tenant=gardenia-residence
+
+Contoh jika di GitHub Pages:
+https://USERNAME.github.io/wargahub/?tenant=gardenia-residence
+
+Cara pakai:
+1. Kirim link tersebut ke admin/warga lingkungan terkait.
+2. Saat link dibuka, aplikasi otomatis memilih tenant tersebut.
+3. Jika user bukan super_admin, daftar tenant lain tidak ditampilkan.
+4. Data yang tampil hanya tenant aktif.
+5. Kode undangan juga tersedia, contoh GARDENIA03.
+
+Untuk produksi:
+- Super Admin tetap bisa melihat semua tenant.
+- Admin lingkungan/warga hanya masuk ke tenant dari link/login.
+- Menu Pilih Tenant untuk warga tidak ditampilkan.
+- Tenant ditentukan dari URL ?tenant=... atau dari akun login Firebase.
+
+Contoh jalur data:
+tenants/gardenia-residence/residents
+tenants/gardenia-residence/reports
+tenants/gardenia-residence/services
+
+tenants/kampung-melati-rw05/residents
+tenants/kampung-melati-rw05/reports
+tenants/kampung-melati-rw05/services
+
+Data tidak tercampur karena semua operasi membaca tenantId aktif.

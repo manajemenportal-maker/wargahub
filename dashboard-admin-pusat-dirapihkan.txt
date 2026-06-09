@@ -1,0 +1,12 @@
+PERAPIHAN DASHBOARD ADMIN PUSAT
+
+Dashboard laptop Admin Pengelola sudah dirapihkan:
+- Hero header khusus Admin Pengelola.
+- Aksi cepat: buat tenant, copy link, pantau aktivitas, billing, Firebase.
+- KPI cards: total tenant, user/warga, income bulanan, aktivitas.
+- Grafik income tenant dengan label.
+- Tenant teratas/ranking.
+- Aktivitas terbaru.
+- Kesehatan sistem: multi tenant, responsive, Firebase, role control.
+
+Tampilan HP tetap berbeda dan tidak dipaksa kecil di laptop.

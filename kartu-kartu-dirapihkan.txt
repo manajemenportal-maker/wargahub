@@ -1,0 +1,1 @@
+Kartu-kartu dirapihkan supaya tidak over frame, teks tidak keluar dari box, grid lebih aman di HP, dan tampilan kartu lebih halus di mobile maupun laptop.

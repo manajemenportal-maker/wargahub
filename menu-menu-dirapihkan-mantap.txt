@@ -1,0 +1,22 @@
+PERAPIHAN MENU SEPUTARWARGA
+
+1. Menu HP dibuat berkelompok:
+- Menu Utama Warga
+- Pengurus & Akses
+- Pengelola Pusat
+
+2. Menu laptop Admin Pusat dibuat berkelompok:
+- Pusat Kontrol
+- Operasional
+- Monetisasi
+- Sistem
+
+3. Ditambahkan badge/count:
+- total tenant
+- total user
+- approval menunggu
+- aktivitas
+- laporan aktif
+
+4. Ditambahkan tab cepat di dashboard laptop:
+Dashboard, Tenant, Approval, Aktivitas, Billing, Link, Firebase.

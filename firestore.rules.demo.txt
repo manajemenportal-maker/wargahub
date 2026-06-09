@@ -1,0 +1,24 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    // DEMO AWAL: izinkan baca/tulis untuk testing setelah domain kamu aman.
+    // Jangan pakai rules ini untuk produksi tanpa Firebase Auth.
+    match /wargahub_system/{docId} {
+      allow read, write: if true;
+    }
+
+    match /tenants/{tenantId} {
+      allow read, write: if true;
+
+      match /{subcollection=**}/{docId} {
+        allow read, write: if true;
+      }
+    }
+
+    // PRODUKSI NANTI:
+    // - Pakai Firebase Authentication.
+    // - Simpan custom claims: role, tenantId, rtId.
+    // - Ganti allow true menjadi aturan berbasis role.
+  }
+}

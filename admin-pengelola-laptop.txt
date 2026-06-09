@@ -1,0 +1,21 @@
+ADMIN PENGELOLA PUSAT - WARGAHUB
+
+Versi ini punya dua tampilan:
+1. HP: aplikasi warga mobile-first.
+2. Laptop/Desktop: dashboard Admin Pengelola Pusat full screen.
+
+Menu Admin Pengelola di laptop:
+- Dashboard: ringkasan tenant, user, income, aktivitas.
+- Tenant/Pelanggan: buat tenant, aktif/nonaktifkan, copy link.
+- User & Role: pantau warga/user seluruh tenant.
+- Aktivitas User: monitor pendaftaran, laporan, iuran, lapak/jasa, aksi admin.
+- Billing & Paket: tagihan tenant dan perubahan paket.
+- Lapak & Jasa: kontrol marketplace, jasa, banner.
+- Moderasi Laporan: proses/selesaikan laporan warga.
+- Link Tenant/RT: copy link khusus tenant dan RT.
+- Pengaturan Sistem: nama aplikasi, WA support, role default.
+- Firebase Sync: simpan/load data ke Firestore.
+
+Catatan:
+Dashboard laptop otomatis muncul pada layar lebar >= 900px.
+Tampilan HP tetap memakai desain mobile app agar tidak dipaksa kecil di laptop.

@@ -28,7 +28,7 @@
     .circle-btn{width:42px;height:42px;border-radius:16px;border:1px solid rgba(255,255,255,.22);background:rgba(255,255,255,.18);color:white;display:grid;place-items:center;font-size:1.05rem;backdrop-filter:blur(12px)}
     .search-wrap{margin-top:14px;display:flex;align-items:center;gap:8px;background:white;border-radius:18px;padding:8px 10px;box-shadow:0 14px 26px rgba(113,35,0,.16)}.search-wrap span{font-size:1.05rem;color:var(--orange)}.search-wrap input{border:0;outline:0;width:100%;font-weight:760;color:#334155;min-width:0}.search-wrap button{border:0;border-radius:14px;padding:9px 12px;background:linear-gradient(135deg,var(--orange),var(--pink));color:white;font-weight:950}
     .tenant-strip{margin-top:10px;display:flex;align-items:center;gap:8px;overflow-x:auto;scrollbar-width:none}.tenant-strip::-webkit-scrollbar{display:none}.tenant-chip{flex:0 0 auto;border:1px solid rgba(255,255,255,.28);background:rgba(255,255,255,.16);color:white;border-radius:999px;padding:7px 10px;font-size:.72rem;font-weight:950}.tenant-chip.active{background:white;color:#f97316}
-    .screen{height:calc(100vh - 160px);overflow:hidden;padding:10px 12px 84px;position:relative}.page{display:none;height:100%;overflow-y:auto;scrollbar-width:none;padding-bottom:10px}.page::-webkit-scrollbar{display:none}.page.active{display:block}
+    .screen{height:calc(100vh - 160px);overflow:hidden;padding:10px 12px 84px;position:relative;min-width:0}.page{display:none;height:100%;overflow-y:auto;scrollbar-width:none;padding-bottom:10px}.page::-webkit-scrollbar{display:none}.page.active{display:block}
     .home-stats,.admin-grid,.report-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:2px}.stat-card,.admin-card{background:white;border-radius:18px;padding:10px 8px;box-shadow:var(--soft);border:1px solid rgba(23,32,51,.04)}.stat-card small,.admin-card small{display:block;color:#64748b;font-size:.67rem;font-weight:850;margin-bottom:3px}.stat-card b,.admin-card b{display:block;font-size:.9rem;letter-spacing:-.02em;white-space:nowrap}
     .quick-panel{margin-top:10px;background:white;border-radius:24px;padding:13px 9px 12px;box-shadow:var(--shadow);border:1px solid rgba(23,32,51,.04)}.icon-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:10px 5px}.icon-item{border:0;background:transparent;text-align:center;font-weight:850;font-size:.68rem;color:#475569;line-height:1.15;padding:0}.icon-badge{width:43px;height:43px;margin:0 auto 6px;border-radius:16px;display:grid;place-items:center;font-size:1.25rem;color:white;box-shadow:0 10px 18px rgba(23,32,51,.10);background:linear-gradient(135deg,var(--orange),var(--pink))}
     .icon-item:nth-child(2) .icon-badge{background:linear-gradient(135deg,#0ea5e9,#38bdf8)}.icon-item:nth-child(3) .icon-badge{background:linear-gradient(135deg,#22c55e,#84cc16)}.icon-item:nth-child(4) .icon-badge{background:linear-gradient(135deg,#7c3aed,#c084fc)}.icon-item:nth-child(5) .icon-badge{background:linear-gradient(135deg,#f59e0b,#facc15)}.icon-item:nth-child(6) .icon-badge{background:linear-gradient(135deg,#ef4444,#fb7185)}.icon-item:nth-child(7) .icon-badge{background:linear-gradient(135deg,#14b8a6,#2dd4bf)}.icon-item:nth-child(8) .icon-badge{background:linear-gradient(135deg,#6366f1,#60a5fa)}.icon-item:nth-child(9) .icon-badge{background:linear-gradient(135deg,#ec4899,#f472b6)}.icon-item:nth-child(10) .icon-badge{background:linear-gradient(135deg,#334155,#64748b)}
@@ -65,7 +65,49 @@
     .pending-box{background:#fffbeb;border:1px solid #fde68a;color:#92400e;border-radius:18px;padding:11px;font-size:.78rem;font-weight:850;line-height:1.45}
     .approved-box{background:#ecfdf5;border:1px solid #bbf7d0;color:#166534;border-radius:18px;padding:11px;font-size:.78rem;font-weight:850;line-height:1.45}
 
+
+    .mobile-menu-section{margin-top:12px;background:white;border-radius:24px;padding:13px 10px 12px;box-shadow:var(--soft);border:1px solid rgba(23,32,51,.05)}
+    .mobile-menu-title{display:flex;align-items:center;justify-content:space-between;gap:10px;margin:0 2px 11px}
+    .mobile-menu-title b{display:block;font-size:.92rem;letter-spacing:-.03em}.mobile-menu-title small{color:#94a3b8;font-weight:850;font-size:.7rem}
+    .menu-badge-mini{display:inline-flex;border-radius:999px;background:#fff3df;color:#f97316;padding:5px 8px;font-size:.66rem;font-weight:950;white-space:nowrap}
+    .menu-card-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:9px 6px}
+    .menu-card-btn{border:0;background:#f8fafc;border:1px solid #edf2f7;border-radius:18px;padding:10px 6px;text-align:center;color:#475569;font-weight:900;font-size:.66rem;min-height:74px;position:relative;overflow:hidden}
+    .menu-card-btn i{font-style:normal;display:grid;place-items:center;width:34px;height:34px;border-radius:14px;margin:0 auto 6px;color:white;font-size:1.05rem;background:linear-gradient(135deg,var(--orange),var(--pink));box-shadow:0 8px 15px rgba(255,77,157,.15)}
+    .menu-card-btn:nth-child(2n) i{background:linear-gradient(135deg,#0ea5e9,#7c3aed)}.menu-card-btn:nth-child(3n) i{background:linear-gradient(135deg,#16a34a,#84cc16)}.menu-card-btn:nth-child(4n) i{background:linear-gradient(135deg,#f59e0b,#ff6b00)}
+    .menu-card-btn.locked:after{content:"Upgrade";position:absolute;top:5px;right:5px;border-radius:999px;padding:3px 5px;background:#fee2e2;color:#b91c1c;font-size:.52rem;font-weight:950}
+    .menu-card-btn.primary-menu{background:linear-gradient(135deg,#fff7ed,#fff1f2);border-color:#fed7aa}.menu-card-btn.primary-menu span{color:#f97316}
+    .quick-panel.menu-old-hidden{display:none}
+    .desk-group-label{margin:18px 0 7px;padding:0 8px;color:rgba(255,255,255,.42);font-size:.68rem;font-weight:950;text-transform:uppercase;letter-spacing:.08em}
+    .desk-menu button .count{margin-left:auto;min-width:22px;height:22px;border-radius:999px;display:grid;place-items:center;background:rgba(255,255,255,.14);color:white;font-size:.68rem;font-weight:950;padding:0 7px}
+    .desk-menu button.active .count{background:white;color:#f97316}.desk-menu button.danger-menu{color:#fecaca}.desk-menu button.danger-menu:hover,.desk-menu button.danger-menu.active{background:rgba(239,68,68,.18);color:white}
+    .desk-menu-hint{margin-top:18px;border-radius:20px;padding:14px;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.10);color:rgba(255,255,255,.72);font-size:.76rem;line-height:1.55;font-weight:750}.desk-menu-hint b{color:white;display:block;margin-bottom:4px}
+    .desk-toolbar-tabs{display:flex;gap:8px;overflow-x:auto;scrollbar-width:none;margin:-6px 0 18px;padding-bottom:3px}.desk-toolbar-tabs::-webkit-scrollbar{display:none}
+    .desk-toolbar-tabs button{border:1px solid #e5e7eb;background:white;border-radius:999px;padding:9px 13px;color:#475569;font-weight:950;white-space:nowrap;box-shadow:0 6px 14px rgba(15,23,42,.04)}
+    .desk-toolbar-tabs button.active{color:white;border-color:transparent;background:linear-gradient(135deg,var(--orange),var(--pink))}
+    @media(max-width:370px){.menu-card-grid{grid-template-columns:repeat(3,1fr)}}
+
     .firebase-dot{width:10px;height:10px;border-radius:999px;background:#94a3b8;display:inline-block;margin-right:6px}
+
+    .mobile-menu-section{margin-top:12px;background:white;border-radius:24px;padding:13px 10px 12px;box-shadow:var(--soft);border:1px solid rgba(23,32,51,.05)}
+    .mobile-menu-title{display:flex;align-items:center;justify-content:space-between;gap:10px;margin:0 2px 11px}
+    .mobile-menu-title b{display:block;font-size:.92rem;letter-spacing:-.03em}.mobile-menu-title small{color:#94a3b8;font-weight:850;font-size:.7rem}
+    .menu-badge-mini{display:inline-flex;border-radius:999px;background:#fff3df;color:#f97316;padding:5px 8px;font-size:.66rem;font-weight:950;white-space:nowrap}
+    .menu-card-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:9px 6px}
+    .menu-card-btn{border:0;background:#f8fafc;border:1px solid #edf2f7;border-radius:18px;padding:10px 6px;text-align:center;color:#475569;font-weight:900;font-size:.66rem;min-height:74px;position:relative;overflow:hidden}
+    .menu-card-btn i{font-style:normal;display:grid;place-items:center;width:34px;height:34px;border-radius:14px;margin:0 auto 6px;color:white;font-size:1.05rem;background:linear-gradient(135deg,var(--orange),var(--pink));box-shadow:0 8px 15px rgba(255,77,157,.15)}
+    .menu-card-btn:nth-child(2n) i{background:linear-gradient(135deg,#0ea5e9,#7c3aed)}.menu-card-btn:nth-child(3n) i{background:linear-gradient(135deg,#16a34a,#84cc16)}.menu-card-btn:nth-child(4n) i{background:linear-gradient(135deg,#f59e0b,#ff6b00)}
+    .menu-card-btn.locked:after{content:"Upgrade";position:absolute;top:5px;right:5px;border-radius:999px;padding:3px 5px;background:#fee2e2;color:#b91c1c;font-size:.52rem;font-weight:950}
+    .menu-card-btn.primary-menu{background:linear-gradient(135deg,#fff7ed,#fff1f2);border-color:#fed7aa}.menu-card-btn.primary-menu span{color:#f97316}
+    .quick-panel.menu-old-hidden{display:none}
+    .desk-group-label{margin:18px 0 7px;padding:0 8px;color:rgba(255,255,255,.42);font-size:.68rem;font-weight:950;text-transform:uppercase;letter-spacing:.08em}
+    .desk-menu button .count{margin-left:auto;min-width:22px;height:22px;border-radius:999px;display:grid;place-items:center;background:rgba(255,255,255,.14);color:white;font-size:.68rem;font-weight:950;padding:0 7px}
+    .desk-menu button.active .count{background:white;color:#f97316}.desk-menu button.danger-menu{color:#fecaca}.desk-menu button.danger-menu:hover,.desk-menu button.danger-menu.active{background:rgba(239,68,68,.18);color:white}
+    .desk-menu-hint{margin-top:18px;border-radius:20px;padding:14px;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.10);color:rgba(255,255,255,.72);font-size:.76rem;line-height:1.55;font-weight:750}.desk-menu-hint b{color:white;display:block;margin-bottom:4px}
+    .desk-toolbar-tabs{display:flex;gap:8px;overflow-x:auto;scrollbar-width:none;margin:-6px 0 18px;padding-bottom:3px}.desk-toolbar-tabs::-webkit-scrollbar{display:none}
+    .desk-toolbar-tabs button{border:1px solid #e5e7eb;background:white;border-radius:999px;padding:9px 13px;color:#475569;font-weight:950;white-space:nowrap;box-shadow:0 6px 14px rgba(15,23,42,.04)}
+    .desk-toolbar-tabs button.active{color:white;border-color:transparent;background:linear-gradient(135deg,var(--orange),var(--pink))}
+    @media(max-width:370px){.menu-card-grid{grid-template-columns:repeat(3,1fr)}}
+
     .firebase-dot.on{background:#16a34a}.firebase-dot.err{background:#ef4444}
 
     .linkbox{background:#0f172a;color:#dbeafe;border-radius:18px;padding:12px;font-size:.75rem;font-weight:850;line-height:1.45;word-break:break-all;margin:10px 0}
@@ -715,7 +757,204 @@
     }
 
     @media(min-width:760px){body{background:radial-gradient(circle at 20% 0%,rgba(255,107,0,.16),transparent 280px),radial-gradient(circle at 80% 0%,rgba(124,58,237,.14),transparent 260px),#f1f5f9;padding:20px 0}.desktop-note{display:block}.app{border-radius:36px;min-height:calc(100vh - 40px)}.screen{height:calc(100vh - 198px)}}@media(max-width:370px){.app-header{padding-left:10px;padding-right:10px}.screen{padding-left:10px;padding-right:10px}.icon-grid{gap:9px 3px}.icon-badge{width:39px;height:39px;border-radius:14px}.promo{grid-template-columns:1fr}}
-  </style>
+  
+    /* Card refinement */
+    .card,.service-card,.product,.admin-card,.stat-card,.subbtn,.pay-box,.upgrade-lock,.mobile-menu-section,.desk-card,.desk-quick-card,.desk-hero-card,.desk-table-wrap,.rangkuman-card{min-width:0;max-width:100%;overflow:hidden}
+    .card,.service-card,.product,.admin-card,.subbtn,.pay-box,.upgrade-lock,.mobile-menu-section,.desk-card,.desk-quick-card,.desk-table-wrap{box-shadow:0 10px 24px rgba(23,32,51,.07)!important;border:1px solid rgba(23,32,51,.06)!important}
+    .card,.service-card,.product,.admin-card,.subbtn,.pay-box,.upgrade-lock,.mobile-menu-section,.desk-card,.desk-quick-card{border-radius:24px!important}
+    .home-stats,.admin-grid,.report-grid,.product-grid,.subgrid,.pay-actions{min-width:0}
+    .home-stats>* ,.admin-grid>* ,.report-grid>* ,.product-grid>* ,.subgrid>* ,.pay-actions>*{min-width:0}
+    .stat-card b,.admin-card b,.feed-head b,.feed-head small,.card p,.service-top h3,.service-body p,.product-info h3,.seller,.sold,.price,.subbtn,.menu-card-btn,.mobile-menu-title b,.mobile-menu-title small,.step-item b,.step-item small,.desk-card h2,.desk-card h3,.desk-card p,.desk-card b,.desk-card small,.desk-title h1,.desk-title p,.linkbox{overflow-wrap:anywhere;word-break:break-word}
+    .stat-card b,.admin-card b{white-space:normal!important;line-height:1.18}
+    .card p,.service-body p,.product-info h3,.mobile-menu-title small,.feed-head small{line-height:1.45}
+    .feed-head,.service-top,.product-row,.desk-card-title,.desk-section-head{min-width:0}
+    .feed-head>div,.service-top>div,.product-row>div,.desk-card-title>div,.desk-section-head>div{min-width:0}
+    .product-info h3{min-height:auto!important}
+    .service-card{grid-template-columns:72px minmax(0,1fr)!important;gap:10px}
+    .service-img{width:72px!important;height:72px!important;border-radius:18px!important}
+    .wa-btn,.verified,.status,.seller,.sold,.price{max-width:100%}
+    .product-grid{grid-template-columns:repeat(2,minmax(0,1fr))!important}
+    .product-row{align-items:flex-start!important}
+    .seller{white-space:normal!important}
+    .subbtn{min-height:96px!important;display:flex;flex-direction:column;justify-content:flex-start}
+    .pay-box h3{font-size:clamp(1.35rem,4vw,1.8rem)!important;line-height:1.08}
+    .pay-actions{grid-template-columns:repeat(2,minmax(0,1fr))!important}
+    .btn{width:100%;min-width:0}
+    .linkbox{white-space:normal!important;overflow-wrap:anywhere;line-height:1.45}
+    .tenant-lock{max-width:100%;overflow:auto}
+    .menu-card-grid{grid-template-columns:repeat(4,minmax(0,1fr))!important}
+    .menu-card-btn{display:flex;flex-direction:column;align-items:center;justify-content:flex-start;min-width:0}
+    .desk-grid-4,.desk-grid-3,.desk-overview-grid,.desk-split{min-width:0}
+    .desk-grid-4>* ,.desk-grid-3>* ,.desk-overview-grid>* ,.desk-split>*{min-width:0}
+    .desk-table-wrap{overflow:auto}
+    .desk-card-title h2,.desk-section-head h2{line-height:1.2}
+    @media (max-width:430px){
+      .home-stats{grid-template-columns:repeat(3,minmax(0,1fr))!important}
+      .stat-card,.admin-card{padding:10px 7px!important}
+      .product-grid,.subgrid,.admin-grid,.report-grid{grid-template-columns:repeat(2,minmax(0,1fr))!important}
+    }
+    @media (max-width:390px){
+      .pay-actions{grid-template-columns:1fr!important}
+      .service-card{grid-template-columns:1fr!important}
+      .service-img{width:100%!important;height:92px!important}
+      .menu-card-grid{grid-template-columns:repeat(3,minmax(0,1fr))!important}
+      .home-stats{gap:6px!important}
+      .stat-card b{font-size:.82rem!important}
+    }
+    @media (min-width:900px){
+      .desk-card,.desk-quick-card,.desk-hero-card{border-radius:28px!important}
+    }
+
+
+    /* Admin laptop modal & card final polish */
+    @media(min-width:900px){
+      .desk-main{
+        padding:26px 28px 34px!important;
+        overflow-x:hidden!important;
+      }
+      .desk-topbar{
+        align-items:flex-start!important;
+      }
+      .desk-title{
+        min-width:0!important;
+        max-width:620px!important;
+      }
+      .desk-title h1{
+        font-size:clamp(1.65rem,2.4vw,2rem)!important;
+        line-height:1.05!important;
+      }
+      .desk-title p{
+        line-height:1.45!important;
+        max-width:620px!important;
+      }
+      .desk-actions{
+        min-width:0!important;
+        flex-wrap:wrap!important;
+        justify-content:flex-end!important;
+      }
+      .desk-search{
+        min-width:260px!important;
+        max-width:420px!important;
+      }
+      .desk-btn{
+        white-space:normal!important;
+        line-height:1.2!important;
+      }
+
+      .desk-kpi-card b,
+      .desk-metric b{
+        font-size:clamp(1.35rem,2.1vw,2rem)!important;
+        line-height:1.05!important;
+        white-space:normal!important;
+        overflow-wrap:anywhere!important;
+      }
+      #dIncome{
+        font-size:clamp(1.25rem,1.8vw,1.65rem)!important;
+        letter-spacing:-.05em!important;
+      }
+
+      .desk-modal{
+        align-items:flex-start!important;
+        padding:34px 22px!important;
+        overflow:auto!important;
+      }
+      .desk-modal-box{
+        width:min(760px,calc(100vw - 52px))!important;
+        max-height:calc(100vh - 80px)!important;
+        overflow:auto!important;
+        border-radius:30px!important;
+        padding:22px!important;
+      }
+      .desk-modal-head{
+        position:sticky!important;
+        top:-22px!important;
+        background:white!important;
+        z-index:5!important;
+        padding-bottom:12px!important;
+        margin-bottom:14px!important;
+      }
+      .desk-modal-head h3{
+        font-size:1.22rem!important;
+        line-height:1.2!important;
+        overflow-wrap:anywhere!important;
+      }
+      .desk-form-grid{
+        display:grid!important;
+        grid-template-columns:repeat(2,minmax(0,1fr))!important;
+        gap:12px!important;
+        width:100%!important;
+        min-width:0!important;
+      }
+      .desk-form-grid input,
+      .desk-form-grid select,
+      .desk-form-grid textarea{
+        width:100%!important;
+        min-width:0!important;
+        max-width:100%!important;
+        height:48px!important;
+        border-radius:17px!important;
+        padding:12px 14px!important;
+        overflow:hidden!important;
+        text-overflow:ellipsis!important;
+        font-size:.92rem!important;
+      }
+      .desk-form-grid textarea{
+        height:auto!important;
+        min-height:92px!important;
+        grid-column:1/-1!important;
+        overflow:auto!important;
+      }
+      .desk-form-grid .desk-btn,
+      .desk-form-grid button[type="submit"]{
+        grid-column:1/-1!important;
+        width:100%!important;
+        min-height:50px!important;
+        border-radius:18px!important;
+        justify-content:center!important;
+      }
+      .desk-form-grid .wide{
+        grid-column:1/-1!important;
+      }
+      .desk-modal .desk-table-wrap{
+        max-height:58vh!important;
+        overflow:auto!important;
+      }
+      .desk-modal .desk-table{
+        min-width:620px!important;
+      }
+    }
+
+    @media(max-width:1180px) and (min-width:900px){
+      .desk-topbar{
+        display:grid!important;
+        grid-template-columns:1fr!important;
+      }
+      .desk-actions{
+        justify-content:flex-start!important;
+      }
+      .desk-search{
+        flex:1 1 340px!important;
+      }
+    }
+
+    @media(max-width:520px){
+      .desk-modal-box{
+        width:calc(100vw - 24px)!important;
+        padding:16px!important;
+        border-radius:24px!important;
+      }
+      .desk-form-grid{
+        grid-template-columns:1fr!important;
+      }
+      .desk-form-grid .desk-btn,
+      .desk-form-grid button[type="submit"],
+      .desk-form-grid textarea,
+      .desk-form-grid .wide{
+        grid-column:1!important;
+      }
+    }
+
+</style>
 </head>
 <body>
   <div class="desktop-note">Preview mobile. Buka di HP supaya terasa seperti aplikasi.</div>
@@ -732,18 +971,23 @@
       </div>
 
       <div class="desk-menu">
-        <button class="desk-nav active" data-desk="overview" onclick="openDesk('overview')"><i>📊</i>Dashboard</button>
-        <button class="desk-nav" data-desk="tenants" onclick="openDesk('tenants')"><i>🏘️</i>Tenant / Pelanggan</button>
-        <button class="desk-nav" data-desk="users" onclick="openDesk('users')"><i>👥</i>User & Role</button>
-        <button class="desk-nav" data-desk="activity" onclick="openDesk('activity')"><i>📡</i>Aktivitas User</button>
-        <button class="desk-nav" data-desk="billing" onclick="openDesk('billing')"><i>💳</i>Billing & Paket</button>
-        <button class="desk-nav" data-desk="approvals" onclick="openDesk('approvals')"><i>✅</i>Approval Pembayaran</button>
-        <button class="desk-nav" data-desk="marketplace" onclick="openDesk('marketplace')"><i>🛒</i>Lapak & Jasa</button>
-        <button class="desk-nav" data-desk="moderation" onclick="openDesk('moderation')"><i>🛡️</i>Moderasi Laporan</button>
+        <div class="desk-group-label">Pusat Kontrol</div>
+        <button class="desk-nav active" data-desk="overview" onclick="openDesk('overview')"><i>📊</i>Dashboard <span class="count" id="mCountDashboard">•</span></button>
+        <button class="desk-nav" data-desk="tenants" onclick="openDesk('tenants')"><i>🏘️</i>Tenant / Pelanggan <span class="count" id="mCountTenant">0</span></button>
+        <button class="desk-nav" data-desk="users" onclick="openDesk('users')"><i>👥</i>User & Role <span class="count" id="mCountUsers">0</span></button>
+        <button class="desk-nav danger-menu" data-desk="approvals" onclick="openDesk('approvals')"><i>✅</i>Approval Pembayaran <span class="count" id="mCountApproval">0</span></button>
+        <div class="desk-group-label">Operasional</div>
+        <button class="desk-nav" data-desk="activity" onclick="openDesk('activity')"><i>📡</i>Aktivitas User <span class="count" id="mCountActivity">0</span></button>
+        <button class="desk-nav" data-desk="moderation" onclick="openDesk('moderation')"><i>🛡️</i>Moderasi Laporan <span class="count" id="mCountReport">0</span></button>
         <button class="desk-nav" data-desk="links" onclick="openDesk('links')"><i>🔗</i>Link Tenant/RT</button>
-        <button class="desk-nav" data-desk="settings" onclick="openDesk('settings')"><i>⚙️</i>Pengaturan Sistem</button>
+        <div class="desk-group-label">Monetisasi</div>
+        <button class="desk-nav" data-desk="billing" onclick="openDesk('billing')"><i>💳</i>Billing & Paket</button>
+        <button class="desk-nav" data-desk="marketplace" onclick="openDesk('marketplace')"><i>🛒</i>Lapak & Jasa</button>
+        <div class="desk-group-label">Sistem</div>
         <button class="desk-nav" data-desk="firebase" onclick="openDesk('firebase')"><i>🔥</i>Firebase Sync</button>
-      </div>
+        <button class="desk-nav" data-desk="settings" onclick="openDesk('settings')"><i>⚙️</i>Pengaturan Sistem</button>
+        <div class="desk-menu-hint"><b>Alur bisnis:</b> Admin daftar gratis → pilih paket → bayar → approval pusat → akses warga dan mandat RT dibuka.</div>
+      </div></div>
     </aside>
 
     <main class="desk-main">
@@ -1046,7 +1290,46 @@ tenants/{tenantId}/products</div>
           <div class="stat-card"><small>Laporan aktif</small><b id="laporStat">0</b></div>
         </div>
 
-        <div class="quick-panel">
+        
+        <div class="mobile-menu-section">
+          <div class="mobile-menu-title"><div><b>Menu Utama Warga</b><small>Dipakai harian oleh warga</small></div><span class="menu-badge-mini">Warga</span></div>
+          <div class="menu-card-grid">
+            <button class="menu-card-btn primary-menu" onclick="openPage('info')"><i>📢</i><span>Info</span></button>
+            <button class="menu-card-btn primary-menu" onclick="openPage('iuran')"><i>💳</i><span>Iuran</span></button>
+            <button class="menu-card-btn primary-menu" onclick="openPage('lapor')"><i>🛟</i><span>Lapor</span></button>
+            <button class="menu-card-btn primary-menu" onclick="openPage('darurat')"><i>🚨</i><span>Darurat</span></button>
+            <button class="menu-card-btn" onclick="openPage('jasa')"><i>🔧</i><span>Jasa</span></button>
+            <button class="menu-card-btn" onclick="openPage('lapak')"><i>🛒</i><span>Lapak</span></button>
+            <button class="menu-card-btn" onclick="openPage('event')"><i>🎉</i><span>Event</span></button>
+            <button class="menu-card-btn" onclick="openPage('rwCommunity')"><i>🤝</i><span>RW</span></button>
+          </div>
+        </div>
+
+        <div class="mobile-menu-section">
+          <div class="mobile-menu-title"><div><b>Pengurus & Akses</b><small>Daftar, upgrade, link, mandat admin</small></div><span class="menu-badge-mini">Admin</span></div>
+          <div class="menu-card-grid">
+            <button class="menu-card-btn" onclick="openPage('freeRegister')"><i>🆓</i><span>Daftar</span></button>
+            <button class="menu-card-btn locked" onclick="openPage('upgradeRequired')"><i>🚀</i><span>Upgrade</span></button>
+            <button class="menu-card-btn" onclick="requireApprovedAccess('invite')"><i>🔗</i><span>Link</span></button>
+            <button class="menu-card-btn" onclick="openPage('rtRooms')"><i>🏠</i><span>Ruang RT</span></button>
+            <button class="menu-card-btn" onclick="openPage('selfRegister')"><i>📝</i><span>Daftar Warga</span></button>
+            <button class="menu-card-btn" onclick="openPage('mandateAdmin')"><i>👥</i><span>Mandat</span></button>
+            <button class="menu-card-btn" onclick="openPage('tamu')"><i>🚪</i><span>Tamu</span></button>
+            <button class="menu-card-btn" onclick="openPage('ronda')"><i>🛡️</i><span>Ronda</span></button>
+          </div>
+        </div>
+
+        <div class="mobile-menu-section">
+          <div class="mobile-menu-title"><div><b>Pengelola Pusat</b><small>Khusus pemilik platform</small></div><span class="menu-badge-mini">Pusat</span></div>
+          <div class="menu-card-grid">
+            <button class="menu-card-btn" onclick="guardOpen('superAdmin',['super_admin'])"><i>👑</i><span>Pusat</span></button>
+            <button class="menu-card-btn" onclick="guardOpen('centralApproval',['super_admin'])"><i>✅</i><span>Approval</span></button>
+            <button class="menu-card-btn" onclick="openPage('harga')"><i>💰</i><span>Harga</span></button>
+            <button class="menu-card-btn" onclick="openPage('firebaseSync')"><i>🔥</i><span>Firebase</span></button>
+          </div>
+        </div>
+
+        <div class="quick-panel menu-old-hidden">
           <div class="icon-grid">
             <button class="icon-item" onclick="openPage('info')"><div class="icon-badge">📢</div>Info RT</button>
             <button class="icon-item" onclick="openPage('iuran')"><div class="icon-badge">💳</div>Iuran</button>
@@ -2008,6 +2291,7 @@ allow write: if request.auth.token.tenantId == tenantId
       const el=document.getElementById("desk-"+id);
       if(el) el.classList.add("active");
       document.querySelectorAll(".desk-nav").forEach(b=>b.classList.toggle("active", b.dataset.desk===id));
+      document.querySelectorAll(".desk-tab").forEach(b=>b.classList.toggle("active", b.dataset.desk===id));
       const titles = {
         overview:["Dashboard Pengelola","Kontrol seluruh tenant, user, aktivitas, billing, dan marketplace SeputarWarga."],
         tenants:["Tenant / Pelanggan","Buat, aktifkan, nonaktifkan, dan pantau seluruh RT/RW/perumahan."],
@@ -2034,6 +2318,11 @@ allow write: if request.auth.token.tenantId == tenantId
       const market = deskAllMarket();
       const income = tenants.reduce((a,t)=>a+deskIncomeTenant(t),0);
 
+      setText("mCountTenant", tenants.length);
+      setText("mCountUsers", residents.length);
+      setText("mCountApproval", (db.pendingUpgrades||[]).filter(r=>r.status==="Menunggu Approval").length);
+      setText("mCountActivity", deskLogs().length);
+      setText("mCountReport", reports.filter(r=>r.status!=="Selesai").length);
       setText("dTotalTenant", tenants.length);
       setText("dTotalUsers", residents.length);
       setText("dIncome", money(income));
@@ -2301,6 +2590,7 @@ allow write: if request.auth.token.tenantId == tenantId
       const el=document.getElementById("desk-"+id);
       if(el) el.classList.add("active");
       document.querySelectorAll(".desk-nav").forEach(b=>b.classList.toggle("active", b.dataset.desk===id));
+      document.querySelectorAll(".desk-tab").forEach(b=>b.classList.toggle("active", b.dataset.desk===id));
       const titles = {
         overview:["Dashboard Pengelola","Kontrol seluruh tenant, user, aktivitas, billing, dan marketplace SeputarWarga."],
         tenants:["Tenant / Pelanggan","Buat, aktifkan, nonaktifkan, dan pantau seluruh RT/RW/perumahan."],
@@ -2327,6 +2617,11 @@ allow write: if request.auth.token.tenantId == tenantId
       const market = deskAllMarket();
       const income = tenants.reduce((a,t)=>a+deskIncomeTenant(t),0);
 
+      setText("mCountTenant", tenants.length);
+      setText("mCountUsers", residents.length);
+      setText("mCountApproval", (db.pendingUpgrades||[]).filter(r=>r.status==="Menunggu Approval").length);
+      setText("mCountActivity", deskLogs().length);
+      setText("mCountReport", reports.filter(r=>r.status!=="Selesai").length);
       setText("dTotalTenant", tenants.length);
       setText("dTotalUsers", residents.length);
       setText("dIncome", money(income));
@@ -2576,6 +2871,7 @@ allow write: if request.auth.token.tenantId == tenantId
       const el=document.getElementById("desk-"+id);
       if(el) el.classList.add("active");
       document.querySelectorAll(".desk-nav").forEach(b=>b.classList.toggle("active", b.dataset.desk===id));
+      document.querySelectorAll(".desk-tab").forEach(b=>b.classList.toggle("active", b.dataset.desk===id));
       const titles = {
         overview:["Dashboard Pengelola","Kontrol seluruh tenant, user, aktivitas, billing, dan marketplace SeputarWarga."],
         tenants:["Tenant / Pelanggan","Buat, aktifkan, nonaktifkan, dan pantau seluruh RT/RW/perumahan."],
@@ -2602,6 +2898,11 @@ allow write: if request.auth.token.tenantId == tenantId
       const market = deskAllMarket();
       const income = tenants.reduce((a,t)=>a+deskIncomeTenant(t),0);
 
+      setText("mCountTenant", tenants.length);
+      setText("mCountUsers", residents.length);
+      setText("mCountApproval", (db.pendingUpgrades||[]).filter(r=>r.status==="Menunggu Approval").length);
+      setText("mCountActivity", deskLogs().length);
+      setText("mCountReport", reports.filter(r=>r.status!=="Selesai").length);
       setText("dTotalTenant", tenants.length);
       setText("dTotalUsers", residents.length);
       setText("dIncome", money(income));

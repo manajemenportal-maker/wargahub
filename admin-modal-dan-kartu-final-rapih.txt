@@ -1,0 +1,10 @@
+PERBAIKAN FINAL KARTU & MODAL ADMIN LAPTOP
+
+Yang diperbaiki:
+- Modal Buat Tenant Baru dibuat lebih lega.
+- Form modal desktop dari 3 kolom menjadi 2 kolom agar tidak mepet.
+- Input/select/button dibuat tidak keluar frame.
+- Modal punya batas tinggi dan bisa scroll rapi.
+- Nilai income dashboard tidak pecah terlalu buruk.
+- Topbar dashboard lebih fleksibel di laptop.
+- Kartu dashboard tetap proporsional dan tidak over frame.

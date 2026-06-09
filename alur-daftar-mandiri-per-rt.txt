@@ -1,0 +1,31 @@
+ALUR WARGA DAFTAR SENDIRI PER RT DAN OTOMATIS MASUK RW
+
+Konsep:
+- Tenant induk = RW / Perumahan / Kampung.
+- Ruang kecil di dalam tenant = RT.
+- Warga daftar sendiri lewat link RT atau kode RT.
+- Setelah daftar, data warga masuk ke RT masing-masing.
+- Secara otomatis warga juga tergabung ke komunitas RW/tenant induk.
+
+Contoh link:
+https://USERNAME.github.io/wargahub/?tenant=kampung-melati-rw05&rt=rt01
+https://USERNAME.github.io/wargahub/?tenant=kampung-melati-rw05&rt=rt02
+https://USERNAME.github.io/wargahub/?tenant=kampung-melati-rw05&rt=rt03
+
+Contoh kode RT:
+MELATI-RT01
+MELATI-RT02
+MELATI-RT03
+
+Struktur data:
+tenants/{tenantId}
+tenants/{tenantId}/rts/{rtId}
+tenants/{tenantId}/residents/{residentId} dengan field rtId
+tenants/{tenantId}/reports/{reportId} dengan field rtId
+tenants/{tenantId}/dues/{duesId} dengan field rtId
+
+Hak akses:
+- Admin RW melihat semua RT dalam tenant.
+- Admin RT hanya melihat data rtId miliknya.
+- Warga RT melihat info RW + info RT sendiri.
+- Warga tidak melihat data warga RT lain.

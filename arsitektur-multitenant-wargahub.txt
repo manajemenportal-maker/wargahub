@@ -1,0 +1,43 @@
+WARGAHUB MULTI-TENANT ARCHITECTURE
+
+Tujuan:
+1 aplikasi utama WargaHub bisa dipakai banyak RT/RW/perumahan/kampung tanpa data tercampur.
+
+Konsep utama:
+- Super Admin: pengelola pusat aplikasi WargaHub.
+- Tenant: setiap RT/RW/perumahan/kampung memiliki tenantId sendiri.
+- Role: super_admin, tenant_admin, rt_admin, bendahara, security, resident.
+- Semua data berada di jalur tenants/{tenantId}/...
+
+Struktur Firestore yang disarankan:
+tenants/{tenantId}
+tenants/{tenantId}/users/{userId}
+tenants/{tenantId}/residents/{residentId}
+tenants/{tenantId}/announcements/{announcementId}
+tenants/{tenantId}/dues/{duesId}
+tenants/{tenantId}/reports/{reportId}
+tenants/{tenantId}/services/{serviceId}
+tenants/{tenantId}/products/{productId}
+tenants/{tenantId}/banners/{bannerId}
+tenants/{tenantId}/guests/{guestId}
+tenants/{tenantId}/events/{eventId}
+
+Custom claims Firebase Auth:
+{
+  uid: "...",
+  role: "tenant_admin",
+  tenantId: "gardenia-residence",
+  rtId: "rt03"
+}
+
+Security rules konsep:
+- super_admin bisa semua tenant.
+- tenant_admin hanya tenantId miliknya.
+- rt_admin hanya tenantId + rtId miliknya.
+- bendahara hanya iuran/kas tenant miliknya.
+- security hanya tamu/ronda/laporan keamanan tenant miliknya.
+- resident hanya baca data publik tenant dan tulis laporan/profil/bukti iuran miliknya.
+
+Penting:
+Versi demo ini memakai localStorage agar terasa hidup tanpa Firebase.
+Saat masuk Firebase, semua array demo diubah menjadi collection Firestore sesuai tenantId.
