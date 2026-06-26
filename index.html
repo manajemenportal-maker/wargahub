@@ -954,6 +954,80 @@
       }
     }
 
+
+    .desk-logout-zone{
+      margin-top:16px;
+      padding-top:14px;
+      border-top:1px solid rgba(255,255,255,.10);
+      display:grid;
+      gap:8px;
+    }
+    .desk-logout-zone button{
+      width:100%;
+      border:0;
+      border-radius:16px;
+      padding:12px 13px;
+      display:flex;
+      align-items:center;
+      gap:10px;
+      font-weight:950;
+      text-align:left;
+      color:white;
+      background:rgba(239,68,68,.18);
+    }
+    .desk-logout-zone button.light-exit{
+      background:rgba(255,255,255,.10);
+      color:rgba(255,255,255,.88);
+    }
+    .logout-help{
+      color:rgba(255,255,255,.58);
+      font-size:.72rem;
+      line-height:1.45;
+      font-weight:750;
+      padding:0 4px;
+    }
+    .logout-card{
+      background:linear-gradient(135deg,#fff7ed,#fff1f2);
+      border:1px solid #fed7aa;
+      border-radius:24px;
+      padding:14px;
+      margin-bottom:10px;
+      box-shadow:var(--soft);
+    }
+    .logout-card h3{margin:0 0 7px;font-size:1.1rem;letter-spacing:-.04em}
+    .logout-card p{margin:0;color:#64748b;font-size:.82rem;line-height:1.45;font-weight:750}
+    body.force-mobile .desktop-admin-shell{display:none!important}
+    body.force-mobile .mobile-only-app{display:block!important}
+    .return-desktop-btn{display:none;position:absolute;left:14px;bottom:150px;z-index:60;border:0;border-radius:18px;padding:10px 12px;background:#172033;color:white;font-weight:950;box-shadow:var(--shadow);font-size:.76rem}
+    body.force-mobile .return-desktop-btn{display:block}
+    @media(min-width:900px){
+      body.force-mobile{padding:20px 0!important;background:radial-gradient(circle at 20% 0%,rgba(255,107,0,.16),transparent 280px),radial-gradient(circle at 80% 0%,rgba(124,58,237,.14),transparent 260px),#f1f5f9!important}
+      body.force-mobile .app{display:block!important;max-width:430px!important;min-height:calc(100vh - 40px)!important;margin:0 auto!important;border-radius:36px!important}
+      body.force-mobile .screen{height:calc(100vh - 198px)!important}
+    }
+
+
+    .force-logout-admin{
+      position:fixed;
+      right:18px;
+      bottom:18px;
+      z-index:999999;
+      border:0;
+      border-radius:18px;
+      padding:12px 15px;
+      color:white;
+      background:linear-gradient(135deg,#ef4444,#ff6b00);
+      font-weight:950;
+      box-shadow:0 18px 36px rgba(239,68,68,.28);
+      display:none;
+      align-items:center;
+      gap:8px;
+    }
+    @media(min-width:900px){
+      body:not(.force-mobile) .force-logout-admin{display:flex}
+    }
+    .desk-logout-zone button{position:relative;z-index:99999;pointer-events:auto!important}
+
 </style>
 </head>
 <body>
@@ -972,21 +1046,27 @@
 
       <div class="desk-menu">
         <div class="desk-group-label">Pusat Kontrol</div>
-        <button class="desk-nav active" data-desk="overview" onclick="openDesk('overview')"><i>📊</i>Dashboard <span class="count" id="mCountDashboard">•</span></button>
-        <button class="desk-nav" data-desk="tenants" onclick="openDesk('tenants')"><i>🏘️</i>Tenant / Pelanggan <span class="count" id="mCountTenant">0</span></button>
-        <button class="desk-nav" data-desk="users" onclick="openDesk('users')"><i>👥</i>User & Role <span class="count" id="mCountUsers">0</span></button>
-        <button class="desk-nav danger-menu" data-desk="approvals" onclick="openDesk('approvals')"><i>✅</i>Approval Pembayaran <span class="count" id="mCountApproval">0</span></button>
+        <button class="desk-nav active" data-desk="overview" onclick="openDesk('overview')"><i>ðŸ“Š</i>Dashboard <span class="count" id="mCountDashboard">â€¢</span></button>
+        <button class="desk-nav" data-desk="tenants" onclick="openDesk('tenants')"><i>ðŸ˜ï¸</i>Tenant / Pelanggan <span class="count" id="mCountTenant">0</span></button>
+        <button class="desk-nav" data-desk="users" onclick="openDesk('users')"><i>ðŸ‘¥</i>User & Role <span class="count" id="mCountUsers">0</span></button>
+        <button class="desk-nav danger-menu" data-desk="approvals" onclick="openDesk('approvals')"><i>âœ…</i>Approval Pembayaran <span class="count" id="mCountApproval">0</span></button>
         <div class="desk-group-label">Operasional</div>
-        <button class="desk-nav" data-desk="activity" onclick="openDesk('activity')"><i>📡</i>Aktivitas User <span class="count" id="mCountActivity">0</span></button>
-        <button class="desk-nav" data-desk="moderation" onclick="openDesk('moderation')"><i>🛡️</i>Moderasi Laporan <span class="count" id="mCountReport">0</span></button>
-        <button class="desk-nav" data-desk="links" onclick="openDesk('links')"><i>🔗</i>Link Tenant/RT</button>
+        <button class="desk-nav" data-desk="activity" onclick="openDesk('activity')"><i>ðŸ“¡</i>Aktivitas User <span class="count" id="mCountActivity">0</span></button>
+        <button class="desk-nav" data-desk="moderation" onclick="openDesk('moderation')"><i>ðŸ›¡ï¸</i>Moderasi Laporan <span class="count" id="mCountReport">0</span></button>
+        <button class="desk-nav" data-desk="links" onclick="openDesk('links')"><i>ðŸ”—</i>Link Tenant/RT</button>
         <div class="desk-group-label">Monetisasi</div>
-        <button class="desk-nav" data-desk="billing" onclick="openDesk('billing')"><i>💳</i>Billing & Paket</button>
-        <button class="desk-nav" data-desk="marketplace" onclick="openDesk('marketplace')"><i>🛒</i>Lapak & Jasa</button>
+        <button class="desk-nav" data-desk="billing" onclick="openDesk('billing')"><i>ðŸ’³</i>Billing & Paket</button>
+        <button class="desk-nav" data-desk="marketplace" onclick="openDesk('marketplace')"><i>ðŸ›’</i>Lapak & Jasa</button>
         <div class="desk-group-label">Sistem</div>
-        <button class="desk-nav" data-desk="firebase" onclick="openDesk('firebase')"><i>🔥</i>Firebase Sync</button>
-        <button class="desk-nav" data-desk="settings" onclick="openDesk('settings')"><i>⚙️</i>Pengaturan Sistem</button>
-        <div class="desk-menu-hint"><b>Alur bisnis:</b> Admin daftar gratis → pilih paket → bayar → approval pusat → akses warga dan mandat RT dibuka.</div>
+        <button class="desk-nav" data-desk="firebase" onclick="openDesk('firebase')"><i>ðŸ”¥</i>Firebase Sync</button>
+        <button class="desk-nav" data-desk="settings" onclick="openDesk('settings')"><i>âš™ï¸</i>Pengaturan Sistem</button>
+        <div class="desk-menu-hint"><b>Alur bisnis:</b> Admin daftar gratis â†’ pilih paket â†’ bayar â†’ approval pusat â†’ akses warga dan mandat RT dibuka.</div>
+        <div class="desk-logout-zone">
+          <button type="button" onclick="window.deskLogoutCenter(event)" data-force-logout="1">ðŸšª Keluar Admin Pusat</button>
+          <button class="light-exit" type="button" onclick="window.deskSwitchToMobile(event)">ðŸ“± Lihat Mode HP/User</button>
+          <div class="logout-help">Untuk ujicoba di laptop sendiri: keluar admin pusat, lalu pilih role/tenant lain dari mode HP.</div>
+        </div>
+
       </div></div>
     </aside>
 
@@ -1010,21 +1090,21 @@
             <h2>Kontrol semua RT, RW, perumahan, user, billing, dan aktivitas dari satu dashboard.</h2>
             <p>Dashboard ini khusus untuk kita sebagai pemilik platform. Tenant pelanggan tetap punya ruang sendiri, sedangkan kita bisa memantau performa, aktivitas, link, income, laporan, dan status sistem secara terpusat.</p>
             <div class="desk-hero-badges">
-              <span>🏘️ Multi Tenant</span>
-              <span>🔐 Role Control</span>
-              <span>📡 User Activity</span>
-              <span>🔥 Firebase Sync</span>
+              <span>ðŸ˜ï¸ Multi Tenant</span>
+              <span>ðŸ” Role Control</span>
+              <span>ðŸ“¡ User Activity</span>
+              <span>ðŸ”¥ Firebase Sync</span>
             </div>
           </div>
 
           <div class="desk-quick-card">
             <h3>Aksi Cepat</h3>
             <div class="desk-quick-actions">
-              <button onclick="openDeskModal('createTenant')">Buat Tenant Baru <b>＋</b></button>
-              <button onclick="openDesk('links')">Copy Link Tenant/RT <b>🔗</b></button>
-              <button onclick="openDesk('activity')">Pantau Aktivitas <b>📡</b></button>
-              <button onclick="openDesk('billing')">Cek Billing <b>💳</b></button>
-              <button onclick="openDesk('firebase')">Sync Firebase <b>🔥</b></button>
+              <button onclick="openDeskModal('createTenant')">Buat Tenant Baru <b>ï¼‹</b></button>
+              <button onclick="openDesk('links')">Copy Link Tenant/RT <b>ðŸ”—</b></button>
+              <button onclick="openDesk('activity')">Pantau Aktivitas <b>ðŸ“¡</b></button>
+              <button onclick="openDesk('billing')">Cek Billing <b>ðŸ’³</b></button>
+              <button onclick="openDesk('firebase')">Sync Firebase <b>ðŸ”¥</b></button>
             </div>
           </div>
         </div>
@@ -1033,28 +1113,28 @@
           <div class="desk-card desk-kpi-card">
             <div class="desk-kpi-top">
               <div><small>Total Tenant</small><b id="dTotalTenant">0</b></div>
-              <div class="desk-kpi-icon">🏘️</div>
+              <div class="desk-kpi-icon">ðŸ˜ï¸</div>
             </div>
             <div class="desk-kpi-foot"><span>Aktif</span><em>RT/RW/perumahan</em></div>
           </div>
           <div class="desk-card desk-kpi-card">
             <div class="desk-kpi-top">
               <div><small>Total User/Warga</small><b id="dTotalUsers">0</b></div>
-              <div class="desk-kpi-icon">👥</div>
+              <div class="desk-kpi-icon">ðŸ‘¥</div>
             </div>
             <div class="desk-kpi-foot"><span>Terdaftar</span><em>semua tenant</em></div>
           </div>
           <div class="desk-card desk-kpi-card">
             <div class="desk-kpi-top">
               <div><small>Income Bulanan</small><b id="dIncome">Rp0</b></div>
-              <div class="desk-kpi-icon">💰</div>
+              <div class="desk-kpi-icon">ðŸ’°</div>
             </div>
             <div class="desk-kpi-foot"><span>Simulasi</span><em>paket + market</em></div>
           </div>
           <div class="desk-card desk-kpi-card">
             <div class="desk-kpi-top">
               <div><small>Aktivitas Hari Ini</small><b id="dActivities">0</b></div>
-              <div class="desk-kpi-icon">📡</div>
+              <div class="desk-kpi-icon">ðŸ“¡</div>
             </div>
             <div class="desk-kpi-foot"><span>Monitor</span><em>log user</em></div>
           </div>
@@ -1126,12 +1206,12 @@
           <div class="desk-card">
             <h2 style="margin:0 0 12px">Filter Aktivitas</h2>
             <div class="subgrid">
-              <button class="subbtn" onclick="deskFilterActivity('all')"><i>📡</i>Semua</button>
-              <button class="subbtn" onclick="deskFilterActivity('login')"><i>🔐</i>Login</button>
-              <button class="subbtn" onclick="deskFilterActivity('report')"><i>🛟</i>Laporan</button>
-              <button class="subbtn" onclick="deskFilterActivity('payment')"><i>💳</i>Iuran</button>
-              <button class="subbtn" onclick="deskFilterActivity('market')"><i>🛒</i>Lapak/Jasa</button>
-              <button class="subbtn" onclick="deskFilterActivity('admin')"><i>⚙️</i>Admin</button>
+              <button class="subbtn" onclick="deskFilterActivity('all')"><i>ðŸ“¡</i>Semua</button>
+              <button class="subbtn" onclick="deskFilterActivity('login')"><i>ðŸ”</i>Login</button>
+              <button class="subbtn" onclick="deskFilterActivity('report')"><i>ðŸ›Ÿ</i>Laporan</button>
+              <button class="subbtn" onclick="deskFilterActivity('payment')"><i>ðŸ’³</i>Iuran</button>
+              <button class="subbtn" onclick="deskFilterActivity('market')"><i>ðŸ›’</i>Lapak/Jasa</button>
+              <button class="subbtn" onclick="deskFilterActivity('admin')"><i>âš™ï¸</i>Admin</button>
             </div>
           </div>
         </div>
@@ -1157,13 +1237,13 @@
       <section class="desk-section" id="desk-marketplace">
         <div class="desk-section-head">
           <h2>Lapak, Jasa & Banner</h2>
-          <button class="desk-btn" onclick="openDeskModal('createService')">+ Tambah Jasa</button>
+          <div style="display:flex;gap:10px;flex-wrap:wrap;justify-content:flex-end"><button class="desk-btn" onclick="openDeskModal('createProduct')">+ Pasang Lapak Pusat</button><button class="desk-btn light" onclick="openDeskModal('createService')">+ Tambah Jasa</button></div>
         </div>
         <div class="desk-grid-4">
-          <div class="desk-card"><div class="desk-metric"><div><small>Total Lapak</small><b id="dTotalProducts">0</b><span>jualan</span></div><div class="ico">🛒</div></div></div>
-          <div class="desk-card"><div class="desk-metric"><div><small>Total Jasa</small><b id="dTotalServices">0</b><span>verified</span></div><div class="ico">🔧</div></div></div>
-          <div class="desk-card"><div class="desk-metric"><div><small>Total Banner</small><b id="dTotalBanners">0</b><span>iklan</span></div><div class="ico">📣</div></div></div>
-          <div class="desk-card"><div class="desk-metric"><div><small>Income Lokal</small><b id="dMarketIncome">0</b><span>potensi</span></div><div class="ico">📈</div></div></div>
+          <div class="desk-card"><div class="desk-metric"><div><small>Total Lapak</small><b id="dTotalProducts">0</b><span>jualan</span></div><div class="ico">ðŸ›’</div></div></div>
+          <div class="desk-card"><div class="desk-metric"><div><small>Total Jasa</small><b id="dTotalServices">0</b><span>verified</span></div><div class="ico">ðŸ”§</div></div></div>
+          <div class="desk-card"><div class="desk-metric"><div><small>Total Banner</small><b id="dTotalBanners">0</b><span>iklan</span></div><div class="ico">ðŸ“£</div></div></div>
+          <div class="desk-card"><div class="desk-metric"><div><small>Income Lokal</small><b id="dMarketIncome">0</b><span>potensi</span></div><div class="ico">ðŸ“ˆ</div></div></div>
         </div>
         <div class="desk-table-wrap"><table class="desk-table"><thead><tr><th>Item</th><th>Tenant</th><th>Kategori</th><th>Harga/Paket</th><th>Status</th><th>Aksi</th></tr></thead><tbody id="dMarketRows"></tbody></table></div>
       </section>
@@ -1251,13 +1331,20 @@ tenants/{tenantId}/products</div>
       <div class="desk-modal-box">
         <div class="desk-modal-head">
           <h3 id="deskModalTitle">Form</h3>
-          <button onclick="closeDeskModal()">×</button>
+          <button onclick="closeDeskModal()">Ã—</button>
         </div>
         <div id="deskModalBody"></div>
       </div>
     </div>
   </section>
 
+
+  
+  <script>
+    if(localStorage.getItem("seputarwargaForceMobile")==="1"){
+      document.body.classList.add("force-mobile");
+    }
+  </script>
 
   <main class="app mobile-only-app">
     <header class="app-header">
@@ -1266,16 +1353,16 @@ tenants/{tenantId}/products</div>
           <div class="logo"><img src="./icon-192x192.png" alt="SeputarWarga"></div>
           <div class="brand-title">
             <b>SeputarWarga</b>
-            <small id="pageSub">RT 03 · Gardenia Residence</small>
+            <small id="pageSub">RT 03 Â· Gardenia Residence</small>
           </div>
         </div>
         <div class="top-actions">
-          <button class="circle-btn" onclick="openPage('notifikasi')">🔔</button>
-          <button class="circle-btn" onclick="openPage('profil')">👤</button>
+          <button class="circle-btn" onclick="openPage('notifikasi')">ðŸ””</button>
+          <button class="circle-btn" onclick="openPage('profil')">ðŸ‘¤</button>
         </div>
       </div>
       <div class="search-wrap">
-        <span>🔎</span>
+        <span>ðŸ”Ž</span>
         <input id="searchInput" type="search" placeholder="Cari servis AC, galon, info RT..." onkeydown="if(event.key==='Enter') searchGo()" />
         <button onclick="searchGo()">Cari</button>
       </div>
@@ -1294,62 +1381,62 @@ tenants/{tenantId}/products</div>
         <div class="mobile-menu-section">
           <div class="mobile-menu-title"><div><b>Menu Utama Warga</b><small>Dipakai harian oleh warga</small></div><span class="menu-badge-mini">Warga</span></div>
           <div class="menu-card-grid">
-            <button class="menu-card-btn primary-menu" onclick="openPage('info')"><i>📢</i><span>Info</span></button>
-            <button class="menu-card-btn primary-menu" onclick="openPage('iuran')"><i>💳</i><span>Iuran</span></button>
-            <button class="menu-card-btn primary-menu" onclick="openPage('lapor')"><i>🛟</i><span>Lapor</span></button>
-            <button class="menu-card-btn primary-menu" onclick="openPage('darurat')"><i>🚨</i><span>Darurat</span></button>
-            <button class="menu-card-btn" onclick="openPage('jasa')"><i>🔧</i><span>Jasa</span></button>
-            <button class="menu-card-btn" onclick="openPage('lapak')"><i>🛒</i><span>Lapak</span></button>
-            <button class="menu-card-btn" onclick="openPage('event')"><i>🎉</i><span>Event</span></button>
-            <button class="menu-card-btn" onclick="openPage('rwCommunity')"><i>🤝</i><span>RW</span></button>
+            <button class="menu-card-btn primary-menu" onclick="openPage('info')"><i>ðŸ“¢</i><span>Info</span></button>
+            <button class="menu-card-btn primary-menu" onclick="openPage('iuran')"><i>ðŸ’³</i><span>Iuran</span></button>
+            <button class="menu-card-btn primary-menu" onclick="openPage('lapor')"><i>ðŸ›Ÿ</i><span>Lapor</span></button>
+            <button class="menu-card-btn primary-menu" onclick="openPage('darurat')"><i>ðŸš¨</i><span>Darurat</span></button>
+            <button class="menu-card-btn" onclick="openPage('jasa')"><i>ðŸ”§</i><span>Jasa</span></button>
+            <button class="menu-card-btn" onclick="openPage('lapak')"><i>ðŸ›’</i><span>Lapak</span></button>
+            <button class="menu-card-btn" onclick="openPage('event')"><i>ðŸŽ‰</i><span>Event</span></button>
+            <button class="menu-card-btn" onclick="openPage('rwCommunity')"><i>ðŸ¤</i><span>RW</span></button>
           </div>
         </div>
 
         <div class="mobile-menu-section">
           <div class="mobile-menu-title"><div><b>Pengurus & Akses</b><small>Daftar, upgrade, link, mandat admin</small></div><span class="menu-badge-mini">Admin</span></div>
           <div class="menu-card-grid">
-            <button class="menu-card-btn" onclick="openPage('freeRegister')"><i>🆓</i><span>Daftar</span></button>
-            <button class="menu-card-btn locked" onclick="openPage('upgradeRequired')"><i>🚀</i><span>Upgrade</span></button>
-            <button class="menu-card-btn" onclick="requireApprovedAccess('invite')"><i>🔗</i><span>Link</span></button>
-            <button class="menu-card-btn" onclick="openPage('rtRooms')"><i>🏠</i><span>Ruang RT</span></button>
-            <button class="menu-card-btn" onclick="openPage('selfRegister')"><i>📝</i><span>Daftar Warga</span></button>
-            <button class="menu-card-btn" onclick="openPage('mandateAdmin')"><i>👥</i><span>Mandat</span></button>
-            <button class="menu-card-btn" onclick="openPage('tamu')"><i>🚪</i><span>Tamu</span></button>
-            <button class="menu-card-btn" onclick="openPage('ronda')"><i>🛡️</i><span>Ronda</span></button>
+            <button class="menu-card-btn" onclick="openPage('freeRegister')"><i>ðŸ†“</i><span>Daftar</span></button>
+            <button class="menu-card-btn locked" onclick="openPage('upgradeRequired')"><i>ðŸš€</i><span>Upgrade</span></button>
+            <button class="menu-card-btn" onclick="requireApprovedAccess('invite')"><i>ðŸ”—</i><span>Link</span></button>
+            <button class="menu-card-btn" onclick="openPage('rtRooms')"><i>ðŸ </i><span>Ruang RT</span></button>
+            <button class="menu-card-btn" onclick="openPage('selfRegister')"><i>ðŸ“</i><span>Daftar Warga</span></button>
+            <button class="menu-card-btn" onclick="openPage('mandateAdmin')"><i>ðŸ‘¥</i><span>Mandat</span></button>
+            <button class="menu-card-btn" onclick="openPage('tamu')"><i>ðŸšª</i><span>Tamu</span></button>
+            <button class="menu-card-btn" onclick="openPage('ronda')"><i>ðŸ›¡ï¸</i><span>Ronda</span></button>
           </div>
         </div>
 
         <div class="mobile-menu-section">
           <div class="mobile-menu-title"><div><b>Pengelola Pusat</b><small>Khusus pemilik platform</small></div><span class="menu-badge-mini">Pusat</span></div>
           <div class="menu-card-grid">
-            <button class="menu-card-btn" onclick="guardOpen('superAdmin',['super_admin'])"><i>👑</i><span>Pusat</span></button>
-            <button class="menu-card-btn" onclick="guardOpen('centralApproval',['super_admin'])"><i>✅</i><span>Approval</span></button>
-            <button class="menu-card-btn" onclick="openPage('harga')"><i>💰</i><span>Harga</span></button>
-            <button class="menu-card-btn" onclick="openPage('firebaseSync')"><i>🔥</i><span>Firebase</span></button>
+            <button class="menu-card-btn" onclick="guardOpen('superAdmin',['super_admin'])"><i>ðŸ‘‘</i><span>Pusat</span></button>
+            <button class="menu-card-btn" onclick="guardOpen('centralApproval',['super_admin'])"><i>âœ…</i><span>Approval</span></button>
+            <button class="menu-card-btn" onclick="openPage('harga')"><i>ðŸ’°</i><span>Harga</span></button>
+            <button class="menu-card-btn" onclick="openPage('firebaseSync')"><i>ðŸ”¥</i><span>Firebase</span></button>
           </div>
         </div>
 
         <div class="quick-panel menu-old-hidden">
           <div class="icon-grid">
-            <button class="icon-item" onclick="openPage('info')"><div class="icon-badge">📢</div>Info RT</button>
-            <button class="icon-item" onclick="openPage('iuran')"><div class="icon-badge">💳</div>Iuran</button>
-            <button class="icon-item" onclick="openPage('lapor')"><div class="icon-badge">🛟</div>Lapor</button>
-            <button class="icon-item" onclick="openPage('jasa')"><div class="icon-badge">🔧</div>Jasa</button>
-            <button class="icon-item" onclick="openPage('lapak')"><div class="icon-badge">🛒</div>Lapak</button>
-            <button class="icon-item" onclick="openPage('ronda')"><div class="icon-badge">🛡️</div>Ronda</button>
-            <button class="icon-item" onclick="openPage('tamu')"><div class="icon-badge">🚪</div>Tamu</button>
-            <button class="icon-item" onclick="openPage('event')"><div class="icon-badge">🎉</div>Event</button>
-            <button class="icon-item" onclick="openPage('darurat')"><div class="icon-badge">🚨</div>Darurat</button>
-            <button class="icon-item" onclick="openPage('admin')"><div class="icon-badge">⚙️</div>Admin</button>
-            <button class="icon-item" onclick="guardOpen('superAdmin',['super_admin'])"><div class="icon-badge">👑</div>Pusat</button>
-            <button class="icon-item" onclick="db.currentRole==='super_admin'?openPage('tenantSwitch'):openPage('invite')"><div class="icon-badge">🏘️</div>Tenant</button>
-            <button class="icon-item" onclick="openPage('roles')"><div class="icon-badge">🔐</div>Role</button>
-            <button class="icon-item" onclick="openPage('harga')"><div class="icon-badge">💰</div>Harga</button>
-            <button class="icon-item" onclick="openPage('firestore')"><div class="icon-badge">🔥</div>Firebase</button>
-            <button class="icon-item" onclick="requireApprovedAccess('invite')"><div class="icon-badge">🔗</div>Link</button>
-            <button class="icon-item" onclick="openPage('rtRooms')"><div class="icon-badge">🏠</div>Ruang RT</button>
-            <button class="icon-item" onclick="openPage('selfRegister')"><div class="icon-badge">📝</div>Daftar</button>
-            <button class="icon-item" onclick="openPage('rwCommunity')"><div class="icon-badge">🤝</div>RW</button>
+            <button class="icon-item" onclick="openPage('info')"><div class="icon-badge">ðŸ“¢</div>Info RT</button>
+            <button class="icon-item" onclick="openPage('iuran')"><div class="icon-badge">ðŸ’³</div>Iuran</button>
+            <button class="icon-item" onclick="openPage('lapor')"><div class="icon-badge">ðŸ›Ÿ</div>Lapor</button>
+            <button class="icon-item" onclick="openPage('jasa')"><div class="icon-badge">ðŸ”§</div>Jasa</button>
+            <button class="icon-item" onclick="openPage('lapak')"><div class="icon-badge">ðŸ›’</div>Lapak</button>
+            <button class="icon-item" onclick="openPage('ronda')"><div class="icon-badge">ðŸ›¡ï¸</div>Ronda</button>
+            <button class="icon-item" onclick="openPage('tamu')"><div class="icon-badge">ðŸšª</div>Tamu</button>
+            <button class="icon-item" onclick="openPage('event')"><div class="icon-badge">ðŸŽ‰</div>Event</button>
+            <button class="icon-item" onclick="openPage('darurat')"><div class="icon-badge">ðŸš¨</div>Darurat</button>
+            <button class="icon-item" onclick="openPage('admin')"><div class="icon-badge">âš™ï¸</div>Admin</button>
+            <button class="icon-item" onclick="guardOpen('superAdmin',['super_admin'])"><div class="icon-badge">ðŸ‘‘</div>Pusat</button>
+            <button class="icon-item" onclick="db.currentRole==='super_admin'?openPage('tenantSwitch'):openPage('invite')"><div class="icon-badge">ðŸ˜ï¸</div>Tenant</button>
+            <button class="icon-item" onclick="openPage('roles')"><div class="icon-badge">ðŸ”</div>Role</button>
+            <button class="icon-item" onclick="openPage('harga')"><div class="icon-badge">ðŸ’°</div>Harga</button>
+            <button class="icon-item" onclick="openPage('firestore')"><div class="icon-badge">ðŸ”¥</div>Firebase</button>
+            <button class="icon-item" onclick="requireApprovedAccess('invite')"><div class="icon-badge">ðŸ”—</div>Link</button>
+            <button class="icon-item" onclick="openPage('rtRooms')"><div class="icon-badge">ðŸ </div>Ruang RT</button>
+            <button class="icon-item" onclick="openPage('selfRegister')"><div class="icon-badge">ðŸ“</div>Daftar</button>
+            <button class="icon-item" onclick="openPage('rwCommunity')"><div class="icon-badge">ðŸ¤</div>RW</button>
           </div>
           <div class="ticker"><b>HOT</b><div class="ticker-track"><span id="tickerText">Promo warga berjalan sesuai tenant aktif</span></div></div>
         </div>
@@ -1363,7 +1450,7 @@ tenants/{tenantId}/products</div>
 
 
       <div class="page" id="freeRegister">
-        <div class="sec-head"><div class="sec-title"><button class="back" onclick="openPage('home')">‹</button><h2>Daftar Pengurus</h2></div><small>Gratis</small></div>
+        <div class="sec-head"><div class="sec-title"><button class="back" onclick="openPage('home')">â€¹</button><h2>Daftar Pengurus</h2></div><small>Gratis</small></div>
         <div class="upgrade-lock">
           <small class="status purple">DAFTAR GRATIS</small>
           <h3>Pengurus bisa daftar dulu tanpa bayar</h3>
@@ -1382,7 +1469,7 @@ tenants/{tenantId}/products</div>
       </div>
 
       <div class="page" id="upgradeRequired">
-        <div class="sec-head"><div class="sec-title"><button class="back" onclick="openPage('home')">‹</button><h2>Upgrade Paket</h2></div><small>Wajib sebelum undang warga</small></div>
+        <div class="sec-head"><div class="sec-title"><button class="back" onclick="openPage('home')">â€¹</button><h2>Upgrade Paket</h2></div><small>Wajib sebelum undang warga</small></div>
         <div id="upgradeStatusBox"></div>
         <div class="upgrade-lock">
           <small class="status orange">AKSES WARGA TERKUNCI</small>
@@ -1398,7 +1485,7 @@ tenants/{tenantId}/products</div>
       </div>
 
       <div class="page" id="paymentConfirm">
-        <div class="sec-head"><div class="sec-title"><button class="back" onclick="openPage('upgradeRequired')">‹</button><h2>Konfirmasi Bayar</h2></div><small>Menunggu approval</small></div>
+        <div class="sec-head"><div class="sec-title"><button class="back" onclick="openPage('upgradeRequired')">â€¹</button><h2>Konfirmasi Bayar</h2></div><small>Menunggu approval</small></div>
         <div class="card">
           <form class="form" onsubmit="submitUpgradePayment(event)">
             <input id="payTenantName" readonly>
@@ -1414,7 +1501,7 @@ tenants/{tenantId}/products</div>
       </div>
 
       <div class="page" id="mandateAdmin">
-        <div class="sec-head"><div class="sec-title"><button class="back" onclick="openPage('admin')">‹</button><h2>Mandat Admin RT</h2></div><small>Setelah approved</small></div>
+        <div class="sec-head"><div class="sec-title"><button class="back" onclick="openPage('admin')">â€¹</button><h2>Mandat Admin RT</h2></div><small>Setelah approved</small></div>
         <div id="mandateGate"></div>
         <div class="card">
           <form class="form" onsubmit="submitMandateAdmin(event)">
@@ -1429,23 +1516,48 @@ tenants/{tenantId}/products</div>
       </div>
 
       <div class="page" id="centralApproval">
-        <div class="sec-head"><div class="sec-title"><button class="back" onclick="openPage('superAdmin')">‹</button><h2>Approval Pusat</h2></div><small>Pembayaran & akses</small></div>
+        <div class="sec-head"><div class="sec-title"><button class="back" onclick="openPage('superAdmin')">â€¹</button><h2>Approval Pusat</h2></div><small>Pembayaran & akses</small></div>
         <div id="centralApprovalList"></div>
       </div>
 
+      
+      <div class="page" id="logoutPage">
+        <div class="sec-head">
+          <div class="sec-title"><button class="back" onclick="openPage('home')">â€¹</button><h2>Keluar / Ganti Mode</h2></div>
+          <small>Ujicoba</small>
+        </div>
+        <div class="logout-card">
+          <h3>Mode ujicoba cepat</h3>
+          <p>Pakai menu ini kalau kamu tes sendiri di satu laptop/HP. Bisa ganti dari Super Admin ke Admin Tenant, Admin RT, Bendahara, Security, atau Warga.</p>
+        </div>
+        <div class="card">
+          <div class="subgrid">
+            <button class="subbtn" onclick="quickLoginAs('super_admin')"><i>ðŸ‘‘</i>Super Admin</button>
+            <button class="subbtn" onclick="quickLoginAs('tenant_admin')"><i>ðŸ˜ï¸</i>Admin Tenant</button>
+            <button class="subbtn" onclick="quickLoginAs('rt_admin')"><i>ðŸ </i>Admin RT</button>
+            <button class="subbtn" onclick="quickLoginAs('bendahara')"><i>ðŸ’³</i>Bendahara</button>
+            <button class="subbtn" onclick="quickLoginAs('security')"><i>ðŸ›¡ï¸</i>Security</button>
+            <button class="subbtn" onclick="quickLoginAs('resident')"><i>ðŸ™‚</i>Warga</button>
+          </div>
+        </div>
+        <div class="card">
+          <button class="btn dark" onclick="logoutAll()">Keluar & Reset ke Warga</button>
+        </div>
+      </div>
+
       <div class="page" id="tenantSwitch">
-        <div class="sec-head"><div class="sec-title"><button class="back" onclick="openPage('home')">‹</button><h2>Pilih Tenant</h2></div><small>Anti campur</small></div>
+        <div class="sec-head"><div class="sec-title"><button class="back" onclick="openPage('home')">â€¹</button><h2>Pilih Tenant</h2></div><small>Anti campur</small></div>
         <div id="tenantCards"></div>
       </div>
 
       <div class="page" id="roles">
-        <div class="sec-head"><div class="sec-title"><button class="back" onclick="openPage('home')">‹</button><h2>Role & Akses</h2></div><small>Simulasi</small></div>
+        <div class="sec-head"><div class="sec-title"><button class="back" onclick="openPage('home')">â€¹</button><h2>Role & Akses</h2></div><small>Simulasi</small></div>
         <div class="pay-box"><small>Role aktif sekarang</small><h3 id="activeRoleBig">-</h3><p>Ganti role untuk melihat menu mana yang boleh dibuka. Ini simulasi sebelum disambungkan ke Firebase Authentication.</p></div>
         <div id="roleList"></div>
       </div>
 
       <div class="page" id="superAdmin">
-        <div class="sec-head"><div class="sec-title"><button class="back" onclick="openPage('home')">‹</button><h2>Super Admin</h2></div><small>SeputarWarga</small></div>
+        <div class="sec-head"><div class="sec-title"><button class="back" onclick="openPage('home')">â€¹</button><h2>Super Admin</h2></div><small>SeputarWarga</small></div>
         <div class="pay-box super-bg"><small>Pengelola pusat aplikasi</small><h3>Dashboard Pusat</h3><p>Kita bisa membuat tenant baru, mengunci data, mengatur paket, mengaktifkan pelanggan, dan melihat income dari lapak/jasa/banner seluruh lingkungan.</p></div>
         <div class="admin-grid">
           <div class="admin-card"><small>Total tenant</small><b id="saTenants">0</b><span>aktif</span></div>
@@ -1454,18 +1566,18 @@ tenants/{tenantId}/products</div>
           <div class="admin-card"><small>Status sistem</small><b>Normal</b><span>aman</span></div>
         </div>
         <div class="subgrid">
-          <button class="subbtn" onclick="openPage('createTenant')"><i>🏘️</i>Buat Tenant</button>
-          <button class="subbtn" onclick="openPage('tenantBilling')"><i>💳</i>Billing Tenant</button>
-          <button class="subbtn" onclick="openPage('globalIncome')"><i>📈</i>Income Global</button>
-          <button class="subbtn" onclick="openPage('firestore')"><i>🔥</i>Struktur Firebase</button>
-          <button class="subbtn" onclick="openPage('securityRules')"><i>🔐</i>Rules Akses</button>
-          <button class="subbtn" onclick="openPage('roleMatrix')"><i>👥</i>Matriks Role</button>
+          <button class="subbtn" onclick="openPage('createTenant')"><i>ðŸ˜ï¸</i>Buat Tenant</button>
+          <button class="subbtn" onclick="openPage('tenantBilling')"><i>ðŸ’³</i>Billing Tenant</button>
+          <button class="subbtn" onclick="openPage('globalIncome')"><i>ðŸ“ˆ</i>Income Global</button>
+          <button class="subbtn" onclick="openPage('firestore')"><i>ðŸ”¥</i>Struktur Firebase</button>
+          <button class="subbtn" onclick="openPage('securityRules')"><i>ðŸ”</i>Rules Akses</button>
+          <button class="subbtn" onclick="openPage('roleMatrix')"><i>ðŸ‘¥</i>Matriks Role</button>
         </div>
         <div id="superTenantList"></div>
       </div>
 
       <div class="page" id="createTenant">
-        <div class="sec-head"><div class="sec-title"><button class="back" onclick="openPage('superAdmin')">‹</button><h2>Buat Tenant Baru</h2></div><small>Pusat</small></div>
+        <div class="sec-head"><div class="sec-title"><button class="back" onclick="openPage('superAdmin')">â€¹</button><h2>Buat Tenant Baru</h2></div><small>Pusat</small></div>
         <div class="card">
           <form class="form" onsubmit="submitTenant(event)">
             <input id="tnName" placeholder="Nama lingkungan, contoh Gardenia Residence" required>
@@ -1482,18 +1594,18 @@ tenants/{tenantId}/products</div>
       </div>
 
       <div class="page" id="tenantBilling">
-        <div class="sec-head"><div class="sec-title"><button class="back" onclick="openPage('superAdmin')">‹</button><h2>Billing Tenant</h2></div><small>Pusat</small></div>
+        <div class="sec-head"><div class="sec-title"><button class="back" onclick="openPage('superAdmin')">â€¹</button><h2>Billing Tenant</h2></div><small>Pusat</small></div>
         <div id="billingList"></div>
       </div>
 
       <div class="page" id="globalIncome">
-        <div class="sec-head"><div class="sec-title"><button class="back" onclick="openPage('superAdmin')">‹</button><h2>Income Global</h2></div><small>Pusat</small></div>
+        <div class="sec-head"><div class="sec-title"><button class="back" onclick="openPage('superAdmin')">â€¹</button><h2>Income Global</h2></div><small>Pusat</small></div>
         <div id="globalIncomeList"></div>
       </div>
 
 
       <div class="page" id="firebaseSync">
-        <div class="sec-head"><div class="sec-title"><button class="back" onclick="openPage('superAdmin')">‹</button><h2>Firebase Sync</h2></div><small>softpro-11da5</small></div>
+        <div class="sec-head"><div class="sec-title"><button class="back" onclick="openPage('superAdmin')">â€¹</button><h2>Firebase Sync</h2></div><small>softpro-11da5</small></div>
         <div class="pay-box">
           <small><span class="firebase-dot" id="fbDot"></span><span id="fbStatus">Menghubungkan Firebase...</span></small>
           <h3>Firestore Aktif</h3>
@@ -1505,7 +1617,7 @@ tenants/{tenantId}/products</div>
         </div>
 
         <div class="card">
-          <div class="feed-head"><div class="avatar">🏘️</div><div><b>Tenant aktif</b><small id="fbTenantName">-</small></div></div>
+          <div class="feed-head"><div class="avatar">ðŸ˜ï¸</div><div><b>Tenant aktif</b><small id="fbTenantName">-</small></div></div>
           <p>Gunakan tombol di bawah untuk menyimpan hanya tenant aktif ke Firestore. Ini cocok untuk mengetes apakah data tiap lingkungan sudah masuk sendiri-sendiri.</p>
           <div class="pay-actions">
             <button class="btn blue" onclick="saveCurrentTenantToFirebase()">Simpan Tenant</button>
@@ -1514,7 +1626,7 @@ tenants/{tenantId}/products</div>
         </div>
 
         <div class="card">
-          <div class="feed-head"><div class="avatar">🔥</div><div><b>Jalur Firestore</b><small>Multi tenant</small></div></div>
+          <div class="feed-head"><div class="avatar">ðŸ”¥</div><div><b>Jalur Firestore</b><small>Multi tenant</small></div></div>
           <div class="tenant-lock">wargahub_system/state
 tenants/{tenantId}
 tenants/{tenantId}/app/data
@@ -1526,9 +1638,9 @@ tenants/{tenantId}/products/{productId}</div>
       </div>
 
       <div class="page" id="firestore">
-        <div class="sec-head"><div class="sec-title"><button class="back" onclick="openPage('home')">‹</button><h2>Struktur Firebase</h2></div><small>Multi tenant</small></div>
+        <div class="sec-head"><div class="sec-title"><button class="back" onclick="openPage('home')">â€¹</button><h2>Struktur Firebase</h2></div><small>Multi tenant</small></div>
         <div class="card">
-          <div class="feed-head"><div class="avatar">🔥</div><div><b>Data dipisah per tenantId</b><small>Anti tercampur</small></div></div>
+          <div class="feed-head"><div class="avatar">ðŸ”¥</div><div><b>Data dipisah per tenantId</b><small>Anti tercampur</small></div></div>
           <p>Semua dokumen warga, iuran, laporan, lapak, jasa, dan event berada di jalur tenant masing-masing.</p>
           <div class="tenant-lock">tenants/{tenantId}/users/{userId}
 tenants/{tenantId}/residents/{residentId}
@@ -1540,15 +1652,15 @@ tenants/{tenantId}/products/{productId}
 tenants/{tenantId}/banners/{bannerId}</div>
         </div>
         <div class="card">
-          <div class="feed-head"><div class="avatar">🧩</div><div><b>Tenant aktif sekarang</b><small id="fireTenant">-</small></div></div>
+          <div class="feed-head"><div class="avatar">ðŸ§©</div><div><b>Tenant aktif sekarang</b><small id="fireTenant">-</small></div></div>
           <p id="fireTenantDesc">-</p>
         </div>
       </div>
 
       <div class="page" id="securityRules">
-        <div class="sec-head"><div class="sec-title"><button class="back" onclick="openPage('superAdmin')">‹</button><h2>Security Rules</h2></div><small>Konsep</small></div>
+        <div class="sec-head"><div class="sec-title"><button class="back" onclick="openPage('superAdmin')">â€¹</button><h2>Security Rules</h2></div><small>Konsep</small></div>
         <div class="card">
-          <div class="feed-head"><div class="avatar">🔐</div><div><b>Contoh aturan akses</b><small>Firebase Rules</small></div></div>
+          <div class="feed-head"><div class="avatar">ðŸ”</div><div><b>Contoh aturan akses</b><small>Firebase Rules</small></div></div>
           <p>Warga hanya boleh membaca data tenant miliknya. Admin tenant hanya mengelola tenant-nya. Super admin bisa mengelola semuanya.</p>
           <div class="tenant-lock">allow read, write: if request.auth.token.role == "super_admin";
 allow read: if request.auth.token.tenantId == tenantId;
@@ -1558,13 +1670,13 @@ allow write: if request.auth.token.tenantId == tenantId
       </div>
 
       <div class="page" id="roleMatrix">
-        <div class="sec-head"><div class="sec-title"><button class="back" onclick="openPage('superAdmin')">‹</button><h2>Matriks Role</h2></div><small>Akses</small></div>
+        <div class="sec-head"><div class="sec-title"><button class="back" onclick="openPage('superAdmin')">â€¹</button><h2>Matriks Role</h2></div><small>Akses</small></div>
         <div id="matrixList"></div>
       </div>
 
 
       <div class="page" id="shareLinks">
-        <div class="sec-head"><div class="sec-title"><button class="back" onclick="openPage('superAdmin')">‹</button><h2>Link Tenant</h2></div><small>Kirim ke pelanggan</small></div>
+        <div class="sec-head"><div class="sec-title"><button class="back" onclick="openPage('superAdmin')">â€¹</button><h2>Link Tenant</h2></div><small>Kirim ke pelanggan</small></div>
         <div class="pay-box">
           <small>Siap dibagikan</small>
           <h3>Link Khusus</h3>
@@ -1574,13 +1686,13 @@ allow write: if request.auth.token.tenantId == tenantId
       </div>
 
       <div class="page" id="invite">
-        <div class="sec-head"><div class="sec-title"><button class="back" onclick="openPage('home')">‹</button><h2>Undang Warga</h2></div><small>Tenant aktif</small></div>
+        <div class="sec-head"><div class="sec-title"><button class="back" onclick="openPage('home')">â€¹</button><h2>Undang Warga</h2></div><small>Tenant aktif</small></div>
         <div class="tenant-brand-card">
           <b id="inviteTenantName">-</b>
           <small id="inviteTenantText">Link warga untuk lingkungan ini</small>
         </div>
         <div class="card">
-          <div class="feed-head"><div class="avatar">🔗</div><div><b>Link warga</b><small>Bisa dikirim ke WhatsApp grup</small></div></div>
+          <div class="feed-head"><div class="avatar">ðŸ”—</div><div><b>Link warga</b><small>Bisa dikirim ke WhatsApp grup</small></div></div>
           <div class="linkbox" id="residentLinkBox">-</div>
           <div class="pay-actions">
             <button class="btn" onclick="copyCurrentTenantLink()">Copy Link</button>
@@ -1597,7 +1709,7 @@ allow write: if request.auth.token.tenantId == tenantId
 
 
       <div class="page" id="rtRooms">
-        <div class="sec-head"><div class="sec-title"><button class="back" onclick="openPage('home')">‹</button><h2>Ruang RT</h2></div><small>Dalam RW</small></div>
+        <div class="sec-head"><div class="sec-title"><button class="back" onclick="openPage('home')">â€¹</button><h2>Ruang RT</h2></div><small>Dalam RW</small></div>
         <div class="pay-box">
           <small>Konsep otomatis</small>
           <h3>RT sendiri, RW tetap gabung</h3>
@@ -1607,7 +1719,7 @@ allow write: if request.auth.token.tenantId == tenantId
       </div>
 
       <div class="page" id="selfRegister">
-        <div class="sec-head"><div class="sec-title"><button class="back" onclick="openPage('home')">‹</button><h2>Daftar Warga</h2></div><small>Mandiri</small></div>
+        <div class="sec-head"><div class="sec-title"><button class="back" onclick="openPage('home')">â€¹</button><h2>Daftar Warga</h2></div><small>Mandiri</small></div>
         <div class="tenant-brand-card">
           <b id="regTenantName">-</b>
           <small id="regRtName">Daftar sesuai RT masing-masing</small>
@@ -1626,12 +1738,12 @@ allow write: if request.auth.token.tenantId == tenantId
       </div>
 
       <div class="page" id="rtLinks">
-        <div class="sec-head"><div class="sec-title"><button class="back" onclick="openPage('rtRooms')">‹</button><h2>Link RT</h2></div><small>Kirim ke warga</small></div>
+        <div class="sec-head"><div class="sec-title"><button class="back" onclick="openPage('rtRooms')">â€¹</button><h2>Link RT</h2></div><small>Kirim ke warga</small></div>
         <div id="rtLinkList"></div>
       </div>
 
       <div class="page" id="rwCommunity">
-        <div class="sec-head"><div class="sec-title"><button class="back" onclick="openPage('home')">‹</button><h2>Komunitas RW</h2></div><small>Gabungan</small></div>
+        <div class="sec-head"><div class="sec-title"><button class="back" onclick="openPage('home')">â€¹</button><h2>Komunitas RW</h2></div><small>Gabungan</small></div>
         <div class="pay-box">
           <small>Komunitas induk</small>
           <h3 id="rwCommunityTitle">RW / Lingkungan</h3>
@@ -1640,60 +1752,61 @@ allow write: if request.auth.token.tenantId == tenantId
         <div id="rwCommunityList"></div>
       </div>
 
-      <div class="page" id="info"><div class="sec-head"><div class="sec-title"><button class="back" onclick="openPage('home')">‹</button><h2>Info RT</h2></div><small id="infoTenant">Tenant</small></div><div id="infoList"></div></div>
+      <div class="page" id="info"><div class="sec-head"><div class="sec-title"><button class="back" onclick="openPage('home')">â€¹</button><h2>Info RT</h2></div><small id="infoTenant">Tenant</small></div><div id="infoList"></div></div>
 
       <div class="page" id="iuran">
-        <div class="sec-head"><div class="sec-title"><button class="back" onclick="openPage('home')">‹</button><h2>Iuran Saya</h2></div><small>Juni 2026</small></div>
+        <div class="sec-head"><div class="sec-title"><button class="back" onclick="openPage('home')">â€¹</button><h2>Iuran Saya</h2></div><small>Juni 2026</small></div>
         <div class="pay-box"><small>Total tagihan bulan ini</small><h3>Rp150.000</h3><p>Status: <b style="color:#16a34a">Lunas</b>. Bukti bayar hanya masuk ke tenant aktif.</p><div class="pay-actions"><button class="btn" onclick="guardOpen('uploadBukti',['resident','bendahara','tenant_admin','rt_admin','super_admin'])">Upload Bukti</button><button class="btn light" onclick="openPage('riwayatIuran')">Riwayat</button></div></div>
         <div id="iuranList"></div>
       </div>
 
-      <div class="page" id="uploadBukti"><div class="sec-head"><div class="sec-title"><button class="back" onclick="openPage('iuran')">‹</button><h2>Upload Bukti</h2></div><small>Iuran</small></div><div class="card"><form class="form" onsubmit="submitBukti(event)"><select id="buktiJenis"><option>Iuran keamanan</option><option>Iuran sampah</option><option>Kas RT</option></select><input id="buktiNominal" type="number" placeholder="Nominal transfer, contoh 150000" required><input id="buktiNama" placeholder="Nama pengirim" required><input type="file" accept="image/*"><textarea id="buktiCatatan" placeholder="Catatan transfer"></textarea><button class="btn" type="submit">Kirim Bukti</button></form></div></div>
-      <div class="page" id="riwayatIuran"><div class="sec-head"><div class="sec-title"><button class="back" onclick="openPage('iuran')">‹</button><h2>Riwayat Iuran</h2></div><small>Bendahara</small></div><div id="riwayatList"></div></div>
+      <div class="page" id="uploadBukti"><div class="sec-head"><div class="sec-title"><button class="back" onclick="openPage('iuran')">â€¹</button><h2>Upload Bukti</h2></div><small>Iuran</small></div><div class="card"><form class="form" onsubmit="submitBukti(event)"><select id="buktiJenis"><option>Iuran keamanan</option><option>Iuran sampah</option><option>Kas RT</option></select><input id="buktiNominal" type="number" placeholder="Nominal transfer, contoh 150000" required><input id="buktiNama" placeholder="Nama pengirim" required><input type="file" accept="image/*"><textarea id="buktiCatatan" placeholder="Catatan transfer"></textarea><button class="btn" type="submit">Kirim Bukti</button></form></div></div>
+      <div class="page" id="riwayatIuran"><div class="sec-head"><div class="sec-title"><button class="back" onclick="openPage('iuran')">â€¹</button><h2>Riwayat Iuran</h2></div><small>Bendahara</small></div><div id="riwayatList"></div></div>
 
       <div class="page" id="lapor">
-        <div class="sec-head"><div class="sec-title"><button class="back" onclick="openPage('home')">‹</button><h2>Lapor Masalah</h2></div><small>Cepat</small></div>
-        <div class="report-grid"><button class="report-btn" onclick="setReport('Lampu jalan mati')"><i>💡</i>Lampu mati</button><button class="report-btn" onclick="setReport('Sampah belum diangkut')"><i>🗑️</i>Sampah</button><button class="report-btn" onclick="setReport('Banjir / selokan mampet')"><i>🌊</i>Banjir</button><button class="report-btn" onclick="setReport('Keamanan / orang mencurigakan')"><i>🚨</i>Keamanan</button></div>
+        <div class="sec-head"><div class="sec-title"><button class="back" onclick="openPage('home')">â€¹</button><h2>Lapor Masalah</h2></div><small>Cepat</small></div>
+        <div class="report-grid"><button class="report-btn" onclick="setReport('Lampu jalan mati')"><i>ðŸ’¡</i>Lampu mati</button><button class="report-btn" onclick="setReport('Sampah belum diangkut')"><i>ðŸ—‘ï¸</i>Sampah</button><button class="report-btn" onclick="setReport('Banjir / selokan mampet')"><i>ðŸŒŠ</i>Banjir</button><button class="report-btn" onclick="setReport('Keamanan / orang mencurigakan')"><i>ðŸš¨</i>Keamanan</button></div>
         <div class="card" style="margin-top:10px"><form class="form" onsubmit="submitReport(event)"><input id="reportTitle" placeholder="Judul laporan" required><textarea id="reportDesc" placeholder="Ceritakan singkat lokasinya"></textarea><button class="btn" type="submit">Kirim Laporan</button></form></div><div id="reportList"></div>
       </div>
 
-      <div class="page" id="jasa"><div class="sec-head"><div class="sec-title"><button class="back" onclick="openPage('home')">‹</button><h2>Jasa Warga</h2></div><small>Verified</small></div><div class="chips"><button class="chip active" onclick="filterServices('Semua', this)">Semua</button><button class="chip" onclick="filterServices('Servis AC', this)">Servis AC</button><button class="chip" onclick="filterServices('Listrik', this)">Listrik</button><button class="chip" onclick="filterServices('Galon', this)">Galon</button><button class="chip" onclick="filterServices('Laundry', this)">Laundry</button></div><div id="serviceList"></div></div>
+      <div class="page" id="jasa"><div class="sec-head"><div class="sec-title"><button class="back" onclick="openPage('home')">â€¹</button><h2>Jasa Warga</h2></div><small>Verified</small></div><div class="chips"><button class="chip active" onclick="filterServices('Semua', this)">Semua</button><button class="chip" onclick="filterServices('Servis AC', this)">Servis AC</button><button class="chip" onclick="filterServices('Listrik', this)">Listrik</button><button class="chip" onclick="filterServices('Galon', this)">Galon</button><button class="chip" onclick="filterServices('Laundry', this)">Laundry</button></div><div id="serviceList"></div></div>
 
-      <div class="page" id="daftarJasa"><div class="sec-head"><div class="sec-title"><button class="back" onclick="openPage('jasa')">‹</button><h2>Daftar Tukang/Jasa</h2></div><small>Berbayar</small></div><div class="card"><form class="form" onsubmit="submitService(event)"><input id="svcName" placeholder="Nama usaha / tukang" required><select id="svcCat"><option>Servis AC</option><option>Listrik</option><option>Galon</option><option>Laundry</option><option>Tukang</option><option>Catering</option></select><input id="svcPrice" placeholder="Harga mulai, contoh Rp75rb" required><input id="svcWA" placeholder="Nomor WhatsApp" value="081296629033"><textarea id="svcDesc" placeholder="Keterangan layanan"></textarea><button class="btn" type="submit">Simpan Jasa</button></form></div></div>
+      <div class="page" id="daftarJasa"><div class="sec-head"><div class="sec-title"><button class="back" onclick="openPage('jasa')">â€¹</button><h2>Daftar Tukang/Jasa</h2></div><small>Berbayar</small></div><div class="card"><form class="form" onsubmit="submitService(event)"><input id="svcName" placeholder="Nama usaha / tukang" required><select id="svcCat"><option>Servis AC</option><option>Listrik</option><option>Galon</option><option>Laundry</option><option>Tukang</option><option>Catering</option></select><input id="svcPrice" placeholder="Harga mulai, contoh Rp75rb" required><input id="svcWA" placeholder="Nomor WhatsApp" value="081296629033"><textarea id="svcDesc" placeholder="Keterangan layanan"></textarea><button class="btn" type="submit">Simpan Jasa</button></form></div></div>
 
-      <div class="page" id="lapak"><div class="sec-head"><div class="sec-title"><button class="back" onclick="openPage('home')">‹</button><h2>Lapak Warga</h2></div><small>Jualan</small></div><div class="product-grid" id="productList"></div></div>
-      <div class="page" id="tambahLapak"><div class="sec-head"><div class="sec-title"><button class="back" onclick="openPage('lapak')">‹</button><h2>Tambah Lapak</h2></div><small>UMKM</small></div><div class="card"><form class="form" onsubmit="submitProduct(event)"><input id="prdName" placeholder="Nama produk" required><input id="prdPrice" placeholder="Harga, contoh Rp18rb" required><select id="prdIcon"><option>🍱</option><option>🧁</option><option>🌿</option><option>🧼</option><option>🍗</option><option>🥤</option></select><input id="prdSeller" placeholder="Penjual / lokasi, contoh Blok C · Catering" required><button class="btn" type="submit">Simpan Lapak</button></form></div></div>
+      <div class="page" id="lapak"><div class="sec-head"><div class="sec-title"><button class="back" onclick="openPage('home')">â€¹</button><h2>Lapak Warga</h2></div><small>Dikelola pusat</small></div><div class="product-grid" id="productList"></div></div>
+      <div class="page" id="tambahLapak"><div class="sec-head"><div class="sec-title"><button class="back" onclick="openPage('lapak')">â€¹</button><h2>Pasang Lapak Pusat</h2></div><small>Admin Pusat</small></div><div class="upgrade-lock"><small class="status purple">DIKELOLA ADMIN PUSAT</small><h3>Lapak hanya dipasang oleh pengelola aplikasi</h3><p>Admin RT/RW/perumahan tidak bisa memasang lapak sendiri. Mereka hanya bisa mengajukan/berlangganan, lalu Admin Pusat yang menayangkan lapak ke tenant tujuan.</p></div><div class="card"><form class="form" onsubmit="submitProduct(event)"><input id="prdName" placeholder="Nama produk" required><input id="prdPrice" placeholder="Harga, contoh Rp18rb" required><select id="prdIcon"><option>ðŸ±</option><option>ðŸ§</option><option>ðŸŒ¿</option><option>ðŸ§¼</option><option>ðŸ—</option><option>ðŸ¥¤</option></select><input id="prdSeller" placeholder="Penjual / lokasi, contoh Blok C Â· Catering" required><button class="btn" type="submit">Simpan Lapak</button></form></div></div>
 
-      <div class="page" id="ronda"><div class="sec-head"><div class="sec-title"><button class="back" onclick="openPage('home')">‹</button><h2>Jadwal Ronda</h2></div><small>Malam ini</small></div><div id="rondaList"></div></div>
-      <div class="page" id="aturRonda"><div class="sec-head"><div class="sec-title"><button class="back" onclick="openPage('ronda')">‹</button><h2>Atur Ronda</h2></div><small>Admin</small></div><div class="card"><form class="form" onsubmit="submitRonda(event)"><input id="rondaBlok" placeholder="Blok / kelompok" required><input id="rondaJam" placeholder="Jam, contoh 22.00 - 01.00" required><input id="rondaKoordinator" placeholder="Koordinator" required><textarea id="rondaNote" placeholder="Catatan"></textarea><button class="btn" type="submit">Simpan Jadwal</button></form></div></div>
+      <div class="page" id="ronda"><div class="sec-head"><div class="sec-title"><button class="back" onclick="openPage('home')">â€¹</button><h2>Jadwal Ronda</h2></div><small>Malam ini</small></div><div id="rondaList"></div></div>
+      <div class="page" id="aturRonda"><div class="sec-head"><div class="sec-title"><button class="back" onclick="openPage('ronda')">â€¹</button><h2>Atur Ronda</h2></div><small>Admin</small></div><div class="card"><form class="form" onsubmit="submitRonda(event)"><input id="rondaBlok" placeholder="Blok / kelompok" required><input id="rondaJam" placeholder="Jam, contoh 22.00 - 01.00" required><input id="rondaKoordinator" placeholder="Koordinator" required><textarea id="rondaNote" placeholder="Catatan"></textarea><button class="btn" type="submit">Simpan Jadwal</button></form></div></div>
 
-      <div class="page" id="tamu"><div class="sec-head"><div class="sec-title"><button class="back" onclick="openPage('home')">‹</button><h2>Buku Tamu</h2></div><small>Satpam</small></div><div class="card"><form class="form" onsubmit="submitGuest(event)"><input id="guestName" placeholder="Nama tamu" required><input id="guestTo" placeholder="Tujuan rumah / blok" required><select id="guestType"><option>Kurir paket</option><option>Keluarga</option><option>Tukang/service</option><option>Lainnya</option></select><button class="btn" type="submit">Catat Tamu</button></form></div><div id="guestList"></div></div>
-      <div class="page" id="event"><div class="sec-head"><div class="sec-title"><button class="back" onclick="openPage('home')">‹</button><h2>Event Warga</h2></div><small>Kegiatan</small></div><div id="eventList"></div></div>
-      <div class="page" id="tambahEvent"><div class="sec-head"><div class="sec-title"><button class="back" onclick="openPage('event')">‹</button><h2>Tambah Event</h2></div><small>Admin</small></div><div class="card"><form class="form" onsubmit="submitEvent(event)"><input id="evtTitle" placeholder="Nama kegiatan" required><input id="evtTime" placeholder="Waktu, contoh Sabtu 06.30" required><textarea id="evtDesc" placeholder="Detail kegiatan"></textarea><button class="btn" type="submit">Simpan Event</button></form></div></div>
+      <div class="page" id="tamu"><div class="sec-head"><div class="sec-title"><button class="back" onclick="openPage('home')">â€¹</button><h2>Buku Tamu</h2></div><small>Satpam</small></div><div class="card"><form class="form" onsubmit="submitGuest(event)"><input id="guestName" placeholder="Nama tamu" required><input id="guestTo" placeholder="Tujuan rumah / blok" required><select id="guestType"><option>Kurir paket</option><option>Keluarga</option><option>Tukang/service</option><option>Lainnya</option></select><button class="btn" type="submit">Catat Tamu</button></form></div><div id="guestList"></div></div>
+      <div class="page" id="event"><div class="sec-head"><div class="sec-title"><button class="back" onclick="openPage('home')">â€¹</button><h2>Event Warga</h2></div><small>Kegiatan</small></div><div id="eventList"></div></div>
+      <div class="page" id="tambahEvent"><div class="sec-head"><div class="sec-title"><button class="back" onclick="openPage('event')">â€¹</button><h2>Tambah Event</h2></div><small>Admin</small></div><div class="card"><form class="form" onsubmit="submitEvent(event)"><input id="evtTitle" placeholder="Nama kegiatan" required><input id="evtTime" placeholder="Waktu, contoh Sabtu 06.30" required><textarea id="evtDesc" placeholder="Detail kegiatan"></textarea><button class="btn" type="submit">Simpan Event</button></form></div></div>
 
-      <div class="page" id="darurat"><div class="sec-head"><div class="sec-title"><button class="back" onclick="openPage('home')">‹</button><h2>Darurat</h2></div><small>Cepat</small></div><div class="pay-box" style="background:linear-gradient(135deg,#fff,#fff1f2);border-color:#fecdd3"><small>Tombol bantuan cepat</small><h3 style="color:#ef4444">Emergency</h3><p>Gunakan hanya untuk kondisi penting.</p><div class="pay-actions"><button class="btn" onclick="chatWA('Admin Keamanan SeputarWarga')">Chat Satpam</button><button class="btn light" onclick="panic()">Panic</button></div></div><div class="card"><div class="feed-head"><div class="avatar">☎️</div><div><b>Nomor penting</b><small>Lingkungan</small></div></div><p>Satpam: 081296629033 · Ketua RT: 081296629033 · Ambulans: 119 · Damkar: 113.</p></div></div>
+      <div class="page" id="darurat"><div class="sec-head"><div class="sec-title"><button class="back" onclick="openPage('home')">â€¹</button><h2>Darurat</h2></div><small>Cepat</small></div><div class="pay-box" style="background:linear-gradient(135deg,#fff,#fff1f2);border-color:#fecdd3"><small>Tombol bantuan cepat</small><h3 style="color:#ef4444">Emergency</h3><p>Gunakan hanya untuk kondisi penting.</p><div class="pay-actions"><button class="btn" onclick="chatWA('Admin Keamanan SeputarWarga')">Chat Satpam</button><button class="btn light" onclick="panic()">Panic</button></div></div><div class="card"><div class="feed-head"><div class="avatar">â˜Žï¸</div><div><b>Nomor penting</b><small>Lingkungan</small></div></div><p>Satpam: 081296629033 Â· Ketua RT: 081296629033 Â· Ambulans: 119 Â· Damkar: 113.</p></div></div>
 
-      <div class="page" id="admin"><div class="sec-head"><div class="sec-title"><button class="back" onclick="openPage('home')">‹</button><h2>Admin Tenant</h2></div><small>Lingkungan</small></div><div class="admin-grid"><div class="admin-card"><small>Warga aktif</small><b id="admWarga">0</b><span>tenant ini</span></div><div class="admin-card"><small>Iuran masuk</small><b id="admIuran">82%</b><span>Aman</span></div><div class="admin-card"><small>Lapak aktif</small><b id="admLapak">0</b><span>income</span></div><div class="admin-card"><small>Jasa verified</small><b id="admJasa">0</b><span>promosi</span></div></div><div class="subgrid"><button class="subbtn" onclick="guardOpen('adminInfo',['tenant_admin','rt_admin','super_admin'])"><i>📢</i>Tambah Info</button><button class="subbtn" onclick="guardOpen('adminWarga',['tenant_admin','rt_admin','super_admin'])"><i>🏠</i>Data Warga</button><button class="subbtn" onclick="guardOpen('daftarJasa',['tenant_admin','rt_admin','super_admin'])"><i>🔧</i>Tambah Jasa</button><button class="subbtn" onclick="guardOpen('tambahLapak',['tenant_admin','rt_admin','resident','super_admin'])"><i>🛒</i>Tambah Lapak</button><button class="subbtn" onclick="guardOpen('aturRonda',['tenant_admin','rt_admin','security','super_admin'])"><i>🛡️</i>Atur Ronda</button><button class="subbtn" onclick="guardOpen('tambahEvent',['tenant_admin','rt_admin','super_admin'])"><i>🎉</i>Tambah Event</button><button class="subbtn" onclick="guardOpen('adminBanner',['tenant_admin','super_admin'])"><i>📣</i>Iklan Banner</button><button class="subbtn" onclick="guardOpen('adminLaporan',['tenant_admin','rt_admin','security','super_admin'])"><i>🛟</i>Kelola Laporan</button></div></div>
+      <div class="page" id="admin"><div class="sec-head"><div class="sec-title"><button class="back" onclick="openPage('home')">â€¹</button><h2>Admin Tenant</h2></div><small>Lingkungan</small></div><div class="admin-grid"><div class="admin-card"><small>Warga aktif</small><b id="admWarga">0</b><span>tenant ini</span></div><div class="admin-card"><small>Iuran masuk</small><b id="admIuran">82%</b><span>Aman</span></div><div class="admin-card"><small>Lapak aktif</small><b id="admLapak">0</b><span>income</span></div><div class="admin-card"><small>Jasa verified</small><b id="admJasa">0</b><span>promosi</span></div></div><div class="subgrid"><button class="subbtn" onclick="guardOpen('adminInfo',['tenant_admin','rt_admin','super_admin'])"><i>ðŸ“¢</i>Tambah Info</button><button class="subbtn" onclick="guardOpen('adminWarga',['tenant_admin','rt_admin','super_admin'])"><i>ðŸ </i>Data Warga</button><button class="subbtn" onclick="guardOpen('daftarJasa',['tenant_admin','rt_admin','super_admin'])"><i>ðŸ”§</i>Tambah Jasa</button><button class="subbtn" onclick="guardOpen('tambahLapak',['super_admin'])"><i>ðŸ›’</i>Lapak Pusat</button><button class="subbtn" onclick="guardOpen('aturRonda',['tenant_admin','rt_admin','security','super_admin'])"><i>ðŸ›¡ï¸</i>Atur Ronda</button><button class="subbtn" onclick="guardOpen('tambahEvent',['tenant_admin','rt_admin','super_admin'])"><i>ðŸŽ‰</i>Tambah Event</button><button class="subbtn" onclick="guardOpen('adminBanner',['tenant_admin','super_admin'])"><i>ðŸ“£</i>Iklan Banner</button><button class="subbtn" onclick="guardOpen('adminLaporan',['tenant_admin','rt_admin','security','super_admin'])"><i>ðŸ›Ÿ</i>Kelola Laporan</button></div></div>
 
-      <div class="page" id="adminInfo"><div class="sec-head"><div class="sec-title"><button class="back" onclick="openPage('admin')">‹</button><h2>Tambah Info</h2></div><small>Admin</small></div><div class="card"><form class="form" onsubmit="submitInfo(event)"><input id="infoTitle" placeholder="Judul pengumuman" required><textarea id="infoDesc" placeholder="Isi pengumuman"></textarea><select id="infoTag"><option>Informasi</option><option>Kegiatan</option><option>Penting</option><option>Keamanan</option></select><button class="btn" type="submit">Terbitkan Info</button></form></div></div>
-      <div class="page" id="adminWarga"><div class="sec-head"><div class="sec-title"><button class="back" onclick="openPage('admin')">‹</button><h2>Data Warga</h2></div><small>Admin</small></div><div class="card"><form class="form" onsubmit="submitResident(event)"><input id="resName" placeholder="Nama warga" required><input id="resHouse" placeholder="Blok / nomor rumah" required><input id="resPhone" placeholder="Nomor HP"><select id="resStatus"><option>Pemilik</option><option>Kontrak</option><option>Keluarga</option></select><button class="btn" type="submit">Simpan Warga</button></form></div><div id="residentList"></div></div>
-      <div class="page" id="adminBanner"><div class="sec-head"><div class="sec-title"><button class="back" onclick="openPage('admin')">‹</button><h2>Iklan Banner</h2></div><small>Income</small></div><div class="card"><form class="form" onsubmit="submitBanner(event)"><input id="bannerText" placeholder="Teks iklan berjalan" required><input id="bannerOwner" placeholder="Nama pemasang iklan" required><select id="bannerPrice"><option>Rp50rb/bulan</option><option>Rp100rb/bulan</option><option>Custom</option></select><button class="btn" type="submit">Pasang Iklan</button></form></div><div id="bannerList"></div></div>
-      <div class="page" id="adminLaporan"><div class="sec-head"><div class="sec-title"><button class="back" onclick="openPage('admin')">‹</button><h2>Kelola Laporan</h2></div><small>Admin</small></div><div id="adminReportList"></div></div>
+      <div class="page" id="adminInfo"><div class="sec-head"><div class="sec-title"><button class="back" onclick="openPage('admin')">â€¹</button><h2>Tambah Info</h2></div><small>Admin</small></div><div class="card"><form class="form" onsubmit="submitInfo(event)"><input id="infoTitle" placeholder="Judul pengumuman" required><textarea id="infoDesc" placeholder="Isi pengumuman"></textarea><select id="infoTag"><option>Informasi</option><option>Kegiatan</option><option>Penting</option><option>Keamanan</option></select><button class="btn" type="submit">Terbitkan Info</button></form></div></div>
+      <div class="page" id="adminWarga"><div class="sec-head"><div class="sec-title"><button class="back" onclick="openPage('admin')">â€¹</button><h2>Data Warga</h2></div><small>Admin</small></div><div class="card"><form class="form" onsubmit="submitResident(event)"><input id="resName" placeholder="Nama warga" required><input id="resHouse" placeholder="Blok / nomor rumah" required><input id="resPhone" placeholder="Nomor HP"><select id="resStatus"><option>Pemilik</option><option>Kontrak</option><option>Keluarga</option></select><button class="btn" type="submit">Simpan Warga</button></form></div><div id="residentList"></div></div>
+      <div class="page" id="adminBanner"><div class="sec-head"><div class="sec-title"><button class="back" onclick="openPage('admin')">â€¹</button><h2>Iklan Banner</h2></div><small>Income</small></div><div class="card"><form class="form" onsubmit="submitBanner(event)"><input id="bannerText" placeholder="Teks iklan berjalan" required><input id="bannerOwner" placeholder="Nama pemasang iklan" required><select id="bannerPrice"><option>Rp50rb/bulan</option><option>Rp100rb/bulan</option><option>Custom</option></select><button class="btn" type="submit">Pasang Iklan</button></form></div><div id="bannerList"></div></div>
+      <div class="page" id="adminLaporan"><div class="sec-head"><div class="sec-title"><button class="back" onclick="openPage('admin')">â€¹</button><h2>Kelola Laporan</h2></div><small>Admin</small></div><div id="adminReportList"></div></div>
 
-      <div class="page" id="harga"><div class="sec-head"><div class="sec-title"><button class="back" onclick="openPage('home')">‹</button><h2>Paket Harga</h2></div><small>Murah</small></div><div class="pay-box"><small>Strategi harga</small><h3>Mulai Rp10rb</h3><p>RT tetap murah sebagai pintu masuk. Pendapatan utama tetap dari lapak, tukang service, jasa verified, dan iklan lingkungan.</p></div><div id="pricingList"></div></div>
-      <div class="page" id="notifikasi"><div class="sec-head"><div class="sec-title"><button class="back" onclick="openPage('home')">‹</button><h2>Notifikasi</h2></div><small>Baru</small></div><div id="notifList"></div></div>
-      <div class="page" id="profil"><div class="sec-head"><div class="sec-title"><button class="back" onclick="openPage('home')">‹</button><h2>Profil Saya</h2></div><small>Warga</small></div><div class="card"><form class="form" onsubmit="submitProfile(event)"><input id="profName" value="Pak Kalimaja"><input id="profHouse" value="Blok C No. 18"><input id="profPhone" value="081296629033"><button class="btn" type="submit">Simpan Profil</button></form></div></div>
+      <div class="page" id="harga"><div class="sec-head"><div class="sec-title"><button class="back" onclick="openPage('home')">â€¹</button><h2>Paket Harga</h2></div><small>Murah</small></div><div class="pay-box"><small>Strategi harga</small><h3>Mulai Rp10rb</h3><p>RT tetap murah sebagai pintu masuk. Pendapatan utama tetap dari lapak pusat, tukang service, jasa verified, dan iklan lingkungan.</p></div><div id="pricingList"></div></div>
+      <div class="page" id="notifikasi"><div class="sec-head"><div class="sec-title"><button class="back" onclick="openPage('home')">â€¹</button><h2>Notifikasi</h2></div><small>Baru</small></div><div id="notifList"></div></div>
+      <div class="page" id="profil"><div class="sec-head"><div class="sec-title"><button class="back" onclick="openPage('home')">â€¹</button><h2>Profil Saya</h2></div><small>Warga</small></div><div class="card"><form class="form" onsubmit="submitProfile(event)"><input id="profName" value="Pak Kalimaja"><input id="profHouse" value="Blok C No. 18"><input id="profPhone" value="081296629033"><button class="btn" type="submit">Simpan Profil</button></form></div></div>
 
-      <button class="floating-add" onclick="quickAdd()">＋</button>
-      <div class="toast" id="toast"></div>
+      <button class="floating-add" onclick="quickAdd()">ï¼‹</button>
+      <button class="return-desktop-btn" type="button" onclick="window.backToDesktopAdmin(event)">ðŸ‘‘ Admin Pusat</button>
+    <div class="toast" id="toast"></div>
     </section>
 
     <nav class="bottom-nav">
-      <button class="navbtn active" data-page="home" onclick="openPage('home')"><i>🏠</i>Home</button>
-      <button class="navbtn" data-page="jasa" onclick="openPage('jasa')"><i>🔧</i>Jasa</button>
-      <button class="navbtn" data-page="lapak" onclick="openPage('lapak')"><i>🛒</i>Lapak</button>
-      <button class="navbtn" data-page="lapor" onclick="openPage('lapor')"><i>🛟</i>Lapor</button>
-      <button class="navbtn" data-page="admin" onclick="openPage('admin')"><i>⚙️</i>Admin</button>
+      <button class="navbtn active" data-page="home" onclick="openPage('home')"><i>ðŸ </i>Home</button>
+      <button class="navbtn" data-page="jasa" onclick="openPage('jasa')"><i>ðŸ”§</i>Jasa</button>
+      <button class="navbtn" data-page="lapak" onclick="openPage('lapak')"><i>ðŸ›’</i>Lapak</button>
+      <button class="navbtn" data-page="lapor" onclick="openPage('lapor')"><i>ðŸ›Ÿ</i>Lapor</button>
+      <button class="navbtn" data-page="admin" onclick="openPage('admin')"><i>âš™ï¸</i>Admin</button>
     </nav>
   </main>
 
@@ -1704,7 +1817,7 @@ allow write: if request.auth.token.tenantId == tenantId
       super_admin:"Super Admin", tenant_admin:"Admin Lingkungan", rt_admin:"Admin RT", bendahara:"Bendahara", security:"Satpam", resident:"Warga"
     };
     const pageTitles = {
-      home:"Beranda tenant aktif", freeRegister:"Daftar pengurus gratis", upgradeRequired:"Upgrade paket", paymentConfirm:"Konfirmasi bayar", mandateAdmin:"Mandat admin RT", centralApproval:"Approval Admin Pusat", tenantSwitch:"Pilih lingkungan", roles:"Role & akses", superAdmin:"Dashboard pusat SeputarWarga", createTenant:"Buat tenant baru", tenantBilling:"Billing pelanggan", globalIncome:"Income semua tenant", firebaseSync:"Firebase sync", firestore:"Struktur Firebase", securityRules:"Security rules", roleMatrix:"Matriks role", shareLinks:"Link khusus tenant", invite:"Undangan warga", rtRooms:"Ruang RT", selfRegister:"Daftar mandiri warga", rtLinks:"Link khusus RT", rwCommunity:"Komunitas RW", info:"Pengumuman lingkungan", iuran:"Pembayaran warga", uploadBukti:"Upload bukti bayar", riwayatIuran:"Riwayat iuran", lapor:"Laporan cepat", jasa:"Tukang & service sekitar", daftarJasa:"Daftar tukang/service", lapak:"Marketplace warga", tambahLapak:"Tambah jualan warga", ronda:"Keamanan lingkungan", aturRonda:"Atur jadwal ronda", tamu:"Buku tamu digital", event:"Agenda warga", tambahEvent:"Tambah kegiatan", darurat:"Kontak darurat", admin:"Panel admin tenant", adminInfo:"Input pengumuman", adminWarga:"Database warga", adminBanner:"Iklan berjalan", adminLaporan:"Kelola laporan", harga:"Paket harga", notifikasi:"Notifikasi warga", profil:"Profil warga"
+      home:"Beranda tenant aktif", logoutPage:"Keluar / ganti mode ujicoba", freeRegister:"Daftar pengurus gratis", upgradeRequired:"Upgrade paket", paymentConfirm:"Konfirmasi bayar", mandateAdmin:"Mandat admin RT", centralApproval:"Approval Admin Pusat", tenantSwitch:"Pilih lingkungan", roles:"Role & akses", superAdmin:"Dashboard pusat SeputarWarga", createTenant:"Buat tenant baru", tenantBilling:"Billing pelanggan", globalIncome:"Income semua tenant", firebaseSync:"Firebase sync", firestore:"Struktur Firebase", securityRules:"Security rules", roleMatrix:"Matriks role", shareLinks:"Link khusus tenant", invite:"Undangan warga", rtRooms:"Ruang RT", selfRegister:"Daftar mandiri warga", rtLinks:"Link khusus RT", rwCommunity:"Komunitas RW", info:"Pengumuman lingkungan", iuran:"Pembayaran warga", uploadBukti:"Upload bukti bayar", riwayatIuran:"Riwayat iuran", lapor:"Laporan cepat", jasa:"Tukang & service sekitar", daftarJasa:"Daftar tukang/service", lapak:"Marketplace warga", tambahLapak:"Tambah jualan warga", ronda:"Keamanan lingkungan", aturRonda:"Atur jadwal ronda", tamu:"Buku tamu digital", event:"Agenda warga", tambahEvent:"Tambah kegiatan", darurat:"Kontak darurat", admin:"Panel admin tenant", adminInfo:"Input pengumuman", adminWarga:"Database warga", adminBanner:"Iklan berjalan", adminLaporan:"Kelola laporan", harga:"Paket harga", notifikasi:"Notifikasi warga", profil:"Profil warga"
     };
     const roleMatrix = [
       ["Super Admin","Semua tenant, billing, paket, aktivasi, statistik global, struktur Firebase"],
@@ -1721,36 +1834,36 @@ allow write: if request.auth.token.tenantId == tenantId
       currentRole:"super_admin",
       tenants:{
         "gardenia-residence":{
-          id:"gardenia-residence",name:"Gardenia Residence",type:"Perumahan",plan:"Perumahan Mini",limit:500,status:"approved",accessOpen:true,admin:"Pak Dedi",monthly:50000,inviteCode:"GARDENIA03",logo:"🏘️",theme:"#ff6b00",rts:{rt01:{id:"rt01",name:"RT 01",admin:"Pak Arif",inviteCode:"GARDENIA-RT01"},rt02:{id:"rt02",name:"RT 02",admin:"Bu Lina",inviteCode:"GARDENIA-RT02"},rt03:{id:"rt03",name:"RT 03",admin:"Pak Dedi",inviteCode:"GARDENIA-RT03"}},
+          id:"gardenia-residence",name:"Gardenia Residence",type:"Perumahan",plan:"Perumahan Mini",limit:500,status:"approved",accessOpen:true,admin:"Pak Dedi",monthly:50000,inviteCode:"GARDENIA03",logo:"ðŸ˜ï¸",theme:"#ff6b00",rts:{rt01:{id:"rt01",name:"RT 01",admin:"Pak Arif",inviteCode:"GARDENIA-RT01"},rt02:{id:"rt02",name:"RT 02",admin:"Bu Lina",inviteCode:"GARDENIA-RT02"},rt03:{id:"rt03",name:"RT 03",admin:"Pak Dedi",inviteCode:"GARDENIA-RT03"}},
           infos:[
             {title:"Kerja bakti Minggu pagi",desc:"Kumpul jam 07.00 di pos satpam. Area fokus: selokan depan dan taman Blok C.",tag:"Kegiatan",icon:"RT",time:"10 menit lalu"},
-            {title:"Info air lingkungan",desc:"Pompa utama dicek pukul 15.00. Mohon warga menampung air secukupnya.",tag:"Informasi",icon:"💧",time:"Hari ini"}
+            {title:"Info air lingkungan",desc:"Pompa utama dicek pukul 15.00. Mohon warga menampung air secukupnya.",tag:"Informasi",icon:"ðŸ’§",time:"Hari ini"}
           ],
           iuran:[{title:"Iuran keamanan",nominal:"Rp75.000",status:"Lunas",desc:"Sudah dibayar tanggal 3 Juni 2026."},{title:"Iuran sampah",nominal:"Rp50.000",status:"Lunas",desc:"Sudah dibayar tanggal 3 Juni 2026."}],
           reports:[{title:"Lampu jalan Blok D mati",desc:"Depan rumah Blok D No. 09, mati sejak kemarin.",status:"Diproses",time:"Hari ini"}],
-          services:[{name:"Bang Udin Service AC",cat:"Servis AC",price:"Mulai Rp75rb",wa:"081296629033",desc:"Cuci AC, bongkar pasang, tambah freon. Area Blok A-D.",icon:"❄️",rating:"4.9 · 128 order"},{name:"Galon & Gas Bu Santi",cat:"Galon",price:"Galon Rp19rb",wa:"081296629033",desc:"Antar galon, gas 3 kg/12 kg, bayar di tempat.",icon:"💧",rating:"4.9 · 231 order"}],
-          products:[{name:"Nasi box rumahan Bu Rina",price:"Rp18rb",icon:"🍱",seller:"Blok C · Catering",sold:"Terjual 42"},{name:"Kue basah paket arisan",price:"Rp35rb",icon:"🧁",seller:"Blok A · Snack",sold:"Terjual 18"}],
+          services:[{name:"Bang Udin Service AC",cat:"Servis AC",price:"Mulai Rp75rb",wa:"081296629033",desc:"Cuci AC, bongkar pasang, tambah freon. Area Blok A-D.",icon:"â„ï¸",rating:"4.9 Â· 128 order"},{name:"Galon & Gas Bu Santi",cat:"Galon",price:"Galon Rp19rb",wa:"081296629033",desc:"Antar galon, gas 3 kg/12 kg, bayar di tempat.",icon:"ðŸ’§",rating:"4.9 Â· 231 order"}],
+          products:[{name:"Nasi box rumahan Bu Rina",price:"Rp18rb",icon:"ðŸ±",seller:"Blok C Â· Catering",sold:"Terjual 42"},{name:"Kue basah paket arisan",price:"Rp35rb",icon:"ðŸ§",seller:"Blok A Â· Snack",sold:"Terjual 18"}],
           ronda:[{blok:"Blok A & Blok C",jam:"22.00 - 01.00",koor:"Pak Dedi",note:"Titik kumpul di pos satpam."}], guests:[],
-          events:[{title:"Senam pagi warga",time:"Sabtu · 06.30",desc:"Lokasi taman tengah. Terbuka untuk semua warga.",icon:"🎉"}],
+          events:[{title:"Senam pagi warga",time:"Sabtu Â· 06.30",desc:"Lokasi taman tengah. Terbuka untuk semua warga.",icon:"ðŸŽ‰"}],
           residents:[{name:"Pak Kalimaja",house:"Blok C No. 18",phone:"081296629033",status:"Pemilik"},{name:"Bu Rina",house:"Blok C No. 12",phone:"-",status:"Pemilik"}],
           banners:[{text:"Servis AC mulai 75rb",owner:"Bang Udin",price:"Rp50rb/bulan"}], bukti:[]
         },
         "kampung-melati-rw05":{
-          id:"kampung-melati-rw05",name:"Kampung Melati RW 05",type:"RW",plan:"RW / Gabungan RT",limit:250,status:"approved",accessOpen:true,admin:"Bu Sari",monthly:30000,inviteCode:"MELATI05",logo:"🌿",theme:"#16a34a",rts:{rt01:{id:"rt01",name:"RT 01",admin:"Pak Rudi",inviteCode:"MELATI-RT01"},rt02:{id:"rt02",name:"RT 02",admin:"Bu Sari",inviteCode:"MELATI-RT02"},rt03:{id:"rt03",name:"RT 03",admin:"Pak Amin",inviteCode:"MELATI-RT03"}},
+          id:"kampung-melati-rw05",name:"Kampung Melati RW 05",type:"RW",plan:"RW / Gabungan RT",limit:250,status:"approved",accessOpen:true,admin:"Bu Sari",monthly:30000,inviteCode:"MELATI05",logo:"ðŸŒ¿",theme:"#16a34a",rts:{rt01:{id:"rt01",name:"RT 01",admin:"Pak Rudi",inviteCode:"MELATI-RT01"},rt02:{id:"rt02",name:"RT 02",admin:"Bu Sari",inviteCode:"MELATI-RT02"},rt03:{id:"rt03",name:"RT 03",admin:"Pak Amin",inviteCode:"MELATI-RT03"}},
           infos:[{title:"Rapat RW Jumat malam",desc:"Pembahasan kebersihan, keamanan, dan data warga.",tag:"Penting",icon:"RW",time:"Hari ini"}],
           iuran:[{title:"Kas RW",nominal:"Rp20.000",status:"Belum",desc:"Menunggu pembayaran bulan ini."}],
           reports:[{title:"Selokan RT 04 mampet",desc:"Butuh pengecekan sebelum hujan besar.",status:"Menunggu",time:"Kemarin"}],
-          services:[{name:"Tukang Listrik Pak Jaya",cat:"Listrik",price:"Survey Rp50rb",wa:"081296629033",desc:"MCB, lampu, pompa air, instalasi rumah.",icon:"⚡",rating:"4.8 · 76 order"}],
-          products:[{name:"Sayur keliling Bu Eni",price:"Mulai Rp5rb",icon:"🥬",seller:"RT 04 · Sayur",sold:"Terjual 31"}],
+          services:[{name:"Tukang Listrik Pak Jaya",cat:"Listrik",price:"Survey Rp50rb",wa:"081296629033",desc:"MCB, lampu, pompa air, instalasi rumah.",icon:"âš¡",rating:"4.8 Â· 76 order"}],
+          products:[{name:"Sayur keliling Bu Eni",price:"Mulai Rp5rb",icon:"ðŸ¥¬",seller:"RT 04 Â· Sayur",sold:"Terjual 31"}],
           ronda:[{blok:"RT 04",jam:"21.00 - 23.00",koor:"Pak Rudi",note:"Ronda pos RW."}], guests:[], events:[], residents:[{name:"Pak Rudi",house:"RT 04 No. 21",phone:"-",status:"Pemilik"}], banners:[{text:"Sayur segar pagi tiap hari",owner:"Bu Eni",price:"Rp50rb/bulan"}], bukti:[]
         }
       },
       pricing:[
         {name:"RT Mini",range:"50 warga",price:"Rp10.000/bulan",desc:"Untuk RT kecil. Fitur utama: info RT, iuran, laporan, lapak, jasa, dan admin sederhana."},
-        {name:"RT Plus",range:"51–150 warga",price:"Rp15.000/bulan",desc:"Untuk RT yang warganya lebih banyak."},
-        {name:"RW / Gabungan RT",range:"151–250 warga",price:"Rp30.000/bulan",desc:"Untuk beberapa RT kecil dalam satu RW atau paguyuban warga."},
-        {name:"Perumahan Mini",range:"251–500 warga",price:"Rp50.000/bulan",desc:"Untuk cluster/perumahan menengah."},
-        {name:"Perumahan Besar",range:"501–1.000 warga",price:"Rp150.000/bulan",desc:"Untuk kawasan besar dengan dashboard lengkap."},
+        {name:"RT Plus",range:"51â€“150 warga",price:"Rp15.000/bulan",desc:"Untuk RT yang warganya lebih banyak."},
+        {name:"RW / Gabungan RT",range:"151â€“250 warga",price:"Rp30.000/bulan",desc:"Untuk beberapa RT kecil dalam satu RW atau paguyuban warga."},
+        {name:"Perumahan Mini",range:"251â€“500 warga",price:"Rp50.000/bulan",desc:"Untuk cluster/perumahan menengah."},
+        {name:"Perumahan Besar",range:"501â€“1.000 warga",price:"Rp150.000/bulan",desc:"Untuk kawasan besar dengan dashboard lengkap."},
         {name:"Custom Kawasan",range:">1.000 warga",price:"Mulai Rp500.000/bulan",desc:"Untuk estate, apartemen, atau kawasan besar."}
       ],
       pendingUpgrades:[],
@@ -1905,10 +2018,10 @@ allow write: if request.auth.token.tenantId == tenantId
     }
     function switchTenant(id){db.currentTenant=id;saveDB();showToast("Tenant aktif: "+T().name);openPage('home')}
     function setRole(role){db.currentRole=role;saveDB();showToast("Role aktif: "+roleNames[role])}
-    function renderHome(){const t=T();document.getElementById("tenantStat").textContent=(currentRt()?currentRt().name:t.name.split(" ")[0]);document.getElementById("roleStat").textContent=roleNames[db.currentRole].split(" ")[0];document.getElementById("laporStat").textContent=t.reports.filter(r=>r.status!=="Selesai").length+" proses";document.getElementById("homeFeed").innerHTML=t.infos.slice(0,2).map(i=>card(i.icon,i.title,i.time,i.desc,[i.tag])).join("");document.getElementById("tickerText").textContent=t.banners.map(b=>b.text).join(" · ")||"Belum ada iklan berjalan"}
-    function renderTenants(){document.getElementById("tenantCards").innerHTML=Object.values(db.tenants).map(t=>`<div class="card"><div class="feed-head"><div class="avatar">🏘️</div><div><b>${t.name}</b><small>${t.type} · ${t.plan}</small></div></div><p>tenantId: <b>${t.id}</b>. Limit ${t.limit} warga. Admin utama: ${t.admin}. Status: ${t.status}.</p><div class="pay-actions"><button class="btn" onclick="switchTenant('${t.id}')">Pakai Tenant</button><button class="btn light" onclick="openPage('firestore')">Lihat Jalur</button></div></div>`).join("")}
-    function renderRoles(){document.getElementById("activeRoleBig").textContent=roleNames[db.currentRole];document.getElementById("roleList").innerHTML=Object.entries(roleNames).map(([k,v])=>`<div class="card"><div class="feed-head"><div class="avatar">🔐</div><div><b>${v}</b><small>${k}</small></div></div><p>${roleMatrix.find(r=>r[0]===v)?.[1]||"Akses khusus"}</p><div class="pay-actions"><button class="btn ${db.currentRole===k?'green':''}" onclick="setRole('${k}')">${db.currentRole===k?'Aktif':'Aktifkan'}</button><button class="btn light" onclick="openPage('roleMatrix')">Detail</button></div></div>`).join("")}
-    function renderSuper(){const tenants=Object.values(db.tenants);const residents=tenants.reduce((a,t)=>a+t.residents.length,0);const monthly=tenants.reduce((a,t)=>a+(t.monthly||0),0);const localIncome=tenants.reduce((a,t)=>a+t.banners.length*50000+t.services.length*25000+t.products.length*10000,0);document.getElementById("saTenants").textContent=tenants.length;document.getElementById("saResidents").textContent=residents;document.getElementById("saIncome").textContent=money(monthly+localIncome);document.getElementById("superTenantList").innerHTML=`<div class="sec-head" style="margin-top:12px"><h2>Tenant aktif</h2><small>${tenants.length} lingkungan</small></div>`+tenants.map(t=>card("🏘️",t.name,`${t.plan} · ${money(t.monthly)}/bulan`,`tenantId: ${t.id}. Admin: ${t.admin}. Limit ${t.limit} warga.`,["Tenant"])).join("");document.getElementById("billingList").innerHTML=tenants.map(t=>card("💳",t.name,t.plan,`Tagihan aplikasi: ${money(t.monthly)}/bulan. Status: ${t.status}.`,["Aktif"])).join("");document.getElementById("globalIncomeList").innerHTML=tenants.map(t=>card("📈",t.name,"Simulasi income",`Aplikasi ${money(t.monthly)} + banner ${money(t.banners.length*50000)} + jasa ${money(t.services.length*25000)} + lapak ${money(t.products.length*10000)}.`,["Income"])).join("");document.getElementById("matrixList").innerHTML=roleMatrix.map(r=>card("👥",r[0],"Hak akses",r[1],["Role"])).join("")}
+    function renderHome(){const t=T();document.getElementById("tenantStat").textContent=(currentRt()?currentRt().name:t.name.split(" ")[0]);document.getElementById("roleStat").textContent=roleNames[db.currentRole].split(" ")[0];document.getElementById("laporStat").textContent=t.reports.filter(r=>r.status!=="Selesai").length+" proses";document.getElementById("homeFeed").innerHTML=t.infos.slice(0,2).map(i=>card(i.icon,i.title,i.time,i.desc,[i.tag])).join("");document.getElementById("tickerText").textContent=t.banners.map(b=>b.text).join(" Â· ")||"Belum ada iklan berjalan"}
+    function renderTenants(){document.getElementById("tenantCards").innerHTML=Object.values(db.tenants).map(t=>`<div class="card"><div class="feed-head"><div class="avatar">ðŸ˜ï¸</div><div><b>${t.name}</b><small>${t.type} Â· ${t.plan}</small></div></div><p>tenantId: <b>${t.id}</b>. Limit ${t.limit} warga. Admin utama: ${t.admin}. Status: ${t.status}.</p><div class="pay-actions"><button class="btn" onclick="switchTenant('${t.id}')">Pakai Tenant</button><button class="btn light" onclick="openPage('firestore')">Lihat Jalur</button></div></div>`).join("")}
+    function renderRoles(){document.getElementById("activeRoleBig").textContent=roleNames[db.currentRole];document.getElementById("roleList").innerHTML=Object.entries(roleNames).map(([k,v])=>`<div class="card"><div class="feed-head"><div class="avatar">ðŸ”</div><div><b>${v}</b><small>${k}</small></div></div><p>${roleMatrix.find(r=>r[0]===v)?.[1]||"Akses khusus"}</p><div class="pay-actions"><button class="btn ${db.currentRole===k?'green':''}" onclick="setRole('${k}')">${db.currentRole===k?'Aktif':'Aktifkan'}</button><button class="btn light" onclick="openPage('roleMatrix')">Detail</button></div></div>`).join("")}
+    function renderSuper(){const tenants=Object.values(db.tenants);const residents=tenants.reduce((a,t)=>a+t.residents.length,0);const monthly=tenants.reduce((a,t)=>a+(t.monthly||0),0);const localIncome=tenants.reduce((a,t)=>a+t.banners.length*50000+t.services.length*25000+t.products.length*10000,0);document.getElementById("saTenants").textContent=tenants.length;document.getElementById("saResidents").textContent=residents;document.getElementById("saIncome").textContent=money(monthly+localIncome);document.getElementById("superTenantList").innerHTML=`<div class="sec-head" style="margin-top:12px"><h2>Tenant aktif</h2><small>${tenants.length} lingkungan</small></div>`+tenants.map(t=>card("ðŸ˜ï¸",t.name,`${t.plan} Â· ${money(t.monthly)}/bulan`,`tenantId: ${t.id}. Admin: ${t.admin}. Limit ${t.limit} warga.`,["Tenant"])).join("");document.getElementById("billingList").innerHTML=tenants.map(t=>card("ðŸ’³",t.name,t.plan,`Tagihan aplikasi: ${money(t.monthly)}/bulan. Status: ${t.status}.`,["Aktif"])).join("");document.getElementById("globalIncomeList").innerHTML=tenants.map(t=>card("ðŸ“ˆ",t.name,"Simulasi income",`Aplikasi ${money(t.monthly)} + banner ${money(t.banners.length*50000)} + jasa ${money(t.services.length*25000)} + lapak ${money(t.products.length*10000)}.`,["Income"])).join("");document.getElementById("matrixList").innerHTML=roleMatrix.map(r=>card("ðŸ‘¥",r[0],"Hak akses",r[1],["Role"])).join("")}
 
 
     function renderRtRooms(){
@@ -1920,13 +2033,13 @@ allow write: if request.auth.token.tenantId == tenantId
       list.innerHTML = rts.map(rt=>{
         const total = t.residents.filter(r=>r.rtId===rt.id).length;
         return `<div class="card">
-          <div class="feed-head"><div class="avatar">🏠</div><div><b>${rt.name}</b><small>Admin: ${rt.admin || "-"}</small></div></div>
+          <div class="feed-head"><div class="avatar">ðŸ </div><div><b>${rt.name}</b><small>Admin: ${rt.admin || "-"}</small></div></div>
           <p>Warga terdaftar: <b>${total}</b>. Kode RT: <b>${rt.inviteCode}</b>. Ruang ini terpisah dari RT lain, tetapi tetap tergabung ke ${t.name}.</p>
           <div class="pay-actions"><button class="btn" onclick="setRt('${rt.id}');openPage('selfRegister')">Pakai RT</button><button class="btn light" onclick="copyRtLink('${t.id}','${rt.id}')">Copy Link</button></div>
         </div>`;
       }).join("") || `<div class="empty">Belum ada RT. Admin RW bisa membuat RT dari panel berikutnya.</div>`;
       if(links) links.innerHTML = rts.map(rt=>`<div class="card">
-        <div class="feed-head"><div class="avatar">🔗</div><div><b>${rt.name} - ${t.name}</b><small>${rt.inviteCode}</small></div></div>
+        <div class="feed-head"><div class="avatar">ðŸ”—</div><div><b>${rt.name} - ${t.name}</b><small>${rt.inviteCode}</small></div></div>
         <p>Link ini khusus warga ${rt.name}. Setelah daftar, warga otomatis masuk ${rt.name} dan komunitas ${t.name}.</p>
         <div class="linkbox">${rtUrl(t.id, rt.id)}</div>
         <div class="pay-actions"><button class="btn" onclick="copyRtLink('${t.id}','${rt.id}')">Copy Link</button><button class="btn light" onclick="shareRtWA('${t.id}','${rt.id}')">Kirim WA</button></div>
@@ -1937,7 +2050,7 @@ allow write: if request.auth.token.tenantId == tenantId
       const a=document.getElementById("regTenantName");
       if(!a) return;
       a.textContent=t.name;
-      document.getElementById("regRtName").textContent=rt ? `Ruang aktif: ${rt.name} · Kode: ${rt.inviteCode}` : "Pilih RT lebih dulu";
+      document.getElementById("regRtName").textContent=rt ? `Ruang aktif: ${rt.name} Â· Kode: ${rt.inviteCode}` : "Pilih RT lebih dulu";
       const select=document.getElementById("regRtSelect");
       select.innerHTML=Object.values(t.rts || {}).map(r=>`<option value="${r.id}" ${db.currentRt===r.id?"selected":""}>${r.name} - ${r.inviteCode}</option>`).join("");
     }
@@ -1948,10 +2061,10 @@ allow write: if request.auth.token.tenantId == tenantId
       document.getElementById("rwCommunityTitle").textContent=t.name;
       const rtCounts = Object.values(t.rts || {}).map(rt=>{
         const total=t.residents.filter(r=>r.rtId===rt.id).length;
-        return card("🏠", rt.name, `${total} warga`, `Ruang RT ini berdiri sendiri, namun otomatis tergabung di komunitas ${t.name}.`, ["RT"]);
+        return card("ðŸ ", rt.name, `${total} warga`, `Ruang RT ini berdiri sendiri, namun otomatis tergabung di komunitas ${t.name}.`, ["RT"]);
       }).join("");
-      const latest = t.residents.slice(0,5).map(r=>card("👤", r.name, `${r.rtId || "rw"} · ${r.house}`, `HP: ${r.phone || "-"}. Status: ${r.status}.`, ["Warga"])).join("");
-      el.innerHTML = card("🤝","Komunitas induk",t.name,`Total warga terdaftar: ${t.residents.length}. Semua RT tergabung untuk info umum RW, event bersama, jasa, lapak, dan pengumuman induk.`,["RW"]) + rtCounts + `<div class="sec-head" style="margin-top:12px"><h2>Warga terbaru</h2><small>${t.residents.length} total</small></div>` + (latest || `<div class="empty">Belum ada warga daftar mandiri.</div>`);
+      const latest = t.residents.slice(0,5).map(r=>card("ðŸ‘¤", r.name, `${r.rtId || "rw"} Â· ${r.house}`, `HP: ${r.phone || "-"}. Status: ${r.status}.`, ["Warga"])).join("");
+      el.innerHTML = card("ðŸ¤","Komunitas induk",t.name,`Total warga terdaftar: ${t.residents.length}. Semua RT tergabung untuk info umum RW, event bersama, jasa, lapak, dan pengumuman induk.`,["RW"]) + rtCounts + `<div class="sec-head" style="margin-top:12px"><h2>Warga terbaru</h2><small>${t.residents.length} total</small></div>` + (latest || `<div class="empty">Belum ada warga daftar mandiri.</div>`);
     }
 
     function renderShareLinks(){
@@ -1959,7 +2072,7 @@ allow write: if request.auth.token.tenantId == tenantId
       if(!el) return;
       el.innerHTML = Object.values(db.tenants).map(t=>`
         <div class="card">
-          <div class="feed-head"><div class="avatar">${t.logo || "🏘️"}</div><div><b>${t.name}</b><small>${t.type} · ${t.plan}</small></div></div>
+          <div class="feed-head"><div class="avatar">${t.logo || "ðŸ˜ï¸"}</div><div><b>${t.name}</b><small>${t.type} Â· ${t.plan}</small></div></div>
           <p>Link ini langsung membuka slot milik <b>${t.name}</b>. Warga tidak melihat tenant lain.</p>
           <div class="linkbox">${tenantUrl(t.id)}</div>
           <div class="status-row"><span class="status purple">tenantId: ${t.id}</span><span class="status green">Kode: ${t.inviteCode || "-"}</span></div>
@@ -1971,31 +2084,31 @@ allow write: if request.auth.token.tenantId == tenantId
       if(!a) return;
       const t=T();
       a.textContent=t.name;
-      document.getElementById("inviteTenantText").textContent=`tenantId: ${t.id} · kode: ${t.inviteCode || "-"}`;
+      document.getElementById("inviteTenantText").textContent=`tenantId: ${t.id} Â· kode: ${t.inviteCode || "-"}`;
       document.getElementById("residentLinkBox").textContent=tenantUrl(t.id);
     }
 
 
     function renderFirebaseSync(){
       const el=document.getElementById("fbTenantName");
-      if(el) el.textContent = T().name + " · " + T().id;
+      if(el) el.textContent = T().name + " Â· " + T().id;
     }
 
     function renderFirestore(){document.getElementById("fireTenant").textContent=T().id;document.getElementById("fireTenantDesc").innerHTML=`Semua data sekarang dibaca dari <b>tenants/${T().id}/...</b>. Kalau tenant diganti, data yang tampil ikut berubah dan tidak bercampur.`}
     function renderInfo(){document.getElementById("infoTenant").textContent=T().name;document.getElementById("infoList").innerHTML=T().infos.map(i=>card(i.icon,i.title,i.time,i.desc,[i.tag])).join("")||`<div class="empty">Belum ada pengumuman.</div>`}
-    function renderIuran(){document.getElementById("iuranList").innerHTML=T().iuran.map(i=>card("💳",i.title,i.nominal,i.desc,[i.status])).join("")}
-    function renderRiwayat(){document.getElementById("riwayatList").innerHTML=T().bukti.map(b=>card("🧾",b.jenis,money(b.nominal),`Pengirim: ${b.nama}. ${b.catatan||""}`,["Menunggu"])).join("")||`<div class="empty">Belum ada bukti bayar baru.</div>`}
-    function renderReports(){const t=T();document.getElementById("reportList").innerHTML=`<div class="sec-head" style="margin-top:12px"><h2>Daftar laporan</h2><small>${t.reports.length} item</small></div>`+(t.reports.map(r=>card("🛟",r.title,r.time||"Baru",r.desc,[r.status])).join("")||`<div class="empty">Belum ada laporan.</div>`);document.getElementById("adminReportList").innerHTML=t.reports.map((r,idx)=>`<div class="card"><div class="feed-head"><div class="avatar">🛟</div><div><b>${r.title}</b><small>${r.status}</small></div></div><p>${r.desc}</p><div class="pay-actions"><button class="btn blue" onclick="setReportStatus(${idx},'Diproses')">Proses</button><button class="btn green" onclick="setReportStatus(${idx},'Selesai')">Selesai</button></div></div>`).join("")||`<div class="empty">Belum ada laporan.</div>`}
-    function renderServices(){let items=activeServiceFilter==="Semua"?T().services:T().services.filter(s=>s.cat===activeServiceFilter);document.getElementById("serviceList").innerHTML=items.map(s=>`<article class="service-card"><div class="service-img">${s.icon||"🔧"}</div><div class="service-body"><div class="service-top"><h3>${s.name}</h3><span class="verified">Verified</span></div><p>${s.desc}</p><div class="rating">★★★★★ <span>${s.rating||"Baru"}</span></div><div class="service-foot"><div class="price">${s.price}</div><button class="wa-btn" onclick="chatWA('${s.name}','${s.wa||"081296629033"}')">Chat WA</button></div></div></article>`).join("")||`<div class="empty">Belum ada jasa.</div>`}
+    function renderIuran(){document.getElementById("iuranList").innerHTML=T().iuran.map(i=>card("ðŸ’³",i.title,i.nominal,i.desc,[i.status])).join("")}
+    function renderRiwayat(){document.getElementById("riwayatList").innerHTML=T().bukti.map(b=>card("ðŸ§¾",b.jenis,money(b.nominal),`Pengirim: ${b.nama}. ${b.catatan||""}`,["Menunggu"])).join("")||`<div class="empty">Belum ada bukti bayar baru.</div>`}
+    function renderReports(){const t=T();document.getElementById("reportList").innerHTML=`<div class="sec-head" style="margin-top:12px"><h2>Daftar laporan</h2><small>${t.reports.length} item</small></div>`+(t.reports.map(r=>card("ðŸ›Ÿ",r.title,r.time||"Baru",r.desc,[r.status])).join("")||`<div class="empty">Belum ada laporan.</div>`);document.getElementById("adminReportList").innerHTML=t.reports.map((r,idx)=>`<div class="card"><div class="feed-head"><div class="avatar">ðŸ›Ÿ</div><div><b>${r.title}</b><small>${r.status}</small></div></div><p>${r.desc}</p><div class="pay-actions"><button class="btn blue" onclick="setReportStatus(${idx},'Diproses')">Proses</button><button class="btn green" onclick="setReportStatus(${idx},'Selesai')">Selesai</button></div></div>`).join("")||`<div class="empty">Belum ada laporan.</div>`}
+    function renderServices(){let items=activeServiceFilter==="Semua"?T().services:T().services.filter(s=>s.cat===activeServiceFilter);document.getElementById("serviceList").innerHTML=items.map(s=>`<article class="service-card"><div class="service-img">${s.icon||"ðŸ”§"}</div><div class="service-body"><div class="service-top"><h3>${s.name}</h3><span class="verified">Verified</span></div><p>${s.desc}</p><div class="rating">â˜…â˜…â˜…â˜…â˜… <span>${s.rating||"Baru"}</span></div><div class="service-foot"><div class="price">${s.price}</div><button class="wa-btn" onclick="chatWA('${s.name}','${s.wa||"081296629033"}')">Chat WA</button></div></div></article>`).join("")||`<div class="empty">Belum ada jasa.</div>`}
     function renderProducts(){document.getElementById("productList").innerHTML=T().products.map(p=>`<article class="product"><div class="product-img">${p.icon}</div><div class="product-info"><h3>${p.name}</h3><div class="product-row"><div class="price">${p.price}</div><div class="sold">${p.sold||"Baru"}</div></div><div class="seller">${p.seller}</div></div></article>`).join("")}
-    function renderRonda(){document.getElementById("rondaList").innerHTML=T().ronda.map(r=>card("🛡️",r.blok,r.jam,`Koordinator: ${r.koor}. ${r.note||""}`,["Aktif"])).join("")||`<div class="empty">Belum ada jadwal ronda.</div>`}
-    function renderGuests(){document.getElementById("guestList").innerHTML=T().guests.map(g=>card("🚪",g.name,g.type,`Tujuan: ${g.to}. Waktu: ${g.time}`,["Tercatat"])).join("")||`<div class="empty">Belum ada tamu tercatat.</div>`}
-    function renderEvents(){document.getElementById("eventList").innerHTML=T().events.map(e=>card(e.icon||"🎉",e.title,e.time,e.desc,["Aktif"])).join("")||`<div class="empty">Belum ada event.</div>`}
-    function renderResidents(){document.getElementById("residentList").innerHTML=T().residents.map(r=>card("🏠",r.name,r.house,`HP: ${r.phone||"-"}. Status: ${r.status}. Ruang: ${r.rtName || r.rtId || "RW"}`,["Warga"])).join("")}
-    function renderBanners(){document.getElementById("bannerList").innerHTML=T().banners.map(b=>card("📣",b.text,b.owner,`Paket iklan: ${b.price}`,["Aktif"])).join("")||`<div class="empty">Belum ada banner.</div>`}
-    function renderPricing(){document.getElementById("pricingList").innerHTML=db.pricing.map(p=>card("💰",p.name,`${p.range} · ${p.price}`,p.desc,["Aktif"])).join("")}
+    function renderRonda(){document.getElementById("rondaList").innerHTML=T().ronda.map(r=>card("ðŸ›¡ï¸",r.blok,r.jam,`Koordinator: ${r.koor}. ${r.note||""}`,["Aktif"])).join("")||`<div class="empty">Belum ada jadwal ronda.</div>`}
+    function renderGuests(){document.getElementById("guestList").innerHTML=T().guests.map(g=>card("ðŸšª",g.name,g.type,`Tujuan: ${g.to}. Waktu: ${g.time}`,["Tercatat"])).join("")||`<div class="empty">Belum ada tamu tercatat.</div>`}
+    function renderEvents(){document.getElementById("eventList").innerHTML=T().events.map(e=>card(e.icon||"ðŸŽ‰",e.title,e.time,e.desc,["Aktif"])).join("")||`<div class="empty">Belum ada event.</div>`}
+    function renderResidents(){document.getElementById("residentList").innerHTML=T().residents.map(r=>card("ðŸ ",r.name,r.house,`HP: ${r.phone||"-"}. Status: ${r.status}. Ruang: ${r.rtName || r.rtId || "RW"}`,["Warga"])).join("")}
+    function renderBanners(){document.getElementById("bannerList").innerHTML=T().banners.map(b=>card("ðŸ“£",b.text,b.owner,`Paket iklan: ${b.price}`,["Aktif"])).join("")||`<div class="empty">Belum ada banner.</div>`}
+    function renderPricing(){document.getElementById("pricingList").innerHTML=db.pricing.map(p=>card("ðŸ’°",p.name,`${p.range} Â· ${p.price}`,p.desc,["Aktif"])).join("")}
     function renderAdmin(){document.getElementById("admWarga").textContent=T().residents.length;document.getElementById("admLapak").textContent=T().products.length;document.getElementById("admJasa").textContent=T().services.length}
-    function renderNotifs(){document.getElementById("notifList").innerHTML=[card("🏘️","Tenant aktif",T().name,`Data yang tampil sekarang hanya milik tenantId: ${T().id}`,["Tenant"]),card("🔐","Role aktif",roleNames[db.currentRole],"Menu admin mengikuti role yang aktif.",["Role"]),card("🛟","Laporan aktif","Hari ini",`${T().reports.filter(r=>r.status!=="Selesai").length} laporan masih berjalan`,["Diproses"])].join("")}
+    function renderNotifs(){document.getElementById("notifList").innerHTML=[card("ðŸ˜ï¸","Tenant aktif",T().name,`Data yang tampil sekarang hanya milik tenantId: ${T().id}`,["Tenant"]),card("ðŸ”","Role aktif",roleNames[db.currentRole],"Menu admin mengikuti role yang aktif.",["Role"]),card("ðŸ›Ÿ","Laporan aktif","Hari ini",`${T().reports.filter(r=>r.status!=="Selesai").length} laporan masih berjalan`,["Diproses"])].join("")}
 
 
     function submitSelfRegister(e){
@@ -2059,14 +2172,14 @@ allow write: if request.auth.token.tenantId == tenantId
         address:freeEnvAddress.value,
         monthly:0,
         inviteCode:code,
-        logo:"🏘️",
+        logo:"ðŸ˜ï¸",
         theme:"#ff6b00",
         rts:{rt01:{id:"rt01",name:"RT 01",admin:freeAdminName.value,inviteCode:id.toUpperCase()+"-RT01"}},
         infos:[],iuran:[],reports:[],services:[],products:[],ronda:[],guests:[],events:[],residents:[],banners:[],bukti:[],mandates:[]
       };
       db.currentTenant=id;
       db.currentRole="tenant_admin";
-      addDeskLog("admin","🆓","Pengurus daftar gratis",`${freeAdminName.value} membuat slot ${freeEnvName.value}`);
+      addDeskLog("admin","ðŸ†“","Pengurus daftar gratis",`${freeAdminName.value} membuat slot ${freeEnvName.value}`);
       saveDB();
       showToast("Slot gratis dibuat. Link admin otomatis tersedia.");
       e.target.reset();
@@ -2085,7 +2198,7 @@ allow write: if request.auth.token.tenantId == tenantId
         else if(currentTenantApproved()) status.innerHTML=`<div class="approved-box">Tenant sudah aktif. Admin bisa mengundang warga dan memberikan mandat ke admin RT.</div>`;
         else status.innerHTML=`<div class="pending-box">Status sekarang: ${t.status || "free_registered"}. Pilih paket untuk membuka akses warga.</div>`;
       }
-      el.innerHTML=db.pricing.map(p=>`<div class="card"><div class="feed-head"><div class="avatar">💰</div><div><b>${p.name}</b><small>${p.range} · ${p.price}</small></div></div><p>${p.desc}</p><div class="pay-actions"><button class="btn" onclick="selectUpgradePlan('${p.name}','${p.price.replace(/'/g,"")}')">Pilih Paket</button><button class="btn light" onclick="openPage('harga')">Detail</button></div></div>`).join("");
+      el.innerHTML=db.pricing.map(p=>`<div class="card"><div class="feed-head"><div class="avatar">ðŸ’°</div><div><b>${p.name}</b><small>${p.range} Â· ${p.price}</small></div></div><p>${p.desc}</p><div class="pay-actions"><button class="btn" onclick="selectUpgradePlan('${p.name}','${p.price.replace(/'/g,"")}')">Pilih Paket</button><button class="btn light" onclick="openPage('harga')">Detail</button></div></div>`).join("");
     }
     function selectUpgradePlan(plan, price){
       const t=T();
@@ -2121,7 +2234,7 @@ allow write: if request.auth.token.tenantId == tenantId
       t.paymentRequest=req;
       db.pendingUpgrades=db.pendingUpgrades || [];
       db.pendingUpgrades.unshift(req);
-      addDeskLog("payment","💳","Bukti upgrade masuk",`${t.name} memilih ${req.plan}`);
+      addDeskLog("payment","ðŸ’³","Bukti upgrade masuk",`${t.name} memilih ${req.plan}`);
       saveDB();
       showToast("Bukti bayar dikirim. Menunggu approval Admin Pusat.");
       e.target.reset();
@@ -2139,7 +2252,7 @@ allow write: if request.auth.token.tenantId == tenantId
       t.monthly=planPrice(req.plan);
       t.limit=planLimit(req.plan);
       t.approvedAt=new Date().toLocaleString("id-ID");
-      addDeskLog("payment","✅","Upgrade disetujui Admin Pusat",`${t.name} aktif paket ${t.plan}`);
+      addDeskLog("payment","âœ…","Upgrade disetujui Admin Pusat",`${t.name} aktif paket ${t.plan}`);
       saveDB();
       showToast("Tenant approved. Akses warga sudah terbuka.");
     }
@@ -2149,7 +2262,7 @@ allow write: if request.auth.token.tenantId == tenantId
       req.status="Ditolak";
       const t=db.tenants[req.tenantId];
       if(t){t.status="payment_rejected";t.accessOpen=false;}
-      addDeskLog("payment","❌","Upgrade ditolak",req.tenantName);
+      addDeskLog("payment","âŒ","Upgrade ditolak",req.tenantName);
       saveDB();
       showToast("Request ditolak.");
     }
@@ -2157,7 +2270,7 @@ allow write: if request.auth.token.tenantId == tenantId
       const el=document.getElementById("centralApprovalList");
       if(!el)return;
       const rows=db.pendingUpgrades || [];
-      el.innerHTML=rows.map(r=>`<div class="card"><div class="feed-head"><div class="avatar">💳</div><div><b>${r.tenantName}</b><small>${r.plan} · ${r.amount}</small></div></div><p>Admin: ${r.admin} · WA: ${r.adminPhone}. Pengirim: ${r.sender}. Catatan: ${r.note || "-"}. Waktu: ${r.createdAt}</p><div class="status-row"><span class="status ${r.status==="Approved"?"green":r.status==="Ditolak"?"red":"orange"}">${r.status}</span></div><div class="pay-actions"><button class="btn green" onclick="approveUpgrade('${r.id}')">Approve & Buka Akses</button><button class="btn light" onclick="rejectUpgrade('${r.id}')">Tolak</button></div></div>`).join("") || `<div class="empty">Belum ada pembayaran menunggu approval.</div>`;
+      el.innerHTML=rows.map(r=>`<div class="card"><div class="feed-head"><div class="avatar">ðŸ’³</div><div><b>${r.tenantName}</b><small>${r.plan} Â· ${r.amount}</small></div></div><p>Admin: ${r.admin} Â· WA: ${r.adminPhone}. Pengirim: ${r.sender}. Catatan: ${r.note || "-"}. Waktu: ${r.createdAt}</p><div class="status-row"><span class="status ${r.status==="Approved"?"green":r.status==="Ditolak"?"red":"orange"}">${r.status}</span></div><div class="pay-actions"><button class="btn green" onclick="approveUpgrade('${r.id}')">Approve & Buka Akses</button><button class="btn light" onclick="rejectUpgrade('${r.id}')">Tolak</button></div></div>`).join("") || `<div class="empty">Belum ada pembayaran menunggu approval.</div>`;
     }
     function renderMandateAdmin(){
       const gate=document.getElementById("mandateGate");
@@ -2171,7 +2284,7 @@ allow write: if request.auth.token.tenantId == tenantId
         gate.innerHTML=`<div class="approved-box">Akses sudah aktif. Admin boleh memberikan mandat kepada pengurus RT, bendahara, atau keamanan.</div>`;
       }
       rtSel.innerHTML=Object.values(t.rts||{}).map(r=>`<option value="${r.id}">${r.name} - ${r.inviteCode}</option>`).join("");
-      list.innerHTML=(t.mandates||[]).map(m=>card("👥",m.name,`${m.role} · ${m.rtId}`,`WA: ${m.phone}. Mandat dibuat: ${m.createdAt}`,["Aktif"])).join("") || `<div class="empty">Belum ada mandat admin RT.</div>`;
+      list.innerHTML=(t.mandates||[]).map(m=>card("ðŸ‘¥",m.name,`${m.role} Â· ${m.rtId}`,`WA: ${m.phone}. Mandat dibuat: ${m.createdAt}`,["Aktif"])).join("") || `<div class="empty">Belum ada mandat admin RT.</div>`;
     }
     function submitMandateAdmin(e){
       e.preventDefault();
@@ -2184,14 +2297,14 @@ allow write: if request.auth.token.tenantId == tenantId
       t.mandates=t.mandates||[];
       t.mandates.unshift({rtId:mandateRt.value,name:mandateName.value,phone:mandatePhone.value,role:mandateRole.value,createdAt:new Date().toLocaleString("id-ID")});
       if(t.rts && t.rts[mandateRt.value] && mandateRole.value==="rt_admin") t.rts[mandateRt.value].admin=mandateName.value;
-      addDeskLog("admin","👥","Mandat admin dibuat",`${mandateName.value} menjadi ${mandateRole.value} di ${t.name}`);
+      addDeskLog("admin","ðŸ‘¥","Mandat admin dibuat",`${mandateName.value} menjadi ${mandateRole.value} di ${t.name}`);
       saveDB();
       showToast("Mandat admin berhasil dibuat.");
       e.target.reset();
       openPage("mandateAdmin");
     }
 
-    function submitTenant(e){e.preventDefault();let id=tnSlug.value.trim().toLowerCase().replace(/[^a-z0-9-]/g,"-");if(db.tenants[id]){showToast("tenantId sudah ada");return}db.tenants[id]={id,name:tnName.value,type:tnType.value,plan:tnPlan.value,limit:Number(tnLimit.value),status:"approved",accessOpen:true,admin:tnAdmin.value,monthly:planPrice(tnPlan.value),inviteCode:tnCode.value.trim().toUpperCase(),logo:"🏘️",theme:tnTheme.value,rts:{rt01:{id:"rt01",name:"RT 01",admin:"-",inviteCode:id.toUpperCase()+"-RT01"}},infos:[],iuran:[],reports:[],services:[],products:[],ronda:[],guests:[],events:[],residents:[],banners:[],bukti:[]};db.currentTenant=id;saveDB();showToast("Tenant baru berhasil dibuat");e.target.reset();openPage("tenantSwitch")}
+    function submitTenant(e){e.preventDefault();let id=tnSlug.value.trim().toLowerCase().replace(/[^a-z0-9-]/g,"-");if(db.tenants[id]){showToast("tenantId sudah ada");return}db.tenants[id]={id,name:tnName.value,type:tnType.value,plan:tnPlan.value,limit:Number(tnLimit.value),status:"approved",accessOpen:true,admin:tnAdmin.value,monthly:planPrice(tnPlan.value),inviteCode:tnCode.value.trim().toUpperCase(),logo:"ðŸ˜ï¸",theme:tnTheme.value,rts:{rt01:{id:"rt01",name:"RT 01",admin:"-",inviteCode:id.toUpperCase()+"-RT01"}},infos:[],iuran:[],reports:[],services:[],products:[],ronda:[],guests:[],events:[],residents:[],banners:[],bukti:[]};db.currentTenant=id;saveDB();showToast("Tenant baru berhasil dibuat");e.target.reset();openPage("tenantSwitch")}
     function planPrice(plan){return {"RT Mini":10000,"RT Plus":15000,"RW / Gabungan RT":30000,"Perumahan Mini":50000,"Perumahan Besar":150000,"Custom Kawasan":500000}[plan]||10000}
     function searchGo(){const q=searchInput.value.trim().toLowerCase();if(!q){showToast("Ketik yang mau dicari");return}if(q.includes("tenant")||q.includes("lingkungan")){db.currentRole==="super_admin"?openPage("tenantSwitch"):openPage("invite");}else if(q.includes("role")||q.includes("akses"))openPage("roles");else if(q.includes("firebase")||q.includes("rules"))openPage("firestore");else if(q.includes("pusat")||q.includes("super"))openPage("superAdmin");else if(q.includes("ac")||q.includes("listrik")||q.includes("galon")||q.includes("servis"))openPage("jasa");else if(q.includes("jual")||q.includes("lapak"))openPage("lapak");else if(q.includes("harga")||q.includes("paket"))openPage("harga");else openPage("info")}
     function chatWA(nama,nomor="081296629033"){nomor=nomor.replace(/\D/g,"");if(nomor.startsWith("0"))nomor="62"+nomor.slice(1);window.open(`https://wa.me/${nomor}?text=${encodeURIComponent("Halo, saya lihat "+nama+" di SeputarWarga. Saya ingin tanya layanan dan harga.")}`,"_blank")}
@@ -2199,11 +2312,11 @@ allow write: if request.auth.token.tenantId == tenantId
     function submitReport(e){e.preventDefault();T().reports.unshift({title:reportTitle.value,desc:reportDesc.value||"-",status:"Menunggu",time:"Baru saja"});saveDB();showToast("Laporan masuk ke tenant "+T().name);e.target.reset();openPage("lapor")}
     function setReportStatus(idx,status){T().reports[idx].status=status;saveDB();showToast("Status laporan diubah")}
     function submitBukti(e){e.preventDefault();T().bukti.unshift({jenis:buktiJenis.value,nominal:buktiNominal.value,nama:buktiNama.value,catatan:buktiCatatan.value});saveDB();showToast("Bukti bayar masuk ke tenant aktif");e.target.reset();openPage("riwayatIuran")}
-    function submitService(e){e.preventDefault();T().services.unshift({name:svcName.value,cat:svcCat.value,price:svcPrice.value,wa:svcWA.value,desc:svcDesc.value||"Layanan warga sekitar.",icon:"🔧",rating:"Baru"});saveDB();showToast("Jasa tersimpan di "+T().name);e.target.reset();openPage("jasa")}
-    function submitProduct(e){e.preventDefault();T().products.unshift({name:prdName.value,price:prdPrice.value,icon:prdIcon.value,seller:prdSeller.value,sold:"Baru"});saveDB();showToast("Lapak tersimpan di "+T().name);e.target.reset();openPage("lapak")}
+    function submitService(e){e.preventDefault();T().services.unshift({name:svcName.value,cat:svcCat.value,price:svcPrice.value,wa:svcWA.value,desc:svcDesc.value||"Layanan warga sekitar.",icon:"ðŸ”§",rating:"Baru"});saveDB();showToast("Jasa tersimpan di "+T().name);e.target.reset();openPage("jasa")}
+    function submitProduct(e){e.preventDefault();if(db.currentRole!=="super_admin"){showToast("Lapak hanya bisa dipasang oleh Admin Pusat/Pengelola Aplikasi.");openPage("lapak");return}T().products.unshift({name:prdName.value,price:prdPrice.value,icon:prdIcon.value,seller:prdSeller.value,sold:"Baru",source:"admin_pusat",status:"Aktif"});addDeskLog("market","ðŸ›’","Lapak dipasang Admin Pusat",`${prdName.value} tampil di ${T().name}`);saveDB();showToast("Lapak pusat tersimpan di "+T().name);e.target.reset();openPage("lapak")}
     function submitRonda(e){e.preventDefault();T().ronda.unshift({blok:rondaBlok.value,jam:rondaJam.value,koor:rondaKoordinator.value,note:rondaNote.value});saveDB();showToast("Jadwal ronda disimpan");e.target.reset();openPage("ronda")}
     function submitGuest(e){e.preventDefault();T().guests.unshift({name:guestName.value,to:guestTo.value,type:guestType.value,time:new Date().toLocaleString("id-ID")});saveDB();showToast("Tamu tercatat di "+T().name);e.target.reset();openPage("tamu")}
-    function submitEvent(e){e.preventDefault();T().events.unshift({title:evtTitle.value,time:evtTime.value,desc:evtDesc.value,icon:"🎉"});saveDB();showToast("Event berhasil ditambahkan");e.target.reset();openPage("event")}
+    function submitEvent(e){e.preventDefault();T().events.unshift({title:evtTitle.value,time:evtTime.value,desc:evtDesc.value,icon:"ðŸŽ‰"});saveDB();showToast("Event berhasil ditambahkan");e.target.reset();openPage("event")}
     function submitInfo(e){e.preventDefault();T().infos.unshift({title:infoTitle.value,desc:infoDesc.value||"-",tag:infoTag.value,icon:"RT",time:"Baru saja"});saveDB();showToast("Info diterbitkan di "+T().name);e.target.reset();openPage("info")}
     function submitResident(e){e.preventDefault();T().residents.unshift({name:resName.value,house:resHouse.value,phone:resPhone.value,status:resStatus.value,rtId:db.currentRt,rtName:(currentRt()?currentRt().name:"RW")});saveDB();showToast("Warga tersimpan di tenant aktif");e.target.reset();openPage("adminWarga")}
     function submitBanner(e){e.preventDefault();T().banners.unshift({text:bannerText.value,owner:bannerOwner.value,price:bannerPrice.value});saveDB();showToast("Iklan berjalan dipasang");e.target.reset();openPage("adminBanner")}
@@ -2238,6 +2351,51 @@ allow write: if request.auth.token.tenantId == tenantId
         localStorage.setItem("wargahubTenantDB", JSON.stringify(db));
     
 
+
+    function quickLoginAs(role){
+      db.currentRole = role;
+      if(!db.currentTenant || !db.tenants[db.currentTenant]){
+        db.currentTenant = Object.keys(db.tenants || {})[0] || "";
+      }
+      saveDB();
+      showToast("Mode sekarang: " + roleLabel(role));
+      openPage("home");
+      renderAll();
+    }
+
+    function logoutAll(){
+      db.currentRole = "resident";
+      if(!db.currentTenant || !db.tenants[db.currentTenant]){
+        db.currentTenant = Object.keys(db.tenants || {})[0] || "";
+      }
+      saveDB();
+      showToast("Sudah keluar. Mode kembali ke Warga.");
+      openPage("home");
+      renderAll();
+    }
+
+    function deskLogoutCenter(){
+      db.currentRole = "resident";
+      saveDB();
+      try{ localStorage.setItem("seputarwargaForceMobile","1"); }catch(e){}
+      showToast("Keluar dari Admin Pusat. Mode kembali ke Warga/User.");
+      setTimeout(()=>location.reload(),450);
+    }
+
+    function deskSwitchToMobile(){
+      try{ localStorage.setItem("seputarwargaForceMobile","1"); }catch(e){}
+      db.currentRole = db.currentRole || "resident";
+      saveDB();
+      location.reload();
+    }
+
+    function backToDesktopAdmin(){
+      try{ localStorage.removeItem("seputarwargaForceMobile"); }catch(e){}
+      db.currentRole = "super_admin";
+      saveDB();
+      location.reload();
+    }
+
     let deskSection = "overview";
     let deskActivityFilter = "all";
 
@@ -2265,12 +2423,12 @@ allow write: if request.auth.token.tenantId == tenantId
     function deskLogs(){
       const built = [];
       deskTenantArray().forEach(t=>{
-        built.push({type:"admin", icon:"🏘️", title:"Tenant aktif", text:`${t.name} memakai paket ${t.plan}`, time:"Sistem"});
-        (t.residents||[]).slice(0,6).forEach(r=>built.push({type:"login", icon:"👤", title:"Warga terdaftar", text:`${r.name} masuk ke ${t.name} ${r.rtName||r.rtId||""}`, time:"Data user"}));
-        (t.reports||[]).slice(0,6).forEach(r=>built.push({type:"report", icon:"🛟", title:r.title, text:`${t.name} · ${r.status} · ${r.desc}`, time:r.time||"Laporan"}));
-        (t.bukti||[]).slice(0,6).forEach(b=>built.push({type:"payment", icon:"💳", title:"Bukti iuran masuk", text:`${t.name} · ${b.nama} · ${b.jenis}`, time:"Bendahara"}));
-        (t.services||[]).slice(0,4).forEach(s=>built.push({type:"market", icon:"🔧", title:"Jasa aktif", text:`${s.name} tampil di ${t.name}`, time:s.cat||"Jasa"}));
-        (t.products||[]).slice(0,4).forEach(p=>built.push({type:"market", icon:"🛒", title:"Lapak aktif", text:`${p.name} tampil di ${t.name}`, time:p.seller||"Lapak"}));
+        built.push({type:"admin", icon:"ðŸ˜ï¸", title:"Tenant aktif", text:`${t.name} memakai paket ${t.plan}`, time:"Sistem"});
+        (t.residents||[]).slice(0,6).forEach(r=>built.push({type:"login", icon:"ðŸ‘¤", title:"Warga terdaftar", text:`${r.name} masuk ke ${t.name} ${r.rtName||r.rtId||""}`, time:"Data user"}));
+        (t.reports||[]).slice(0,6).forEach(r=>built.push({type:"report", icon:"ðŸ›Ÿ", title:r.title, text:`${t.name} Â· ${r.status} Â· ${r.desc}`, time:r.time||"Laporan"}));
+        (t.bukti||[]).slice(0,6).forEach(b=>built.push({type:"payment", icon:"ðŸ’³", title:"Bukti iuran masuk", text:`${t.name} Â· ${b.nama} Â· ${b.jenis}`, time:"Bendahara"}));
+        (t.services||[]).slice(0,4).forEach(s=>built.push({type:"market", icon:"ðŸ”§", title:"Jasa aktif", text:`${s.name} tampil di ${t.name}`, time:s.cat||"Jasa"}));
+        (t.products||[]).slice(0,4).forEach(p=>built.push({type:"market", icon:"ðŸ›’", title:"Lapak aktif", text:`${p.name} tampil di ${t.name}`, time:p.seller||"Lapak"}));
       });
       const manual = JSON.parse(localStorage.getItem("wargahubDeskLogs") || "[]");
       return [...manual, ...built];
@@ -2299,7 +2457,7 @@ allow write: if request.auth.token.tenantId == tenantId
         activity:["Aktivitas User","Pantau login, pendaftaran warga, laporan, iuran, lapak, dan aksi admin."],
         billing:["Billing & Paket","Kelola tagihan aplikasi tiap tenant dan status pembayaran."],
         approvals:["Approval Pembayaran","Setujui pembayaran upgrade, buka akses warga, dan aktifkan mandat admin RT."],
-        marketplace:["Lapak & Jasa","Kontrol pedagang, tukang service, banner, dan potensi income lokal."],
+        marketplace:["Lapak & Jasa","Admin Pusat memasang dan mengontrol lapak, jasa, banner, dan potensi income lokal."],
         moderation:["Moderasi Laporan","Pantau laporan warga, status penanganan, dan keamanan lingkungan."],
         links:["Link Tenant/RT","Salin link khusus tenant dan RT untuk dikirim ke pelanggan/warga."],
         settings:["Pengaturan Sistem","Atur nama aplikasi, support, role default, dan pesan sambutan."],
@@ -2335,7 +2493,7 @@ allow write: if request.auth.token.tenantId == tenantId
       setText("dFirebaseStatus", window.WHFirebase ? "Terhubung" : "Menunggu koneksi");
 
       const top = [...tenants].sort((a,b)=>deskIncomeTenant(b)-deskIncomeTenant(a)).slice(0,4);
-      setHTML("dTopTenants", top.map((t,idx)=>`<div class="desk-rank-item"><div class="desk-rank-no">${idx+1}</div><div><b>${t.name}</b><small>${t.plan} · ${t.residents.length} warga</small></div><span class="desk-pill green">${money(deskIncomeTenant(t))}</span></div>`).join(""));
+      setHTML("dTopTenants", top.map((t,idx)=>`<div class="desk-rank-item"><div class="desk-rank-no">${idx+1}</div><div><b>${t.name}</b><small>${t.plan} Â· ${t.residents.length} warga</small></div><span class="desk-pill green">${money(deskIncomeTenant(t))}</span></div>`).join(""));
       setHTML("dSystemStatus", `
         <div class="desk-health"><div><b>Multi tenant</b><small>TenantId aktif dan data terpisah</small></div><div class="desk-progress"><span style="width:100%"></span></div></div>
         <div class="desk-health"><div><b>Responsive UI</b><small>HP app + laptop admin</small></div><div class="desk-progress"><span style="width:100%"></span></div></div>
@@ -2377,7 +2535,7 @@ allow write: if request.auth.token.tenantId == tenantId
 
       const filteredMarket = market.filter(m => (`${m.name||m.text} ${m.tenantName} ${m.kind} ${m.cat||""}`).toLowerCase().includes(q));
       setHTML("dMarketRows", filteredMarket.map(m=>`
-        <tr><td><b>${m.name||m.text}</b><br><small>${m.desc||m.owner||m.seller||""}</small></td><td>${m.tenantName}</td><td>${m.kind}${m.cat?" · "+m.cat:""}</td><td>${m.price||m.priceText||"-"}</td><td><span class="desk-pill green">Aktif</span></td>
+        <tr><td><b>${m.name||m.text}</b><br><small>${m.desc||m.owner||m.seller||""}</small></td><td>${m.tenantName}</td><td>${m.kind}${m.cat?" Â· "+m.cat:""}${m.kind==="Lapak"?" Â· Pusat":""}</td><td>${m.price||m.priceText||"-"}</td><td><span class="desk-pill green">Aktif</span></td>
         <td><div class="desk-mini-actions"><button class="primary">Verifikasi</button><button class="danger" onclick="deskDeleteMarket('${m.tenantId}','${m.kind}',${m._index})">Hapus</button></div></td></tr>
       `).join(""));
 
@@ -2390,7 +2548,7 @@ allow write: if request.auth.token.tenantId == tenantId
       const linkRows=[];
       tenants.forEach(t=>{
         linkRows.push({name:t.name,type:"Tenant",link:tenantUrl(t.id),code:t.inviteCode||"-",tenantId:t.id});
-        Object.values(t.rts||{}).forEach(rt=>linkRows.push({name:`${t.name} · ${rt.name}`,type:"RT",link:rtUrl(t.id,rt.id),code:rt.inviteCode,tenantId:t.id,rtId:rt.id}));
+        Object.values(t.rts||{}).forEach(rt=>linkRows.push({name:`${t.name} Â· ${rt.name}`,type:"RT",link:rtUrl(t.id,rt.id),code:rt.inviteCode,tenantId:t.id,rtId:rt.id}));
       });
       setHTML("dLinkRows", linkRows.map(l=>`
         <tr><td><b>${l.name}</b></td><td><span class="desk-pill purple">${l.type}</span></td><td><div class="linkbox" style="margin:0">${l.link}</div></td><td>${l.code}</td>
@@ -2400,13 +2558,13 @@ allow write: if request.auth.token.tenantId == tenantId
     function setText(id, value){const el=document.getElementById(id); if(el) el.textContent=value;}
     function setHTML(id, value){const el=document.getElementById(id); if(el) el.innerHTML=value;}
     function deskFilterActivity(type){deskActivityFilter=type;renderDesktopAdmin();}
-    function deskUseTenant(id){db.currentTenant=id;saveDB();addDeskLog("admin","🏘️","Super Admin memilih tenant",db.tenants[id].name);showToast("Tenant aktif: "+db.tenants[id].name);renderDesktopAdmin();}
+    function deskUseTenant(id){db.currentTenant=id;saveDB();addDeskLog("admin","ðŸ˜ï¸","Super Admin memilih tenant",db.tenants[id].name);showToast("Tenant aktif: "+db.tenants[id].name);renderDesktopAdmin();}
     function deskImpersonateTenant(id, rtId){db.currentTenant=id;if(rtId)db.currentRt=rtId;saveDB();showToast("Membuka ruang "+db.tenants[id].name);renderDesktopAdmin();}
-    function deskToggleTenant(id){const t=db.tenants[id];t.status=t.status==="Aktif"?"Nonaktif":"Aktif";saveDB();addDeskLog("admin","⚙️","Status tenant diubah",`${t.name}: ${t.status}`);renderDesktopAdmin();}
-    function deskDeleteResident(tenantId, idx){if(!confirm("Hapus warga ini dari demo?"))return;db.tenants[tenantId].residents.splice(idx,1);saveDB();addDeskLog("admin","🗑️","Warga dihapus",tenantId);renderDesktopAdmin();}
-    function deskDeleteMarket(tenantId, kind, idx){if(!confirm("Hapus item ini dari demo?"))return;const key=kind==="Lapak"?"products":kind==="Jasa"?"services":"banners";db.tenants[tenantId][key].splice(idx,1);saveDB();addDeskLog("admin","🗑️","Item marketplace dihapus",`${kind} · ${tenantId}`);renderDesktopAdmin();}
-    function deskSetReport(tenantId, idx, status){db.tenants[tenantId].reports[idx].status=status;saveDB();addDeskLog("report","🛟","Status laporan diubah",`${db.tenants[tenantId].name}: ${status}`);renderDesktopAdmin();}
-    function deskMarkPaid(id){addDeskLog("payment","💳","Billing ditandai lunas",db.tenants[id].name);showToast("Billing tenant ditandai lunas");renderDesktopAdmin();}
+    function deskToggleTenant(id){const t=db.tenants[id];t.status=t.status==="Aktif"?"Nonaktif":"Aktif";saveDB();addDeskLog("admin","âš™ï¸","Status tenant diubah",`${t.name}: ${t.status}`);renderDesktopAdmin();}
+    function deskDeleteResident(tenantId, idx){if(!confirm("Hapus warga ini dari demo?"))return;db.tenants[tenantId].residents.splice(idx,1);saveDB();addDeskLog("admin","ðŸ—‘ï¸","Warga dihapus",tenantId);renderDesktopAdmin();}
+    function deskDeleteMarket(tenantId, kind, idx){if(!confirm("Hapus item ini dari demo?"))return;const key=kind==="Lapak"?"products":kind==="Jasa"?"services":"banners";db.tenants[tenantId][key].splice(idx,1);saveDB();addDeskLog("admin","ðŸ—‘ï¸","Item marketplace dihapus",`${kind} Â· ${tenantId}`);renderDesktopAdmin();}
+    function deskSetReport(tenantId, idx, status){db.tenants[tenantId].reports[idx].status=status;saveDB();addDeskLog("report","ðŸ›Ÿ","Status laporan diubah",`${db.tenants[tenantId].name}: ${status}`);renderDesktopAdmin();}
+    function deskMarkPaid(id){addDeskLog("payment","ðŸ’³","Billing ditandai lunas",db.tenants[id].name);showToast("Billing tenant ditandai lunas");renderDesktopAdmin();}
     function openDeskModal(type, id=""){
       const modal=document.getElementById("deskModal"), title=document.getElementById("deskModalTitle"), body=document.getElementById("deskModalBody");
       if(!modal||!body)return;
@@ -2432,6 +2590,18 @@ allow write: if request.auth.token.tenantId == tenantId
           <input id="dUserPhone" placeholder="Nomor HP">
           <select id="dUserRole"><option>resident</option><option>tenant_admin</option><option>rt_admin</option><option>bendahara</option><option>security</option></select>
           <button class="desk-btn" type="submit">Simpan User</button>
+        </form>`;
+      } else if(type==="createProduct"){
+        title.textContent="Pasang Lapak Pusat";
+        const opts=deskTenantArray().map(t=>`<option value="${t.id}">${t.name}</option>`).join("");
+        body.innerHTML=`<form class="desk-form-grid" onsubmit="deskSubmitProduct(event)">
+          <select id="dPrdTenant">${opts}</select>
+          <input id="dPrdName" placeholder="Nama produk/lapak" required>
+          <input id="dPrdPrice" placeholder="Harga, contoh Rp18rb" required>
+          <select id="dPrdIcon"><option>ðŸ±</option><option>ðŸ§</option><option>ðŸŒ¿</option><option>ðŸ§¼</option><option>ðŸ—</option><option>ðŸ¥¤</option><option>ðŸ¥¬</option><option>ðŸ›ï¸</option></select>
+          <input id="dPrdSeller" placeholder="Penjual / lokasi, contoh Blok C Â· Catering" required>
+          <textarea id="dPrdNote" placeholder="Catatan admin pusat, contoh: lapak aktif 30 hari / paket prioritas"></textarea>
+          <button class="desk-btn" type="submit">Pasang Lapak</button>
         </form>`;
       } else if(type==="createService"){
         title.textContent="Tambah Jasa dari Pengelola";
@@ -2464,28 +2634,39 @@ allow write: if request.auth.token.tenantId == tenantId
       e.preventDefault();
       const id=dTnSlug.value.trim().toLowerCase().replace(/[^a-z0-9-]/g,"-");
       if(db.tenants[id]){showToast("tenantId sudah ada");return}
-      db.tenants[id]={id,name:dTnName.value,type:dTnType.value,plan:dTnPlan.value,limit:Number(dTnLimit.value),status:"approved",accessOpen:true,admin:dTnAdmin.value,monthly:planPrice(dTnPlan.value),inviteCode:dTnCode.value.trim().toUpperCase(),logo:"🏘️",theme:"#ff6b00",rts:{rt01:{id:"rt01",name:"RT 01",admin:"-",inviteCode:id.toUpperCase()+"-RT01"}},infos:[],iuran:[],reports:[],services:[],products:[],ronda:[],guests:[],events:[],residents:[],banners:[],bukti:[]};
-      db.currentTenant=id;saveDB();addDeskLog("admin","🏘️","Tenant baru dibuat",dTnName.value);closeDeskModal();renderDesktopAdmin();showToast("Tenant baru dibuat");
+      db.tenants[id]={id,name:dTnName.value,type:dTnType.value,plan:dTnPlan.value,limit:Number(dTnLimit.value),status:"approved",accessOpen:true,admin:dTnAdmin.value,monthly:planPrice(dTnPlan.value),inviteCode:dTnCode.value.trim().toUpperCase(),logo:"ðŸ˜ï¸",theme:"#ff6b00",rts:{rt01:{id:"rt01",name:"RT 01",admin:"-",inviteCode:id.toUpperCase()+"-RT01"}},infos:[],iuran:[],reports:[],services:[],products:[],ronda:[],guests:[],events:[],residents:[],banners:[],bukti:[]};
+      db.currentTenant=id;saveDB();addDeskLog("admin","ðŸ˜ï¸","Tenant baru dibuat",dTnName.value);closeDeskModal();renderDesktopAdmin();showToast("Tenant baru dibuat");
     }
     function deskSubmitUser(e){
       e.preventDefault();
       const t=db.tenants[dUserTenant.value];
       t.residents.unshift({name:dUserName.value,house:dUserHouse.value,phone:dUserPhone.value,status:"Aktif",role:dUserRole.value,source:"pengelola"});
-      saveDB();addDeskLog("admin","👤","User ditambahkan",`${dUserName.value} · ${t.name}`);closeDeskModal();renderDesktopAdmin();showToast("User/warga ditambahkan");
+      saveDB();addDeskLog("admin","ðŸ‘¤","User ditambahkan",`${dUserName.value} Â· ${t.name}`);closeDeskModal();renderDesktopAdmin();showToast("User/warga ditambahkan");
+    }
+    function deskSubmitProduct(e){
+      e.preventDefault();
+      const t=db.tenants[dPrdTenant.value];
+      t.products=t.products||[];
+      t.products.unshift({name:dPrdName.value,price:dPrdPrice.value,icon:dPrdIcon.value,seller:dPrdSeller.value,sold:"Baru",source:"admin_pusat",status:"Aktif",note:dPrdNote.value||""});
+      saveDB();
+      addDeskLog("market","ðŸ›’","Lapak dipasang Admin Pusat",`${dPrdName.value} tampil di ${t.name}`);
+      closeDeskModal();
+      renderDesktopAdmin();
+      showToast("Lapak pusat ditayangkan di "+t.name);
     }
     function deskSubmitService(e){
       e.preventDefault();
       const t=db.tenants[dSvcTenant.value];
-      t.services.unshift({name:dSvcName.value,cat:dSvcCat.value,price:dSvcPrice.value||"Hubungi admin",wa:dSvcWA.value,desc:dSvcDesc.value||"Layanan warga sekitar.",icon:"🔧",rating:"Baru"});
-      saveDB();addDeskLog("market","🔧","Jasa ditambahkan pengelola",`${dSvcName.value} · ${t.name}`);closeDeskModal();renderDesktopAdmin();showToast("Jasa ditambahkan");
+      t.services.unshift({name:dSvcName.value,cat:dSvcCat.value,price:dSvcPrice.value||"Hubungi admin",wa:dSvcWA.value,desc:dSvcDesc.value||"Layanan warga sekitar.",icon:"ðŸ”§",rating:"Baru"});
+      saveDB();addDeskLog("market","ðŸ”§","Jasa ditambahkan pengelola",`${dSvcName.value} Â· ${t.name}`);closeDeskModal();renderDesktopAdmin();showToast("Jasa ditambahkan");
     }
     function deskChangePlan(e,id){
       e.preventDefault();
       db.tenants[id].plan=dPlanNew.value;
       db.tenants[id].monthly=Number(dPlanMonthly.value||0);
-      saveDB();addDeskLog("payment","💳","Paket tenant diubah",`${db.tenants[id].name}: ${dPlanNew.value}`);closeDeskModal();renderDesktopAdmin();showToast("Paket diubah");
+      saveDB();addDeskLog("payment","ðŸ’³","Paket tenant diubah",`${db.tenants[id].name}: ${dPlanNew.value}`);closeDeskModal();renderDesktopAdmin();showToast("Paket diubah");
     }
-    function saveDeskSettings(){showToast("Pengaturan sistem disimpan di perangkat ini");addDeskLog("admin","⚙️","Setting sistem disimpan","Admin pengelola memperbarui pengaturan");renderDesktopAdmin();}
+    function saveDeskSettings(){showToast("Pengaturan sistem disimpan di perangkat ini");addDeskLog("admin","âš™ï¸","Setting sistem disimpan","Admin pengelola memperbarui pengaturan");renderDesktopAdmin();}
     function downloadDeskReport(){
       const report={
         generatedAt:new Date().toISOString(),
@@ -2564,12 +2745,12 @@ allow write: if request.auth.token.tenantId == tenantId
     function deskLogs(){
       const built = [];
       deskTenantArray().forEach(t=>{
-        built.push({type:"admin", icon:"🏘️", title:"Tenant aktif", text:`${t.name} memakai paket ${t.plan}`, time:"Sistem"});
-        (t.residents||[]).slice(0,6).forEach(r=>built.push({type:"login", icon:"👤", title:"Warga terdaftar", text:`${r.name} masuk ke ${t.name} ${r.rtName||r.rtId||""}`, time:"Data user"}));
-        (t.reports||[]).slice(0,6).forEach(r=>built.push({type:"report", icon:"🛟", title:r.title, text:`${t.name} · ${r.status} · ${r.desc}`, time:r.time||"Laporan"}));
-        (t.bukti||[]).slice(0,6).forEach(b=>built.push({type:"payment", icon:"💳", title:"Bukti iuran masuk", text:`${t.name} · ${b.nama} · ${b.jenis}`, time:"Bendahara"}));
-        (t.services||[]).slice(0,4).forEach(s=>built.push({type:"market", icon:"🔧", title:"Jasa aktif", text:`${s.name} tampil di ${t.name}`, time:s.cat||"Jasa"}));
-        (t.products||[]).slice(0,4).forEach(p=>built.push({type:"market", icon:"🛒", title:"Lapak aktif", text:`${p.name} tampil di ${t.name}`, time:p.seller||"Lapak"}));
+        built.push({type:"admin", icon:"ðŸ˜ï¸", title:"Tenant aktif", text:`${t.name} memakai paket ${t.plan}`, time:"Sistem"});
+        (t.residents||[]).slice(0,6).forEach(r=>built.push({type:"login", icon:"ðŸ‘¤", title:"Warga terdaftar", text:`${r.name} masuk ke ${t.name} ${r.rtName||r.rtId||""}`, time:"Data user"}));
+        (t.reports||[]).slice(0,6).forEach(r=>built.push({type:"report", icon:"ðŸ›Ÿ", title:r.title, text:`${t.name} Â· ${r.status} Â· ${r.desc}`, time:r.time||"Laporan"}));
+        (t.bukti||[]).slice(0,6).forEach(b=>built.push({type:"payment", icon:"ðŸ’³", title:"Bukti iuran masuk", text:`${t.name} Â· ${b.nama} Â· ${b.jenis}`, time:"Bendahara"}));
+        (t.services||[]).slice(0,4).forEach(s=>built.push({type:"market", icon:"ðŸ”§", title:"Jasa aktif", text:`${s.name} tampil di ${t.name}`, time:s.cat||"Jasa"}));
+        (t.products||[]).slice(0,4).forEach(p=>built.push({type:"market", icon:"ðŸ›’", title:"Lapak aktif", text:`${p.name} tampil di ${t.name}`, time:p.seller||"Lapak"}));
       });
       const manual = JSON.parse(localStorage.getItem("wargahubDeskLogs") || "[]");
       return [...manual, ...built];
@@ -2598,7 +2779,7 @@ allow write: if request.auth.token.tenantId == tenantId
         activity:["Aktivitas User","Pantau login, pendaftaran warga, laporan, iuran, lapak, dan aksi admin."],
         billing:["Billing & Paket","Kelola tagihan aplikasi tiap tenant dan status pembayaran."],
         approvals:["Approval Pembayaran","Setujui pembayaran upgrade, buka akses warga, dan aktifkan mandat admin RT."],
-        marketplace:["Lapak & Jasa","Kontrol pedagang, tukang service, banner, dan potensi income lokal."],
+        marketplace:["Lapak & Jasa","Admin Pusat memasang dan mengontrol lapak, jasa, banner, dan potensi income lokal."],
         moderation:["Moderasi Laporan","Pantau laporan warga, status penanganan, dan keamanan lingkungan."],
         links:["Link Tenant/RT","Salin link khusus tenant dan RT untuk dikirim ke pelanggan/warga."],
         settings:["Pengaturan Sistem","Atur nama aplikasi, support, role default, dan pesan sambutan."],
@@ -2634,7 +2815,7 @@ allow write: if request.auth.token.tenantId == tenantId
       setText("dFirebaseStatus", window.WHFirebase ? "Terhubung" : "Menunggu koneksi");
 
       const top = [...tenants].sort((a,b)=>deskIncomeTenant(b)-deskIncomeTenant(a)).slice(0,4);
-      setHTML("dTopTenants", top.map((t,idx)=>`<div class="desk-rank-item"><div class="desk-rank-no">${idx+1}</div><div><b>${t.name}</b><small>${t.plan} · ${t.residents.length} warga</small></div><span class="desk-pill green">${money(deskIncomeTenant(t))}</span></div>`).join(""));
+      setHTML("dTopTenants", top.map((t,idx)=>`<div class="desk-rank-item"><div class="desk-rank-no">${idx+1}</div><div><b>${t.name}</b><small>${t.plan} Â· ${t.residents.length} warga</small></div><span class="desk-pill green">${money(deskIncomeTenant(t))}</span></div>`).join(""));
       setHTML("dSystemStatus", `
         <div class="desk-health"><div><b>Multi tenant</b><small>TenantId aktif dan data terpisah</small></div><div class="desk-progress"><span style="width:100%"></span></div></div>
         <div class="desk-health"><div><b>Responsive UI</b><small>HP app + laptop admin</small></div><div class="desk-progress"><span style="width:100%"></span></div></div>
@@ -2676,7 +2857,7 @@ allow write: if request.auth.token.tenantId == tenantId
 
       const filteredMarket = market.filter(m => (`${m.name||m.text} ${m.tenantName} ${m.kind} ${m.cat||""}`).toLowerCase().includes(q));
       setHTML("dMarketRows", filteredMarket.map(m=>`
-        <tr><td><b>${m.name||m.text}</b><br><small>${m.desc||m.owner||m.seller||""}</small></td><td>${m.tenantName}</td><td>${m.kind}${m.cat?" · "+m.cat:""}</td><td>${m.price||m.priceText||"-"}</td><td><span class="desk-pill green">Aktif</span></td>
+        <tr><td><b>${m.name||m.text}</b><br><small>${m.desc||m.owner||m.seller||""}</small></td><td>${m.tenantName}</td><td>${m.kind}${m.cat?" Â· "+m.cat:""}${m.kind==="Lapak"?" Â· Pusat":""}</td><td>${m.price||m.priceText||"-"}</td><td><span class="desk-pill green">Aktif</span></td>
         <td><div class="desk-mini-actions"><button class="primary">Verifikasi</button><button class="danger" onclick="deskDeleteMarket('${m.tenantId}','${m.kind}',${m._index})">Hapus</button></div></td></tr>
       `).join(""));
 
@@ -2689,7 +2870,7 @@ allow write: if request.auth.token.tenantId == tenantId
       const linkRows=[];
       tenants.forEach(t=>{
         linkRows.push({name:t.name,type:"Tenant",link:tenantUrl(t.id),code:t.inviteCode||"-",tenantId:t.id});
-        Object.values(t.rts||{}).forEach(rt=>linkRows.push({name:`${t.name} · ${rt.name}`,type:"RT",link:rtUrl(t.id,rt.id),code:rt.inviteCode,tenantId:t.id,rtId:rt.id}));
+        Object.values(t.rts||{}).forEach(rt=>linkRows.push({name:`${t.name} Â· ${rt.name}`,type:"RT",link:rtUrl(t.id,rt.id),code:rt.inviteCode,tenantId:t.id,rtId:rt.id}));
       });
       setHTML("dLinkRows", linkRows.map(l=>`
         <tr><td><b>${l.name}</b></td><td><span class="desk-pill purple">${l.type}</span></td><td><div class="linkbox" style="margin:0">${l.link}</div></td><td>${l.code}</td>
@@ -2699,13 +2880,13 @@ allow write: if request.auth.token.tenantId == tenantId
     function setText(id, value){const el=document.getElementById(id); if(el) el.textContent=value;}
     function setHTML(id, value){const el=document.getElementById(id); if(el) el.innerHTML=value;}
     function deskFilterActivity(type){deskActivityFilter=type;renderDesktopAdmin();}
-    function deskUseTenant(id){db.currentTenant=id;saveDB();addDeskLog("admin","🏘️","Super Admin memilih tenant",db.tenants[id].name);showToast("Tenant aktif: "+db.tenants[id].name);renderDesktopAdmin();}
+    function deskUseTenant(id){db.currentTenant=id;saveDB();addDeskLog("admin","ðŸ˜ï¸","Super Admin memilih tenant",db.tenants[id].name);showToast("Tenant aktif: "+db.tenants[id].name);renderDesktopAdmin();}
     function deskImpersonateTenant(id, rtId){db.currentTenant=id;if(rtId)db.currentRt=rtId;saveDB();showToast("Membuka ruang "+db.tenants[id].name);renderDesktopAdmin();}
-    function deskToggleTenant(id){const t=db.tenants[id];t.status=t.status==="Aktif"?"Nonaktif":"Aktif";saveDB();addDeskLog("admin","⚙️","Status tenant diubah",`${t.name}: ${t.status}`);renderDesktopAdmin();}
-    function deskDeleteResident(tenantId, idx){if(!confirm("Hapus warga ini dari demo?"))return;db.tenants[tenantId].residents.splice(idx,1);saveDB();addDeskLog("admin","🗑️","Warga dihapus",tenantId);renderDesktopAdmin();}
-    function deskDeleteMarket(tenantId, kind, idx){if(!confirm("Hapus item ini dari demo?"))return;const key=kind==="Lapak"?"products":kind==="Jasa"?"services":"banners";db.tenants[tenantId][key].splice(idx,1);saveDB();addDeskLog("admin","🗑️","Item marketplace dihapus",`${kind} · ${tenantId}`);renderDesktopAdmin();}
-    function deskSetReport(tenantId, idx, status){db.tenants[tenantId].reports[idx].status=status;saveDB();addDeskLog("report","🛟","Status laporan diubah",`${db.tenants[tenantId].name}: ${status}`);renderDesktopAdmin();}
-    function deskMarkPaid(id){addDeskLog("payment","💳","Billing ditandai lunas",db.tenants[id].name);showToast("Billing tenant ditandai lunas");renderDesktopAdmin();}
+    function deskToggleTenant(id){const t=db.tenants[id];t.status=t.status==="Aktif"?"Nonaktif":"Aktif";saveDB();addDeskLog("admin","âš™ï¸","Status tenant diubah",`${t.name}: ${t.status}`);renderDesktopAdmin();}
+    function deskDeleteResident(tenantId, idx){if(!confirm("Hapus warga ini dari demo?"))return;db.tenants[tenantId].residents.splice(idx,1);saveDB();addDeskLog("admin","ðŸ—‘ï¸","Warga dihapus",tenantId);renderDesktopAdmin();}
+    function deskDeleteMarket(tenantId, kind, idx){if(!confirm("Hapus item ini dari demo?"))return;const key=kind==="Lapak"?"products":kind==="Jasa"?"services":"banners";db.tenants[tenantId][key].splice(idx,1);saveDB();addDeskLog("admin","ðŸ—‘ï¸","Item marketplace dihapus",`${kind} Â· ${tenantId}`);renderDesktopAdmin();}
+    function deskSetReport(tenantId, idx, status){db.tenants[tenantId].reports[idx].status=status;saveDB();addDeskLog("report","ðŸ›Ÿ","Status laporan diubah",`${db.tenants[tenantId].name}: ${status}`);renderDesktopAdmin();}
+    function deskMarkPaid(id){addDeskLog("payment","ðŸ’³","Billing ditandai lunas",db.tenants[id].name);showToast("Billing tenant ditandai lunas");renderDesktopAdmin();}
     function openDeskModal(type, id=""){
       const modal=document.getElementById("deskModal"), title=document.getElementById("deskModalTitle"), body=document.getElementById("deskModalBody");
       if(!modal||!body)return;
@@ -2731,6 +2912,18 @@ allow write: if request.auth.token.tenantId == tenantId
           <input id="dUserPhone" placeholder="Nomor HP">
           <select id="dUserRole"><option>resident</option><option>tenant_admin</option><option>rt_admin</option><option>bendahara</option><option>security</option></select>
           <button class="desk-btn" type="submit">Simpan User</button>
+        </form>`;
+      } else if(type==="createProduct"){
+        title.textContent="Pasang Lapak Pusat";
+        const opts=deskTenantArray().map(t=>`<option value="${t.id}">${t.name}</option>`).join("");
+        body.innerHTML=`<form class="desk-form-grid" onsubmit="deskSubmitProduct(event)">
+          <select id="dPrdTenant">${opts}</select>
+          <input id="dPrdName" placeholder="Nama produk/lapak" required>
+          <input id="dPrdPrice" placeholder="Harga, contoh Rp18rb" required>
+          <select id="dPrdIcon"><option>ðŸ±</option><option>ðŸ§</option><option>ðŸŒ¿</option><option>ðŸ§¼</option><option>ðŸ—</option><option>ðŸ¥¤</option><option>ðŸ¥¬</option><option>ðŸ›ï¸</option></select>
+          <input id="dPrdSeller" placeholder="Penjual / lokasi, contoh Blok C Â· Catering" required>
+          <textarea id="dPrdNote" placeholder="Catatan admin pusat, contoh: lapak aktif 30 hari / paket prioritas"></textarea>
+          <button class="desk-btn" type="submit">Pasang Lapak</button>
         </form>`;
       } else if(type==="createService"){
         title.textContent="Tambah Jasa dari Pengelola";
@@ -2763,28 +2956,39 @@ allow write: if request.auth.token.tenantId == tenantId
       e.preventDefault();
       const id=dTnSlug.value.trim().toLowerCase().replace(/[^a-z0-9-]/g,"-");
       if(db.tenants[id]){showToast("tenantId sudah ada");return}
-      db.tenants[id]={id,name:dTnName.value,type:dTnType.value,plan:dTnPlan.value,limit:Number(dTnLimit.value),status:"approved",accessOpen:true,admin:dTnAdmin.value,monthly:planPrice(dTnPlan.value),inviteCode:dTnCode.value.trim().toUpperCase(),logo:"🏘️",theme:"#ff6b00",rts:{rt01:{id:"rt01",name:"RT 01",admin:"-",inviteCode:id.toUpperCase()+"-RT01"}},infos:[],iuran:[],reports:[],services:[],products:[],ronda:[],guests:[],events:[],residents:[],banners:[],bukti:[]};
-      db.currentTenant=id;saveDB();addDeskLog("admin","🏘️","Tenant baru dibuat",dTnName.value);closeDeskModal();renderDesktopAdmin();showToast("Tenant baru dibuat");
+      db.tenants[id]={id,name:dTnName.value,type:dTnType.value,plan:dTnPlan.value,limit:Number(dTnLimit.value),status:"approved",accessOpen:true,admin:dTnAdmin.value,monthly:planPrice(dTnPlan.value),inviteCode:dTnCode.value.trim().toUpperCase(),logo:"ðŸ˜ï¸",theme:"#ff6b00",rts:{rt01:{id:"rt01",name:"RT 01",admin:"-",inviteCode:id.toUpperCase()+"-RT01"}},infos:[],iuran:[],reports:[],services:[],products:[],ronda:[],guests:[],events:[],residents:[],banners:[],bukti:[]};
+      db.currentTenant=id;saveDB();addDeskLog("admin","ðŸ˜ï¸","Tenant baru dibuat",dTnName.value);closeDeskModal();renderDesktopAdmin();showToast("Tenant baru dibuat");
     }
     function deskSubmitUser(e){
       e.preventDefault();
       const t=db.tenants[dUserTenant.value];
       t.residents.unshift({name:dUserName.value,house:dUserHouse.value,phone:dUserPhone.value,status:"Aktif",role:dUserRole.value,source:"pengelola"});
-      saveDB();addDeskLog("admin","👤","User ditambahkan",`${dUserName.value} · ${t.name}`);closeDeskModal();renderDesktopAdmin();showToast("User/warga ditambahkan");
+      saveDB();addDeskLog("admin","ðŸ‘¤","User ditambahkan",`${dUserName.value} Â· ${t.name}`);closeDeskModal();renderDesktopAdmin();showToast("User/warga ditambahkan");
+    }
+    function deskSubmitProduct(e){
+      e.preventDefault();
+      const t=db.tenants[dPrdTenant.value];
+      t.products=t.products||[];
+      t.products.unshift({name:dPrdName.value,price:dPrdPrice.value,icon:dPrdIcon.value,seller:dPrdSeller.value,sold:"Baru",source:"admin_pusat",status:"Aktif",note:dPrdNote.value||""});
+      saveDB();
+      addDeskLog("market","ðŸ›’","Lapak dipasang Admin Pusat",`${dPrdName.value} tampil di ${t.name}`);
+      closeDeskModal();
+      renderDesktopAdmin();
+      showToast("Lapak pusat ditayangkan di "+t.name);
     }
     function deskSubmitService(e){
       e.preventDefault();
       const t=db.tenants[dSvcTenant.value];
-      t.services.unshift({name:dSvcName.value,cat:dSvcCat.value,price:dSvcPrice.value||"Hubungi admin",wa:dSvcWA.value,desc:dSvcDesc.value||"Layanan warga sekitar.",icon:"🔧",rating:"Baru"});
-      saveDB();addDeskLog("market","🔧","Jasa ditambahkan pengelola",`${dSvcName.value} · ${t.name}`);closeDeskModal();renderDesktopAdmin();showToast("Jasa ditambahkan");
+      t.services.unshift({name:dSvcName.value,cat:dSvcCat.value,price:dSvcPrice.value||"Hubungi admin",wa:dSvcWA.value,desc:dSvcDesc.value||"Layanan warga sekitar.",icon:"ðŸ”§",rating:"Baru"});
+      saveDB();addDeskLog("market","ðŸ”§","Jasa ditambahkan pengelola",`${dSvcName.value} Â· ${t.name}`);closeDeskModal();renderDesktopAdmin();showToast("Jasa ditambahkan");
     }
     function deskChangePlan(e,id){
       e.preventDefault();
       db.tenants[id].plan=dPlanNew.value;
       db.tenants[id].monthly=Number(dPlanMonthly.value||0);
-      saveDB();addDeskLog("payment","💳","Paket tenant diubah",`${db.tenants[id].name}: ${dPlanNew.value}`);closeDeskModal();renderDesktopAdmin();showToast("Paket diubah");
+      saveDB();addDeskLog("payment","ðŸ’³","Paket tenant diubah",`${db.tenants[id].name}: ${dPlanNew.value}`);closeDeskModal();renderDesktopAdmin();showToast("Paket diubah");
     }
-    function saveDeskSettings(){showToast("Pengaturan sistem disimpan di perangkat ini");addDeskLog("admin","⚙️","Setting sistem disimpan","Admin pengelola memperbarui pengaturan");renderDesktopAdmin();}
+    function saveDeskSettings(){showToast("Pengaturan sistem disimpan di perangkat ini");addDeskLog("admin","âš™ï¸","Setting sistem disimpan","Admin pengelola memperbarui pengaturan");renderDesktopAdmin();}
     function downloadDeskReport(){
       const report={
         generatedAt:new Date().toISOString(),
@@ -2845,12 +3049,12 @@ allow write: if request.auth.token.tenantId == tenantId
     function deskLogs(){
       const built = [];
       deskTenantArray().forEach(t=>{
-        built.push({type:"admin", icon:"🏘️", title:"Tenant aktif", text:`${t.name} memakai paket ${t.plan}`, time:"Sistem"});
-        (t.residents||[]).slice(0,6).forEach(r=>built.push({type:"login", icon:"👤", title:"Warga terdaftar", text:`${r.name} masuk ke ${t.name} ${r.rtName||r.rtId||""}`, time:"Data user"}));
-        (t.reports||[]).slice(0,6).forEach(r=>built.push({type:"report", icon:"🛟", title:r.title, text:`${t.name} · ${r.status} · ${r.desc}`, time:r.time||"Laporan"}));
-        (t.bukti||[]).slice(0,6).forEach(b=>built.push({type:"payment", icon:"💳", title:"Bukti iuran masuk", text:`${t.name} · ${b.nama} · ${b.jenis}`, time:"Bendahara"}));
-        (t.services||[]).slice(0,4).forEach(s=>built.push({type:"market", icon:"🔧", title:"Jasa aktif", text:`${s.name} tampil di ${t.name}`, time:s.cat||"Jasa"}));
-        (t.products||[]).slice(0,4).forEach(p=>built.push({type:"market", icon:"🛒", title:"Lapak aktif", text:`${p.name} tampil di ${t.name}`, time:p.seller||"Lapak"}));
+        built.push({type:"admin", icon:"ðŸ˜ï¸", title:"Tenant aktif", text:`${t.name} memakai paket ${t.plan}`, time:"Sistem"});
+        (t.residents||[]).slice(0,6).forEach(r=>built.push({type:"login", icon:"ðŸ‘¤", title:"Warga terdaftar", text:`${r.name} masuk ke ${t.name} ${r.rtName||r.rtId||""}`, time:"Data user"}));
+        (t.reports||[]).slice(0,6).forEach(r=>built.push({type:"report", icon:"ðŸ›Ÿ", title:r.title, text:`${t.name} Â· ${r.status} Â· ${r.desc}`, time:r.time||"Laporan"}));
+        (t.bukti||[]).slice(0,6).forEach(b=>built.push({type:"payment", icon:"ðŸ’³", title:"Bukti iuran masuk", text:`${t.name} Â· ${b.nama} Â· ${b.jenis}`, time:"Bendahara"}));
+        (t.services||[]).slice(0,4).forEach(s=>built.push({type:"market", icon:"ðŸ”§", title:"Jasa aktif", text:`${s.name} tampil di ${t.name}`, time:s.cat||"Jasa"}));
+        (t.products||[]).slice(0,4).forEach(p=>built.push({type:"market", icon:"ðŸ›’", title:"Lapak aktif", text:`${p.name} tampil di ${t.name}`, time:p.seller||"Lapak"}));
       });
       const manual = JSON.parse(localStorage.getItem("wargahubDeskLogs") || "[]");
       return [...manual, ...built];
@@ -2879,7 +3083,7 @@ allow write: if request.auth.token.tenantId == tenantId
         activity:["Aktivitas User","Pantau login, pendaftaran warga, laporan, iuran, lapak, dan aksi admin."],
         billing:["Billing & Paket","Kelola tagihan aplikasi tiap tenant dan status pembayaran."],
         approvals:["Approval Pembayaran","Setujui pembayaran upgrade, buka akses warga, dan aktifkan mandat admin RT."],
-        marketplace:["Lapak & Jasa","Kontrol pedagang, tukang service, banner, dan potensi income lokal."],
+        marketplace:["Lapak & Jasa","Admin Pusat memasang dan mengontrol lapak, jasa, banner, dan potensi income lokal."],
         moderation:["Moderasi Laporan","Pantau laporan warga, status penanganan, dan keamanan lingkungan."],
         links:["Link Tenant/RT","Salin link khusus tenant dan RT untuk dikirim ke pelanggan/warga."],
         settings:["Pengaturan Sistem","Atur nama aplikasi, support, role default, dan pesan sambutan."],
@@ -2915,7 +3119,7 @@ allow write: if request.auth.token.tenantId == tenantId
       setText("dFirebaseStatus", window.WHFirebase ? "Terhubung" : "Menunggu koneksi");
 
       const top = [...tenants].sort((a,b)=>deskIncomeTenant(b)-deskIncomeTenant(a)).slice(0,4);
-      setHTML("dTopTenants", top.map((t,idx)=>`<div class="desk-rank-item"><div class="desk-rank-no">${idx+1}</div><div><b>${t.name}</b><small>${t.plan} · ${t.residents.length} warga</small></div><span class="desk-pill green">${money(deskIncomeTenant(t))}</span></div>`).join(""));
+      setHTML("dTopTenants", top.map((t,idx)=>`<div class="desk-rank-item"><div class="desk-rank-no">${idx+1}</div><div><b>${t.name}</b><small>${t.plan} Â· ${t.residents.length} warga</small></div><span class="desk-pill green">${money(deskIncomeTenant(t))}</span></div>`).join(""));
       setHTML("dSystemStatus", `
         <div class="desk-health"><div><b>Multi tenant</b><small>TenantId aktif dan data terpisah</small></div><div class="desk-progress"><span style="width:100%"></span></div></div>
         <div class="desk-health"><div><b>Responsive UI</b><small>HP app + laptop admin</small></div><div class="desk-progress"><span style="width:100%"></span></div></div>
@@ -2957,7 +3161,7 @@ allow write: if request.auth.token.tenantId == tenantId
 
       const filteredMarket = market.filter(m => (`${m.name||m.text} ${m.tenantName} ${m.kind} ${m.cat||""}`).toLowerCase().includes(q));
       setHTML("dMarketRows", filteredMarket.map(m=>`
-        <tr><td><b>${m.name||m.text}</b><br><small>${m.desc||m.owner||m.seller||""}</small></td><td>${m.tenantName}</td><td>${m.kind}${m.cat?" · "+m.cat:""}</td><td>${m.price||m.priceText||"-"}</td><td><span class="desk-pill green">Aktif</span></td>
+        <tr><td><b>${m.name||m.text}</b><br><small>${m.desc||m.owner||m.seller||""}</small></td><td>${m.tenantName}</td><td>${m.kind}${m.cat?" Â· "+m.cat:""}${m.kind==="Lapak"?" Â· Pusat":""}</td><td>${m.price||m.priceText||"-"}</td><td><span class="desk-pill green">Aktif</span></td>
         <td><div class="desk-mini-actions"><button class="primary">Verifikasi</button><button class="danger" onclick="deskDeleteMarket('${m.tenantId}','${m.kind}',${m._index})">Hapus</button></div></td></tr>
       `).join(""));
 
@@ -2970,7 +3174,7 @@ allow write: if request.auth.token.tenantId == tenantId
       const linkRows=[];
       tenants.forEach(t=>{
         linkRows.push({name:t.name,type:"Tenant",link:tenantUrl(t.id),code:t.inviteCode||"-",tenantId:t.id});
-        Object.values(t.rts||{}).forEach(rt=>linkRows.push({name:`${t.name} · ${rt.name}`,type:"RT",link:rtUrl(t.id,rt.id),code:rt.inviteCode,tenantId:t.id,rtId:rt.id}));
+        Object.values(t.rts||{}).forEach(rt=>linkRows.push({name:`${t.name} Â· ${rt.name}`,type:"RT",link:rtUrl(t.id,rt.id),code:rt.inviteCode,tenantId:t.id,rtId:rt.id}));
       });
       setHTML("dLinkRows", linkRows.map(l=>`
         <tr><td><b>${l.name}</b></td><td><span class="desk-pill purple">${l.type}</span></td><td><div class="linkbox" style="margin:0">${l.link}</div></td><td>${l.code}</td>
@@ -2980,13 +3184,13 @@ allow write: if request.auth.token.tenantId == tenantId
     function setText(id, value){const el=document.getElementById(id); if(el) el.textContent=value;}
     function setHTML(id, value){const el=document.getElementById(id); if(el) el.innerHTML=value;}
     function deskFilterActivity(type){deskActivityFilter=type;renderDesktopAdmin();}
-    function deskUseTenant(id){db.currentTenant=id;saveDB();addDeskLog("admin","🏘️","Super Admin memilih tenant",db.tenants[id].name);showToast("Tenant aktif: "+db.tenants[id].name);renderDesktopAdmin();}
+    function deskUseTenant(id){db.currentTenant=id;saveDB();addDeskLog("admin","ðŸ˜ï¸","Super Admin memilih tenant",db.tenants[id].name);showToast("Tenant aktif: "+db.tenants[id].name);renderDesktopAdmin();}
     function deskImpersonateTenant(id, rtId){db.currentTenant=id;if(rtId)db.currentRt=rtId;saveDB();showToast("Membuka ruang "+db.tenants[id].name);renderDesktopAdmin();}
-    function deskToggleTenant(id){const t=db.tenants[id];t.status=t.status==="Aktif"?"Nonaktif":"Aktif";saveDB();addDeskLog("admin","⚙️","Status tenant diubah",`${t.name}: ${t.status}`);renderDesktopAdmin();}
-    function deskDeleteResident(tenantId, idx){if(!confirm("Hapus warga ini dari demo?"))return;db.tenants[tenantId].residents.splice(idx,1);saveDB();addDeskLog("admin","🗑️","Warga dihapus",tenantId);renderDesktopAdmin();}
-    function deskDeleteMarket(tenantId, kind, idx){if(!confirm("Hapus item ini dari demo?"))return;const key=kind==="Lapak"?"products":kind==="Jasa"?"services":"banners";db.tenants[tenantId][key].splice(idx,1);saveDB();addDeskLog("admin","🗑️","Item marketplace dihapus",`${kind} · ${tenantId}`);renderDesktopAdmin();}
-    function deskSetReport(tenantId, idx, status){db.tenants[tenantId].reports[idx].status=status;saveDB();addDeskLog("report","🛟","Status laporan diubah",`${db.tenants[tenantId].name}: ${status}`);renderDesktopAdmin();}
-    function deskMarkPaid(id){addDeskLog("payment","💳","Billing ditandai lunas",db.tenants[id].name);showToast("Billing tenant ditandai lunas");renderDesktopAdmin();}
+    function deskToggleTenant(id){const t=db.tenants[id];t.status=t.status==="Aktif"?"Nonaktif":"Aktif";saveDB();addDeskLog("admin","âš™ï¸","Status tenant diubah",`${t.name}: ${t.status}`);renderDesktopAdmin();}
+    function deskDeleteResident(tenantId, idx){if(!confirm("Hapus warga ini dari demo?"))return;db.tenants[tenantId].residents.splice(idx,1);saveDB();addDeskLog("admin","ðŸ—‘ï¸","Warga dihapus",tenantId);renderDesktopAdmin();}
+    function deskDeleteMarket(tenantId, kind, idx){if(!confirm("Hapus item ini dari demo?"))return;const key=kind==="Lapak"?"products":kind==="Jasa"?"services":"banners";db.tenants[tenantId][key].splice(idx,1);saveDB();addDeskLog("admin","ðŸ—‘ï¸","Item marketplace dihapus",`${kind} Â· ${tenantId}`);renderDesktopAdmin();}
+    function deskSetReport(tenantId, idx, status){db.tenants[tenantId].reports[idx].status=status;saveDB();addDeskLog("report","ðŸ›Ÿ","Status laporan diubah",`${db.tenants[tenantId].name}: ${status}`);renderDesktopAdmin();}
+    function deskMarkPaid(id){addDeskLog("payment","ðŸ’³","Billing ditandai lunas",db.tenants[id].name);showToast("Billing tenant ditandai lunas");renderDesktopAdmin();}
     function openDeskModal(type, id=""){
       const modal=document.getElementById("deskModal"), title=document.getElementById("deskModalTitle"), body=document.getElementById("deskModalBody");
       if(!modal||!body)return;
@@ -3012,6 +3216,18 @@ allow write: if request.auth.token.tenantId == tenantId
           <input id="dUserPhone" placeholder="Nomor HP">
           <select id="dUserRole"><option>resident</option><option>tenant_admin</option><option>rt_admin</option><option>bendahara</option><option>security</option></select>
           <button class="desk-btn" type="submit">Simpan User</button>
+        </form>`;
+      } else if(type==="createProduct"){
+        title.textContent="Pasang Lapak Pusat";
+        const opts=deskTenantArray().map(t=>`<option value="${t.id}">${t.name}</option>`).join("");
+        body.innerHTML=`<form class="desk-form-grid" onsubmit="deskSubmitProduct(event)">
+          <select id="dPrdTenant">${opts}</select>
+          <input id="dPrdName" placeholder="Nama produk/lapak" required>
+          <input id="dPrdPrice" placeholder="Harga, contoh Rp18rb" required>
+          <select id="dPrdIcon"><option>ðŸ±</option><option>ðŸ§</option><option>ðŸŒ¿</option><option>ðŸ§¼</option><option>ðŸ—</option><option>ðŸ¥¤</option><option>ðŸ¥¬</option><option>ðŸ›ï¸</option></select>
+          <input id="dPrdSeller" placeholder="Penjual / lokasi, contoh Blok C Â· Catering" required>
+          <textarea id="dPrdNote" placeholder="Catatan admin pusat, contoh: lapak aktif 30 hari / paket prioritas"></textarea>
+          <button class="desk-btn" type="submit">Pasang Lapak</button>
         </form>`;
       } else if(type==="createService"){
         title.textContent="Tambah Jasa dari Pengelola";
@@ -3044,28 +3260,39 @@ allow write: if request.auth.token.tenantId == tenantId
       e.preventDefault();
       const id=dTnSlug.value.trim().toLowerCase().replace(/[^a-z0-9-]/g,"-");
       if(db.tenants[id]){showToast("tenantId sudah ada");return}
-      db.tenants[id]={id,name:dTnName.value,type:dTnType.value,plan:dTnPlan.value,limit:Number(dTnLimit.value),status:"approved",accessOpen:true,admin:dTnAdmin.value,monthly:planPrice(dTnPlan.value),inviteCode:dTnCode.value.trim().toUpperCase(),logo:"🏘️",theme:"#ff6b00",rts:{rt01:{id:"rt01",name:"RT 01",admin:"-",inviteCode:id.toUpperCase()+"-RT01"}},infos:[],iuran:[],reports:[],services:[],products:[],ronda:[],guests:[],events:[],residents:[],banners:[],bukti:[]};
-      db.currentTenant=id;saveDB();addDeskLog("admin","🏘️","Tenant baru dibuat",dTnName.value);closeDeskModal();renderDesktopAdmin();showToast("Tenant baru dibuat");
+      db.tenants[id]={id,name:dTnName.value,type:dTnType.value,plan:dTnPlan.value,limit:Number(dTnLimit.value),status:"approved",accessOpen:true,admin:dTnAdmin.value,monthly:planPrice(dTnPlan.value),inviteCode:dTnCode.value.trim().toUpperCase(),logo:"ðŸ˜ï¸",theme:"#ff6b00",rts:{rt01:{id:"rt01",name:"RT 01",admin:"-",inviteCode:id.toUpperCase()+"-RT01"}},infos:[],iuran:[],reports:[],services:[],products:[],ronda:[],guests:[],events:[],residents:[],banners:[],bukti:[]};
+      db.currentTenant=id;saveDB();addDeskLog("admin","ðŸ˜ï¸","Tenant baru dibuat",dTnName.value);closeDeskModal();renderDesktopAdmin();showToast("Tenant baru dibuat");
     }
     function deskSubmitUser(e){
       e.preventDefault();
       const t=db.tenants[dUserTenant.value];
       t.residents.unshift({name:dUserName.value,house:dUserHouse.value,phone:dUserPhone.value,status:"Aktif",role:dUserRole.value,source:"pengelola"});
-      saveDB();addDeskLog("admin","👤","User ditambahkan",`${dUserName.value} · ${t.name}`);closeDeskModal();renderDesktopAdmin();showToast("User/warga ditambahkan");
+      saveDB();addDeskLog("admin","ðŸ‘¤","User ditambahkan",`${dUserName.value} Â· ${t.name}`);closeDeskModal();renderDesktopAdmin();showToast("User/warga ditambahkan");
+    }
+    function deskSubmitProduct(e){
+      e.preventDefault();
+      const t=db.tenants[dPrdTenant.value];
+      t.products=t.products||[];
+      t.products.unshift({name:dPrdName.value,price:dPrdPrice.value,icon:dPrdIcon.value,seller:dPrdSeller.value,sold:"Baru",source:"admin_pusat",status:"Aktif",note:dPrdNote.value||""});
+      saveDB();
+      addDeskLog("market","ðŸ›’","Lapak dipasang Admin Pusat",`${dPrdName.value} tampil di ${t.name}`);
+      closeDeskModal();
+      renderDesktopAdmin();
+      showToast("Lapak pusat ditayangkan di "+t.name);
     }
     function deskSubmitService(e){
       e.preventDefault();
       const t=db.tenants[dSvcTenant.value];
-      t.services.unshift({name:dSvcName.value,cat:dSvcCat.value,price:dSvcPrice.value||"Hubungi admin",wa:dSvcWA.value,desc:dSvcDesc.value||"Layanan warga sekitar.",icon:"🔧",rating:"Baru"});
-      saveDB();addDeskLog("market","🔧","Jasa ditambahkan pengelola",`${dSvcName.value} · ${t.name}`);closeDeskModal();renderDesktopAdmin();showToast("Jasa ditambahkan");
+      t.services.unshift({name:dSvcName.value,cat:dSvcCat.value,price:dSvcPrice.value||"Hubungi admin",wa:dSvcWA.value,desc:dSvcDesc.value||"Layanan warga sekitar.",icon:"ðŸ”§",rating:"Baru"});
+      saveDB();addDeskLog("market","ðŸ”§","Jasa ditambahkan pengelola",`${dSvcName.value} Â· ${t.name}`);closeDeskModal();renderDesktopAdmin();showToast("Jasa ditambahkan");
     }
     function deskChangePlan(e,id){
       e.preventDefault();
       db.tenants[id].plan=dPlanNew.value;
       db.tenants[id].monthly=Number(dPlanMonthly.value||0);
-      saveDB();addDeskLog("payment","💳","Paket tenant diubah",`${db.tenants[id].name}: ${dPlanNew.value}`);closeDeskModal();renderDesktopAdmin();showToast("Paket diubah");
+      saveDB();addDeskLog("payment","ðŸ’³","Paket tenant diubah",`${db.tenants[id].name}: ${dPlanNew.value}`);closeDeskModal();renderDesktopAdmin();showToast("Paket diubah");
     }
-    function saveDeskSettings(){showToast("Pengaturan sistem disimpan di perangkat ini");addDeskLog("admin","⚙️","Setting sistem disimpan","Admin pengelola memperbarui pengaturan");renderDesktopAdmin();}
+    function saveDeskSettings(){showToast("Pengaturan sistem disimpan di perangkat ini");addDeskLog("admin","âš™ï¸","Setting sistem disimpan","Admin pengelola memperbarui pengaturan");renderDesktopAdmin();}
     function downloadDeskReport(){
       const report={
         generatedAt:new Date().toISOString(),
@@ -3089,5 +3316,100 @@ allow write: if request.auth.token.tenantId == tenantId
 
     renderAll();
   </script>
+
+  <button class="force-logout-admin" type="button" onclick="window.deskLogoutCenter(event)" data-force-logout="1">ðŸšª Keluar Admin</button>
+
+
+<script>
+(function(){
+  function getDB(){
+    try{
+      const raw = localStorage.getItem("wargahubTenantDB");
+      if(raw) return JSON.parse(raw);
+    }catch(e){}
+    return null;
+  }
+  function setDB(db){
+    try{ localStorage.setItem("wargahubTenantDB", JSON.stringify(db)); }catch(e){}
+  }
+  function toast(msg){
+    try{
+      const t = document.getElementById("toast");
+      if(t){
+        t.textContent = msg;
+        t.classList.add("show");
+        setTimeout(()=>t.classList.remove("show"),1800);
+        return;
+      }
+    }catch(e){}
+    console.log(msg);
+  }
+
+  window.deskLogoutCenter = function(ev){
+    if(ev){ ev.preventDefault(); ev.stopPropagation(); }
+    const db = getDB();
+    if(db){
+      db.currentRole = "resident";
+      if(!db.currentTenant && db.tenants){
+        db.currentTenant = Object.keys(db.tenants)[0] || "";
+      }
+      setDB(db);
+    }
+    localStorage.setItem("seputarwargaForceMobile","1");
+    toast("Keluar dari Admin Pusat. Masuk mode HP/User.");
+    setTimeout(function(){ window.location.reload(); }, 350);
+    return false;
+  };
+
+  window.deskSwitchToMobile = function(ev){
+    if(ev){ ev.preventDefault(); ev.stopPropagation(); }
+    localStorage.setItem("seputarwargaForceMobile","1");
+    toast("Mode HP/User dibuka.");
+    setTimeout(function(){ window.location.reload(); }, 250);
+    return false;
+  };
+
+  window.backToDesktopAdmin = function(ev){
+    if(ev){ ev.preventDefault(); ev.stopPropagation(); }
+    const db = getDB();
+    if(db){
+      db.currentRole = "super_admin";
+      setDB(db);
+    }
+    localStorage.removeItem("seputarwargaForceMobile");
+    toast("Kembali ke Admin Pusat.");
+    setTimeout(function(){ window.location.reload(); }, 250);
+    return false;
+  };
+
+  window.quickLoginAs = window.quickLoginAs || function(role){
+    const db = getDB();
+    if(db){
+      db.currentRole = role;
+      if(!db.currentTenant && db.tenants){
+        db.currentTenant = Object.keys(db.tenants)[0] || "";
+      }
+      setDB(db);
+    }
+    toast("Mode sekarang: " + role);
+    try{
+      if(typeof openPage === "function") openPage("home");
+      if(typeof renderAll === "function") renderAll();
+    }catch(e){}
+  };
+
+  window.logoutAll = window.logoutAll || function(){
+    window.quickLoginAs("resident");
+    localStorage.setItem("seputarwargaForceMobile","1");
+    setTimeout(function(){ window.location.reload(); }, 250);
+  };
+
+  document.addEventListener("click", function(e){
+    const target = e.target.closest("[data-force-logout]");
+    if(target){ window.deskLogoutCenter(e); }
+  }, true);
+})();
+</script>
+
 </body>
 </html>
